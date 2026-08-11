@@ -1024,7 +1024,8 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
    heading 92px below the fixed nav, leaving the film idle at frame zero; from
    an active lock it released, paused the film, and reached the same landing.
    A later ordinary scroll back still started the scene. Full playback, end,
-   Escape, and reduced-motion release paths remain verified (2026-08-10).
+   Escape, and touch entry with reduced-motion presentation remain verified
+   (2026-08-10).
    Retirement: replace when this scene is removed or its footage no longer
    needs uninterrupted, automatic playback.                              */
 (() => {
@@ -1042,8 +1043,9 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const portraitMobile = matchMedia('(max-width: 880px) and (orientation: portrait)');
-  const sceneScale = portraitMobile.matches ? 1.055 : 1.12;
   const forceMotion = new URLSearchParams(location.search).get('motion') === 'full';
+  const reduceSceneMotion = reducedMotion.matches && !forceMotion;
+  const sceneScale = reduceSceneMotion ? 1 : (portraitMobile.matches ? 1.055 : 1.12);
   const blockedKeys = new Set(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' ']);
   const inputOptions = { capture:true, passive:false };
   let hasPlayed = false;
@@ -1053,23 +1055,9 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
   let sceneTimeline = null;
   let bypassing = false;
 
-  const settleReducedMotion = () => {
-    gsap.set(v, { scale:1 });
-    gsap.set(name, { yPercent:0, opacity:1 });
-    if (Number.isFinite(v.duration) && v.duration > 0) {
-      v.currentTime = Math.max(0, v.duration - .05);
-    }
-    sec.dataset.playState = 'reduced-motion';
-  };
-
-  if (reducedMotion.matches && !forceMotion) {
-    if (v.readyState >= 1) settleReducedMotion();
-    else v.addEventListener('loadedmetadata', settleReducedMotion, { once:true });
-    return;
-  }
-
+  sec.dataset.motion = reduceSceneMotion ? 'reduced' : 'full';
   gsap.set(v, { scale:sceneScale });
-  gsap.set(name, { yPercent:26, opacity:0 });
+  gsap.set(name, reduceSceneMotion ? { yPercent:0, opacity:1 } : { yPercent:26, opacity:0 });
 
   const removeInputBlockers = () => {
     removeEventListener('wheel', blockInput, true);
@@ -1185,7 +1173,7 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
       v.currentTime = 0;
       const duration = Math.max(.5, Number.isFinite(v.duration) ? v.duration : 6);
       if (sceneTimeline) sceneTimeline.kill();
-      sceneTimeline = gsap.timeline({ paused:true })
+      sceneTimeline = reduceSceneMotion ? null : gsap.timeline({ paused:true })
         .fromTo(v, { scale:sceneScale }, { scale:1, ease:'none', duration }, 0)
         .fromTo(name, { yPercent:26, opacity:0 },
           { yPercent:0, opacity:1, ease:'power1.out', duration:duration * .18 },
@@ -1194,7 +1182,7 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
       v.addEventListener('ended', () => releaseScroll('ended'), { once:true });
       v.addEventListener('error', () => releaseScroll('media-error'), { once:true });
       sec.dataset.playState = 'playing';
-      sceneTimeline.play(0);
+      if (sceneTimeline) sceneTimeline.play(0);
       await v.play();
     } catch (error) {
       releaseScroll(error && error.message ? error.message : 'playback-error');

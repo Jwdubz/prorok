@@ -54,6 +54,18 @@ test("the interlude serves an art-directed portrait film before the desktop mast
   await access(new URL(`dist/client/${ASSET_NAMESPACE.slice(1)}/sakura-ink-bloom-mobile.mp4`, root));
 });
 
+test("reduced-motion presentation preserves the interlude activation path", () => {
+  assert.match(
+    html,
+    /const reduceSceneMotion = reducedMotion\.matches && !forceMotion;/,
+  );
+  assert.match(
+    html,
+    /sec\.dataset\.motion = reduceSceneMotion \? 'reduced' : 'full';/,
+  );
+  assert.doesNotMatch(html, /settleReducedMotion/);
+});
+
 test("normal browsers reach the site and receive protective headers", async () => {
   const { env, requests } = makeEnvironment();
   const response = await worker.fetch(
