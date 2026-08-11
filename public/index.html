@@ -1017,15 +1017,16 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
    MAINTAINED INTERACTION — the scene owns the viewport for one complete
    playback, then returns scrolling at the same position with no carried
    wheel momentum.
-   Canonical path: index.html (#interlude playback controller).
+   Canonical path: public/index.html (#interlude playback controller).
    Future consumer: a visitor reaching the interlude on Dylan's redesign.
    Activation: auto-load through the ScrollTrigger at "top top".
    Behavioral check: PASS — Book jumped from the page top to Begin with its
    heading 92px below the fixed nav, leaving the film idle at frame zero; from
    an active lock it released, paused the film, and reached the same landing.
-   A later ordinary scroll back still started the scene. Full playback, end,
-   Escape, and touch entry with reduced-motion presentation remain verified
-   (2026-08-10).
+   A later ordinary scroll back still started the scene. Live at 758×920 with
+   reduced motion active, entry locked immediately, a second scroll moved 0px,
+   and the six-second ending released cleanly with no browser errors. Escape and
+   full-motion paths remain verified (2026-08-10).
    Retirement: replace when this scene is removed or its footage no longer
    needs uninterrupted, automatic playback.                              */
 (() => {
