@@ -5,6 +5,7 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const html = await readFile(new URL("public/index.html", root), "utf8");
 const robots = await readFile(new URL("public/robots.txt", root), "utf8");
+const wrangler = JSON.parse(await readFile(new URL("dist/server/wrangler.json", root), "utf8"));
 const { default: worker } = await import(new URL("dist/server/index.js", root));
 
 function makeEnvironment() {
@@ -29,6 +30,10 @@ test("published HTML and robots.txt opt out of indexing", () => {
   assert.match(html, /<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex/);
   assert.match(html, /<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex"/);
   assert.equal(robots, "User-agent: *\nDisallow: /\n");
+});
+
+test("production routes static assets through the protection Worker", () => {
+  assert.equal(wrangler.assets?.run_worker_first, true);
 });
 
 test("normal browsers reach the site and receive protective headers", async () => {

@@ -14,6 +14,11 @@ const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 const localBindingConfig = {
   main: "./worker/index.ts",
   compatibility_flags: ["nodejs_compat"],
+  assets: {
+    // Static assets otherwise bypass the Worker at the edge. Every request must
+    // reach the anti-scrape boundary before ASSETS serves the underlying file.
+    run_worker_first: true,
+  },
   d1_databases: d1
     ? [
         {
