@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { ASSET_NAMESPACE } from "../build/protection-config.mjs";
 
 const root = new URL("../", import.meta.url);
 const html = await readFile(new URL("public/index.html", root), "utf8");
@@ -36,6 +37,13 @@ test("production routes static assets through the protection Worker", () => {
   assert.equal(wrangler.assets?.run_worker_first, true);
 });
 
+test("published assets cannot bypass the protection Worker at public paths", async () => {
+  await assert.rejects(access(new URL("dist/client/index.html", root)), { code: "ENOENT" });
+  await assert.rejects(access(new URL("dist/client/robots.txt", root)), { code: "ENOENT" });
+  await access(new URL(`dist/client/${ASSET_NAMESPACE.slice(1)}/index.html`, root));
+  await access(new URL(`dist/client/${ASSET_NAMESPACE.slice(1)}/robots.txt`, root));
+});
+
 test("normal browsers reach the site and receive protective headers", async () => {
   const { env, requests } = makeEnvironment();
   const response = await worker.fetch(
@@ -50,7 +58,7 @@ test("normal browsers reach the site and receive protective headers", async () =
 
   assert.equal(response.status, 200);
   assert.equal(requests.length, 1);
-  assert.equal(new URL(requests[0].url).pathname, "/index.html");
+  assert.equal(new URL(requests[0].url).pathname, `${ASSET_NAMESPACE}/index.html`);
   assert.match(response.headers.get("x-robots-tag") ?? "", /noindex/);
   assert.equal(response.headers.get("cross-origin-resource-policy"), "same-origin");
   assert.match(response.headers.get("vary") ?? "", /User-Agent/i);
@@ -97,5 +105,5 @@ test("social link previews and robots.txt remain reachable", async () => {
   );
   assert.equal(robotsResponse.status, 200);
   assert.equal(crawler.requests.length, 1);
-  assert.equal(new URL(crawler.requests[0].url).pathname, "/robots.txt");
+  assert.equal(new URL(crawler.requests[0].url).pathname, `${ASSET_NAMESPACE}/robots.txt`);
 });

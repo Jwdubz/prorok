@@ -8,8 +8,12 @@
    probes repeat the normal-browser and known-scraper paths after deployment.
    Retirement: remove when the portfolio leaves Sites, becomes intentionally
    indexable, or moves behind stronger authenticated access. */
+import { ASSET_NAMESPACE } from "../build/protection-config.mjs";
+
 interface Env {
-  ASSETS: Fetcher;
+  ASSETS: {
+    fetch(request: Request): Promise<Response>;
+  };
 }
 
 const SOCIAL_PREVIEW_USER_AGENT =
@@ -59,9 +63,9 @@ const worker = {
     }
 
     const assetUrl = new URL(request.url);
-    if (assetUrl.pathname === "/") assetUrl.pathname = "/index.html";
+    const requestedPathname = assetUrl.pathname === "/" ? "/index.html" : assetUrl.pathname;
 
-    if (shouldBlockAutomatedClient(request, assetUrl.pathname)) {
+    if (shouldBlockAutomatedClient(request, requestedPathname)) {
       return applyProtectionHeaders(
         new Response("Automated access is not permitted.", {
           status: 403,
@@ -69,6 +73,12 @@ const worker = {
         }),
       );
     }
+
+    // Sites currently serves matching static paths before invoking the Worker,
+    // even when the packaged Wrangler config requests run_worker_first. The
+    // build therefore stores assets under a private namespace while public URLs
+    // stay unchanged; only this classified request path knows the mapping.
+    assetUrl.pathname = `${ASSET_NAMESPACE}${requestedPathname}`;
 
     const response = await env.ASSETS.fetch(
       new Request(assetUrl.toString(), {
