@@ -384,6 +384,17 @@ h1,h2,h3{font-weight:400}
   .scale__caption{position:relative;right:auto;bottom:auto;left:auto;max-width:none;
     margin:1.2rem 1rem 0}
 }
+@media (max-width:880px) and (orientation:portrait){
+  /* Portrait uses an art-directed crop of the film rather than forcing the
+     landscape master through object-fit. Keep the figure legible, preserve
+     the full-bleed passage, and place the name in the authored clear field. */
+  .interlude__pin{height:100svh}
+  .interlude__video{object-position:center center}
+  .interlude__jp{left:max(1.35rem,env(safe-area-inset-left));top:38%;
+    transform:translateY(-50%);font-size:clamp(1.75rem,8vw,2.35rem);
+    letter-spacing:.04em;color:rgba(239,231,216,.42);
+    text-shadow:0 0 2rem rgba(20,16,14,.55)}
+}
 @media (max-width:600px){
   .healed-montage{aspect-ratio:3 / 4}
 }
@@ -655,8 +666,21 @@ h1,h2,h3{font-weight:400}
      applies unchanged to whatever goes in. -->
 <section class="interlude" id="interlude" data-play-state="idle">
   <div class="interlude__pin">
-    <video class="interlude__video" src="./sakura-ink-bloom.mp4"
-           muted playsinline preload="auto" aria-hidden="true"></video>
+    <!-- MAINTAINED RESPONSIVE MEDIA — art-directed portrait interlude.
+         Canonical path: public/index.html (#interlude sources and portrait CSS)
+         + public/sakura-ink-bloom-mobile.mp4.
+         Future consumer: a portrait-phone visitor reaching Dylan's interlude.
+         Activation: auto-load through the portrait media source below.
+         Behavioral check: PASS — at 390×844 the browser selected the 720×1280
+         source, kept the full samurai visible at the six-second finale, and
+         released the scroll lock with no console errors on 2026-08-10.
+         Retirement: remove when this film is replaced by a portrait-native
+         master or when the interlude itself is retired. -->
+    <video class="interlude__video" muted playsinline preload="auto" aria-hidden="true">
+      <source media="(max-width: 880px) and (orientation: portrait)"
+              src="./sakura-ink-bloom-mobile.mp4" type="video/mp4" />
+      <source src="./sakura-ink-bloom.mp4" type="video/mp4" />
+    </video>
     <div class="interlude__wash"></div>
     <div class="interlude__jp" aria-hidden="true">Dylan Prorok</div>
     <span class="interlude__tag">Placeholder clip — replace with his footage</span>
@@ -1017,6 +1041,8 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
   v.pause();
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const portraitMobile = matchMedia('(max-width: 880px) and (orientation: portrait)');
+  const sceneScale = portraitMobile.matches ? 1.055 : 1.12;
   const forceMotion = new URLSearchParams(location.search).get('motion') === 'full';
   const blockedKeys = new Set(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' ']);
   const inputOptions = { capture:true, passive:false };
@@ -1042,7 +1068,7 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
     return;
   }
 
-  gsap.set(v, { scale:1.12 });
+  gsap.set(v, { scale:sceneScale });
   gsap.set(name, { yPercent:26, opacity:0 });
 
   const removeInputBlockers = () => {
@@ -1160,7 +1186,7 @@ gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out'
       const duration = Math.max(.5, Number.isFinite(v.duration) ? v.duration : 6);
       if (sceneTimeline) sceneTimeline.kill();
       sceneTimeline = gsap.timeline({ paused:true })
-        .fromTo(v, { scale:1.12 }, { scale:1, ease:'none', duration }, 0)
+        .fromTo(v, { scale:sceneScale }, { scale:1, ease:'none', duration }, 0)
         .fromTo(name, { yPercent:26, opacity:0 },
           { yPercent:0, opacity:1, ease:'power1.out', duration:duration * .18 },
           duration * .05);

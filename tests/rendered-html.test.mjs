@@ -44,6 +44,16 @@ test("published assets cannot bypass the protection Worker at public paths", asy
   await access(new URL(`dist/client/${ASSET_NAMESPACE.slice(1)}/robots.txt`, root));
 });
 
+test("the interlude serves an art-directed portrait film before the desktop master", async () => {
+  assert.match(
+    html,
+    /<source media="\(max-width: 880px\) and \(orientation: portrait\)"\s+src="\.\/sakura-ink-bloom-mobile\.mp4" type="video\/mp4" \/>/,
+  );
+  assert.match(html, /<source src="\.\/sakura-ink-bloom\.mp4" type="video\/mp4" \/>/);
+  await access(new URL("public/sakura-ink-bloom-mobile.mp4", root));
+  await access(new URL(`dist/client/${ASSET_NAMESPACE.slice(1)}/sakura-ink-bloom-mobile.mp4`, root));
+});
+
 test("normal browsers reach the site and receive protective headers", async () => {
   const { env, requests } = makeEnvironment();
   const response = await worker.fetch(
