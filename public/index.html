@@ -238,6 +238,14 @@ h1,h2,h3{font-weight:400}
 
 /* ══ CRAFT / PROCESS ══ */
 .craft{background:var(--sumi-2);padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem)}
+/* MAINTAINED MOTION — process-to-interlude breathing room.
+   Canonical path: public/index.html (#craft padding).
+   Future consumer: a visitor reaching the samurai interlude after Process.
+   Activation: auto-load with the page stylesheet.
+   Behavioral check: PASS — added 160px before the interlude at 758x920 while
+   the lock remained idle immediately before its trigger (2026-08-10).
+   Retirement: remove when the interlude is removed or its entry no longer
+   follows the Process section. */
 #craft{padding-bottom:clamp(11rem,32vh,18rem)}
 .craft__inner{max-width:78rem;margin:0 auto}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -938,7 +946,14 @@ gsap.from('.thesis__seal', { scale:0, rotate:25, duration:.8, ease:'back.out(2.5
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(run, 200); });
 })();
 
-/* ── Work panels — clip reveal, direction flips by side ────────────── */
+/* ── Work panels — clip reveal, direction flips by side ──────────────
+   MAINTAINED MOTION — quarter-second image reveal hold.
+   Canonical path: public/index.html (.panel GSAP loop).
+   Future consumer: a visitor encountering the three Work photographs.
+   Activation: auto-load through each panel's ScrollTrigger.
+   Behavioral check: PASS — all three images stayed fully covered at 125ms
+   and began revealing after the 250ms hold in the packaged build (2026-08-10).
+   Retirement: remove when the Work panels or their clip reveals are replaced. */
 gsap.utils.toArray('.panel').forEach(p => {
   const img = p.querySelector('.panel__img img');
   const right = p.classList.contains('panel--right');
