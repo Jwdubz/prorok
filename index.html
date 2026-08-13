@@ -176,14 +176,14 @@ h1,h2,h3{font-weight:400}
 .scale__pin{height:auto;overflow:visible;background:var(--sumi);position:relative}
 .scale__track{position:relative;width:100%;height:auto}
 .scale__track img{width:100%;height:auto;display:block}
-.scale__caption{position:relative;max-width:25rem;
-  margin:1.2rem clamp(1.2rem,4vw,4rem) 0;
+.scale__caption{position:relative;width:max-content;max-width:calc(100% - 2.4rem);
+  margin:1.2rem auto 0;
   background:rgba(20,16,14,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   padding:1.7rem 1.9rem;border-left:3px solid var(--vermilion)}
 .scale__num{font-family:var(--jp);color:var(--vermilion);font-size:1.25rem}
 .scale__caption h3{font-family:var(--jp);font-size:clamp(1.5rem,2.8vw,2.2rem);
   margin:.45rem 0 .7rem;line-height:1.15}
-.scale__caption p{font-size:.94rem;line-height:1.7;color:var(--paper-dim)}
+.scale__caption p{font-size:.94rem;line-height:1.7;color:var(--paper-dim);white-space:nowrap}
 
 /* ══ WORK ══ */
 .work{position:relative;padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);
@@ -398,7 +398,8 @@ html.has-concept .consult-dock{
   .panel__img,.artist__img{aspect-ratio:4/5;margin-bottom:1.5rem}
   .panel{margin-bottom:4.5rem}
   /* Scale caption: 16px side margins, no max-width. */
-  .scale__caption{max-width:none;margin:1.2rem 1rem 0}
+  .scale__caption{width:auto;max-width:none;margin:1.2rem 1rem 0}
+  .scale__caption p{white-space:normal}
   .consult-dock{font-size:.64rem;letter-spacing:.12em;padding:.78rem 1.15rem;
     max-width:calc(100vw - 1.6rem)}
   .voices__card,.voices__card--jordan,.voices__card--shannon,.voices__card--smith{
