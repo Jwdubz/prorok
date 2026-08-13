@@ -171,29 +171,13 @@ h1,h2,h3{font-weight:400}
   background:var(--seal);width:3rem;height:3rem;display:grid;place-items:center;
   border-radius:4px;transform:rotate(-4deg);line-height:1.1}
 
-/* ══ SCALE ══ the pinned travel: you cannot see it all at once ═════════ */
+/* ══ SCALE ══ full-width 3:2 photograph, caption in normal flow ═══════ */
 .scale{position:relative}
-.scale__pin{height:100vh;overflow:hidden;background:var(--sumi);position:relative}
-/* FULL-BLEED CINEMATIC HOLD (owner direction 2026-07-31).
-   Was a tall vertical descent sized to ~1.9 viewports. That only works on a
-   tall image; the chosen shot is landscape 1000x667, which cannot be
-   travelled down. So the section now holds one frame full-bleed with a slow
-   push, and the scroll cost drops from 2.34 viewports -> ~0.9, which also
-   answers the "takes too long to scroll through" note.                   */
-.scale__track{position:absolute;inset:0;width:100%;height:100%;will-change:transform}
-.scale__track img{width:100%;height:100%;object-fit:cover;display:block}
-.scale__pin::before,.scale__pin::after{content:"";position:absolute;left:0;right:0;
-  height:26vh;z-index:2;pointer-events:none}
-.scale__pin::before{top:0;background:linear-gradient(to bottom,var(--sumi) 0%,
-  rgba(20,16,14,.55) 45%,rgba(20,16,14,0) 100%)}
-.scale__pin::after{bottom:0;background:linear-gradient(to top,var(--sumi) 0%,
-  rgba(20,16,14,.55) 45%,rgba(20,16,14,0) 100%)}
-.scale__kanji{position:absolute;left:clamp(.8rem,3.4vw,3rem);top:50%;
-  writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(3.4rem,10vw,8rem);
-  color:rgba(239,231,216,.07);z-index:1;pointer-events:none;line-height:1;
-  will-change:transform}
-.scale__caption{position:absolute;right:clamp(1.2rem,4vw,4rem);
-  bottom:clamp(2rem,8vh,4.5rem);max-width:25rem;z-index:3;
+.scale__pin{height:auto;overflow:visible;background:var(--sumi);position:relative}
+.scale__track{position:relative;width:100%;height:auto}
+.scale__track img{width:100%;height:auto;display:block}
+.scale__caption{position:relative;max-width:25rem;
+  margin:1.2rem clamp(1.2rem,4vw,4rem) 0;
   background:rgba(20,16,14,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   padding:1.7rem 1.9rem;border-left:3px solid var(--vermilion)}
 .scale__num{font-family:var(--jp);color:var(--vermilion);font-size:1.25rem}
@@ -413,14 +397,8 @@ html.has-concept .consult-dock{
   .panel,.panel--right,.artist{display:block}
   .panel__img,.artist__img{aspect-ratio:4/5;margin-bottom:1.5rem}
   .panel{margin-bottom:4.5rem}
-  /* Touch gets no pin — the piece simply scrolls at full width. Same
-     discipline as the reference: drop the feature, never ship it broken. */
-  .scale__pin{height:auto}
-  .scale__pin::before,.scale__pin::after{display:none}
-  .scale__track{position:relative;left:auto;top:auto;transform:none;width:100%}
-  .scale__kanji{display:none}
-  .scale__caption{position:relative;right:auto;bottom:auto;left:auto;max-width:none;
-    margin:1.2rem 1rem 0}
+  /* Scale caption: 16px side margins, no max-width. */
+  .scale__caption{max-width:none;margin:1.2rem 1rem 0}
   .consult-dock{font-size:.64rem;letter-spacing:.12em;padding:.78rem 1.15rem;
     max-width:calc(100vw - 1.6rem)}
   .voices__card,.voices__card--jordan,.voices__card--shannon,.voices__card--smith{
@@ -509,16 +487,15 @@ html.has-concept .consult-dock{
   <div class="thesis__seal">彫師</div>
 </section>
 
-<!-- ══════════ SCALE — the pinned travel ══════════
-     You physically cannot see the piece all at once. You have to move down
-     it. The interaction performs the argument instead of asserting it.  -->
+<!-- ══════════ SCALE — the photograph, then the caption ══════════
+     The piece scrolls at its natural 3:2 ratio. The caption sits
+     directly beneath it in document flow.  -->
 <section class="scale" id="scale">
   <div class="scale__pin">
     <div class="scale__track">
       <img alt="Dylan Prorok tattooing a large-scale Japanese piece"
            src="https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/e3a6780e-2d1d-4b42-bda8-9924a37a3a9e/dylon+prorok+original+japenese+tattoo+art+las+vegas+nevada.jpg?format=1500w" />
     </div>
-    <div class="scale__kanji" aria-hidden="true">大彫</div>
     <div class="scale__caption">
       <span class="scale__num">一</span>
       <h3>Bigger is better.</h3>
@@ -986,39 +963,6 @@ gsap.from('.thesis__text .line > span', { yPercent:115, duration:1.2, stagger:.1
 gsap.from('.thesis__seal', { scale:0, rotate:25, duration:.8, ease:'back.out(2.5)',
   scrollTrigger:{ trigger:'.thesis__seal', start:'top 90%' } });
 
-/* ══ THE SCALE TRAVEL ══════════════════════════════════════════════════
-   Pin the viewport and translate a very tall piece past it, so the
-   visitor descends the tattoo the way they would walking around someone.
-   Distance is computed from the real image height, so it lands exactly
-   at the bottom of the piece regardless of viewport.                    */
-(() => {
-  const track = document.querySelector('.scale__track');
-  const img = track.querySelector('img');
-  let built = null;
-  const run = () => {
-    /* Rebuild cleanly — this fires again on resize. */
-    if (built) { built.kill(true); built = null; }
-    /* No pin on touch / narrow — the piece just scrolls. */
-    if (innerWidth <= 880 || matchMedia('(hover: none) and (pointer: coarse)').matches) return;
-    built = gsap.timeline({ scrollTrigger:{ trigger:'.scale', start:'top top',
-        end:'+=' + Math.round(innerHeight * 0.9), pin:'.scale__pin', scrub:.5,
-        invalidateOnRefresh:true } })
-      /* slow push-in, and the frame drifts a little so it is never inert */
-      .fromTo(track, { scale:1.16, yPercent:-2.5 }, { scale:1, yPercent:2.5, ease:'none' }, 0)
-      .fromTo('.scale__kanji', { yPercent:40 }, { yPercent:-40, ease:'none' }, 0)
-      .fromTo('.scale__caption', { y:120, opacity:0 },
-              { y:0, opacity:1, ease:'power1.out', duration:.18 }, .04)
-      .to('.scale__caption', { y:-100, opacity:0, ease:'power1.in', duration:.18 }, .8);
-  };
-  /* Build only once EVERYTHING is laid out. Running on img.complete fired
-     before layout settled, so track.offsetHeight was ~0, travel went
-     negative, and the `travel <= 0` guard killed the pin permanently and
-     silently. Caught by measuring for a pin that wasn't there, 2026-07-31. */
-  if (document.readyState === 'complete') run();
-  else addEventListener('load', run, { once:true });
-  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(run, 200); });
-})();
-
 /* ── Work panels — clip reveal, direction flips by side ──────────────
    MAINTAINED MOTION — quarter-second image reveal hold.
    Canonical path: public/index.html (.panel GSAP loop).
@@ -1095,8 +1039,8 @@ gsap.from('.artist__text > *', { y:40, opacity:0, duration:1, stagger:.11, ease:
 gsap.from('.visit__block', { y:40, opacity:0, duration:1, stagger:.1, ease:'power3.out',
   scrollTrigger:{ trigger:'.visit', start:'top 82%' } });
 
-/* Hash return from portfolio.html must wait until the scale pin has
-   added its extra scroll length, or the landing sits one viewport early. */
+/* Hash return from portfolio.html must wait until layout and
+   ScrollTrigger have settled, or the landing can sit short of the target. */
 if (hashTarget) {
   const goHash = () => {
     ScrollTrigger.refresh();
