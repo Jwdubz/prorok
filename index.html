@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-concept">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,38 +10,34 @@
 
 <!--
   ══════════════════════════════════════════════════════════════════════════
-  DYLAN PROROK — UNOFFICIAL DESIGN CONCEPT                       2026-07-31
+  DYLAN PROROK — UNOFFICIAL DESIGN CONCEPT                       2026-08-12
   ──────────────────────────────────────────────────────────────────────────
   WHAT THIS IS. A demo, built to open a conversation — not a finished site
   and not a proposal. UNOFFICIAL: not commissioned by, affiliated with, or
-  approved by Dylan Prorok. Real work would start from a sit-down with him,
-  not from this file.
+  approved by Dylan Prorok.
 
-  THE AMBER MARKERS ARE THE POINT. Ten [DYLAN TO SUPPLY] notes mark every
-  place the design needs something only he can give — consultation format,
-  deposit terms, session cadence, rates, aftercare, healed-photo timing,
-  three real testimonials, and the closing line of his own bio. They are
-  visible on purpose. They are the agenda for that conversation.
+  CONTENT RULE. Factual claims are taken from dylanprorok.com (read
+  2026-08-12), instagram.com/dylanprorok, the public Acuity booking
+  page at https://dylanprorok.as.me/, and the verified consultation
+  appointment at
+  https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225.
+  Three Google reviews are published verbatim from the
+  Dylan Prorok Tattoos listing (feature id
+  0x80c8d167c928e6fb:0xa8cba96ecf908300): Jordan Perez,
+  Shannon Ranus, and Smith. Their attached photographs are
+  stored locally in ./reviews/. Nothing about results, client
+  counts, years, awards, or waitlists has been invented.
 
-  CONTENT RULE. Every factual claim is taken from dylanprorok.com and
-  instagram.com/dylanprorok as read 2026-07-31. Nothing about results,
-  client counts, years, awards, prices, or waitlists has been invented;
-  where a fact was missing the page says so instead of guessing. The
-  testimonial slots are deliberately EMPTY — no words are put in a
-  customer's mouth.
-
-  PLACEHOLDER ASSETS, named honestly:
-    · the interlude clip belongs to oneshot-sakura.vercel.app and is present
-      only to demonstrate the treatment — it must be replaced with his own
-      footage before any real use
-    · the hero portrait is a low-resolution screenshot, pending the original
-    · the tattoo photography is hotlinked from his own Squarespace CDN —
-      his work shown in a new frame, nothing re-hosted
+  PORTFOLIO. The composed gallery lives on portfolio.html. Local files
+  in ./portfolio/ are Dylan's published work. Irezumi selections match
+  https://www.dylanprorok.com/irezumi captions and Squarespace IDs.
+  Two closing images come from https://www.dylanprorok.com/color and
+  https://www.dylanprorok.com/bng. Candidate map:
+  work/dylan-gallery-candidates/map.tsv.
 
   METHOD CREDIT. Scroll and motion technique extracted from
-  oneshot-sakura.vercel.app; teardown in
-  docs/working/value-extraction-sakura-ink-bloom-2026-07-31.md.
-  Method only — none of that site's copy, imagery, palette, or type.
+  oneshot-sakura.vercel.app. Method only — none of that site's copy,
+  imagery, palette, type, or footage remains on this page.
   ══════════════════════════════════════════════════════════════════════════
 -->
 
@@ -68,9 +64,6 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{background:var(--sumi);color:var(--paper);font-family:var(--sans);
      overflow-x:hidden;-webkit-font-smoothing:antialiased}
-html.interlude-locked,html.interlude-locked body{overflow:hidden!important;
-  overscroll-behavior:none}
-html.interlude-locked{scrollbar-gutter:stable}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 h1,h2,h3{font-weight:400}
@@ -118,6 +111,7 @@ h1,h2,h3{font-weight:400}
   color:var(--paper)!important}
 .nav__cta::after{display:none}
 .nav__cta:hover{background:var(--paper);color:var(--sumi)!important;border-color:var(--paper)}
+.nav__portfolio{color:var(--paper)!important}
 
 /* ══ HERO ══ */
 /* SPLIT HERO. Full-bleed cover was cropping a 0.727 portrait into a 1.58
@@ -240,50 +234,88 @@ h1,h2,h3{font-weight:400}
 
 /* ══ CRAFT / PROCESS ══ */
 .craft{background:var(--sumi-2);padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem)}
-/* MAINTAINED MOTION — process-to-interlude breathing room.
-   Canonical path: public/index.html (#craft padding).
-   Future consumer: a visitor reaching the samurai interlude after Process.
-   Activation: auto-load with the page stylesheet.
-   Behavioral check: PASS — added 160px before the interlude at 758x920 while
-   the lock remained idle immediately before its trigger (2026-08-10).
-   Retirement: remove when the interlude is removed or its entry no longer
-   follows the Process section. */
-#craft{padding-bottom:clamp(11rem,32vh,18rem)}
 .craft__inner{max-width:78rem;margin:0 auto}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
   gap:clamp(1.6rem,3.5vw,3rem);margin-top:clamp(3rem,7vh,4.5rem)}
 .step{border-top:1px solid rgba(239,231,216,.16);padding-top:1.4rem}
 .step i{font-family:var(--jp);font-style:normal;color:var(--vermilion);font-size:1.2rem}
 .step h4{font-family:var(--jp);font-size:1.25rem;margin:.5rem 0 .7rem;font-weight:500}
 .step p{font-size:.93rem;line-height:1.75;color:var(--paper-dim)}
-.supply{display:inline-block;background:rgba(201,162,39,.14);border:1px dashed #c9a227;
-  color:#e0c76a;font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;
-  text-transform:uppercase;padding:.28rem .6rem;border-radius:3px;margin-top:.6rem;
-  font-weight:600}
 
-/* ══ INTERLUDE ══ graded media band, sits directly above the artist section.
-   PLACEHOLDER MEDIA — this clip belongs to oneshot-sakura.vercel.app and is
-   here only to judge the look. It must be replaced with Dylan's own footage
-   before this goes anywhere. The grade below works on any clip.          */
-.interlude{position:relative}
-.interlude__pin{height:100vh;overflow:hidden;background:var(--sumi);position:relative}
-.interlude__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:url(#gradeNightInk);will-change:transform}
-.interlude__wash{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,var(--sumi) 0%,rgba(20,16,14,.15) 26%,
-             rgba(20,16,14,.15) 70%,var(--sumi) 100%)}
-/* Centre watermark. Was the single kanji 墨; now the name (owner direction
-   2026-07-31). Latin needs different metrics than one glyph — the .5em
-   tracking and matching text-indent existed only to optically centre a
-   lone kanji, so both are gone and the size is pulled back so 12
-   characters sit comfortably inside the frame on one line.             */
-.interlude__jp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  font-family:var(--jp);font-size:clamp(1.5rem,5vw,4.2rem);letter-spacing:.06em;
-  color:rgba(239,231,216,.28);z-index:2;pointer-events:none;white-space:nowrap;
+/* ══ WORK CLOSE ══ a door into the dedicated portfolio page ══════════ */
+.work__to-folio{display:block;text-align:center;
+  margin-top:clamp(2.4rem,7vh,4.2rem)}
+.work__to-folio a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
+  color:var(--paper);border-bottom:1px solid var(--vermilion);
+  padding-bottom:.18rem}
+
+/* ══ VOICES ══ three verbatim Google reviews with their photos ═══════ */
+#voices .sec__head{margin-bottom:clamp(1.35rem,3.4vh,2.2rem)}
+.voices__list{display:flex;flex-direction:column;
+  gap:clamp(4.4rem,11vh,8.2rem)}
+.voices__card{display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(1.5rem,4vw,3.4rem);align-items:start;margin:0}
+.voices__card--shannon{align-items:center}
+.voices__shot{overflow:hidden;background:#080706;max-width:100%;
+  max-height:82vh}
+.voices__shot img{width:100%;height:100%;object-fit:cover;
+  filter:saturate(.94) contrast(1.04)}
+.voices__body{min-width:0;border-left:3px solid var(--vermilion);
+  padding-left:clamp(1.05rem,2.2vw,1.75rem)}
+.voices__mark{display:block;font-family:var(--jp);color:var(--vermilion);
+  font-size:clamp(2.3rem,4.4vw,3.4rem);line-height:.78;margin:0 0 .55rem}
+.voices__card blockquote{margin:0}
+.voices__card blockquote p{font-family:var(--jp);line-height:1.7;
+  color:var(--paper);overflow-wrap:break-word;text-wrap:pretty}
+.voices__card--jordan .voices__shot{grid-column:1/6;aspect-ratio:3/4;
+  width:min(100%,calc(70vh * 3 / 4))}
+.voices__card--jordan .voices__body{grid-column:6/13}
+.voices__card--jordan .voices__shot img{object-position:50% 4%}
+.voices__card--jordan .voices__mark{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:.28rem}
+.voices__card--jordan blockquote p{font-size:clamp(1.02rem,1.5vw,1.22rem);line-height:1.6}
+.voices__card--jordan .voices__meta{margin-top:1.05rem;gap:.3rem}
+.voices__card--shannon .voices__shot{grid-column:7/13;order:2;
+  aspect-ratio:1080/1440;width:min(100%,calc(82vh * 1080 / 1440));
+  justify-self:end}
+.voices__card--shannon .voices__body{grid-column:1/7;order:1}
+.voices__card--shannon .voices__shot img{object-position:50% 46%}
+.voices__card--shannon blockquote p{font-size:clamp(1.02rem,1.45vw,1.18rem);
+  line-height:1.72}
+.voices__card--smith .voices__shot{grid-column:1/5;aspect-ratio:590/787;
+  width:min(100%,calc(72vh * 590 / 787))}
+.voices__card--smith .voices__body{grid-column:5/13}
+.voices__card--smith .voices__shot img{object-position:50% 42%}
+.voices__card--smith blockquote p{font-size:clamp(1.06rem,1.65vw,1.26rem)}
+.voices__meta{margin-top:1.45rem;display:flex;flex-direction:column;
+  align-items:flex-start;gap:.42rem}
+.voices__rating{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem .8rem}
+.voices__stars{color:var(--vermilion);letter-spacing:.16em;font-size:.92rem;
   line-height:1}
-.interlude__tag{position:absolute;left:clamp(1rem,4vw,3rem);bottom:1.2rem;z-index:2;
-  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
-  color:#e0c76a;border:1px dashed #c9a227;padding:.3rem .6rem;border-radius:3px}
+.voices__score{font-size:.72rem;letter-spacing:.06em;color:var(--paper-dim)}
+.voices__who{font-style:normal;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;color:var(--paper-dim)}
+.voices__attr{font-size:.72rem;letter-spacing:.08em;color:var(--paper-dim)}
+.voices__src{font-size:.72rem;letter-spacing:.08em;color:var(--paper-dim);
+  border-bottom:1px solid rgba(178,58,44,.45)}
+.voices__src:hover{color:var(--paper)}
+
+/* ══ CONSULT DOCK ══ persistent, bottom-center, out of transformed flow */
+.consult-dock{position:fixed;left:50%;z-index:140;
+  bottom:calc(1.05rem + env(safe-area-inset-bottom, 0px));
+  transform:translateX(-50%);
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.82rem 1.45rem;border-radius:99px;white-space:nowrap;
+  background:var(--vermilion);color:var(--paper);
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  box-shadow:0 12px 28px rgba(20,16,14,.38);
+  transition:transform .45s var(--ease), opacity .45s var(--ease),
+             background .3s, color .3s}
+html.has-concept .consult-dock{
+  bottom:calc(3.15rem + env(safe-area-inset-bottom, 0px))}
+.consult-dock:hover{background:var(--seal)}
+.consult-dock:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.consult-dock.is-tucked{opacity:0;pointer-events:none;
+  transform:translateX(-50%) translateY(120%)}
 
 /* ══ ARTIST ══ */
 .artist{padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);max-width:88rem;margin:0 auto;
@@ -354,6 +386,7 @@ h1,h2,h3{font-weight:400}
 .foot__seal{font-family:var(--jp);color:var(--paper);background:var(--seal);
   width:2.3rem;height:2.3rem;display:grid;place-items:center;border-radius:4px;
   font-size:1.05rem;transform:rotate(-4deg);text-transform:none}
+.foot{padding-bottom:calc(2.2rem + env(safe-area-inset-bottom, 0px))}
 
 /* ══ CONCEPT BANNER ══ never let this be mistaken for his live site ═════ */
 .concept{position:fixed;left:0;right:0;bottom:0;z-index:150;background:#c9a227;
@@ -363,7 +396,12 @@ h1,h2,h3{font-weight:400}
   padding:.15rem .5rem;margin-left:.7rem;border-radius:3px;cursor:pointer}
 
 @media (max-width:880px){
-  .nav__links a:not(.nav__cta){display:none}
+  .steps{grid-template-columns:1fr}
+  .nav{padding:1.05rem .9rem;gap:.55rem}
+  .nav__mark span{display:none}
+  .nav__links{gap:.55rem;flex-shrink:0}
+  .nav__links a{letter-spacing:.1em;font-size:.68rem;white-space:nowrap}
+  .nav__links a:not(.nav__portfolio){display:none}
   .hero__vertical{display:none}
   /* stack: photo first, then the name under it */
   .hero{grid-template-columns:1fr;min-height:0}
@@ -383,17 +421,24 @@ h1,h2,h3{font-weight:400}
   .scale__kanji{display:none}
   .scale__caption{position:relative;right:auto;bottom:auto;left:auto;max-width:none;
     margin:1.2rem 1rem 0}
-}
-@media (max-width:880px) and (orientation:portrait){
-  /* Portrait uses an art-directed crop of the film rather than forcing the
-     landscape master through object-fit. Keep the figure legible, preserve
-     the full-bleed passage, and place the name in the authored clear field. */
-  .interlude__pin{height:100svh}
-  .interlude__video{object-position:center center}
-  .interlude__jp{left:max(1.35rem,env(safe-area-inset-left));top:38%;
-    transform:translateY(-50%);font-size:clamp(1.75rem,8vw,2.35rem);
-    letter-spacing:.04em;color:rgba(239,231,216,.42);
-    text-shadow:0 0 2rem rgba(20,16,14,.55)}
+  .consult-dock{font-size:.64rem;letter-spacing:.12em;padding:.78rem 1.15rem;
+    max-width:calc(100vw - 1.6rem)}
+  .voices__card,.voices__card--jordan,.voices__card--shannon,.voices__card--smith{
+    display:block;
+    padding-bottom:calc(6.8rem + env(safe-area-inset-bottom, 0px))}
+  .voices__list{gap:clamp(2rem,5vh,3rem)}
+  .voices__card--shannon .voices__shot,
+  .voices__card--shannon .voices__body{order:unset}
+  .voices__card--jordan .voices__shot{
+    aspect-ratio:811/1440}
+  .voices__card--jordan .voices__shot,
+  .voices__card--shannon .voices__shot,
+  .voices__card--smith .voices__shot{
+    margin-bottom:1.4rem;max-height:none;width:100%;justify-self:auto}
+  .voices__body{padding-left:1rem}
+  .voices__card--jordan blockquote p,
+  .voices__card--shannon blockquote p,
+  .voices__card--smith blockquote p{font-size:1.08rem}
 }
 @media (max-width:600px){
   .healed-montage{aspect-ratio:3 / 4}
@@ -401,6 +446,7 @@ h1,h2,h3{font-weight:400}
 @media (prefers-reduced-motion:reduce){
   .grain{animation:none}
   #petals{display:none}
+  .voices__card{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -419,12 +465,17 @@ h1,h2,h3{font-weight:400}
   <div class="nav__links">
     <a href="#scale">Scale</a>
     <a href="#work">Work</a>
+    <a href="portfolio.html" class="nav__portfolio">Portfolio</a>
     <a href="#healed">Healed</a>
     <a href="#craft">Process</a>
     <a href="#artist">Artist</a>
-    <a href="#begin" class="nav__cta" data-jump-past-interlude>Book</a>
+    <a href="#begin" class="nav__cta">Book</a>
   </div>
 </nav>
+
+<a class="consult-dock" id="consult-dock"
+   href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225"
+   target="_blank" rel="noopener">Book a Virtual Consultation</a>
 
 <main>
 
@@ -542,6 +593,8 @@ h1,h2,h3{font-weight:400}
     </div>
   </div>
 
+  <p class="work__to-folio"><a href="portfolio.html">The full portfolio</a></p>
+
 </section>
 
 <!-- ══════════ HEALED ══════════
@@ -582,41 +635,90 @@ h1,h2,h3{font-weight:400}
         <source src="healed-montage.mp4?v=20260810-hardcut-loop" type="video/mp4" />
       </video>
     </figure>
-    <p style="margin-top:1.6rem;text-align:center">
-      <span class="supply">Dylan to supply: the exact time between each final session and filming.
-      His Highlight identifies both featured pieces as healed or settled but does not state that interval.</span>
-    </p>
   </div>
 </section>
 
 <!-- ══════════ VOICES ══════════
-     He has a "Testimonials" highlight on Instagram; the website carries no
-     social proof at all. Slot built, deliberately EMPTY — no words are
-     invented here. It stays empty until he supplies real ones.            -->
+     Three verbatim Google reviews. Listing: Dylan Prorok Tattoos,
+     feature id 0x80c8d167c928e6fb:0xa8cba96ecf908300.
+     Jordan Perez (1 review · 3 photos), Shannon Ranus (1 review · 2 photos),
+     Smith (1 review · 1 photo). Each 5.0. Copy is published exactly as given.
+     Attached photographs are the local files in ./reviews/. -->
 <section class="work" id="voices" style="padding-top:0">
   <div class="sec__head">
     <span class="sec__jp" aria-hidden="true">声</span>
     <h2 data-split>In their words</h2>
     <p>The people wearing the work.</p>
   </div>
-  <div class="doors__grid">
-    <div class="door"><i>「</i>
-      <p style="font-family:var(--jp);font-size:1.1rem;line-height:1.7;color:var(--paper)">
-        Quote slot — empty on purpose.</p>
-      <span class="supply">Dylan to supply: pull 3 real testimonials from your IG
-      "Testimonials" highlight. First name + placement + how long they have worn it.</span>
-    </div>
-    <div class="door"><i>「</i>
-      <p style="font-family:var(--jp);font-size:1.1rem;line-height:1.7;color:var(--paper)">
-        Quote slot — empty on purpose.</p>
-      <span class="supply">Nothing is written here by anyone but the client who said it.</span>
-    </div>
-    <div class="door"><i>「</i>
-      <p style="font-family:var(--jp);font-size:1.1rem;line-height:1.7;color:var(--paper)">
-        Quote slot — empty on purpose.</p>
-      <span class="supply">Prefer multi-session clients — they speak to the commitment,
-      which is what this page is asking for.</span>
-    </div>
+  <div class="voices__list">
+    <article class="voices__card voices__card--jordan" aria-labelledby="voice-jordan">
+      <figure class="voices__shot">
+        <img src="reviews/jordan-perez.webp" width="811" height="1440" decoding="async"
+             alt="Jordan Perez standing outdoors with both finished sleeves visible: a full-color floral Japanese sleeve and a black-and-grey mythic sleeve">
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>I had both of my sleeves done by Dylan and i can't be more happy with how each one has turned out beautiful and an absolute masterpiece of art! I am also looking forward to going back and getting more done by him and would recommend him to anyone thinking of getting a tattoo that they would admire and appreciate and is always becoming the topic of conversations.</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-jordan">Jordan Perez</cite>
+          <span class="voices__attr">Google Review · 3 photos</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoos on Google</a>
+        </footer>
+      </div>
+    </article>
+
+    <article class="voices__card voices__card--shannon" aria-labelledby="voice-shannon">
+      <figure class="voices__shot">
+        <img src="reviews/shannon-ranus.webp" width="1080" height="1440" loading="lazy" decoding="async"
+             alt="Traditional Japanese koi fish tattoo with cherry blossoms on a lower leg, photographed on a paper towel">
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>My twin sister and I traveled to Las Vegas from AZ for our birthday and got matching tattoos by Dylan. He was extremely kind and professional from the moment we stepped in the shop. I told him that we were looking to get a traditional Japanese koi fish with cherry blossoms and the design he created is absolutely gorgeous. His artistry is incredible and our experience getting tattooed by him was wonderful. The shop is also very clean and quite mesmerizing with an eclectic array of decor. I would definitely come back to Dylan if I want any more traditional Japanese tattoos in the future - he’s worth the travel time. I am very grateful to have had such a delightful experience and appreciate his kindness and helping us celebrate!</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-shannon">Shannon Ranus</cite>
+          <span class="voices__attr">Google Review · 2 photos</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoos on Google</a>
+        </footer>
+      </div>
+    </article>
+
+    <article class="voices__card voices__card--smith" aria-labelledby="voice-smith">
+      <figure class="voices__shot">
+        <img src="reviews/smith.webp" width="590" height="787" loading="lazy" decoding="async"
+             alt="Black-and-grey Japanese tiger tattoo wrapping the hip and upper thigh">
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>I discovered Dylan my tattoo artist online, and was really drawn to his art pieces, because it really fits my aesthetic. He does consultation work before agreeing to any design for the final tattoo. Very smooth process in between sessions and also after care. I highly recommend Dylan if it’s your first time getting big piece of work done ! Also the ambiance of the shop 10/10 very relaxing great music and very clean !</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-smith">Smith</cite>
+          <span class="voices__attr">Google Review · 1 photo</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoos on Google</a>
+        </footer>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -638,52 +740,24 @@ h1,h2,h3{font-weight:400}
       <div class="step">
         <i>二</i><h4>Consultation</h4>
         <p>Subject, placement and flow are worked out against your body and what you already
-           wear.
-           <span class="supply">Dylan to supply: in person or remote? cost? how booked?</span></p>
+           wear. The consultation is free and happens in person. Book it through the form.</p>
       </div>
       <div class="step">
         <i>三</i><h4>Drawing</h4>
-        <p>The piece is drawn for you specifically.
-           <span class="supply">Dylan to supply: lead time · deposit terms · revision policy</span></p>
+        <p>The piece is drawn for you specifically. A $200 non-refundable deposit holds the
+           date and pays for the drawing done outside the appointment.</p>
       </div>
       <div class="step">
         <i>四</i><h4>Sessions</h4>
-        <p>Large work is built across multiple sittings.
-           <span class="supply">Dylan to supply: session length · typical cadence · hourly or day rate</span></p>
+        <p>Large work is built across more than one sitting. A half day is four hours at $800.
+           A full day is eight hours at $1600. A tattoo started and finished in one sitting
+           is $200 an hour.</p>
       </div>
       <div class="step">
         <i>五</i><h4>Healing &amp; wear</h4>
-        <p>Aftercare, touch-ups, and how the piece settles.
-           <span class="supply">Dylan to supply: aftercare guidance · touch-up policy</span></p>
+        <p>Aftercare, touch-ups, and how the piece settles.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══════════ INTERLUDE ══════════
-     Graded media band. PLACEHOLDER CLIP — belongs to oneshot-sakura.vercel.app,
-     present only to judge the look. Swap for Dylan's own footage; the grade
-     applies unchanged to whatever goes in. -->
-<section class="interlude" id="interlude" data-play-state="idle">
-  <div class="interlude__pin">
-    <!-- MAINTAINED RESPONSIVE MEDIA — art-directed portrait interlude.
-         Canonical path: public/index.html (#interlude sources and portrait CSS)
-         + public/sakura-ink-bloom-mobile.mp4.
-         Future consumer: a portrait-phone visitor reaching Dylan's interlude.
-         Activation: auto-load through the portrait media source below.
-         Behavioral check: PASS — at 390×844 the browser selected the 720×1280
-         source, kept the full samurai visible at the six-second finale, and
-         released the scroll lock with no console errors on 2026-08-10.
-         Retirement: remove when this film is replaced by a portrait-native
-         master or when the interlude itself is retired. -->
-    <video class="interlude__video" muted playsinline preload="auto" aria-hidden="true">
-      <source media="(max-width: 880px) and (orientation: portrait)"
-              src="./sakura-ink-bloom-mobile.mp4" type="video/mp4" />
-      <source src="./sakura-ink-bloom.mp4" type="video/mp4" />
-    </video>
-    <div class="interlude__wash"></div>
-    <div class="interlude__jp" aria-hidden="true">Dylan Prorok</div>
-    <span class="interlude__tag">Placeholder clip — replace with his footage</span>
   </div>
 </section>
 
@@ -704,17 +778,12 @@ h1,h2,h3{font-weight:400}
        nineteen; we married in 2019 and had our first son, Ronin, in 2023. I'm blessed to
        provide for my family through tattooing full-time.</p>
     <p>I've always had a passion for bringing a creative idea to fruition and seeing the
-       tangible product. On skin, that product walks around for the rest of someone's life.
-       This is my Craft, and I hope I will be the one to help you share your Story in ink.
-       <span class="supply">Dylan to supply: this closing line is written in your voice as a
-       placeholder — it should be replaced with your own words</span></p>
+       tangible product. On skin, that product walks around for the rest of someone's life.</p>
   </div>
 </section>
 
 <!-- ══════════ TWO DOORS ══════════
-     THE STRATEGIC FIX. The live site funnels a $150 walk-in and a multi-year
-     body suit through one identical form whose first budget option is
-     $100–$300. Two buyers, two readinesses, two paths.                    -->
+     Two buyers, two readinesses, two paths. -->
 <section class="doors" id="begin">
   <div class="sec__head">
     <span class="sec__jp" aria-hidden="true">予約</span>
@@ -729,9 +798,9 @@ h1,h2,h3{font-weight:400}
       <p>Sleeve, back, body suit, or a piece meant to grow across sessions. Starts with a
          conversation about your body and what you want to carry.</p>
       <ul>
-        <li>Placement <span>Back · Chest · Arm · Leg · Full</span></li>
+        <li>Placement <span>Back · Chest · Arm · Leg · Body Suit</span></li>
         <li>Scale <span>8&quot; and up, or ongoing</span></li>
-        <li>Commitment <span class="supply" style="margin:0">Dylan to supply</span></li>
+        <li>Commitment <span>Multiple sessions</span></li>
       </ul>
       <a class="btn btn--seal" href="https://dylanprorok.as.me/" target="_blank" rel="noopener">
         <span>Start a project</span></a>
@@ -745,7 +814,6 @@ h1,h2,h3{font-weight:400}
       <ul>
         <li>Placement <span>Anywhere it fits</span></li>
         <li>Scale <span>4&quot;–8&quot;</span></li>
-        <li>Budget <span>$100 – $750</span></li>
       </ul>
       <a class="btn" href="https://dylanprorok.as.me/" target="_blank" rel="noopener">
         <span>Book a session</span></a>
@@ -761,7 +829,7 @@ h1,h2,h3{font-weight:400}
         <li>Art <span>Commissions &amp; originals</span></li>
         <li>Merch <span>Hand-made, periodic</span></li>
       </ul>
-      <a class="btn" href="/flash"><span>Explore</span></a>
+      <a class="btn" href="https://www.dylanprorok.com/flash" target="_blank" rel="noopener"><span>Explore</span></a>
     </div>
 
   </div>
@@ -803,26 +871,8 @@ h1,h2,h3{font-weight:400}
 
 <div class="concept" id="concept">
   Unofficial Design Concept For Dylan Prorok
-  <button onclick="document.getElementById('concept').remove()">hide</button>
+  <button type="button" id="concept-hide">hide</button>
 </div>
-
-<!-- ══ THE GRADE ══ tritone mapping any footage onto Dylan's palette.
-     Step 1 collapses to luminance; step 2 remaps that ramp to
-     sumi -> seal -> vermilion -> washi, reversed so pale sources land dark
-     and sit natively in this layout. Measured 2026-07-31: shadows resolve
-     to #1b120f against sumi #14100e (RGB distance 7).                    -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <filter id="gradeNightInk" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="
-      .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0
-      .2126 .7152 .0722 0 0  0 0 0 1 0"/>
-    <feComponentTransfer>
-      <feFuncR type="table" tableValues=".937 .698 .549 .078 .078"/>
-      <feFuncG type="table" tableValues=".906 .400 .184 .063 .063"/>
-      <feFuncB type="table" tableValues=".847 .330 .133 .055 .055"/>
-    </feComponentTransfer>
-  </filter>
-</defs></svg>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -838,16 +888,6 @@ gsap.ticker.lagSmoothing(0);
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
   const target = a.getAttribute('href');
-  if (a.hasAttribute('data-jump-past-interlude')) {
-    /* Book is a destination shortcut, not a tour of every scroll trigger
-       between here and Begin. Keep the bypass active until ScrollTrigger has
-       observed the instantaneous destination. */
-    document.dispatchEvent(new Event('interlude:bypass-start'));
-    lenis.scrollTo(target, { offset:-92, immediate:true, force:true });
-    ScrollTrigger.update();
-    document.dispatchEvent(new Event('interlude:bypass-end'));
-    return;
-  }
   /* offset clears the fixed nav — without it an anchored jump parks the
      section heading underneath it. Caught on screenshot 2026-07-31.      */
   lenis.scrollTo(target, { offset: -92, duration: 1.6,
@@ -907,13 +947,22 @@ document.querySelectorAll('[data-split]').forEach(el => {
   })();
 })();
 
-/* ── Loader ────────────────────────────────────────────────────────── */
+/* ── Loader ──────────────────────────────────────────────────────────
+   Arrive at a hash from portfolio.html without making the visitor sit
+   through the intro again.                                            */
 const loader = document.getElementById('loader');
-gsap.timeline({ onComplete: hero })
-  .from('.loader__seal', { scale:0, rotate:-30, duration:.7, ease:'back.out(2)' })
-  .to('.loader__bar span', { scaleX:1, duration:1, ease:'power2.inOut' }, '-=0.2')
-  .to(loader, { yPercent:-100, duration:.9, ease:'power4.inOut', delay:.1 })
-  .set(loader, { display:'none' });
+const hashTarget = location.hash && location.hash !== '#'
+  ? document.querySelector(location.hash)
+  : null;
+if (hashTarget) {
+  loader.style.display = 'none';
+} else {
+  gsap.timeline({ onComplete: hero })
+    .from('.loader__seal', { scale:0, rotate:-30, duration:.7, ease:'back.out(2)' })
+    .to('.loader__bar span', { scaleX:1, duration:1, ease:'power2.inOut' }, '-=0.2')
+    .to(loader, { yPercent:-100, duration:.9, ease:'power4.inOut', delay:.1 })
+    .set(loader, { display:'none' });
+}
 
 /* ── Hero ──────────────────────────────────────────────────────────── */
 function hero(){
@@ -1013,192 +1062,33 @@ gsap.from('.step', { y:50, opacity:0, duration:.9, stagger:.09, ease:'power3.out
   scrollTrigger:{ trigger:'.steps', start:'top 80%' } });
 gsap.from('.door', { y:60, opacity:0, duration:1, stagger:.12, ease:'power3.out',
   scrollTrigger:{ trigger:'.doors__grid', start:'top 80%' } });
-/* ══ INTERLUDE — ONE-SHOT AUTOPLAY LOCK ════════════════════════════════
-   MAINTAINED INTERACTION — the scene owns the viewport for one complete
-   playback, then returns scrolling at the same position with no carried
-   wheel momentum.
-   Canonical path: public/index.html (#interlude playback controller).
-   Future consumer: a visitor reaching the interlude on Dylan's redesign.
-   Activation: auto-load through the ScrollTrigger at "top top".
-   Behavioral check: PASS — Book jumped from the page top to Begin with its
-   heading 92px below the fixed nav, leaving the film idle at frame zero; from
-   an active lock it released, paused the film, and reached the same landing.
-   A later ordinary scroll back still started the scene. Live at 758×920 with
-   reduced motion active, entry locked immediately, a second scroll moved 0px,
-   and the six-second ending released cleanly with no browser errors. Escape and
-   full-motion paths remain verified (2026-08-10).
-   Retirement: replace when this scene is removed or its footage no longer
-   needs uninterrupted, automatic playback.                              */
+gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+  gsap.utils.toArray('.voices__card').forEach(card => {
+    /* Rise only — never opacity-hide. Cards stay readable if a trigger
+       misses, JavaScript stops, or reduced-motion later engages. */
+    gsap.from(card, { y:36, duration:1.1, ease:'power3.out',
+      scrollTrigger:{ trigger:card, start:'top 82%' } });
+  });
+});
+
+/* Lift the dock when visit/footer enter the frame so address and hours stay clear. */
 (() => {
-  const sec  = document.querySelector('.interlude');
-  const pin  = document.querySelector('.interlude__pin');
-  const v    = document.querySelector('.interlude__video');
-  const name = document.querySelector('.interlude__jp');
-  if (!sec || !pin || !v || !name) return;
-
-  v.muted = true;
-  v.loop = false;
-  v.setAttribute('muted', '');
-  v.setAttribute('playsinline', '');
-  v.pause();
-
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const portraitMobile = matchMedia('(max-width: 880px) and (orientation: portrait)');
-  const forceMotion = new URLSearchParams(location.search).get('motion') === 'full';
-  const reduceSceneMotion = reducedMotion.matches && !forceMotion;
-  const sceneScale = reduceSceneMotion ? 1 : (portraitMobile.matches ? 1.055 : 1.12);
-  const blockedKeys = new Set(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' ']);
-  const inputOptions = { capture:true, passive:false };
-  let hasPlayed = false;
-  let locked = false;
-  let lockY = 0;
-  let failSafe = null;
-  let sceneTimeline = null;
-  let bypassing = false;
-
-  sec.dataset.motion = reduceSceneMotion ? 'reduced' : 'full';
-  gsap.set(v, { scale:sceneScale });
-  gsap.set(name, reduceSceneMotion ? { yPercent:0, opacity:1 } : { yPercent:26, opacity:0 });
-
-  const removeInputBlockers = () => {
-    removeEventListener('wheel', blockInput, true);
-    removeEventListener('touchmove', blockInput, true);
-    removeEventListener('keydown', blockInput, true);
+  const dock = document.getElementById('consult-dock');
+  const visit = document.getElementById('visit');
+  if (!dock || !visit) return;
+  const place = () => {
+    const room = visit.getBoundingClientRect().top - innerHeight + 28;
+    dock.classList.toggle('is-tucked', room < 0);
   };
-
-  const releaseScroll = reason => {
-    if (!locked) return;
-    locked = false;
-    clearTimeout(failSafe);
-    failSafe = null;
-    removeInputBlockers();
-    document.documentElement.classList.remove('interlude-locked');
-
-    /* Reset Lenis' destination before restarting it so wheel momentum from
-       the entry gesture cannot throw the visitor past the completed scene. */
-    lenis.scrollTo(lockY, { immediate:true, force:true });
-    lenis.start();
-    lenis.scrollTo(lockY, { immediate:true, force:true });
-
-    if (reason !== 'ended') {
-      v.pause();
-      if (sceneTimeline) sceneTimeline.pause();
-    }
-    sec.dataset.playState = reason === 'ended' ? 'complete' : 'released';
-    sec.dataset.releaseReason = reason;
-    sec.removeAttribute('aria-busy');
-    ScrollTrigger.refresh();
-  };
-
-  const beginBypass = () => {
-    bypassing = true;
-    if (locked) releaseScroll('booking-bypass');
-    if (!hasPlayed) sec.dataset.playState = 'bypassing';
-  };
-  const endBypass = () => {
-    bypassing = false;
-    if (!hasPlayed) sec.dataset.playState = 'idle';
-  };
-  document.addEventListener('interlude:bypass-start', beginBypass);
-  document.addEventListener('interlude:bypass-end', endBypass);
-
-  function blockInput(e) {
-    if (!locked) return;
-    if (e.type === 'keydown') {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        releaseScroll('escape');
-        return;
-      }
-      if (!blockedKeys.has(e.key)) return;
-    }
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  const lockScroll = () => {
-    lockY = Math.round(sec.getBoundingClientRect().top + scrollY);
-    lenis.scrollTo(lockY, { immediate:true, force:true });
-    lenis.stop();
-    document.documentElement.classList.add('interlude-locked');
-    addEventListener('wheel', blockInput, inputOptions);
-    addEventListener('touchmove', blockInput, inputOptions);
-    addEventListener('keydown', blockInput, inputOptions);
-    locked = true;
-    sec.setAttribute('aria-busy', 'true');
-  };
-
-  const waitForLoader = () => new Promise(resolve => {
-    const loaderEl = document.getElementById('loader');
-    const started = performance.now();
-    const ready = () => {
-      if (!loaderEl || getComputedStyle(loaderEl).display === 'none' ||
-          performance.now() - started > 4000) resolve();
-      else requestAnimationFrame(ready);
-    };
-    ready();
-  });
-
-  const waitForMetadata = () => {
-    if (v.readyState >= 1) return Promise.resolve();
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('metadata-timeout')), 5000);
-      const cleanup = () => {
-        clearTimeout(timer);
-        v.removeEventListener('loadedmetadata', loaded);
-        v.removeEventListener('error', failed);
-      };
-      const loaded = () => { cleanup(); resolve(); };
-      const failed = () => { cleanup(); reject(new Error('media-error')); };
-      v.addEventListener('loadedmetadata', loaded, { once:true });
-      v.addEventListener('error', failed, { once:true });
-      v.load();
-    });
-  };
-
-  const runScene = async () => {
-    if (hasPlayed || bypassing) return;
-    hasPlayed = true;
-    sec.dataset.playState = 'loading';
-    lockScroll();
-
-    /* Longer than the six-second source plus the loader, but still a hard
-       guarantee that a stalled or rejected video can never trap scrolling. */
-    failSafe = setTimeout(() => releaseScroll('timeout'), 15000);
-
-    try {
-      await waitForLoader();
-      await waitForMetadata();
-      if (!locked) return;
-
-      v.currentTime = 0;
-      const duration = Math.max(.5, Number.isFinite(v.duration) ? v.duration : 6);
-      if (sceneTimeline) sceneTimeline.kill();
-      sceneTimeline = reduceSceneMotion ? null : gsap.timeline({ paused:true })
-        .fromTo(v, { scale:sceneScale }, { scale:1, ease:'none', duration }, 0)
-        .fromTo(name, { yPercent:26, opacity:0 },
-          { yPercent:0, opacity:1, ease:'power1.out', duration:duration * .18 },
-          duration * .05);
-
-      v.addEventListener('ended', () => releaseScroll('ended'), { once:true });
-      v.addEventListener('error', () => releaseScroll('media-error'), { once:true });
-      sec.dataset.playState = 'playing';
-      if (sceneTimeline) sceneTimeline.play(0);
-      await v.play();
-    } catch (error) {
-      releaseScroll(error && error.message ? error.message : 'playback-error');
-    }
-  };
-
-  ScrollTrigger.create({
-    trigger:sec,
-    start:'top top',
-    end:'bottom top',
-    invalidateOnRefresh:true,
-    onEnter:runScene,
-    onEnterBack:runScene
-  });
+  lenis.on('scroll', place);
+  addEventListener('resize', place);
+  place();
 })();
+
+document.getElementById('concept-hide')?.addEventListener('click', () => {
+  document.getElementById('concept')?.remove();
+  document.documentElement.classList.remove('has-concept');
+});
 
 gsap.from('.artist__img', { clipPath:'inset(0 100% 0 0)', duration:1.5, ease:'power4.inOut',
   scrollTrigger:{ trigger:'.artist', start:'top 72%' } });
@@ -1206,6 +1096,19 @@ gsap.from('.artist__text > *', { y:40, opacity:0, duration:1, stagger:.11, ease:
   scrollTrigger:{ trigger:'.artist', start:'top 62%' } });
 gsap.from('.visit__block', { y:40, opacity:0, duration:1, stagger:.1, ease:'power3.out',
   scrollTrigger:{ trigger:'.visit', start:'top 82%' } });
+
+/* Hash return from portfolio.html must wait until the scale pin has
+   added its extra scroll length, or the landing sits one viewport early. */
+if (hashTarget) {
+  const goHash = () => {
+    ScrollTrigger.refresh();
+    lenis.resize();
+    lenis.scrollTo(hashTarget, { offset: -92, immediate: true });
+  };
+  const arm = () => { goHash(); setTimeout(goHash, 160); };
+  if (document.readyState === 'complete') arm();
+  else addEventListener('load', arm, { once:true });
+}
 </script>
 </body>
 </html>
