@@ -232,6 +232,8 @@ h1,h2,h3{font-weight:400}
 .work__to-folio a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
   color:var(--paper);border-bottom:1px solid var(--vermilion);
   padding-bottom:.18rem}
+.work:has(> .work__to-folio){padding-bottom:3.5rem}
+#healed{padding-top:3.5rem}
 
 /* ══ VOICES ══ three verbatim Google reviews with their photos ═══════ */
 #voices .sec__head{margin-bottom:clamp(1.35rem,3.4vh,2.2rem)}
@@ -418,6 +420,9 @@ html.has-concept .consult-dock{
   .voices__card--jordan blockquote p,
   .voices__card--shannon blockquote p,
   .voices__card--smith blockquote p{font-size:1.08rem}
+  .work:has(> .work__to-folio){padding-bottom:3rem}
+  #healed{padding-top:3rem}
+  #petals{display:none}
 }
 @media (max-width:600px){
   .healed-montage{aspect-ratio:3 / 4}
@@ -886,7 +891,9 @@ document.querySelectorAll('[data-split]').forEach(el => {
    Same engine as the extracted reference, recoloured to this palette;
    scroll velocity is the wind.                                         */
 (() => {
-  const cv = document.getElementById('petals'), ctx = cv.getContext('2d');
+  const cv = document.getElementById('petals');
+  if (matchMedia('(max-width: 880px)').matches) return;
+  const ctx = cv.getContext('2d');
   const COLORS = ['rgba(178,58,44,A)','rgba(140,47,34,A)','rgba(239,231,216,A)','rgba(162,145,127,A)'];
   let W, H; const dpr = Math.min(devicePixelRatio || 1, 2);
   const size = () => { W = innerWidth; H = innerHeight;
