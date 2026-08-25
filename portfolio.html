@@ -1,294 +1,751 @@
 <!DOCTYPE html>
-<html lang="en" class="has-concept">
+<html class="no-js" lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfolio — Dylan Prorok</title>
-<meta name="description" content="Large-scale Japanese irezumi by Dylan Prorok at Heritage Tattoo in Las Vegas. Sleeves, backs, thighs, and hands drawn to the body they live on." />
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0" />
-<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-
-<!--
-  PORTFOLIO. Composed from Dylan's published site. Irezumi first
-  (https://www.dylanprorok.com/irezumi), then one image each from
-  /color and /bng. Local copies whose Squarespace IDs match the live
-  irezumi page, plus three additional published files fetched 2026-08-12.
-  Floating CTA is the verified consultation appointment:
-  https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225
--->
-
+<script>document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,"js");</script>
+<title>Portfolio — Dylan Prorok, Las Vegas Japanese Tattoo Artist</title>
+<meta name="description" content="Irezumi, illustrative color, and black-and-grey tattoos by Dylan Prorok at Heritage Tattoo in Las Vegas. Sleeves, backs, thighs, and hands drawn to the body." />
+<link rel="canonical" href="https://prorok.jarrettwroten.com/portfolio.html" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta property="og:site_name" content="Dylan Prorok" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Portfolio — Dylan Prorok, Las Vegas Japanese Tattoo Artist" />
+<meta property="og:description" content="Irezumi, illustrative color, and black-and-grey tattoos by Dylan Prorok at Heritage Tattoo in Las Vegas. Sleeves, backs, thighs, and hands drawn to the body." />
+<meta property="og:url" content="https://prorok.jarrettwroten.com/portfolio.html" />
+<meta property="og:image" content="https://prorok.jarrettwroten.com/media/portfolio/irezumi/TAT-IRE-051.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1600" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Portfolio — Dylan Prorok, Las Vegas Japanese Tattoo Artist" />
+<meta name="twitter:description" content="Irezumi, illustrative color, and black-and-grey tattoos by Dylan Prorok at Heritage Tattoo in Las Vegas. Sleeves, backs, thighs, and hands drawn to the body." />
+<meta name="twitter:image" content="https://prorok.jarrettwroten.com/media/portfolio/irezumi/TAT-IRE-051.webp" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://prorok.jarrettwroten.com/portfolio.html#webpage", "url": "https://prorok.jarrettwroten.com/portfolio.html", "name": "Portfolio — Dylan Prorok, Las Vegas Japanese Tattoo Artist", "isPartOf": {"@id": "https://prorok.jarrettwroten.com/#website"}, "about": {"@id": "https://prorok.jarrettwroten.com/#person"}}, {"@type": "Person", "@id": "https://prorok.jarrettwroten.com/#person", "name": "Dylan Prorok", "jobTitle": "Japanese tattoo artist", "url": "https://prorok.jarrettwroten.com/", "image": "https://prorok.jarrettwroten.com/media/portfolio/irezumi/TAT-IRE-051.webp", "worksFor": {"@id": "https://prorok.jarrettwroten.com/#studio"}, "sameAs": ["https://www.instagram.com/dylanprorok/", "https://www.tiktok.com/@dylanprorok_dylontattoo", "https://www.google.com/maps?cid=12163001512038007552"]}, {"@type": ["TattooParlor", "LocalBusiness"], "@id": "https://prorok.jarrettwroten.com/#studio", "name": "Dylan Prorok Tattoo", "url": "https://prorok.jarrettwroten.com/", "image": "https://prorok.jarrettwroten.com/media/portfolio/irezumi/TAT-IRE-051.webp", "address": {"@type": "PostalAddress", "streetAddress": "3827 Sunset Rd", "addressLocality": "Las Vegas", "addressRegion": "NV", "postalCode": "89120", "addressCountry": "US"}, "sameAs": ["https://www.instagram.com/dylanprorok/", "https://www.instagram.com/heritagetattoolv/", "https://www.tiktok.com/@dylanprorok_dylontattoo", "https://www.google.com/maps?cid=12163001512038007552"]}]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --sumi:#14100e; --sumi-2:#201915;
-  --paper:#efe7d8; --paper-dim:#a2917f;
-  --vermilion:#b23a2c; --seal:#8c2f22;
-  --sans:"Archivo", system-ui, sans-serif;
-  --jp:"Shippori Mincho", serif;
-  --ease:cubic-bezier(.7,0,.2,1);
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:initial}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{background:var(--sumi);color:var(--paper);font-family:var(--sans);
-     overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-h1,h2,h3{font-weight:400}
-.char{display:inline-block;will-change:transform}
-.word{display:inline-block;white-space:nowrap}
-
-.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;
-  z-index:90;opacity:.42;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
-  animation:grain 8s steps(10) infinite}
-@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}
-  40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
-
-#petals{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:80}
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
-  justify-content:space-between;padding:1.5rem clamp(1.2rem,4vw,3.2rem)}
-.nav__mark{display:flex;align-items:baseline;gap:.7rem}
-.nav__mark i{font-family:var(--jp);font-style:normal;font-size:1.35rem;color:var(--vermilion)}
-.nav__mark span{font-size:.74rem;letter-spacing:.36em;text-transform:uppercase;font-weight:600}
-.nav__links{display:flex;align-items:center;gap:clamp(.9rem,2.4vw,2.2rem)}
-.nav__links a{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--paper-dim);position:relative;transition:color .3s;font-weight:500}
-.nav__links a::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:1px;
-  background:var(--vermilion);transform:scaleX(0);transform-origin:right;
-  transition:transform .45s var(--ease)}
-.nav__links a:hover{color:var(--paper)}
-.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav__cta{border:1px solid rgba(239,231,216,.3);padding:.5rem 1.1rem;border-radius:99px;
-  color:var(--paper)!important}
-.nav__cta::after{display:none}
-.nav__cta:hover{background:var(--paper);color:var(--sumi)!important;border-color:var(--paper)}
-.nav__portfolio{color:var(--paper)!important}
-.nav__portfolio::after{transform:scaleX(1);transform-origin:left}
-
-.folio-page{position:relative;padding:clamp(7rem,16vh,10rem) clamp(1.2rem,5vw,5rem)
-  clamp(5rem,12vh,8rem);max-width:92rem;margin:0 auto}
-.sec__head{text-align:center;margin-bottom:clamp(3.5rem,9vh,6rem)}
-.sec__jp{font-family:var(--jp);letter-spacing:.66em;color:var(--vermilion);
-  font-size:.95rem;display:block;margin-bottom:1.1rem}
-.sec__head h1{font-family:var(--jp);font-size:clamp(2.2rem,6vw,4.6rem);letter-spacing:.01em}
-.sec__head p{margin:1.2rem auto 0;max-width:38rem;color:var(--paper-dim);
-  line-height:1.75;font-size:1rem}
-
-.folio{margin-top:clamp(2.2rem,6vh,4.2rem)}
-.folio figure{margin:0;overflow:hidden;background:#080706}
-.folio img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
-.folio figure.folio__lead{display:block;width:min(36rem,100%);
-  margin:0 auto clamp(.9rem,2.2vw,1.5rem)}
-.folio__lead img{width:100%;height:auto;object-fit:cover;object-position:50% 12%}
-.folio__row{display:grid;gap:clamp(.9rem,2.2vw,1.5rem);
-  margin-bottom:clamp(.9rem,2.2vw,1.5rem)}
-.folio__row--7-5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
-.folio__row--5-7{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
-.folio__row--8-4{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
-.folio__row--7-5 figure:first-child{aspect-ratio:3 / 4.02}
-.folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
-.folio__row--7-5 figure:last-child img{object-position:50% 42%}
-.folio__row--8-4 figure:first-child img{object-position:50% 16%}
-.folio__row--5-7 figure:first-child{aspect-ratio:3 / 4.02}
-.folio__row--5-7 figure:last-child{aspect-ratio:4 / 5.05}
-.folio__row--8-4 figure:first-child{aspect-ratio:4 / 5.05}
-.folio__row--8-4 figure:last-child{aspect-ratio:3 / 4.02}
-.folio__row--close figure:first-child{aspect-ratio:4 / 5.05}
-.folio__row--close figure:last-child{aspect-ratio:3 / 4.02}
-
-.consult-dock{position:fixed;left:50%;z-index:140;
-  bottom:calc(1.05rem + env(safe-area-inset-bottom, 0px));
-  transform:translateX(-50%);
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:.82rem 1.45rem;border-radius:99px;white-space:nowrap;
-  background:var(--vermilion);color:var(--paper);
-  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
-  box-shadow:0 12px 28px rgba(20,16,14,.38);
-  transition:transform .45s var(--ease), opacity .45s var(--ease),
-             background .3s, color .3s}
-html.has-concept .consult-dock{
-  bottom:calc(3.15rem + env(safe-area-inset-bottom, 0px))}
-.consult-dock:hover{background:var(--seal)}
-.consult-dock:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-.consult-dock.is-tucked{opacity:0;pointer-events:none;
-  transform:translateX(-50%) translateY(120%)}
-
-.visit{background:var(--paper);color:var(--sumi);padding:clamp(5rem,12vh,8rem)
-  clamp(1.2rem,5vw,5rem)}
-.visit__inner{max-width:82rem;margin:0 auto;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(2rem,5vw,4rem)}
-.visit h2{font-family:var(--jp);font-size:clamp(1.9rem,4.6vw,3.4rem);grid-column:1/-1;
-  margin-bottom:1rem;line-height:1.1}
-.visit__block h4{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--seal);margin-bottom:.9rem;font-weight:700}
-.visit__block p,.visit__block a{font-family:var(--jp);font-size:1.06rem;line-height:1.75;
-  color:var(--sumi)}
-.visit__block a{border-bottom:1px solid rgba(20,16,14,.3);transition:border-color .3s}
-.visit__block a:hover{border-color:var(--seal)}
-.foot{background:var(--paper);color:var(--sumi);border-top:1px solid rgba(20,16,14,.14);
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  padding:1.5rem clamp(1.2rem,5vw,5rem);font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:500;
-  padding-bottom:calc(2.2rem + env(safe-area-inset-bottom, 0px))}
-.foot__seal{font-family:var(--jp);color:var(--paper);background:var(--seal);
-  width:2.3rem;height:2.3rem;display:grid;place-items:center;border-radius:4px;
-  font-size:1.05rem;transform:rotate(-4deg);text-transform:none}
-
-.concept{position:fixed;left:0;right:0;bottom:0;z-index:150;background:#c9a227;
-  color:#1a1206;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:700;padding:.5rem 1rem;text-align:center}
-.concept button{background:rgba(26,18,6,.2);border:0;color:inherit;font:inherit;
-  padding:.15rem .5rem;margin-left:.7rem;border-radius:3px;cursor:pointer}
-
-@media (max-width:880px){
-  .nav{padding:1.05rem .9rem;gap:.55rem}
-  .nav__mark span{display:none}
-  .nav__links{gap:.55rem;flex-shrink:0}
-  .nav__links a{letter-spacing:.1em;font-size:.68rem;white-space:nowrap}
-  .nav__links a:not(.nav__portfolio){display:none}
-  .folio__row--7-5,.folio__row--5-7,.folio__row--8-4{grid-template-columns:1fr}
-  .folio__lead{max-width:none}
-  .folio__row--7-5 figure:first-child,
-  .folio__row--5-7 figure:first-child,
-  .folio__row--8-4 figure:first-child{aspect-ratio:4 / 5}
-  .folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
-  .consult-dock{font-size:.64rem;letter-spacing:.12em;padding:.78rem 1.15rem;
-    max-width:calc(100vw - 1.6rem)}
-}
-@media (prefers-reduced-motion:reduce){
-  .grain{animation:none}
-  #petals{display:none}
-}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="grain" aria-hidden="true"></div>
 <canvas id="petals" aria-hidden="true"></canvas>
 
-<nav class="nav">
-  <a class="nav__mark" href="index.html#top"><i>和彫</i><span>Dylan Prorok</span></a>
-  <div class="nav__links">
-    <a href="portfolio.html" class="nav__portfolio" aria-current="page">Portfolio</a>
-    <a href="index.html#scale">Scale</a>
-    <a href="index.html#work">Work</a>
-    <a href="index.html#healed">Healed</a>
-    <a href="index.html#craft">Process</a>
-    <a href="index.html#artist">Artist</a>
-    <a href="index.html#begin" class="nav__cta">Book</a>
-  </div>
-</nav>
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__mark" href="index.html#top"><i>和彫</i><span>Dylan Prorok</span></a>
+    <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    <div class="nav__panel" id="site-menu">
+      <div class="nav__links">
+        <a href="portfolio.html" class="nav__portfolio" aria-current="page">Portfolio</a>
+        <a href="index.html#scale">Scale</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#healed">Healed</a>
+        <a href="index.html#craft">Process</a>
+        <a href="about.html">About</a>
+        <div class="nav__more">
+          <button type="button" class="nav__more-btn" aria-expanded="false" aria-controls="nav-shop">Shop</button>
+          <div class="nav__sub" id="nav-shop">
+            <a href="flash.html">Flash</a>
+            <a href="art.html">Art</a>
+            <a href="merch.html">Merch</a>
+          </div>
+        </div>
+        <a href="booking.html">Tattoo inquiry</a>
+        <a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" class="nav__cta" target="_blank" rel="noopener">Book</a>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <a class="consult-dock" id="consult-dock"
    href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225"
    target="_blank" rel="noopener">Book a Virtual Consultation</a>
 
-<main class="folio-page" id="top">
+<main class="page folio-page" id="main">
   <div class="sec__head">
     <span class="sec__jp" aria-hidden="true">作品集</span>
     <h1 data-split>Portfolio</h1>
-    <p>Sleeves, backs, thighs, and hands. Drawn to the body they live on.</p>
+    <p>Sleeves, backs, thighs, and hands. Drawn to the body they live on. Irezumi, illustrative color, and black and grey each have their own room.</p>
   </div>
 
-  <div class="folio">
-    <figure class="folio__lead">
-      <img src="portfolio/irezumi-dragon-back.jpg"
-        alt="Las Vegas Japanese style tattoo, Japanese dragon, backpiece, black and gray irezumi Tattoo"
-        width="1500" height="2000" />
-    </figure>
+  <nav class="folio-jump" aria-label="Portfolio categories">
+    <a href="#irezumi">Irezumi</a>
+    <a href="#color">Illustrative Color</a>
+    <a href="#bng">Black &amp; Grey</a>
+    <a href="#additional">Additional work</a>
+  </nav>
 
-    <div class="folio__row folio__row--7-5">
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-peony-sleeve.jpg"
-          alt="Japanese style tattoo, peony, flower, cherry blossom, flowers, wind bar background"
-          width="1500" height="2000" />
+  <section class="folio-cat" id="irezumi" data-category="irezumi">
+    <div class="folio-cat__head">
+      <h2>Irezumi</h2>
+      <span aria-hidden="true">入れ墨</span>
+    </div>
+    <div class="folio folio-flow">
+    <figure data-asset-id="TAT-IRE-001">
+        <img src="media/portfolio/irezumi/TAT-IRE-001.webp" alt="Color Japanese sleeve with a crane, peonies, cherry blossoms, and black wind bars." width="1200" height="1600" decoding="async" loading="eager" fetchpriority="high" />
+        <figcaption>Crane and peony sleeve.</figcaption>
       </figure>
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-kitsune-hand.jpg"
-          alt="Las Vegas Japanese Tattoo Kitsune Japanese fox mask, cherry blossoms, hand tattoo"
-          width="841" height="1500" />
+    <figure data-asset-id="TAT-IRE-002">
+        <img src="media/portfolio/irezumi/TAT-IRE-002.webp" alt="Color sleeve with a samurai dog, cherry blossoms, and black wind bars." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Samurai dog sleeve.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-003" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-003.webp" alt="Color Japanese sleeve with large peonies and cherry blossoms." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Peony sleeve, upper view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-004" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-004.webp" alt="Full view of a color peony and cherry blossom sleeve." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Peony sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-005" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-005.webp" alt="Close view of peonies and floral details on a color sleeve." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Peony sleeve, lower view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-006" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-006.webp" alt="Alternate view of a color peony sleeve with an omamori charm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Peony and omamori sleeve.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-007" data-group="IRE-FLORAL-OMAMORI-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-007.webp" alt="Close view of an omamori charm, blossoms, and wind bars." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Omamori sleeve detail.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-008">
+        <img src="media/portfolio/irezumi/TAT-IRE-008.webp" alt="Color frog chef holding a knife on the upper arm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Frog chef.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-009">
+        <img src="media/portfolio/irezumi/TAT-IRE-009.webp" alt="Color skull-headed octopus figure in a robe." width="1236" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Skull-headed octopus.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-010">
+        <img src="media/portfolio/irezumi/TAT-IRE-010.webp" alt="Black and grey hannya mask on the thigh." width="1500" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Hannya mask.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-LIKELY-11-12">
+      <p class="folio-group__note">Likely the same work, shown together.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-011" data-group="IRE-LIKELY-11-12">
+        <img src="media/portfolio/irezumi/TAT-IRE-011.webp" alt="Black and red severed geisha head on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geisha namakubi.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-012" data-group="IRE-LIKELY-11-12">
+        <img src="media/portfolio/irezumi/TAT-IRE-012.webp" alt="Black and red geisha head and hannya mask tattoos on both thighs." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geisha and hannya pair.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-013">
+        <img src="media/portfolio/irezumi/TAT-IRE-013.webp" alt="Black and red crane with cherry blossoms on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Crane and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-014">
+        <img src="media/portfolio/irezumi/TAT-IRE-014.webp" alt="Color Japanese dragon cover-up across the upper thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon cover-up.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-015">
+        <img src="media/portfolio/irezumi/TAT-IRE-015.webp" alt="Color guardian lion tattoo centered on the knee." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Guardian lion knee tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-016">
+        <img src="media/portfolio/irezumi/TAT-IRE-016.webp" alt="Red peony tattoo across the shoulder." width="1440" height="1440" decoding="async" loading="lazy" />
+        <figcaption>Peony shoulder tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-017">
+        <img src="media/portfolio/irezumi/TAT-IRE-017.webp" alt="Black and red Japanese dragon head across the chest." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon chest tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-018">
+        <img src="media/portfolio/irezumi/TAT-IRE-018.webp" alt="Black and red hannya masks surrounding a chrysanthemum on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya masks and chrysanthemum.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-019">
+        <img src="media/portfolio/irezumi/TAT-IRE-019.webp" alt="Linework Japanese dragon coiled around a sword on the arm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and sword.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-020">
+        <img src="media/portfolio/irezumi/TAT-IRE-020.webp" alt="Black and grey Japanese tiger on the forearm." width="1500" height="1581" decoding="async" loading="lazy" />
+        <figcaption>Tiger forearm tattoo.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-FROG">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-021" data-group="IRE-FROG">
+        <img src="media/portfolio/irezumi/TAT-IRE-021.webp" alt="Color frog procession tattoo." width="1500" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Frog procession.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-022" data-group="IRE-FROG">
+        <img src="media/portfolio/irezumi/TAT-IRE-022.webp" alt="Alternate view of a color frog procession tattoo." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Frog procession, alternate view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-023">
+        <img src="media/portfolio/irezumi/TAT-IRE-023.webp" alt="Black and red koi with a peony and waves." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Koi and peony.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-024">
+        <img src="media/portfolio/irezumi/TAT-IRE-024.webp" alt="Black and red masked figure with octopus tentacles and blossoms." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Masked octopus figure.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-025">
+        <img src="media/portfolio/irezumi/TAT-IRE-025.webp" alt="Black and grey hannya mask centered on the throat." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya throat tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-026">
+        <img src="media/portfolio/irezumi/TAT-IRE-026.webp" alt="Color snake coiled around a peony on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and peony.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-027">
+        <img src="media/portfolio/irezumi/TAT-IRE-027.webp" alt="Color koi with cherry blossoms on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Koi and cherry blossoms.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-DRAGON-DARUMA-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-028" data-group="IRE-DRAGON-DARUMA-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-028.webp" alt="Outer view of a color Japanese dragon and Daruma sleeve with flowers." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and Daruma sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-029" data-group="IRE-DRAGON-DARUMA-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-029.webp" alt="Side view of a color Japanese dragon and Daruma sleeve with flowers." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and Daruma sleeve, side view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-030" data-group="IRE-DRAGON-DARUMA-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-030.webp" alt="Inner view of a color Japanese dragon and Daruma sleeve with flowers." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and Daruma sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-031">
+        <img src="media/portfolio/irezumi/TAT-IRE-031.webp" alt="Color cartoon frog flexing on the wrist." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Flexing frog.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-SAMURAI-CROW-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-032" data-group="IRE-SAMURAI-CROW-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-032.webp" alt="Outer view of a black and red samurai helmet and crow sleeve." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Samurai helmet and crow sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-033" data-group="IRE-SAMURAI-CROW-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-033.webp" alt="Alternate view of a black and red samurai helmet and crow sleeve." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Samurai helmet and crow sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <div class="folio-group" data-group="IRE-SNAKE-CAT-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-034" data-group="IRE-SNAKE-CAT-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-034.webp" alt="Outer view of a black and red sleeve with a snake and hannya mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and hannya sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-035" data-group="IRE-SNAKE-CAT-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-035.webp" alt="Inner view of a black and red sleeve with a snake, cat, and hannya mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and cat sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <div class="folio-group" data-group="IRE-KITSUNE-MOTH-PEONY-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-036" data-group="IRE-KITSUNE-MOTH-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-036.webp" alt="Outer view of a black and red sleeve with peonies, a moth, and kitsune mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Kitsune and peony sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-037" data-group="IRE-KITSUNE-MOTH-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-037.webp" alt="Back view of a black and red sleeve with peonies, a moth, and kitsune mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Kitsune and peony sleeve, back view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-038" data-group="IRE-KITSUNE-MOTH-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-038.webp" alt="Front view of a black and red sleeve with peonies, a moth, and kitsune mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Kitsune and peony sleeve, front view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-039" data-group="IRE-KITSUNE-MOTH-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-039.webp" alt="Inner view of a black and red sleeve with peonies, a moth, and kitsune mask." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Kitsune and peony sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-040">
+        <img src="media/portfolio/irezumi/TAT-IRE-040.webp" alt="Blackwork chrysanthemum on the calf." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Chrysanthemum calf tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-041">
+        <img src="media/portfolio/irezumi/TAT-IRE-041.webp" alt="Black and grey peony on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Peony forearm tattoo.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-SNAKE-PEONY-SLEEVE">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-042" data-group="IRE-SNAKE-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-042.webp" alt="Outer view of a black and grey snake and flower sleeve with red accents." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and flower sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-043" data-group="IRE-SNAKE-PEONY-SLEEVE">
+        <img src="media/portfolio/irezumi/TAT-IRE-043.webp" alt="Inner view of a black and grey snake and flower sleeve with red accents." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and flower sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-044">
+        <img src="media/portfolio/irezumi/TAT-IRE-044.webp" alt="Black and red geisha holding a snake, framed by cherry blossoms." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geisha and snake.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-HANNYA-HAND">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-045" data-group="IRE-HANNYA-HAND">
+        <img src="media/portfolio/irezumi/TAT-IRE-045.webp" alt="Black and grey hannya mask with dice and stars across the hand." width="1425" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya hand tattoo.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-046" data-group="IRE-HANNYA-HAND">
+        <img src="media/portfolio/irezumi/TAT-IRE-046.webp" alt="Alternate view of a black and grey hannya mask with dice and stars across the hand." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya hand tattoo, alternate view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-047">
+        <img src="media/portfolio/irezumi/TAT-IRE-047.webp" alt="Black and red geisha head with cherry blossoms on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geisha and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-048">
+        <img src="media/portfolio/irezumi/TAT-IRE-048.webp" alt="Black and red Japanese dragon head on the calf." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon calf tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-049">
+        <img src="media/portfolio/irezumi/TAT-IRE-049.webp" alt="Black and grey chrysanthemum across the upper arm." width="826" height="826" decoding="async" loading="lazy" />
+        <figcaption>Chrysanthemum upper arm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-050">
+        <img src="media/portfolio/irezumi/TAT-IRE-050.webp" alt="Black and grey swallow with cherry blossoms on the shoulder." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Swallow and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-051">
+        <img src="media/portfolio/irezumi/TAT-IRE-051.webp" alt="Black and grey Japanese dragon backpiece." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon backpiece.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-052">
+        <img src="media/portfolio/irezumi/TAT-IRE-052.webp" alt="Black and red Daruma nested inside a chrysanthemum on the upper arm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Daruma and chrysanthemum.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-053">
+        <img src="media/portfolio/irezumi/TAT-IRE-053.webp" alt="Black and grey hannya mask with red cherry blossoms on the upper arm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-054">
+        <img src="media/portfolio/irezumi/TAT-IRE-054.webp" alt="Black and grey koi with waves on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Koi and waves.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-055">
+        <img src="media/portfolio/irezumi/TAT-IRE-055.webp" alt="Black and grey lotus seed pod and waves on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Lotus and waves.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-LIKELY-56-57">
+      <p class="folio-group__note">Likely the same work, shown together.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-056" data-group="IRE-LIKELY-56-57">
+        <img src="media/portfolio/irezumi/TAT-IRE-056.webp" alt="Black and grey coiled dragon on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Coiled dragon, first view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-057" data-group="IRE-LIKELY-56-57">
+        <img src="media/portfolio/irezumi/TAT-IRE-057.webp" alt="Alternate view of a black and grey coiled dragon on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Coiled dragon, alternate view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-058">
+        <img src="media/portfolio/irezumi/TAT-IRE-058.webp" alt="Black and grey koi with waves and flowers on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Koi, waves, and flowers.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-059">
+        <img src="media/portfolio/irezumi/TAT-IRE-059.webp" alt="Color Japanese sleeve with a seated monk, peony, and red flowers." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Monk and peony sleeve.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-060">
+        <img src="media/portfolio/irezumi/TAT-IRE-060.webp" alt="Color Japanese dragon and koi sleeve." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and koi sleeve.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-061">
+        <img src="media/portfolio/irezumi/TAT-IRE-061.webp" alt="Black and red tiger and koi sleeve with waves." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Tiger and koi sleeve.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-062">
+        <img src="media/portfolio/irezumi/TAT-IRE-062.webp" alt="Black and grey sacred jewel resting in a lotus with flames." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Sacred jewel and lotus.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-063">
+        <img src="media/portfolio/irezumi/TAT-IRE-063.webp" alt="Black and grey Pisces koi pair on the upper arm." width="1280" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Pisces koi.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-064">
+        <img src="media/portfolio/irezumi/TAT-IRE-064.webp" alt="Black and grey swallows carrying an omamori charm on the chest." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Swallows and omamori.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-TIGER">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-065" data-group="IRE-TIGER">
+        <img src="media/portfolio/irezumi/TAT-IRE-065.webp" alt="Black and grey Japanese tiger with waves on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Tiger thigh tattoo.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-066" data-group="IRE-TIGER">
+        <img src="media/portfolio/irezumi/TAT-IRE-066.webp" alt="Alternate view of a black and grey Japanese tiger with waves on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Tiger thigh tattoo, alternate view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-067">
+        <img src="media/portfolio/irezumi/TAT-IRE-067.webp" alt="Black and grey snake and peony on the thigh with red accents." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and peony thigh tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-068">
+        <img src="media/portfolio/irezumi/TAT-IRE-068.webp" alt="Black and grey paired faces with sweeping black hair on the arm." width="1500" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Paired faces.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-069">
+        <img src="media/portfolio/irezumi/TAT-IRE-069.webp" alt="Black and grey uchide no kozuchi mallet with waves and ribbon." width="1500" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Magic mallet and waves.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-070">
+        <img src="media/portfolio/irezumi/TAT-IRE-070.webp" alt="Black and grey hannya mask with waves on the lower leg." width="1280" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hannya mask and waves.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-071">
+        <img src="media/portfolio/irezumi/TAT-IRE-071.webp" alt="Color geisha holding a stack of cash." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geisha with cash.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-072">
+        <img src="media/portfolio/irezumi/TAT-IRE-072.webp" alt="Black and red Japanese dragon with cherry blossoms on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon and cherry blossoms.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-SLEEVE-73-74">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-073" data-group="IRE-SLEEVE-73-74">
+        <img src="media/portfolio/irezumi/TAT-IRE-073.webp" alt="Black and red koi with waves and cherry blossoms on the forearm." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Koi and cherry blossoms.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-074" data-group="IRE-SLEEVE-73-74">
+        <img src="media/portfolio/irezumi/TAT-IRE-074.webp" alt="Black and red frog warrior with a sword and koi on the forearm." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Frog warrior and koi.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-IRE-075">
+        <img src="media/portfolio/irezumi/TAT-IRE-075.webp" alt="Black and red koi with cherry blossoms on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Koi and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-076">
+        <img src="media/portfolio/irezumi/TAT-IRE-076.webp" alt="Black and grey paired cherries drawn as smiling faces on the lower leg." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Cherry faces.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-077">
+        <img src="media/portfolio/irezumi/TAT-IRE-077.webp" alt="Black and grey split mask beneath a chrysanthemum on the forearm." width="728" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Split mask and chrysanthemum.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-078">
+        <img src="media/portfolio/irezumi/TAT-IRE-078.webp" alt="Black and grey hand with an eye in its palm holding a flame." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Hand, eye, and flame.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-079">
+        <img src="media/portfolio/irezumi/TAT-IRE-079.webp" alt="Black and grey peony on the forearm." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Peony forearm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-080">
+        <img src="media/portfolio/irezumi/TAT-IRE-080.webp" alt="Kitsune mask and cherry blossoms across the hand." width="841" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Kitsune hand tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-081">
+        <img src="media/portfolio/irezumi/TAT-IRE-081.webp" alt="Black and grey sleeve with a woman&#x27;s portrait, Noh mask, and red eye accents." width="864" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Woman and Noh mask sleeve.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-082">
+        <img src="media/portfolio/irezumi/TAT-IRE-082.webp" alt="Black and grey lucky cat surrounded by cherry blossoms." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Lucky cat and cherry blossoms.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-083">
+        <img src="media/portfolio/irezumi/TAT-IRE-083.webp" alt="Color snake coiled around a chrysanthemum on the forearm." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Snake and chrysanthemum.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-084">
+        <img src="media/portfolio/irezumi/TAT-IRE-084.webp" alt="Black and grey geisha, peony, and koi sleeve." width="645" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Geisha sleeve.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-085">
+        <img src="media/portfolio/irezumi/TAT-IRE-085.webp" alt="Black and grey chrysanthemum across the upper arm." width="1125" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Chrysanthemum upper arm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-IRE-086">
+        <img src="media/portfolio/irezumi/TAT-IRE-086.webp" alt="Color Monkey King portrait on the side of the neck." width="1262" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Monkey King neck tattoo.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="IRE-FLOWER-SLEEVE-87-88">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-IRE-087" data-group="IRE-FLOWER-SLEEVE-87-88">
+        <img src="media/portfolio/irezumi/TAT-IRE-087.webp" alt="Outer view of a blackwork sleeve filled with chrysanthemums and peonies." width="720" height="900" decoding="async" loading="lazy" />
+        <figcaption>Flower sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-IRE-088" data-group="IRE-FLOWER-SLEEVE-87-88">
+        <img src="media/portfolio/irezumi/TAT-IRE-088.webp" alt="Inner view of a blackwork sleeve filled with chrysanthemums and peonies." width="720" height="900" decoding="async" loading="lazy" />
+        <figcaption>Flower sleeve, inner view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="folio-cat" id="color" data-category="color">
+    <div class="folio-cat__head">
+      <h2>Illustrative Color</h2>
+      <span aria-hidden="true">色彩</span>
+    </div>
+    <div class="folio folio-flow">
+    <div class="folio-group" data-group="COL-SLEEVE-01-03">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-COL-001" data-group="COL-SLEEVE-01-03">
+        <img src="media/portfolio/color/TAT-COL-001.webp" alt="Color Star Wars sleeve with Kylo Ren, a red lightsaber, and the Death Star." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Star Wars sleeve, outer view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-COL-002" data-group="COL-SLEEVE-01-03">
+        <img src="media/portfolio/color/TAT-COL-002.webp" alt="Alternate view of a color Star Wars sleeve with stormtroopers and TIE fighters." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Star Wars sleeve, inner view.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-COL-003" data-group="COL-SLEEVE-01-03">
+        <img src="media/portfolio/color/TAT-COL-003.webp" alt="Back view of a color Star Wars sleeve with Darth Vader, spacecraft, and a lightsaber." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Star Wars sleeve, back view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-COL-004">
+        <img src="media/portfolio/color/TAT-COL-004.webp" alt="Color monarch butterfly on the side of the neck." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Monarch butterfly neck tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-COL-005">
+        <img src="media/portfolio/color/TAT-COL-005.webp" alt="Pink cherry blossom branches across the upper arm and shoulder." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Cherry blossom branches.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-COL-006">
+        <img src="media/portfolio/color/TAT-COL-006.webp" alt="Black and grey hooded skull above a red chrysanthemum." width="843" height="1124" decoding="async" loading="lazy" />
+        <figcaption>Hooded skull and chrysanthemum.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-COL-007">
+        <img src="media/portfolio/color/TAT-COL-007.webp" alt="Color geometric bird with stylized clouds." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Geometric bird.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-COL-008">
+        <img src="media/portfolio/color/TAT-COL-008.webp" alt="Color Medusa with snakes across the upper back and shoulder." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Medusa upper back tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-COL-009">
+        <img src="media/portfolio/color/TAT-COL-009.webp" alt="Black snake coiled around a red peony on the side of the neck." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Snake and peony neck tattoo.</figcaption>
       </figure>
     </div>
+  </section>
 
-    <div class="folio__row folio__row--5-7">
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-snake-cat-sleeve.jpg"
-          alt="Las Vegas Japanese style tattoo, full sleeve, black and gray with red snake versus cat with Hannya mask tattoo irezumi Tattoo"
-          width="1500" height="2000" />
+  <section class="folio-cat" id="bng" data-category="bng">
+    <div class="folio-cat__head">
+      <h2>Black &amp; Grey</h2>
+      <span aria-hidden="true">墨</span>
+    </div>
+    <div class="folio folio-flow">
+    <figure data-asset-id="TAT-BNG-001">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-001.webp" alt="Black and grey panther and woman&#x27;s face on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Panther and portrait.</figcaption>
       </figure>
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-dragon-koi-sleeve.jpg"
-          alt="Las Vegas Japanese style tattoo, full sleeve, full color, Japanese Dragon, and Koi Fish Tattoo finger Waves irezumi Tattoo"
-          width="1500" height="2000" />
+    <figure data-asset-id="TAT-BNG-002">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-002.webp" alt="Black and grey winged figure on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Winged figure.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-003">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-003.webp" alt="Linework flowers arranged vertically along the spine." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Floral spine tattoo.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="BNG-SNAKE-BACK-04-30">
+      <p class="folio-group__note">Contextual views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-BNG-004" data-group="BNG-SNAKE-BACK-04-30">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-004.webp" alt="Black and grey coiled snake centered on the upper back." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Coiled snake backpiece.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-BNG-030" data-group="BNG-SNAKE-BACK-04-30">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-030.webp" alt="Full view of a black and grey coiled snake centered on the back." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Coiled snake backpiece, full view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-BNG-005">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-005.webp" alt="Black and grey floral tattoo wrapping the upper arm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Floral upper arm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-006">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-006.webp" alt="Black and grey skull beneath a spiderweb on the forearm." width="1280" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Skull and spiderweb.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-007">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-007.webp" alt="Black and grey rose and rosary with a cross on the wrist." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Rose and rosary.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-008">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-008.webp" alt="Symmetrical black linework design spanning the back." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Symmetrical back design.</figcaption>
+      </figure>
+    <div class="folio-group" data-group="BNG-HEAD-09-10">
+      <p class="folio-group__note">Alternate views of the same work.</p>
+      <div class="folio-group__grid">
+        <figure data-asset-id="TAT-BNG-009" data-group="BNG-HEAD-09-10">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-009.webp" alt="Blackwork dragon head tattoo above the ear." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon head tattoo.</figcaption>
+      </figure>
+        <figure data-asset-id="TAT-BNG-010" data-group="BNG-HEAD-09-10">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-010.webp" alt="Alternate view of a blackwork dragon head tattoo above the ear." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon head tattoo, alternate view.</figcaption>
+      </figure>
+      </div>
+    </div>
+    <figure data-asset-id="TAT-BNG-011">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-011.webp" alt="Fine-line flowers and leaves on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Floral forearm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-012">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-012.webp" alt="Mirrored black linework tigers with red flowers across the abdomen." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Paired tigers and flowers.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-013">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-013.webp" alt="Black and grey five-petal flower on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Five-petal flower.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-014">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-014.webp" alt="Black and grey spider with a flower on its abdomen." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Spider and flower.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-015">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-015.webp" alt="Black and grey horned mask with a small flower." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Horned mask.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-016">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-016.webp" alt="Black and grey hooded skull on the side of the neck." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hooded skull neck tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-017">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-017.webp" alt="Blackwork crown of thorns on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Crown of thorns.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-018">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-018.webp" alt="Black and grey anatomical heart with an eye and cross." width="1280" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Heart with eye.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-019">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-019.webp" alt="Black and grey folding knife with roses." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Knife and roses.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-020">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-020.webp" alt="Black and grey embracing skeletons and roses on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Skeletons and roses.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-021">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-021.webp" alt="Black and grey grinning mask with a spider above it." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Mask and spider.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-022">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-022.webp" alt="Black and grey butterfly on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Butterfly forearm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-023">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-023.webp" alt="Matching black and grey guardian lion tattoos on both thighs." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Paired guardian lions.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-024">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-024.webp" alt="Black and grey rose on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Rose forearm tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-025">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-025.webp" alt="Blackwork cross above a ram skull on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Cross and ram skull.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-026">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-026.webp" alt="Blackwork owl head covering the back of the hand." width="1500" height="1500" decoding="async" loading="lazy" />
+        <figcaption>Owl hand tattoo.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-027">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-027.webp" alt="Black and grey flower beneath crossed arrows on the forearm." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Flower and crossed arrows.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-028">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-028.webp" alt="Black and grey Vegeta portrait on the upper arm with crossed arrows." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Vegeta portrait.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-029">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-029.webp" alt="Black and grey hooded woman&#x27;s portrait on the shoulder." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Hooded portrait.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-BNG-031">
+        <img src="media/portfolio/black-and-grey/TAT-BNG-031.webp" alt="Black and grey skull wearing a helmet marked with the number 3." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Helmeted skull.</figcaption>
       </figure>
     </div>
+  </section>
 
-    <div class="folio__row folio__row--8-4">
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-geisha-sleeve.jpg"
-          alt="Las Vegas Japanese Tattoo full Sleeve Geisha head peony flower Koi fish, black, and grey tattoo"
-          width="645" height="1500" />
+  <section class="folio-cat" id="additional" data-category="other">
+    <div class="folio-cat__head">
+      <h2>Additional work</h2>
+      <span aria-hidden="true">他</span>
+    </div>
+    <div class="folio folio-flow">
+    <figure data-asset-id="TAT-AGG-001">
+        <img src="media/portfolio/other/TAT-AGG-001.webp" alt="Red and black lettering reading “I LOVE YOU / Get Away From Me” on the thigh." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Love You lettering.</figcaption>
       </figure>
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-tiger-thigh.jpg"
-          alt="Las Vegas Japanese style Tattoo tiger with Japanese style finger waves, black and gray irezumi tattoo"
-          width="1500" height="2000" />
+    <figure data-asset-id="TAT-AGG-002">
+        <img src="media/portfolio/other/TAT-AGG-002.webp" alt="Small black crescent moon with two cats and three stars on the upper back." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Cats on a crescent moon.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-AGG-003">
+        <img src="media/portfolio/other/TAT-AGG-003.webp" alt="Black and grey dragon sleeve in progress." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Dragon sleeve in progress.</figcaption>
+      </figure>
+    <figure data-asset-id="TAT-AGG-004">
+        <img src="media/portfolio/other/TAT-AGG-004.webp" alt="Color eagle backpiece with red lightning bolts and patriotic emblems." width="1200" height="1600" decoding="async" loading="lazy" />
+        <figcaption>Eagle backpiece.</figcaption>
       </figure>
     </div>
+  </section>
 
-    <div class="folio__row folio__row--8-4">
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-snake-peony-sleeve.jpg"
-          alt="Las Vegas Japanese style tattoo, full sleeve, snake peony flower, chrysanthemum flower Japanese style wine bar background black, and gray with red irezumi Tattoo"
-          width="1500" height="2000" />
-      </figure>
-      <figure>
-        <img loading="lazy" src="portfolio/irezumi-omamori-sleeve.jpg"
-          alt="Japanese style tattoo, Oma Mori cherry blossom tattoo with irezumi style wine bar background"
-          width="1500" height="2000" />
-      </figure>
-    </div>
+  <p class="page__go"><a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" target="_blank" rel="noopener">Book a virtual consultation</a></p>
 
-    <div class="folio__row folio__row--5-7 folio__row--close">
-      <figure>
-        <img loading="lazy" src="portfolio/color-medusa.jpg"
-          alt="Color illustrative Medusa and snake tattoo on the chest, from Dylan Prorok's Illustrative Color page"
-          width="1500" height="2000" />
-      </figure>
-      <figure>
-        <img loading="lazy" src="portfolio/bng-panther.jpg"
-          alt="Black and grey illustrative panther with two faces on a forearm, from Dylan Prorok's Illustrative Black and Grey page"
-          width="1500" height="2000" />
-      </figure>
-    </div>
-  </div>
 </main>
 
 <section class="visit" id="visit">
   <div class="visit__inner">
     <h2>Come find me.</h2>
     <div class="visit__block">
-      <h4>Studio</h4>
+      <h3>Studio</h3>
       <p>Heritage Tattoo<br />3827 Sunset Rd<br />Las Vegas, NV 89120</p>
     </div>
     <div class="visit__block">
-      <h4>Usual hours</h4>
+      <h3>Usual hours</h3>
       <p>Tuesday – Saturday<br />Noon – 8pm</p>
     </div>
     <div class="visit__block">
-      <h4>Booking</h4>
-      <p><a href="https://dylanprorok.as.me/" target="_blank" rel="noopener">Submit a booking form</a><br />
-         or DM me — I answer both.<br />I'll contact you to schedule.</p>
+      <h3>Booking</h3>
+      <p><a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" target="_blank" rel="noopener">Book a virtual consultation</a><br />
+         <a href="booking.html">Send a tattoo inquiry</a><br />
+         or DM me — I answer both.</p>
     </div>
     <div class="visit__block">
-      <h4>Elsewhere</h4>
+      <h3>Elsewhere</h3>
       <p><a href="https://www.instagram.com/dylanprorok/" target="_blank" rel="noopener">@dylanprorok</a> ·
          <a href="https://www.tiktok.com/@dylanprorok_dylontattoo" target="_blank" rel="noopener">TikTok</a><br />
          <a href="https://www.instagram.com/heritagetattoolv/" target="_blank" rel="noopener">@heritagetattoolv</a></p>
@@ -298,111 +755,24 @@ html.has-concept .consult-dock{
 
 <footer class="foot">
   <span>© 2026 Dylan Prorok</span>
+  <nav class="foot__links" aria-label="Footer">
+    <a href="portfolio.html" aria-current="page">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="flash.html">Flash</a>
+    <a href="art.html">Art</a>
+    <a href="merch.html">Merch</a>
+    <a href="booking.html">Tattoo inquiry</a>
+    <a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" target="_blank" rel="noopener">Book</a>
+  </nav>
   <span class="foot__seal">彫</span>
   <span>Las Vegas, Nevada</span>
 </footer>
 
-<div class="concept" id="concept">
-  Unofficial Design Concept For Dylan Prorok
-  <button type="button" id="concept-hide">hide</button>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script>
-gsap.registerPlugin(ScrollTrigger);
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
 
-const lenis = new Lenis({ lerp: 0.09 });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(t => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
-document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-  e.preventDefault();
-  lenis.scrollTo(a.getAttribute('href'), { offset: -92, duration: 1.6,
-    easing: t => 1 - Math.pow(1 - t, 4) });
-}));
-
-document.querySelectorAll('[data-split]').forEach(el => {
-  const text = el.textContent.trim();
-  el.setAttribute('aria-label', text);
-  el.innerHTML = text.split(/\s+/).map(w =>
-    `<span class="word" aria-hidden="true">${[...w].map(c => `<span class="char">${c}</span>`).join('')}</span>`
-  ).join(' ');
-});
-
-(() => {
-  const cv = document.getElementById('petals'), ctx = cv.getContext('2d');
-  const COLORS = ['rgba(178,58,44,A)','rgba(140,47,34,A)','rgba(239,231,216,A)','rgba(162,145,127,A)'];
-  let W, H; const dpr = Math.min(devicePixelRatio || 1, 2);
-  const size = () => { W = innerWidth; H = innerHeight;
-    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
-  size(); addEventListener('resize', size);
-  const r = (a,b) => a + Math.random()*(b-a);
-  const make = seed => ({ x:r(-40,W+40), y:seed?r(-H*.2,H):r(-120,-20), size:r(4,10),
-    vy:r(.3,.95), vx:r(-.3,.45), rot:r(0,Math.PI*2), vr:r(-.02,.02),
-    swayAmp:r(10,40), swaySpeed:r(.4,1.1), phase:r(0,Math.PI*2),
-    color:COLORS[Math.random()*COLORS.length|0].replace('A', r(.18,.5).toFixed(2)),
-    squish:r(.55,.8) });
-  let P = Array.from({length: innerWidth < 880 ? 12 : 22}, () => make(true));
-  const draw = p => { ctx.save();
-    ctx.translate(p.x + Math.sin(p.phase)*p.swayAmp, p.y);
-    ctx.rotate(p.rot); ctx.scale(1, p.squish); ctx.beginPath();
-    const d = p.size;
-    ctx.moveTo(0,-d);
-    ctx.bezierCurveTo( d,-d*.6,  d*.9, d*.7, 0, d);
-    ctx.bezierCurveTo(-d*.9, d*.7, -d,-d*.6, 0,-d);
-    ctx.fillStyle = p.color; ctx.fill(); ctx.restore(); };
-  let lastY = scrollY, vel = 0, t = 0;
-  (function loop(){
-    const y = scrollY; vel += (y - lastY - vel) * .08; lastY = y; t += .016;
-    ctx.clearRect(0,0,W,H);
-    for (const p of P) {
-      p.phase += p.swaySpeed * .016;
-      p.y   += p.vy + Math.min(Math.abs(vel)*.03, 2.4);
-      p.x   += p.vx + Math.sin(t*.5 + p.phase)*.2;
-      p.rot += p.vr + vel*4e-4;
-      if (p.y > H+40 || p.x < -80 || p.x > W+80) Object.assign(p, make(false));
-      draw(p);
-    }
-    requestAnimationFrame(loop);
-  })();
-})();
-
-gsap.from('.sec__head .char', { yPercent:120, opacity:0, stagger:.035,
-  duration:1, ease:'power4.out' });
-gsap.from('.sec__jp', { opacity:0, letterSpacing:'1.6em', duration:1.3,
-  ease:'power3.out' });
-gsap.from('.sec__head p', { y:26, opacity:0, duration:1, ease:'power3.out' });
-
-gsap.utils.toArray('.folio figure').forEach(fig => {
-  const img = fig.querySelector('img');
-  gsap.fromTo(fig, { clipPath:'inset(0 0 100% 0)' },
-    { clipPath:'inset(0 0% 0 0%)', duration:1.25, ease:'power4.inOut',
-      scrollTrigger:{ trigger:fig, start:'top 86%' } });
-  if (img) {
-    gsap.fromTo(img, { scale:1.18 }, { scale:1.04, duration:1.25, ease:'power3.out',
-      scrollTrigger:{ trigger:fig, start:'top 86%' } });
-  }
-});
-
-(() => {
-  const dock = document.getElementById('consult-dock');
-  const visit = document.getElementById('visit');
-  if (!dock || !visit) return;
-  const place = () => {
-    const room = visit.getBoundingClientRect().top - innerHeight + 28;
-    dock.classList.toggle('is-tucked', room < 0);
-  };
-  lenis.on('scroll', place);
-  addEventListener('resize', place);
-  place();
-})();
-
-document.getElementById('concept-hide')?.addEventListener('click', () => {
-  document.getElementById('concept')?.remove();
-  document.documentElement.classList.remove('has-concept');
-});
-</script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "asset_id": "MER-PRT-001",
+      "src": "media/merch/MER-PRT-001.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Gwap Geisha Print",
+      "caption": "Gwap Geisha Print",
+      "duplicate_group": "MER-GWAP-GEISHA-PRINT"
+    },
+    {
+      "asset_id": "MER-SHT-001",
+      "src": "media/merch/MER-SHT-001.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Ko Omote T-Shirt — product view 01",
+      "caption": "Ko Omote T-Shirt — product view 01",
+      "duplicate_group": "MER-KO-OMOTE-SHIRT"
+    },
+    {
+      "asset_id": "MER-PRT-002",
+      "src": "media/merch/MER-PRT-002.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Gwap Geisha Print — product view 02",
+      "caption": "Gwap Geisha Print — product view 02",
+      "duplicate_group": "MER-GWAP-GEISHA-PRINT"
+    },
+    {
+      "asset_id": "MER-SHT-002",
+      "src": "media/merch/MER-SHT-002.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Ko Omote T-Shirt — product view 02",
+      "caption": "Ko Omote T-Shirt — product view 02",
+      "duplicate_group": "MER-KO-OMOTE-SHIRT"
+    },
+    {
+      "asset_id": "MER-PRT-003",
+      "src": "media/merch/MER-PRT-003.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Gwap Geisha Print — product view 03",
+      "caption": "Gwap Geisha Print — product view 03",
+      "duplicate_group": "MER-GWAP-GEISHA-PRINT"
+    },
+    {
+      "asset_id": "MER-SHT-003",
+      "src": "media/merch/MER-SHT-003.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Ko Omote T-Shirt — product view 03",
+      "caption": "Ko Omote T-Shirt — product view 03",
+      "duplicate_group": "MER-KO-OMOTE-SHIRT"
+    }
+  ]
+}

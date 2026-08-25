@@ -1,0 +1,293 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "asset_id": "ART-001",
+      "src": "media/art/ART-001.webp",
+      "width": 1000,
+      "height": 1500,
+      "alt": "Artwork archive view 01",
+      "caption": "Artwork archive view 01",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-002",
+      "src": "media/art/ART-002.webp",
+      "width": 1200,
+      "height": 1500,
+      "alt": "Artwork archive view 02",
+      "caption": "Artwork archive view 02",
+      "duplicate_group": "ART-CTX-02-12"
+    },
+    {
+      "asset_id": "ART-003",
+      "src": "media/art/ART-003.webp",
+      "width": 1200,
+      "height": 1500,
+      "alt": "Artwork archive view 03",
+      "caption": "Artwork archive view 03",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-004",
+      "src": "media/art/ART-004.webp",
+      "width": 1200,
+      "height": 1500,
+      "alt": "Artwork archive view 04",
+      "caption": "Artwork archive view 04",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-005",
+      "src": "media/art/ART-005.webp",
+      "width": 1500,
+      "height": 1127,
+      "alt": "Artwork archive view 05",
+      "caption": "Artwork archive view 05",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-006",
+      "src": "media/art/ART-006.webp",
+      "width": 1139,
+      "height": 1500,
+      "alt": "Artwork archive view 06",
+      "caption": "Artwork archive view 06",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-007",
+      "src": "media/art/ART-007.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 07",
+      "caption": "Artwork archive view 07",
+      "duplicate_group": "CROSS-F19-A07-A30"
+    },
+    {
+      "asset_id": "ART-008",
+      "src": "media/art/ART-008.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 08",
+      "caption": "Artwork archive view 08",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-009",
+      "src": "media/art/ART-009.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 09",
+      "caption": "Artwork archive view 09",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-010",
+      "src": "media/art/ART-010.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 10",
+      "caption": "Artwork archive view 10",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-011",
+      "src": "media/art/ART-011.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 11",
+      "caption": "Artwork archive view 11",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-012",
+      "src": "media/art/ART-012.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 12",
+      "caption": "Artwork archive view 12",
+      "duplicate_group": "ART-CTX-02-12"
+    },
+    {
+      "asset_id": "ART-013",
+      "src": "media/art/ART-013.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 13",
+      "caption": "Artwork archive view 13",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-014",
+      "src": "media/art/ART-014.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 14",
+      "caption": "Artwork archive view 14",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-015",
+      "src": "media/art/ART-015.webp",
+      "width": 1500,
+      "height": 1052,
+      "alt": "Artwork archive view 15",
+      "caption": "Artwork archive view 15",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-016",
+      "src": "media/art/ART-016.webp",
+      "width": 1500,
+      "height": 1017,
+      "alt": "Artwork archive view 16",
+      "caption": "Artwork archive view 16",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-017",
+      "src": "media/art/ART-017.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 17",
+      "caption": "Artwork archive view 17",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-018",
+      "src": "media/art/ART-018.webp",
+      "width": 1500,
+      "height": 831,
+      "alt": "Artwork archive view 18",
+      "caption": "Artwork archive view 18",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-019",
+      "src": "media/art/ART-019.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 19",
+      "caption": "Artwork archive view 19",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-020",
+      "src": "media/art/ART-020.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 20",
+      "caption": "Artwork archive view 20",
+      "duplicate_group": "ART-CTX-20-22"
+    },
+    {
+      "asset_id": "ART-021",
+      "src": "media/art/ART-021.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 21",
+      "caption": "Artwork archive view 21",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-022",
+      "src": "media/art/ART-022.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 22",
+      "caption": "Artwork archive view 22",
+      "duplicate_group": "ART-CTX-20-22"
+    },
+    {
+      "asset_id": "ART-023",
+      "src": "media/art/ART-023.webp",
+      "width": 1125,
+      "height": 1500,
+      "alt": "Artwork archive view 23",
+      "caption": "Artwork archive view 23",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-024",
+      "src": "media/art/ART-024.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 24",
+      "caption": "Artwork archive view 24",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-025",
+      "src": "media/art/ART-025.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 25",
+      "caption": "Artwork archive view 25",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-026",
+      "src": "media/art/ART-026.webp",
+      "width": 738,
+      "height": 1600,
+      "alt": "Artwork archive view 26",
+      "caption": "Artwork archive view 26",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-027",
+      "src": "media/art/ART-027.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 27",
+      "caption": "Artwork archive view 27",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-028",
+      "src": "media/art/ART-028.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 28",
+      "caption": "Artwork archive view 28",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-029",
+      "src": "media/art/ART-029.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 29",
+      "caption": "Artwork archive view 29",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-030",
+      "src": "media/art/ART-030.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 30",
+      "caption": "Artwork archive view 30",
+      "duplicate_group": "CROSS-F19-A07-A30"
+    },
+    {
+      "asset_id": "ART-031",
+      "src": "media/art/ART-031.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 31",
+      "caption": "Artwork archive view 31",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "ART-032",
+      "src": "media/art/ART-032.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Artwork archive view 32",
+      "caption": "Artwork archive view 32",
+      "duplicate_group": ""
+    }
+  ]
+}

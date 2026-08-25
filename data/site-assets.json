@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-08-21T00:02:38.917657+00:00",
+  "rights_note": "Public availability is not a rights claim. Every row keeps rights_status=confirmation-required.",
+  "conversion": {
+    "format": "webp",
+    "quality": 82,
+    "method": 6,
+    "max_long_edge": 1600,
+    "exif_transpose": true,
+    "strip_metadata": true
+  },
+  "assets": [
+    {
+      "id": "site-scale",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/e3a6780e-2d1d-4b42-bda8-9924a37a3a9e/dylon+prorok+original+japenese+tattoo+art+las+vegas+nevada.jpg",
+      "fetch_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/e3a6780e-2d1d-4b42-bda8-9924a37a3a9e/dylon+prorok+original+japenese+tattoo+art+las+vegas+nevada.jpg?format=1500w",
+      "local_path": "media/site/dylan-prorok-tattooing-large-scale-piece.webp",
+      "source_sha256": "62c2c0cc310e69203cad2d65d356496c6355d5e9ded87c764bcc2f87192e0684",
+      "output_sha256": "70b5a91bd295dce85156d2d416bb6451dd6575a690fc7a4be9ffcc13b00b5e30",
+      "width": 1500,
+      "height": 1000,
+      "rights_status": "confirmation-required"
+    },
+    {
+      "id": "site-work-panel",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/97a799ed-32c5-4d8c-a415-710d3547c0ee/IMG_0518.jpeg",
+      "fetch_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/97a799ed-32c5-4d8c-a415-710d3547c0ee/IMG_0518.jpeg?format=1500w",
+      "local_path": "media/site/japanese-sleeve-composition.webp",
+      "source_sha256": "2e4dc5a1cc726add01a733b340c07662fef05df4e646281b97ce14d4fa8d7b52",
+      "output_sha256": "c05c82d58fdd763ece2700b794691c5539b589b8b07c197db601916c7202f918",
+      "width": 1200,
+      "height": 1600,
+      "rights_status": "confirmation-required"
+    },
+    {
+      "id": "site-about-portrait",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/a1edecc4-f47a-4532-ad56-1ea2c110eb40/dylon+prorok+las+vegas+artist+and+tatoo.jpg",
+      "fetch_url": "https://images.squarespace-cdn.com/content/v1/65979327ceca8e3c423a32ea/a1edecc4-f47a-4532-ad56-1ea2c110eb40/dylon+prorok+las+vegas+artist+and+tatoo.jpg?format=1500w",
+      "local_path": "media/site/dylan-prorok-artist-portrait.webp",
+      "source_sha256": "6cda3b3f2ec11a536159989ee84db9a1bcadbab8075d1d0f9b4f595f82714dd8",
+      "output_sha256": "afd3e091fbaf24e755c6b7d0703f6edb1cb754f7c49f13a8a9eb3598a028b373",
+      "width": 1500,
+      "height": 1000,
+      "rights_status": "confirmation-required"
+    }
+  ]
+}

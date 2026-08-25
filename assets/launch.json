@@ -1,0 +1,7 @@
+{
+  "origin": "https://prorok.jarrettwroten.com",
+  "indexable": false,
+  "preview_origin": "https://prorok.jarrettwroten.com",
+  "production_origin": "https://www.dylanprorok.com",
+  "note": "Default rehearsal is the GitHub preview host. configure-launch.py is the only switch."
+}

@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "asset_id": "FLA-001",
+      "src": "media/flash/FLA-001.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 01",
+      "caption": "Flash archive view 01",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-002",
+      "src": "media/flash/FLA-002.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 02",
+      "caption": "Flash archive view 02",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-003",
+      "src": "media/flash/FLA-003.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 03",
+      "caption": "Flash archive view 03",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-004",
+      "src": "media/flash/FLA-004.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 04",
+      "caption": "Flash archive view 04",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-005",
+      "src": "media/flash/FLA-005.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 05",
+      "caption": "Flash archive view 05",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-006",
+      "src": "media/flash/FLA-006.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 06",
+      "caption": "Flash archive view 06",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-007",
+      "src": "media/flash/FLA-007.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 07",
+      "caption": "Flash archive view 07",
+      "duplicate_group": "FLA-SHEET-07-11"
+    },
+    {
+      "asset_id": "FLA-008",
+      "src": "media/flash/FLA-008.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 08",
+      "caption": "Flash archive view 08",
+      "duplicate_group": "FLA-SHEET-08-14"
+    },
+    {
+      "asset_id": "FLA-009",
+      "src": "media/flash/FLA-009.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 09",
+      "caption": "Flash archive view 09",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-010",
+      "src": "media/flash/FLA-010.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 10",
+      "caption": "Flash archive view 10",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-011",
+      "src": "media/flash/FLA-011.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 11",
+      "caption": "Flash archive view 11",
+      "duplicate_group": "FLA-SHEET-07-11"
+    },
+    {
+      "asset_id": "FLA-012",
+      "src": "media/flash/FLA-012.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 12",
+      "caption": "Flash archive view 12",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-013",
+      "src": "media/flash/FLA-013.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 13",
+      "caption": "Flash archive view 13",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-014",
+      "src": "media/flash/FLA-014.webp",
+      "width": 1080,
+      "height": 1350,
+      "alt": "Flash archive view 14",
+      "caption": "Flash archive view 14",
+      "duplicate_group": "FLA-SHEET-08-14"
+    },
+    {
+      "asset_id": "FLA-015",
+      "src": "media/flash/FLA-015.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Flash archive view 15",
+      "caption": "Flash archive view 15",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-016",
+      "src": "media/flash/FLA-016.webp",
+      "width": 1280,
+      "height": 1600,
+      "alt": "Flash archive view 16",
+      "caption": "Flash archive view 16",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-017",
+      "src": "media/flash/FLA-017.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Flash archive view 17",
+      "caption": "Flash archive view 17",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-018",
+      "src": "media/flash/FLA-018.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Flash archive view 18",
+      "caption": "Flash archive view 18",
+      "duplicate_group": ""
+    },
+    {
+      "asset_id": "FLA-019",
+      "src": "media/flash/FLA-019.webp",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Flash archive view 19",
+      "caption": "Flash archive view 19",
+      "duplicate_group": "CROSS-F19-A07-A30"
+    },
+    {
+      "asset_id": "FLA-020",
+      "src": "media/flash/FLA-020.webp",
+      "width": 1280,
+      "height": 1600,
+      "alt": "Flash archive view 20",
+      "caption": "Flash archive view 20",
+      "duplicate_group": ""
+    }
+  ]
+}
