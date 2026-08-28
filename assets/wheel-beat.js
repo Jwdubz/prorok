@@ -110,6 +110,7 @@
   let smoothScrollFrame = 0;
   let smoothScrollWatchdog = 0;
   let smoothScrollGeneration = 0;
+  let activeGestureType = null;
   let viewportRefreshPending = false;
   let nativeTouchActive = false;
   let nativeTouchSettling = false;
@@ -523,6 +524,7 @@
       state.index = state.currentIndex;
       if (activeStep) dispatchBeat("complete");
       activeStep = false;
+      activeGestureType = null;
     }
     syncState();
     updateRestingField();
@@ -540,6 +542,7 @@
     cancelAnimationFrame(smoothScrollFrame);
     gestureLocked = false;
     activeStep = false;
+    activeGestureType = null;
     if (lenis && typeof lenis.reset === "function") {
       lenis.reset();
     } else if (lenis && typeof lenis.stop === "function" && typeof lenis.start === "function") {
@@ -645,6 +648,7 @@
       movementComplete = true;
       root.dataset.wheelBeatTransition = "idle";
       updateBeatDock(scrollY);
+      if (activeGestureType === "wheel") scheduleQuietRelease();
       releaseIfReady();
     };
 
@@ -923,6 +927,7 @@
     }
 
     gestureLocked = true;
+    activeGestureType = "touch";
     moveOneBeat(Math.sign(deltaY));
   }
 
@@ -1021,6 +1026,7 @@
     scheduleQuietRelease();
 
     gestureLocked = true;
+    activeGestureType = "wheel";
     moveOneBeat(direction);
   }
 
