@@ -201,6 +201,21 @@
 .start__go a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
   color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.18rem}
 
+@media (min-width:881px){
+  html[data-wheel-beat-mode="on"] #thesis{
+    padding:clamp(2.5rem,6vh,3rem) 1.5rem}
+  html[data-wheel-beat-mode="on"] #thesis .thesis__jp{
+    margin-bottom:1rem}
+  html[data-wheel-beat-mode="on"] #thesis .thesis__seal{
+    margin-top:1rem}
+  html[data-wheel-beat-mode="on"] #work > .panel:has(+ .work__to-folio){
+    margin-bottom:0}
+  html[data-wheel-beat-mode="on"] #work > .panel:has(+ .work__to-folio) .panel__img{
+    width:min(100%,23rem);height:auto;
+    max-height:none;justify-self:center}
+  html[data-wheel-beat-mode="on"] #work > .work__to-folio{
+    margin-top:1.1rem}
+}
 @media (max-width:880px){
   .steps{grid-template-columns:1fr}
   .hero__vertical{display:none}
@@ -590,7 +605,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="assets/config.js"></script>
 <script src="assets/site.js?v=20260828-final-cta-1"></script>
-<script src="assets/wheel-beat.js?v=20260828-final-cta-1"></script>
+<script src="assets/wheel-beat.js?v=20260828-desktop-final-2"></script>
 <script src="assets/home.js?v=20260828-mobile-beat-3"></script>
 </body>
 </html>

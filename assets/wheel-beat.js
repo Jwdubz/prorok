@@ -5,6 +5,7 @@
   const dock = document.getElementById("consult-dock");
   const header = document.querySelector(".site-header");
   const root = document.documentElement;
+  const MINIMUM_DESKTOP_STAGE = 520;
   const isDesktopViewport = () => matchMedia("(min-width: 881px)").matches;
   const visibleHeight = () => Math.round(window.visualViewport?.height || innerHeight);
   const layoutHeight = () => document.documentElement.clientHeight || innerHeight;
@@ -21,7 +22,7 @@
   const viewportCanFitBeat = () => {
     if (!isDesktopViewport()) return false;
     const { height, headerBottom, bottomClearance } = chromeGeometry();
-    return height - headerBottom - bottomClearance >= 420;
+    return height - headerBottom - bottomClearance >= MINIMUM_DESKTOP_STAGE;
   };
   const reducedMotion = params.get("motion") === "reduced";
 
@@ -257,7 +258,9 @@
       { anchor: visit, group: group(visit), label: "Visit" },
       { anchor: foot, group: group(foot), label: "Footer" }
     ];
-    const definitions = desktop ? desktopDefinitions : mobileDefinitions;
+    const definitions = desktop
+      ? desktopDefinitions.map((definition) => ({ ...definition, atomic: true }))
+      : mobileDefinitions;
     return definitions.filter((definition) => definition.anchor && definition.group.length);
   }
 
@@ -369,7 +372,7 @@
     topInset = headerBottom;
     const usableBottom = Math.max(topInset + 200, viewportHeight - bottomClearance);
     bottomInsetStart = usableBottom;
-    const minimumStage = isDesktopViewport() ? 420 : 360;
+    const minimumStage = isDesktopViewport() ? MINIMUM_DESKTOP_STAGE : 360;
     const usableHeight = Math.max(minimumStage, usableBottom - topInset);
     const mediaBottom = Math.max(topInset + 200, viewportHeight);
     const scaleMediaHeight = Math.max(420, mediaBottom - topInset);
@@ -448,10 +451,11 @@
     const terminalDistance = Math.max(140, Math.round(viewportHeight * .2));
     const terminal = unique[unique.length - 1];
     const beforeTerminal = unique[unique.length - 2];
+    const terminalSharesGroup = beforeTerminal?.group === terminal?.group;
     if (beforeTerminal
       && !beforeTerminal.terminal
       && terminal.terminal
-      && terminal.y - beforeTerminal.y < terminalDistance) {
+      && (terminalSharesGroup || terminal.y - beforeTerminal.y < terminalDistance)) {
       unique.splice(unique.length - 2, 1);
     }
 

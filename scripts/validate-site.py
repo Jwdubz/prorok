@@ -518,6 +518,21 @@ def check_correction_wave(failures: list[str]) -> None:
         if token not in wheel_js:
             failures.append(f"wheel-beat.js missing desktop beat token {token}")
     for token in (
+        "const MINIMUM_DESKTOP_STAGE = 520",
+        "desktopDefinitions.map((definition) => ({ ...definition, atomic: true }))",
+        "const terminalSharesGroup = beforeTerminal?.group === terminal?.group",
+        "terminalSharesGroup || terminal.y - beforeTerminal.y < terminalDistance",
+    ):
+        if token not in wheel_js:
+            failures.append(f"wheel-beat.js missing the no-partial-desktop-beat contract: {token}")
+    for token in (
+        'html[data-wheel-beat-mode="on"] #thesis',
+        'html[data-wheel-beat-mode="on"] #work > .panel:has(+ .work__to-folio)',
+        'width:min(100%,23rem);height:auto',
+    ):
+        if token not in (ROOT / "index.html").read_text(encoding="utf-8"):
+            failures.append(f"index.html missing desktop beat compaction token: {token}")
+    for token in (
         'addEventListener("touchstart"',
         'addEventListener("touchmove"',
         'addEventListener("touchend"',
