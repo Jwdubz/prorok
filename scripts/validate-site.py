@@ -847,16 +847,45 @@ def main() -> int:
         if parser.nav_cta != ACUITY:
             failures.append(f"{page}: header consultation CTA must use the exact Acuity URL")
         expected_mark = "#top" if page == "index.html" else "index.html#top"
-        expected_nav_hrefs = [expected_mark, "portfolio.html", ACUITY]
+        expected_primary_link = "index.html#top" if page == "portfolio.html" else "portfolio.html"
+        expected_nav_hrefs = [expected_mark, expected_primary_link, ACUITY]
         if parser.nav_hrefs != expected_nav_hrefs:
             failures.append(
-                f"{page}: primary header must contain only mark, Portfolio, and consultation CTA; "
+                f"{page}: primary header must contain only mark, the page-appropriate route, and consultation CTA; "
                 f"found {parser.nav_hrefs}"
             )
+        if page == "portfolio.html" and not re.search(
+            r'<a href="index\.html#top"[^>]*class="nav__home"[^>]*>Home</a>', raw
+        ):
+            failures.append("portfolio.html: primary header must expose the Home button")
         if 'class="nav__toggle"' in raw or 'class="nav__more-btn"' in raw:
             failures.append(f"{page}: obsolete mobile menu or Shop control remains in primary header")
 
     index_raw = (ROOT / "index.html").read_text(encoding="utf-8")
+    if '<a href="portfolio.html">The Full Portfolio</a>' not in index_raw:
+        failures.append("index.html: portfolio passage link must read 'The Full Portfolio'")
+    for page in ("index.html", "portfolio.html"):
+        raw = (ROOT / page).read_text(encoding="utf-8")
+        dock = re.search(
+            r'<a class="consult-dock" id="consult-dock"\s*href="([^"]+)"[^>]*>'
+            r'Book a Virtual Consultation</a>',
+            raw,
+        )
+        if not dock or dock.group(1) != ACUITY:
+            failures.append(f"{page}: persistent consultation dock must use the exact Acuity URL")
+    dock_sources = (
+        ("site.js", (ROOT / "assets/site.js").read_text(encoding="utf-8")),
+        ("wheel-beat.js", (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")),
+        ("site.css", (ROOT / "assets/site.css").read_text(encoding="utf-8")),
+    )
+    for source_name, source in dock_sources:
+        for token in ("is-tucked", "is-beat-tucked", "setDockTucked"):
+            if token in source:
+                failures.append(f"{source_name}: consultation dock must not be hidden while scrolling ({token})")
+    css_source = (ROOT / "assets/site.css").read_text(encoding="utf-8")
+    for token in (".consult-dock{position:fixed;left:50%", "transform:translateX(-50%)"):
+        if token not in css_source:
+            failures.append(f"site.css: floating consultation dock missing bottom-center contract {token}")
     if 'data-prorok-form="inquiry"' in index_raw or 'class="inquiry-chapter"' in index_raw:
         failures.append("index.html: homepage inquiry form must stay removed")
     if 'id="start"' in index_raw:

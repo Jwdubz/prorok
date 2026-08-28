@@ -161,7 +161,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   transition:background .3s,transform .3s var(--ease),box-shadow .3s}
 .nav__header-cta:hover{background:var(--consult-yellow-hover);transform:translateY(-1px);
   box-shadow:0 13px 28px rgba(20,16,14,.36)}
-.nav__portfolio{color:var(--paper)!important}
+.nav__portfolio,.nav__home{color:var(--paper)!important}
 .nav__more{position:relative}
 .nav__sub{position:absolute;top:calc(100% + .85rem);right:0;min-width:11rem;
   display:none;flex-direction:column;align-items:flex-start;gap:.85rem;
@@ -182,9 +182,6 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   transition:transform .45s var(--ease), opacity .45s var(--ease),
              background .3s, color .3s}
 .consult-dock:hover{background:var(--consult-yellow-hover)}
-.consult-dock.is-tucked,.consult-dock.is-beat-tucked{opacity:0;pointer-events:none;
-  transform:translateX(-50%) translateY(120%)}
-
 .sec__head{text-align:center;margin-bottom:clamp(3.5rem,9vh,6rem)}
 .sec__jp{font-family:var(--jp);letter-spacing:.66em;color:var(--vermilion);
   font-size:.95rem;display:block;margin-bottom:1.1rem}

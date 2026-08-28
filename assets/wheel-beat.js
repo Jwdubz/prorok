@@ -467,7 +467,6 @@
     state.settledY = Math.round(scrollY);
     documentHeight = document.documentElement.scrollHeight;
     syncState();
-    updateBeatDock();
     updateRestingField();
   }
 
@@ -560,7 +559,6 @@
     state.settledY = state.currentY;
     state.state = "idle";
     syncState();
-    updateBeatDock(scrollY);
     hideRestingField();
   }
 
@@ -589,7 +587,6 @@
     armed = true;
     state.state = "idle";
     syncState();
-    updateBeatDock();
     updateRestingField();
     cancelAnimationFrame(resizeReleaseFrame);
     resizeReleaseFrame = requestAnimationFrame(() => {
@@ -638,7 +635,6 @@
       state.settledY = state.currentY;
       movementComplete = true;
       root.dataset.wheelBeatTransition = "idle";
-      updateBeatDock(scrollY);
       if (activeGestureType === "wheel") scheduleQuietRelease();
       releaseIfReady();
     };
@@ -741,54 +737,6 @@
       element = element.parentElement;
     }
     return false;
-  }
-
-  function updateBeatDock(position = scrollY) {
-    if (!dock) return;
-    if (paused || root.dataset.wheelBeatMode !== "on") {
-      setDockTucked(false);
-      return;
-    }
-    const begin = document.getElementById("begin");
-    const visit = document.getElementById("visit");
-    if (!begin || !visit) return;
-    const beginTop = begin.getBoundingClientRect().top + scrollY - topInset - 24;
-    const visitTop = visit.getBoundingClientRect().top + scrollY - topInset;
-    const positionIndex = nearestIndex(position);
-    const mediaBeat = isMediaBeatIndex(positionIndex);
-    setDockTucked(mediaBeat || (position >= beginTop && position < visitTop));
-  }
-
-  function setDockTucked(tucked) {
-    if (!dock) return;
-    if (tucked && dock.contains(document.activeElement)) {
-      document.querySelector(".nav__header-cta")?.focus({ preventScroll: true });
-    }
-    if (tucked && !dock.hasAttribute("data-beat-tabindex")) {
-      dock.setAttribute("data-beat-tabindex", dock.getAttribute("tabindex") || "");
-    }
-    dock.classList.toggle("is-beat-tucked", tucked);
-    dock.inert = tucked;
-    if (tucked) {
-      dock.setAttribute("inert", "");
-      dock.setAttribute("aria-hidden", "true");
-      dock.setAttribute("tabindex", "-1");
-    } else {
-      dock.removeAttribute("aria-hidden");
-      dock.removeAttribute("inert");
-      dock.inert = false;
-      if (dock.hasAttribute("data-beat-tabindex")) {
-        const previousTabindex = dock.getAttribute("data-beat-tabindex");
-        if (previousTabindex) dock.setAttribute("tabindex", previousTabindex);
-        else dock.removeAttribute("tabindex");
-        dock.removeAttribute("data-beat-tabindex");
-      }
-    }
-  }
-
-  function isMediaBeatIndex(index) {
-    const label = state.labels[index] || "";
-    return label === "scale" || label === "Healed";
   }
 
   function resetTouchGesture(mode = "idle") {
@@ -976,7 +924,6 @@
       state.reason = "enabled";
       state.state = "idle";
       syncState();
-      updateBeatDock(scrollY);
       updateRestingField();
     }, 180);
   }
@@ -1049,7 +996,6 @@
         updateRestingField();
       }, 140);
     }
-    updateBeatDock(scrollY);
     syncState();
   }, { passive: true });
   function onViewportResize() {
@@ -1104,7 +1050,6 @@
         state.state = "paused";
         cancelActiveMovement();
         resetTouchGesture();
-        setDockTucked(false);
         hideRestingField();
         removeCurtains();
         root.style.removeProperty("--wheel-beat-stage-height");
@@ -1216,7 +1161,6 @@
       state.targetY = state.stops[state.index] || Math.round(scrollY);
       state.state = "idle";
       syncState();
-      updateBeatDock(scrollY);
     }
     updateRestingField();
   });

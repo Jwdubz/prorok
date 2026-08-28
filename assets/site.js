@@ -176,19 +176,6 @@
     }
   }
 
-  const dock = document.getElementById("consult-dock");
-  const visit = document.getElementById("visit");
-  if (dock && visit) {
-    const place = () => {
-      const room = visit.getBoundingClientRect().top - innerHeight + 28;
-      dock.classList.toggle("is-tucked", room < 0);
-    };
-    if (lenis) lenis.on("scroll", place);
-    else addEventListener("scroll", place, { passive: true });
-    addEventListener("resize", place);
-    place();
-  }
-
   if (window.gsap) {
     const head = document.querySelector(".page .sec__head, .folio-page .sec__head");
     if (head) {
