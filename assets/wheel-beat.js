@@ -4,15 +4,26 @@
   const homepage = Boolean(document.querySelector("#top.hero"));
   const dock = document.getElementById("consult-dock");
   const header = document.querySelector(".site-header");
-  const desktopWidth = matchMedia("(min-width: 881px)").matches;
-  const viewportCanFitBeat = () => {
-    const headerHeight = header?.getBoundingClientRect().height || 92;
-    const dockHeight = dock?.getBoundingClientRect().height || 56;
-    return matchMedia("(min-width: 881px)").matches
-      && innerHeight - headerHeight - dockHeight - 40 >= 420;
-  };
-  const motionOptOut = params.get("motion") === "reduced";
   const root = document.documentElement;
+  const isDesktopViewport = () => matchMedia("(min-width: 881px)").matches;
+  const visibleHeight = () => Math.round(window.visualViewport?.height || innerHeight);
+  const layoutHeight = () => document.documentElement.clientHeight || innerHeight;
+  const chromeGeometry = () => {
+    const height = visibleHeight();
+    const headerBottom = Math.ceil(header?.getBoundingClientRect().bottom || 92);
+    const dockRect = dock?.getBoundingClientRect();
+    const dockBottomGap = dockRect ? Math.max(0, height - dockRect.bottom) : 0;
+    const bottomClearance = dockRect
+      ? Math.ceil(dockRect.height + dockBottomGap + 16)
+      : 24;
+    return { height, headerBottom, bottomClearance };
+  };
+  const viewportCanFitBeat = () => {
+    const { height, headerBottom, bottomClearance } = chromeGeometry();
+    const minimumStage = isDesktopViewport() ? 420 : 360;
+    return height - headerBottom - bottomClearance >= minimumStage;
+  };
+  const reducedMotion = params.get("motion") === "reduced";
 
   const disabled = (reason) => {
     root.dataset.wheelBeatMode = "off";
@@ -21,10 +32,9 @@
 
   if (!requested) return disabled("query-off");
   if (!homepage) return disabled("homepage-only");
-  if (motionOptOut) return disabled("motion-opt-out");
 
   const initiallyFits = viewportCanFitBeat();
-  const initialPauseReason = desktopWidth ? "viewport-too-short" : "desktop-only";
+  const initialPauseReason = "viewport-too-short";
 
   const lenis = window.PROROK_LENIS;
 
@@ -49,6 +59,7 @@
     labels: []
   };
   window.PROROK_WHEEL_BEAT = state;
+  root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
   root.dataset.wheelBeatMode = initiallyFits ? "on" : "paused";
   let topCurtain = null;
   let bottomCurtain = null;
@@ -83,25 +94,66 @@
   let resizeTimer = 0;
   let resizeReleaseFrame = 0;
   let armFrame = 0;
-  let lastBootWheelAt = -Infinity;
+  let lastBootInputAt = -Infinity;
   let documentHeight = 0;
   let topInset = 92;
-  let bottomInsetStart = innerHeight;
+  let bottomInsetStart = visibleHeight();
   let beatGroups = [];
   let resizeSettling = false;
   let focusFallbackLocked = false;
   let focusFallbackTimer = 0;
   let nativeSettleTimer = 0;
   const SCROLL_TAU_SECONDS = .41;
-  const SCROLL_DURATION_MS = Math.round(SCROLL_TAU_SECONDS * 4.6 * 1000);
+  const SCROLL_DURATION_MS = reducedMotion
+    ? 0
+    : Math.round(SCROLL_TAU_SECONDS * 4.6 * 1000);
   let smoothScrollFrame = 0;
   let smoothScrollWatchdog = 0;
   let smoothScrollGeneration = 0;
+  let viewportRefreshPending = false;
+  let nativeTouchActive = false;
+  let nativeTouchSettling = false;
+  let nativeTouchSettleTimer = 0;
+  const GESTURE_QUIET_MS = Math.round(SCROLL_TAU_SECONDS * 1000);
+  const TOUCH_INTENT_PX = 8;
+  const TOUCH_AXIS_RATIO = 1.15;
+  const NATIVE_TOUCH_SELECTOR = [
+    "input",
+    "textarea",
+    "select",
+    "option",
+    '[contenteditable="true"]',
+    '[role="slider"]',
+    '[role="spinbutton"]',
+    "video[controls]",
+    "audio[controls]",
+    "iframe",
+    "[data-beat-native]",
+    "[data-lenis-prevent-touch]"
+  ].join(",");
+  const touchGesture = {
+    id: null,
+    mode: "idle",
+    target: null,
+    startX: 0,
+    startY: 0,
+    stepped: false
+  };
   root.dataset.wheelBeatTau = String(SCROLL_TAU_SECONDS);
   root.dataset.wheelBeatTransitionMs = String(SCROLL_DURATION_MS);
+  root.dataset.wheelBeatQuietMs = String(GESTURE_QUIET_MS);
+  root.dataset.wheelBeatMotion = reducedMotion ? "reduced" : "full";
   state.canCaptureWheel = (event) => {
     if (event?.ctrlKey || !event?.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return false;
     if (ownsVerticalScroll(event.target, Math.sign(event.deltaY))) return false;
+    if (!armed || resizeSettling || gestureLocked) return true;
+    if (focusFallbackLocked) return false;
+    return atomicCaptureFocusIsSafe();
+  };
+  state.canCaptureTouch = (event) => {
+    if (event?.touches?.length > 1 || touchGesture.mode === "native") return false;
+    if (touchGesture.target instanceof Element
+      && touchGesture.target.closest(NATIVE_TOUCH_SELECTOR)) return false;
     if (!armed || resizeSettling || gestureLocked) return true;
     if (focusFallbackLocked) return false;
     return atomicCaptureFocusIsSafe();
@@ -155,6 +207,7 @@
   }
 
   function beatDefinitions() {
+    const desktop = isDesktopViewport();
     const top = document.getElementById("top");
     const thesis = document.getElementById("thesis");
     const scale = document.getElementById("scale");
@@ -166,13 +219,15 @@
     const voicesHead = document.querySelector("#voices > .sec__head");
     const voices = Array.from(document.querySelectorAll("#voices .voices__card"));
     const craftHead = document.querySelector("#craft .sec__head");
-    const steps = document.querySelector("#craft .steps");
+    const stepsContainer = document.querySelector("#craft .steps");
+    const steps = Array.from(document.querySelectorAll("#craft .step"));
     const begin = document.getElementById("begin");
     const beginHead = document.querySelector("#begin > .sec__head");
+    const doors = Array.from(document.querySelectorAll("#begin .door"));
     const visit = document.getElementById("visit");
     const foot = document.querySelector(".foot");
     const group = (...elements) => elements.filter(Boolean);
-    const definitions = [
+    const desktopDefinitions = [
       { anchor: top, group: group(top), label: "top" },
       { anchor: thesis, group: group(thesis), label: "thesis" },
       { anchor: scale, group: group(scale), label: "scale", atomic: true },
@@ -183,10 +238,34 @@
       { anchor: voicesHead, group: group(voicesHead, voices[0]), label: "In their words" },
       { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
       { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
-      { anchor: craftHead, group: group(craftHead, steps), label: "What a large project is" },
+      { anchor: craftHead, group: group(craftHead, stepsContainer), label: "What a large project is" },
       { anchor: beginHead, group: group(begin), label: "Begin", atomic: true },
       { anchor: visit, group: group(visit, foot), label: "Visit" }
     ];
+    const mobileDefinitions = [
+      { anchor: top, group: group(top), label: "top" },
+      { anchor: thesis, group: group(thesis), label: "thesis" },
+      { anchor: scale, group: group(scale), label: "scale", atomic: true },
+      { anchor: workHead, group: group(workHead), label: "The Work" },
+      { anchor: workPanels[0], group: group(workPanels[0]), label: labelFor(workPanels[0]) },
+      { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
+      { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
+      { anchor: healedHead, group: group(healedHead), label: "Healed" },
+      { anchor: healedMontage, group: group(healedMontage), label: "Healed work" },
+      { anchor: voicesHead, group: group(voicesHead), label: "In their words" },
+      { anchor: voices[0], group: group(voices[0]), label: "Client story — Jordan" },
+      { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
+      { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
+      { anchor: craftHead, group: group(craftHead, steps[0]), label: "What a large project is" },
+      { anchor: steps[1], group: group(steps[1], steps[2]), label: "Consultation and drawing" },
+      { anchor: steps[3], group: group(steps[3], steps[4]), label: "Sessions and healing" },
+      { anchor: beginHead, group: group(beginHead, doors[0]), label: "Begin" },
+      { anchor: doors[1], group: group(doors[1]), label: labelFor(doors[1]) },
+      { anchor: doors[2], group: group(doors[2]), label: labelFor(doors[2]) },
+      { anchor: visit, group: group(visit), label: "Visit" },
+      { anchor: foot, group: group(foot), label: "Footer" }
+    ];
+    const definitions = desktop ? desktopDefinitions : mobileDefinitions;
     return definitions.filter((definition) => definition.anchor && definition.group.length);
   }
 
@@ -241,15 +320,16 @@
       hideRestingField();
       return false;
     }
+    const viewportHeight = visibleHeight();
     const matteTop = clamp(
       guardChrome ? Math.max(topInset, Math.ceil(bounds.top)) : Math.ceil(bounds.top),
       0,
-      innerHeight
+      viewportHeight
     );
     const matteBottomStart = clamp(
       guardChrome ? Math.min(bottomInsetStart, Math.floor(bounds.bottom)) : Math.floor(bounds.bottom),
       0,
-      innerHeight
+      viewportHeight
     );
     root.style.setProperty("--wheel-beat-matte-top", matteTop + "px");
     root.style.setProperty("--wheel-beat-matte-bottom-start", matteBottomStart + "px");
@@ -292,18 +372,18 @@
   }
 
   function refreshStops() {
-    const headerHeight = header ? header.getBoundingClientRect().height : 0;
-    topInset = Math.ceil(headerHeight || 92);
-    const dockRect = dock ? dock.getBoundingClientRect() : { height: 0 };
-    const bottomClearance = dock ? Math.ceil(dockRect.height + 40) : 24;
-    const usableBottom = Math.max(topInset + 200, innerHeight - bottomClearance);
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    const { height: viewportHeight, headerBottom, bottomClearance } = chromeGeometry();
+    topInset = headerBottom;
+    const usableBottom = Math.max(topInset + 200, viewportHeight - bottomClearance);
     bottomInsetStart = usableBottom;
-    const usableHeight = Math.max(420, usableBottom - topInset);
-    const mediaBottom = Math.max(topInset + 200, innerHeight);
+    const minimumStage = isDesktopViewport() ? 420 : 360;
+    const usableHeight = Math.max(minimumStage, usableBottom - topInset);
+    const mediaBottom = Math.max(topInset + 200, viewportHeight);
     const scaleMediaHeight = Math.max(420, mediaBottom - topInset);
     root.style.setProperty("--wheel-beat-stage-height", usableHeight + "px");
     root.style.setProperty("--wheel-beat-full-stage-height", scaleMediaHeight + "px");
-    root.style.setProperty("--wheel-beat-scale-media-height", Math.max(420, innerHeight) + "px");
+    root.style.setProperty("--wheel-beat-scale-media-height", Math.max(420, viewportHeight) + "px");
     root.style.setProperty("--wheel-beat-work-media-height", Math.max(160, usableHeight - 218) + "px");
     root.style.setProperty("--wheel-beat-healed-media-height", Math.max(160, scaleMediaHeight - 218) + "px");
     document.documentElement.offsetHeight;
@@ -323,7 +403,7 @@
     }
     if (lenis && typeof lenis.resize === "function") lenis.resize();
 
-    const maxScroll = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - layoutHeight());
     const definitions = beatDefinitions();
     const topGroup = definitions[0]?.group || [];
     const endGroup = definitions[definitions.length - 1]?.group || [];
@@ -345,7 +425,7 @@
         terminal: false
       });
       const bottomAligned = clamp(Math.round(absoluteBottom - usableBottom), 0, maxScroll);
-      const minimumContinuation = Math.max(140, Math.round(innerHeight * .2));
+      const minimumContinuation = Math.max(140, Math.round(viewportHeight * .2));
       if (!definition.atomic
         && definition.anchor.id !== "top"
         && bounds.bottom - bounds.top > usableHeight + 24
@@ -373,7 +453,7 @@
     if (unique[unique.length - 1].y !== maxScroll) {
       unique.push({ y: maxScroll, label: "end", group: endGroup, terminal: true });
     }
-    const terminalDistance = Math.max(140, Math.round(innerHeight * .2));
+    const terminalDistance = Math.max(140, Math.round(viewportHeight * .2));
     const terminal = unique[unique.length - 1];
     const beforeTerminal = unique[unique.length - 2];
     if (beforeTerminal
@@ -415,6 +495,15 @@
     }));
   }
 
+  function scheduleQuietRelease() {
+    quiet = false;
+    clearTimeout(quietTimer);
+    quietTimer = setTimeout(() => {
+      quiet = true;
+      releaseIfReady();
+    }, GESTURE_QUIET_MS);
+  }
+
   function releaseIfReady() {
     if (paused) {
       state.state = "paused";
@@ -437,6 +526,10 @@
     }
     syncState();
     updateRestingField();
+    if (!gestureLocked && state.state === "idle" && viewportRefreshPending) {
+      viewportRefreshPending = false;
+      requestAnimationFrame(onViewportResize);
+    }
   }
 
   function cancelActiveMovement() {
@@ -555,6 +648,16 @@
       releaseIfReady();
     };
 
+    if (reducedMotion) {
+      if (lenis && typeof lenis.scrollTo === "function") {
+        lenis.scrollTo(target, { immediate: true, force: true });
+      } else {
+        scrollTo(0, target);
+      }
+      done();
+      return;
+    }
+
     if (lenis && typeof lenis.scrollTo === "function") {
       lenis.scrollTo(target, {
         duration: SCROLL_DURATION_MS / 1000,
@@ -588,7 +691,7 @@
     if (direction > 0) {
       nextIndex = state.stops.findIndex((stop) => stop > current + 12);
       if (nextIndex < 0) nextIndex = state.stops.length - 1;
-      const approachWindow = Math.max(96, Math.round(innerHeight * .2));
+      const approachWindow = Math.max(96, Math.round(visibleHeight() * .2));
       if (nextIndex === fromIndex
         && state.stops[fromIndex] - current < approachWindow) {
         nextIndex = Math.min(fromIndex + 1, state.stops.length - 1);
@@ -600,7 +703,7 @@
           break;
         }
       }
-      const approachWindow = Math.max(96, Math.round(innerHeight * .2));
+      const approachWindow = Math.max(96, Math.round(visibleHeight() * .2));
       if (nextIndex === fromIndex
         && current - state.stops[fromIndex] < approachWindow) {
         nextIndex = Math.max(fromIndex - 1, 0);
@@ -693,6 +796,195 @@
     return label === "scale" || label === "Healed";
   }
 
+  function resetTouchGesture(mode = "idle") {
+    nativeTouchActive = false;
+    touchGesture.id = null;
+    touchGesture.mode = mode;
+    touchGesture.target = null;
+    touchGesture.startX = 0;
+    touchGesture.startY = 0;
+    touchGesture.stepped = false;
+  }
+
+  function markTouchNative(event) {
+    touchGesture.mode = "native";
+    nativeTouchActive = Boolean(event?.touches?.length);
+    if (touchGesture.id === null && event?.touches?.length) {
+      touchGesture.id = event.touches[0].identifier;
+    }
+  }
+
+  function trackedTouch(list) {
+    for (let index = 0; index < list.length; index += 1) {
+      if (list[index].identifier === touchGesture.id) return list[index];
+    }
+    return null;
+  }
+
+  function touchTargetIsNative(target) {
+    return target instanceof Element && Boolean(target.closest(NATIVE_TOUCH_SELECTOR));
+  }
+
+  function touchBeatThreshold() {
+    return clamp(Math.round(visibleHeight() * .065), 36, 64);
+  }
+
+  function onTouchStart(event) {
+    if (paused || !viewportCanFitBeat()) return;
+    clearTimeout(nativeTouchSettleTimer);
+    nativeTouchSettling = false;
+    if (event.touches.length !== 1) {
+      if (gestureLocked || state.state === "moving") yieldToNativeNavigation();
+      markTouchNative(event);
+      return;
+    }
+    const touch = event.touches[0];
+    touchGesture.id = touch.identifier;
+    touchGesture.mode = touchTargetIsNative(event.target) ? "native" : "pending";
+    nativeTouchActive = touchGesture.mode === "native";
+    touchGesture.target = event.target;
+    touchGesture.startX = touch.clientX;
+    touchGesture.startY = touch.clientY;
+    touchGesture.stepped = false;
+  }
+
+  function onTouchMove(event) {
+    if (paused || !viewportCanFitBeat()) return;
+    if (touchGesture.id === null || touchGesture.mode === "native") return;
+    if (event.touches.length !== 1) {
+      if (gestureLocked || state.state === "moving") yieldToNativeNavigation();
+      markTouchNative(event);
+      return;
+    }
+    const touch = trackedTouch(event.touches);
+    if (!touch) return;
+    const deltaX = touch.clientX - touchGesture.startX;
+    const deltaY = touchGesture.startY - touch.clientY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (touchGesture.mode === "pending") {
+      if (Math.max(absX, absY) < TOUCH_INTENT_PX) return;
+      if (absX * TOUCH_AXIS_RATIO >= absY) {
+        markTouchNative(event);
+        return;
+      }
+      const direction = Math.sign(deltaY);
+      if (!direction || ownsVerticalScroll(touchGesture.target, direction)) {
+        markTouchNative(event);
+        return;
+      }
+      if (!event.cancelable) {
+        markTouchNative(event);
+        return;
+      }
+      touchGesture.mode = "captured";
+      quiet = false;
+      clearTimeout(quietTimer);
+    }
+
+    if (touchGesture.mode !== "captured") return;
+    if (!event.cancelable) {
+      quiet = true;
+      releaseIfReady();
+      markTouchNative(event);
+      return;
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    if (touchGesture.stepped) {
+      state.inputCount += 1;
+      state.suppressedCount += 1;
+      syncState();
+      return;
+    }
+    if (absY < touchBeatThreshold()) return;
+
+    touchGesture.stepped = true;
+    state.inputCount += 1;
+    if (resizeSettling || !armed) {
+      lastBootInputAt = performance.now();
+      state.suppressedCount += 1;
+      state.state = resizeSettling ? "settling" : "booting";
+      syncState();
+      return;
+    }
+    if (gestureLocked) {
+      state.suppressedCount += 1;
+      syncState();
+      return;
+    }
+    if (focusFallbackLocked || !atomicCaptureFocusIsSafe()) {
+      quiet = true;
+      holdFocusFallback();
+      resetTouchGesture();
+      return;
+    }
+
+    gestureLocked = true;
+    moveOneBeat(Math.sign(deltaY));
+  }
+
+  function finishTouch(event) {
+    if (touchGesture.mode === "native") {
+      nativeTouchActive = event.touches.length > 0;
+      if (nativeTouchActive) {
+        touchGesture.id = event.touches[0].identifier;
+      } else {
+        resetTouchGesture();
+        nativeTouchSettling = true;
+        clearTimeout(nativeTouchSettleTimer);
+        nativeTouchSettleTimer = setTimeout(() => {
+          nativeTouchSettling = false;
+          refreshAfterNativeTouch();
+        }, 250);
+      }
+      return;
+    }
+    if (touchGesture.id === null) return;
+    const ended = trackedTouch(event.changedTouches);
+    if (!ended) return;
+    if (touchGesture.mode === "captured") {
+      event.stopImmediatePropagation();
+      clearTimeout(quietTimer);
+      quiet = true;
+      releaseIfReady();
+    }
+    resetTouchGesture();
+  }
+
+  function refreshAfterNativeTouch() {
+    if (!viewportRefreshPending || nativeTouchActive) return;
+    viewportRefreshPending = false;
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (!viewportCanFitBeat()) {
+        onViewportResize();
+        return;
+      }
+      if (paused) {
+        paused = false;
+        state.enabled = true;
+        state.reason = "enabled";
+        ensureCurtains();
+        root.dataset.wheelBeatMode = "on";
+        scheduleArm();
+        return;
+      }
+      resizeSettling = false;
+      refreshStops();
+      armed = true;
+      state.enabled = true;
+      state.reason = "enabled";
+      state.state = "idle";
+      syncState();
+      updateBeatDock(scrollY);
+      updateRestingField();
+    }, 180);
+  }
+
   function onWheel(event) {
     if (paused || !viewportCanFitBeat()) return;
     if (!event.cancelable || event.ctrlKey) return;
@@ -703,7 +995,7 @@
       event.preventDefault();
       event.stopImmediatePropagation();
       state.inputCount += 1;
-      lastBootWheelAt = performance.now();
+      lastBootInputAt = performance.now();
       state.suppressedCount += 1;
       state.state = resizeSettling ? "settling" : "booting";
       syncState();
@@ -713,12 +1005,7 @@
       event.preventDefault();
       event.stopImmediatePropagation();
       state.inputCount += 1;
-      quiet = false;
-      clearTimeout(quietTimer);
-      quietTimer = setTimeout(() => {
-        quiet = true;
-        releaseIfReady();
-      }, 220);
+      scheduleQuietRelease();
       state.suppressedCount += 1;
       syncState();
       return;
@@ -731,18 +1018,17 @@
     event.preventDefault();
     event.stopImmediatePropagation();
     state.inputCount += 1;
-    quiet = false;
-    clearTimeout(quietTimer);
-    quietTimer = setTimeout(() => {
-      quiet = true;
-      releaseIfReady();
-    }, 220);
+    scheduleQuietRelease();
 
     gestureLocked = true;
     moveOneBeat(direction);
   }
 
   addEventListener("wheel", onWheel, { capture: true, passive: false });
+  addEventListener("touchstart", onTouchStart, { capture: true, passive: true });
+  addEventListener("touchmove", onTouchMove, { capture: true, passive: false });
+  addEventListener("touchend", finishTouch, { capture: true, passive: true });
+  addEventListener("touchcancel", finishTouch, { capture: true, passive: true });
   addEventListener("scroll", () => {
     state.currentY = Math.round(scrollY);
     state.currentIndex = nearestIndex(scrollY);
@@ -773,7 +1059,18 @@
     updateBeatDock(scrollY);
     syncState();
   }, { passive: true });
-  addEventListener("resize", () => {
+  function onViewportResize() {
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    if (gestureLocked
+      || !movementComplete
+      || touchGesture.mode === "captured"
+      || touchGesture.mode === "native"
+      || nativeTouchActive
+      || nativeTouchSettling) {
+      viewportRefreshPending = true;
+      return;
+    }
+    viewportRefreshPending = false;
     if (!paused && root.dataset.wheelBeatMode === "on") {
       cancelAnimationFrame(resizeReleaseFrame);
       resizeReleaseFrame = 0;
@@ -798,7 +1095,7 @@
           scheduleArm();
         } else if (!armed
           || loaderIsVisible()
-          || performance.now() - lastBootWheelAt < 220) {
+        || performance.now() - lastBootInputAt < GESTURE_QUIET_MS) {
           scheduleArm();
         } else {
           settleAtCurrentGeometry();
@@ -810,11 +1107,10 @@
         paused = true;
         armed = false;
         state.enabled = false;
-        state.reason = matchMedia("(min-width: 881px)").matches
-          ? "viewport-too-short"
-          : "desktop-only";
+        state.reason = "viewport-too-short";
         state.state = "paused";
         cancelActiveMovement();
+        resetTouchGesture();
         setDockTucked(false);
         hideRestingField();
         removeCurtains();
@@ -833,7 +1129,10 @@
         syncState();
       }
     }, 180);
-  });
+  }
+
+  addEventListener("resize", onViewportResize);
+  window.visualViewport?.addEventListener("resize", onViewportResize);
 
   function loaderIsVisible() {
     const loader = document.getElementById("loader");
@@ -854,7 +1153,7 @@
     syncState();
     const waitForOpening = () => {
       if (paused) return;
-      const bootInputIsQuiet = performance.now() - lastBootWheelAt >= 220;
+      const bootInputIsQuiet = performance.now() - lastBootInputAt >= GESTURE_QUIET_MS;
       if (loaderIsVisible() || !bootInputIsQuiet) {
         armFrame = requestAnimationFrame(waitForOpening);
         return;
@@ -901,9 +1200,22 @@
     ]);
     if (navigationKeys.has(event.key)) yieldToNativeNavigation();
   }, true);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) return;
+    yieldToNativeNavigation();
+    resetTouchGesture();
+  });
+  addEventListener("pagehide", () => {
+    cancelActiveMovement();
+    resetTouchGesture();
+  });
   addEventListener("focusin", (event) => {
     const focused = event.target;
     const fixedChrome = header?.contains(focused) || dock?.contains(focused);
+    if (touchGesture.mode === "captured" && touchTargetIsNative(focused)) {
+      yieldToNativeNavigation();
+      resetTouchGesture();
+    }
     if (state.state === "moving" && !fixedChrome) {
       cancelActiveMovement();
       state.index = nearestIndex(scrollY);

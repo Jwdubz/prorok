@@ -5,7 +5,6 @@
   const isMobile = matchMedia("(max-width: 880px)").matches;
   const pageParams = new URLSearchParams(location.search);
   const beatWheelRequested = pageParams.get("wheel") !== "off"
-    && pageParams.get("motion") !== "reduced"
     && Boolean(document.querySelector("#top.hero"));
 
   if (window.gsap && window.ScrollTrigger) {
@@ -20,11 +19,20 @@
     if (beatWheelRequested) {
       lenisOptions.virtualScroll = ({ event }) => {
         const beat = window.PROROK_WHEEL_BEAT;
-        if (!event.type.includes("wheel")) return true;
-        const canCapture = typeof beat?.canCaptureWheel === "function"
-          ? beat.canCaptureWheel(event)
-          : true;
-        return !(beat?.enabled && canCapture);
+        const type = String(event?.type || "");
+        if (type.includes("wheel")) {
+          const canCapture = typeof beat?.canCaptureWheel === "function"
+            ? beat.canCaptureWheel(event)
+            : false;
+          return !(beat?.enabled && canCapture);
+        }
+        if (type.includes("touch")) {
+          const canCapture = typeof beat?.canCaptureTouch === "function"
+            ? beat.canCaptureTouch(event)
+            : false;
+          return !(beat?.enabled && canCapture);
+        }
+        return true;
       };
     }
     lenis = new Lenis(lenisOptions);
