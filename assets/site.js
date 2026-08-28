@@ -3,6 +3,10 @@
 
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = matchMedia("(max-width: 880px)").matches;
+  const pageParams = new URLSearchParams(location.search);
+  const beatWheelRequested = pageParams.get("wheel") !== "off"
+    && pageParams.get("motion") !== "reduced"
+    && Boolean(document.querySelector("#top.hero"));
 
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
@@ -12,7 +16,18 @@
   const hasGsapDriver = Boolean(window.gsap && gsap.ticker && typeof gsap.ticker.add === "function");
   const hasRafDriver = typeof requestAnimationFrame === "function";
   if (window.Lenis && (hasGsapDriver || hasRafDriver)) {
-    lenis = new Lenis({ lerp: 0.09 });
+    const lenisOptions = { lerp: 0.09 };
+    if (beatWheelRequested) {
+      lenisOptions.virtualScroll = ({ event }) => {
+        const beat = window.PROROK_WHEEL_BEAT;
+        if (!event.type.includes("wheel")) return true;
+        const canCapture = typeof beat?.canCaptureWheel === "function"
+          ? beat.canCaptureWheel(event)
+          : true;
+        return !(beat?.enabled && canCapture);
+      };
+    }
+    lenis = new Lenis(lenisOptions);
     if (window.ScrollTrigger) lenis.on("scroll", ScrollTrigger.update);
     if (hasGsapDriver) {
       gsap.ticker.add((t) => lenis.raf(t * 1000));

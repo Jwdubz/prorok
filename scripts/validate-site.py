@@ -59,9 +59,6 @@ REQUIRED_COPY = [
     ("index.html", "Each piece begins with a picture and tracing"),
     ("index.html", "as if you were born with the tattoo"),
     ("index.html", "Scale and precision"),
-    ("index.html", "How to get started"),
-    ("index.html", "it all begins with a consultation"),
-    ("index.html", "Fill out the form below to get started"),
     ("index.html", "The consultation is free"),
     ("index.html", "one session each month"),
     ("index.html", "free touch-ups"),
@@ -110,6 +107,7 @@ class PageParser(HTMLParser):
         self.art_figures = 0
         self.merch_images = 0
         self.nav_cta = ""
+        self.nav_hrefs: list[str] = []
         self.ids: list[str] = []
         self._section_id = ""
         self._in_folio = False
@@ -144,9 +142,11 @@ class PageParser(HTMLParser):
             href = ad.get("href", "")
             if href:
                 self.hrefs.append(href)
+                if self._in_nav:
+                    self.nav_hrefs.append(href)
             if "skip-link" in classes.split():
                 self.has_skip = True
-            if self._in_nav and "nav__cta" in classes.split():
+            if self._in_nav and "nav__header-cta" in classes.split():
                 self.nav_cta = href
         if tag in {"img", "script", "source", "video"}:
             if ad.get("src"):
@@ -510,7 +510,7 @@ def check_correction_wave(failures: list[str]) -> None:
     merch_raw = (ROOT / "merch.html").read_text(encoding="utf-8")
     if 'data-prorok-form="newsletter"' in merch_raw:
         failures.append("merch.html: extra newsletter form must stay removed")
-    for page in ("index.html", "booking.html"):
+    for page in ("booking.html",):
         raw = (ROOT / page).read_text(encoding="utf-8")
         forms = extract_forms(raw)
         if not any('data-prorok-form="inquiry"' in form for form in forms):
@@ -566,8 +566,8 @@ def check_correction_wave(failures: list[str]) -> None:
     css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
     if ".no-js .loader" not in css:
         failures.append("site.css must hide the loader in no-js")
-    if ".no-js .nav__panel" not in css:
-        failures.append("site.css must expose navigation in no-js")
+    if ".nav__panel{display:block;position:static" not in css:
+        failures.append("site.css must keep the simplified mobile navigation visible without a menu")
     check_visual_labels(failures)
     check_nojs_and_entity(failures)
     check_launch_product_urls(failures)
@@ -714,11 +714,11 @@ def check_launch_product_urls(failures: list[str]) -> None:
 
 def primary_book_targets(index_html: str) -> list[str]:
     targets = []
-    nav = re.search(r'class="nav__cta"[^>]*href="([^"]+)"|href="([^"]+)" class="nav__cta"', index_html)
+    nav = re.search(r'class="nav__header-cta"[^>]*href="([^"]+)"|href="([^"]+)"[^>]*class="nav__header-cta"', index_html)
     if nav:
         targets.append(next(g for g in nav.groups() if g))
     else:
-        cta = re.search(r'<a href="([^"]+)" class="nav__cta"', index_html)
+        cta = re.search(r'<a href="([^"]+)"[^>]*class="nav__header-cta"', index_html)
         if cta:
             targets.append(cta.group(1))
     for pattern in (
@@ -812,14 +812,21 @@ def main() -> int:
 
         if page == "booking.html" and parser.inquiry_forms < 1:
             failures.append("booking.html: missing inquiry form")
-        if page == "index.html" and parser.inquiry_forms < 1:
-            failures.append("index.html: missing homepage inquiry form")
+        if parser.nav_cta != ACUITY:
+            failures.append(f"{page}: header consultation CTA must use the exact Acuity URL")
+        expected_mark = "#top" if page == "index.html" else "index.html#top"
+        expected_nav_hrefs = [expected_mark, "portfolio.html", ACUITY]
+        if parser.nav_hrefs != expected_nav_hrefs:
+            failures.append(
+                f"{page}: primary header must contain only mark, Portfolio, and consultation CTA; "
+                f"found {parser.nav_hrefs}"
+            )
+        if 'class="nav__toggle"' in raw or 'class="nav__more-btn"' in raw:
+            failures.append(f"{page}: obsolete mobile menu or Shop control remains in primary header")
 
     index_raw = (ROOT / "index.html").read_text(encoding="utf-8")
-    inquiry_at = index_raw.find('data-prorok-form="inquiry"')
-    scale_at = index_raw.find('id="scale"')
-    if inquiry_at < 0 or scale_at < 0 or inquiry_at > scale_at:
-        failures.append("index.html: inquiry form must appear before #scale")
+    if 'data-prorok-form="inquiry"' in index_raw or 'class="inquiry-chapter"' in index_raw:
+        failures.append("index.html: homepage inquiry form must stay removed")
     if 'id="start"' in index_raw:
         failures.append("index.html: leftover How to get started teaser #start")
 

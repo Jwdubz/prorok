@@ -17,6 +17,32 @@
   }
 
   const lenis = window.PROROK_LENIS;
+  const pageParams = new URLSearchParams(location.search);
+  const beatWheelRequested = pageParams.get("wheel") !== "off"
+    && pageParams.get("motion") !== "reduced";
+  const healedVideo = document.querySelector("#healed .healed-montage video");
+  const healedSourceQuery = matchMedia("(max-width: 600px)");
+
+  function refreshHealedSource() {
+    if (!healedVideo) return;
+    healedVideo.removeAttribute("src");
+    healedVideo.load();
+    healedVideo.play().catch(() => {});
+  }
+
+  if (healedSourceQuery.addEventListener) {
+    healedSourceQuery.addEventListener("change", refreshHealedSource);
+  } else {
+    healedSourceQuery.addListener(refreshHealedSource);
+  }
+
+  if (beatWheelRequested) {
+    document.querySelectorAll("#work .panel img").forEach((img) => {
+      img.loading = "eager";
+    });
+    if (healedVideo) healedVideo.preload = "auto";
+  }
+  refreshHealedSource();
 
   function hero() {
     gsap.timeline({ defaults: { ease: "power4.out" } })
@@ -88,9 +114,6 @@
         scrollTrigger: { trigger: card, start: "top 82%" } });
     });
   });
-  gsap.from(".inquiry-chapter .sec__head, .inquiry-chapter .inquiry", {
-    y: 28, opacity: 0, duration: 1, stagger: .1, ease: "power3.out",
-    scrollTrigger: { trigger: ".inquiry-chapter", start: "top 78%" } });
   gsap.from(".visit__block", { y: 40, opacity: 0, duration: 1, stagger: .1, ease: "power3.out",
     scrollTrigger: { trigger: ".visit", start: "top 82%" } });
 

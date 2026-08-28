@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=20260828-cinematic-reveals-3">
 <style>
 .no-js .loader{display:none!important}
 .loader{position:fixed;inset:0;z-index:200;background:var(--sumi);
@@ -65,7 +65,7 @@
   letter-spacing:-.005em;margin:1.1rem 0 1.5rem;color:var(--paper);white-space:nowrap}
 .hero__sub{font-family:var(--jp);font-size:clamp(1.05rem,2.3vw,1.7rem);
   line-height:1.5;color:var(--paper);max-width:34rem}
-.hero__sub em{font-style:italic;color:var(--paper-dim)}
+.hero__sub em{font-style:italic;color:var(--consult-yellow)}
 .hero__vertical{position:absolute;right:clamp(1rem,3.4vw,2.8rem);top:50%;
   transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);
   font-size:clamp(1rem,1.7vw,1.3rem);letter-spacing:.5em;color:var(--paper-dim);
@@ -139,7 +139,7 @@
 .work__to-folio{display:block;text-align:center;
   margin-top:clamp(2.4rem,7vh,4.2rem)}
 .work__to-folio a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
-  color:var(--paper);border-bottom:1px solid var(--vermilion);
+  color:var(--consult-yellow);border-bottom:1px solid var(--consult-yellow);
   padding-bottom:.18rem}
 .work:has(> .work__to-folio){padding-bottom:3.5rem}
 #healed{padding-top:3.5rem}
@@ -256,27 +256,13 @@
 <header class="site-header">
   <nav class="nav" aria-label="Primary">
     <a class="nav__mark" href="#top"><i>和彫</i><span>Dylan Prorok</span></a>
-    <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="site-menu">Menu</button>
-    <div class="nav__panel" id="site-menu">
+    <div class="nav__panel">
       <div class="nav__links">
         <a href="portfolio.html" class="nav__portfolio">Portfolio</a>
-        <a href="#scale">Scale</a>
-        <a href="#work">Work</a>
-        <a href="#healed">Healed</a>
-        <a href="#craft">Process</a>
-        <a href="about.html">About</a>
-        <div class="nav__more">
-          <button type="button" class="nav__more-btn" aria-expanded="false" aria-controls="nav-shop">Shop</button>
-          <div class="nav__sub" id="nav-shop">
-            <a href="flash.html">Flash</a>
-            <a href="art.html">Art</a>
-            <a href="merch.html">Merch</a>
-          </div>
-        </div>
-        <a href="booking.html">Tattoo inquiry</a>
-        <a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" class="nav__cta" target="_blank" rel="noopener">Book</a>
       </div>
     </div>
+    <a href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225"
+       class="nav__header-cta" target="_blank" rel="noopener">Book a Consultation</a>
   </nav>
 </header>
 
@@ -312,90 +298,6 @@
     <span class="line"><span>Powerful enough to be read from a distance, <em>alluring to draw you closer.</em></span></span>
   </h2>
   <div class="thesis__seal">彫師</div>
-</section>
-
-<section class="inquiry-chapter" id="inquiry">
-  <div class="inquiry-chapter__inner">
-    <div class="sec__head">
-      <span class="sec__jp" aria-hidden="true">始め</span>
-      <h2 data-split>How to get started</h2>
-      <p>I’d love to sit down and discuss your tattoo ideas more in depth. Whether you’re looking for a fully custom piece, know exactly what subject matter you’d like tattooed, or would just like to ask a few questions before committing to a tattoo, it all begins with a consultation.</p>
-      <p>Fill out the form below to get started. I will respond as soon as possible. I’m excited to see what we can create together.</p>
-    </div>
-    <form class="inquiry" data-prorok-form="inquiry" action="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" method="get" novalidate>
-    <div class="field">
-      <label class="field__label" for="home-name">Name</label>
-      <input id="home-name" name="name" data-field-name="name" data-js-enable type="text" autocomplete="name" required disabled aria-describedby="home-name-error" />
-      <p class="field__error" id="home-name-error"></p>
-    </div>
-
-    <div class="field">
-      <label class="field__label" for="home-description">Tattoo description</label>
-      <p class="field__hint" id="home-description-hint">Include style, subject matter, black and grey or full color, and a brief description of why you’re getting the tattoo.</p>
-      <p class="field__example" id="home-description-ex">Example: Japanese style Kitsune fox full color tattoo to represent my grandfather</p>
-      <textarea id="home-description" name="description" data-field-name="description" data-js-enable required disabled aria-describedby="home-description-hint home-description-ex home-description-error"></textarea>
-      <p class="field__error" id="home-description-error"></p>
-    </div>
-
-    <div class="field">
-      <label class="field__label" for="home-placement">Tattoo placement and size</label>
-      <p class="field__hint" id="home-placement-hint">Include where on the body you’d like to place the tattoo. Include the approximate size or if you’d like a full sleeve.</p>
-      <p class="field__example" id="home-placement-ex">Example: Right inner forearm about 5x7 inches, or Right arm full sleeve</p>
-      <textarea id="home-placement" name="placement" data-field-name="placement" data-js-enable required disabled aria-describedby="home-placement-hint home-placement-ex home-placement-error"></textarea>
-      <p class="field__error" id="home-placement-error"></p>
-    </div>
-
-    <div class="field">
-      <label class="field__label" for="home-email">Email</label>
-      <input id="home-email" name="email" data-field-name="email" data-js-enable type="email" autocomplete="email" required disabled aria-describedby="home-email-error" />
-      <p class="field__error" id="home-email-error"></p>
-    </div>
-
-    <div class="field">
-      <label class="check" for="home-newsletter">
-        <input id="home-newsletter" name="newsletter" data-field-name="newsletter" data-js-enable type="checkbox" value="yes" disabled />
-        <span>Optional: email me when merchandise or flash releases go up. Leave this unchecked if you only want a reply about this tattoo.</span>
-      </label>
-    </div>
-
-    <div class="field">
-      <label class="field__label" for="home-phone">Phone</label>
-      <input id="home-phone" name="phone" data-field-name="phone" data-js-enable type="tel" autocomplete="tel" disabled aria-describedby="home-phone-hint" />
-      <p class="field__hint" id="home-phone-hint">Optional. Use this if you would rather be reached by phone.</p>
-    </div>
-
-    <fieldset class="field" data-field="location" aria-describedby="home-location-error">
-      <legend class="field__label">Where are you looking to get tattooed?</legend>
-      <div class="radios">
-        <label class="radio" for="home-loc-local">
-          <input id="home-loc-local" name="location" data-field-name="location" data-js-enable type="radio" value="las-vegas-local" required disabled />
-          <span>Las Vegas local</span>
-        </label>
-        <label class="radio" for="home-loc-travel">
-          <input id="home-loc-travel" name="location" data-field-name="location" data-js-enable type="radio" value="traveling-to-las-vegas" disabled />
-          <span>Traveling to Las Vegas</span>
-        </label>
-        <label class="radio" for="home-loc-guest">
-          <input id="home-loc-guest" name="location" data-field-name="location" data-js-enable type="radio" value="out-of-town-convention-or-guest-spot" disabled />
-          <span>Out-of-town convention or guest spot</span>
-        </label>
-      </div>
-      <p class="field__error" id="home-location-error"></p>
-    </fieldset>
-
-    <div class="field field--file">
-      <label class="field__label" for="home-photos">Photo references</label>
-      <p class="field__hint" id="home-photos-hint">Please include photo references of tattoos or artwork you like. Please do not send AI-rendered images of your ideas. Accepted formats: JPEG, PNG, WebP, and HEIC. Multiple files are welcome. Each file should stay under 10 MB.</p>
-      <input id="home-photos" name="photos" data-field-name="photos" data-js-enable type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif" multiple disabled aria-describedby="home-photos-hint home-photos-error" />
-      <p class="field__error" id="home-photos-error"></p>
-    </div>
-
-    <div class="form-actions">
-      <button class="btn btn--seal" type="submit"><span>Book a virtual consultation</span></button>
-    </div>
-    <div class="form-status" role="status" aria-live="polite" hidden></div>
-  </form>
-  </div>
 </section>
 
 <section class="scale" id="scale">
@@ -618,7 +520,7 @@
         <li>Placement <span>Anywhere it fits</span></li>
         <li>Flash <span><a href="flash.html">Pre-drawn designs</a></span></li>
       </ul>
-      <a class="btn" href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" target="_blank" rel="noopener"><span>Start a consultation</span></a>
+      <a class="btn btn--consultation" href="https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225" target="_blank" rel="noopener"><span>Start a consultation</span></a>
     </div>
 
     <div class="door">
@@ -644,7 +546,10 @@
     <h2>Come find me.</h2>
     <div class="visit__block">
       <h3>Studio</h3>
-      <p>Heritage Tattoo<br />3827 Sunset Rd<br />Las Vegas, NV 89120</p>
+      <p><a class="visit__address"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Heritage%20Tattoo%2C%203827%20Sunset%20Rd%2C%20Las%20Vegas%2C%20NV%2089120"
+            target="_blank" rel="noopener"
+            aria-label="Open Heritage Tattoo at 3827 Sunset Road in Google Maps">Heritage Tattoo<br />3827 Sunset Rd<br />Las Vegas, NV 89120</a></p>
     </div>
     <div class="visit__block">
       <h3>Usual hours</h3>
@@ -684,7 +589,8 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="assets/config.js"></script>
-<script src="assets/site.js"></script>
-<script src="assets/home.js"></script>
+<script src="assets/site.js?v=20260828-live-beat-default"></script>
+<script src="assets/wheel-beat.js?v=20260828-live-beat-default"></script>
+<script src="assets/home.js?v=20260828-live-beat-default"></script>
 </body>
 </html>
