@@ -19,9 +19,9 @@
     return { height, headerBottom, bottomClearance };
   };
   const viewportCanFitBeat = () => {
+    if (!isDesktopViewport()) return false;
     const { height, headerBottom, bottomClearance } = chromeGeometry();
-    const minimumStage = isDesktopViewport() ? 420 : 360;
-    return height - headerBottom - bottomClearance >= minimumStage;
+    return height - headerBottom - bottomClearance >= 420;
   };
   const reducedMotion = params.get("motion") === "reduced";
 
@@ -34,7 +34,7 @@
   if (!homepage) return disabled("homepage-only");
 
   const initiallyFits = viewportCanFitBeat();
-  const initialPauseReason = "viewport-too-short";
+  const initialPauseReason = isDesktopViewport() ? "viewport-too-short" : "desktop-only";
 
   const lenis = window.PROROK_LENIS;
 
@@ -151,15 +151,6 @@
     if (focusFallbackLocked) return false;
     return atomicCaptureFocusIsSafe();
   };
-  state.canCaptureTouch = (event) => {
-    if (event?.touches?.length > 1 || touchGesture.mode === "native") return false;
-    if (touchGesture.target instanceof Element
-      && touchGesture.target.closest(NATIVE_TOUCH_SELECTOR)) return false;
-    if (!armed || resizeSettling || gestureLocked) return true;
-    if (focusFallbackLocked) return false;
-    return atomicCaptureFocusIsSafe();
-  };
-
   const clamp = (value, low, high) => Math.min(high, Math.max(low, value));
 
   function syncState() {
@@ -1031,10 +1022,6 @@
   }
 
   addEventListener("wheel", onWheel, { capture: true, passive: false });
-  addEventListener("touchstart", onTouchStart, { capture: true, passive: true });
-  addEventListener("touchmove", onTouchMove, { capture: true, passive: false });
-  addEventListener("touchend", finishTouch, { capture: true, passive: true });
-  addEventListener("touchcancel", finishTouch, { capture: true, passive: true });
   addEventListener("scroll", () => {
     state.currentY = Math.round(scrollY);
     state.currentIndex = nearestIndex(scrollY);
@@ -1113,7 +1100,7 @@
         paused = true;
         armed = false;
         state.enabled = false;
-        state.reason = "viewport-too-short";
+        state.reason = isDesktopViewport() ? "viewport-too-short" : "desktop-only";
         state.state = "paused";
         cancelActiveMovement();
         resetTouchGesture();

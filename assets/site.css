@@ -384,20 +384,6 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   font-size:1.05rem;transform:rotate(-4deg);text-transform:none}
 
 @media (max-width:880px){
-  html[data-wheel-beat-mode="on"],
-  html[data-wheel-beat-mode="on"] body{
-    overscroll-behavior-y:none}
-  html[data-wheel-beat-mode="on"] body{
-    touch-action:pan-x pinch-zoom}
-  html[data-wheel-beat-mode="on"] :is(
-    input,textarea,select,[contenteditable="true"],[role="slider"],
-    [role="spinbutton"],video[controls],audio[controls],iframe,
-    [data-beat-native],[data-lenis-prevent-touch]){
-    touch-action:pan-y pinch-zoom}
-  html[data-wheel-beat-mode="on"] #begin > .sec__head{
-    margin-bottom:0}
-  html[data-wheel-beat-mode="on"] #begin .doors__grid{
-    margin-top:1rem}
   .nav{padding:1.05rem .9rem;gap:.45rem}
   .nav__mark span{display:none}
   .nav__panel{display:block;position:static;margin-left:auto;padding:0;

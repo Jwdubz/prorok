@@ -18,17 +18,12 @@
     const lenisOptions = { lerp: 0.09 };
     if (beatWheelRequested) {
       lenisOptions.virtualScroll = ({ event }) => {
+        if (!matchMedia("(min-width: 881px)").matches) return true;
         const beat = window.PROROK_WHEEL_BEAT;
         const type = String(event?.type || "");
         if (type.includes("wheel")) {
           const canCapture = typeof beat?.canCaptureWheel === "function"
             ? beat.canCaptureWheel(event)
-            : false;
-          return !(beat?.enabled && canCapture);
-        }
-        if (type.includes("touch")) {
-          const canCapture = typeof beat?.canCaptureTouch === "function"
-            ? beat.canCaptureTouch(event)
             : false;
           return !(beat?.enabled && canCapture);
         }

@@ -508,20 +508,32 @@ def check_correction_wave(failures: list[str]) -> None:
     if "new Lenis" in site_js and "requestAnimationFrame" not in site_js:
         failures.append("site.js must provide a requestAnimationFrame driver when GSAP is absent")
     for token in (
+        "GESTURE_QUIET_MS",
+        "SCROLL_TAU_SECONDS = .41",
+        "if (!isDesktopViewport()) return false",
+        'const initialPauseReason = isDesktopViewport() ? "viewport-too-short" : "desktop-only"',
+        "state.canCaptureWheel",
+        'addEventListener("wheel", onWheel, { capture: true, passive: false })',
+    ):
+        if token not in wheel_js:
+            failures.append(f"wheel-beat.js missing desktop beat token {token}")
+    for token in (
         'addEventListener("touchstart"',
         'addEventListener("touchmove"',
         'addEventListener("touchend"',
+        'addEventListener("touchcancel"',
         "state.canCaptureTouch",
-        "GESTURE_QUIET_MS",
-        "SCROLL_TAU_SECONDS = .41",
-        'root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile"',
     ):
-        if token not in wheel_js:
-            failures.append(f"wheel-beat.js missing mobile beat token {token}")
-    if '{ capture: true, passive: false }' not in wheel_js:
-        failures.append("wheel-beat.js touch/wheel capture must include a non-passive path")
-    if 'type.includes("touch")' not in site_js:
-        failures.append("site.js must arbitrate captured touch input away from Lenis")
+        if token in wheel_js:
+            failures.append(f"wheel-beat.js must not capture mobile touch input: {token}")
+    if 'if (!matchMedia("(min-width: 881px)").matches) return true' not in site_js:
+        failures.append("site.js must pass mobile input through the continuous scroll path")
+    if 'type.includes("touch")' in site_js:
+        failures.append("site.js must not route touch input through the desktop beat controller")
+    if "lenisOptions.syncTouch" in site_js:
+        failures.append("site.js must leave mobile touch inertia under the browser's native owner")
+    if 'return disabled("mobile-continuous")' in wheel_js:
+        failures.append("wheel-beat.js must stay dormant on mobile so it can activate after a desktop resize")
 
     merch_raw = (ROOT / "merch.html").read_text(encoding="utf-8")
     if 'data-prorok-form="newsletter"' in merch_raw:
@@ -586,8 +598,8 @@ def check_correction_wave(failures: list[str]) -> None:
         failures.append("site.css must keep the simplified mobile navigation visible without a menu")
     if "@media (min-width:881px)" not in css:
         failures.append("site.css must keep desktop beat geometry scoped above the mobile breakpoint")
-    if "touch-action:pan-x pinch-zoom" not in css:
-        failures.append("site.css must reserve vertical touch for the mobile beat controller")
+    if "touch-action:pan-x pinch-zoom" in css:
+        failures.append("site.css must not reserve vertical touch for a mobile beat controller")
     check_visual_labels(failures)
     check_nojs_and_entity(failures)
     check_launch_product_urls(failures)
