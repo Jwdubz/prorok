@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from prorok_assets import (  # noqa: E402
-    ACUITY_CONSULT_URL,
+    SETMORE_CONSULT_URL,
     BUSINESS_NAME,
     FROZEN_GROUPS,
     FROZEN_MANIFEST,
@@ -202,7 +202,7 @@ def nav(current: str) -> str:
           </div>
         </div>
         <a href="booking.html"{current_attr("booking.html")}>Tattoo inquiry</a>
-        <a href="{h(ACUITY_CONSULT_URL)}" class="nav__cta" target="_blank" rel="noopener">Book</a>
+        <a href="{h(SETMORE_CONSULT_URL)}" class="nav__cta" target="_blank" rel="noopener">Book</a>
       </div>
     </div>
   </nav>
@@ -224,7 +224,7 @@ def visit_footer(current: str) -> str:
     </div>
     <div class="visit__block">
       <h3>Booking</h3>
-      <p><a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />
+      <p><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />
          <a href="booking.html"{book_current}>Send a tattoo inquiry</a><br />
          or DM me — I answer both.</p>
     </div>
@@ -246,7 +246,7 @@ def visit_footer(current: str) -> str:
     <a href="art.html"{' aria-current="page"' if current == 'art.html' else ''}>Art</a>
     <a href="merch.html"{' aria-current="page"' if current == 'merch.html' else ''}>Merch</a>
     <a href="booking.html"{' aria-current="page"' if current == 'booking.html' else ''}>Tattoo inquiry</a>
-    <a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book</a>
+    <a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book</a>
   </nav>
   <span class="foot__seal">彫</span>
   <span>Las Vegas, Nevada</span>
@@ -255,7 +255,7 @@ def visit_footer(current: str) -> str:
 
 def dock() -> str:
     return f"""<a class="consult-dock" id="consult-dock"
-   href="{h(ACUITY_CONSULT_URL)}"
+   href="{h(SETMORE_CONSULT_URL)}"
    target="_blank" rel="noopener">Book a Virtual Consultation</a>"""
 
 
@@ -263,7 +263,7 @@ def inquiry_form(prefix: str) -> str:
     def i(name: str) -> str:
         return f"{prefix}{name}" if prefix else name
 
-    return f"""<form class="inquiry" data-prorok-form="inquiry" action="{h(ACUITY_CONSULT_URL)}" method="get" novalidate>
+    return f"""<form class="inquiry" data-prorok-form="inquiry" action="{h(SETMORE_CONSULT_URL)}" method="get" novalidate>
     <div class="field">
       <label class="field__label" for="{i('name')}">Name</label>
       <input id="{i('name')}" name="name" data-field-name="name" data-js-enable type="text" autocomplete="name" required disabled aria-describedby="{i('name-error')}" />
@@ -540,13 +540,13 @@ def patch_shared_chrome(text: str, page: str) -> str:
     text = re.sub(
         r'<a href="booking\.html" class="nav__cta"(?: aria-current="page")?>Book</a>',
         f'<a href="booking.html"{current}>Tattoo inquiry</a>\n'
-        f'        <a href="{h(ACUITY_CONSULT_URL)}" class="nav__cta" target="_blank" rel="noopener">Book</a>',
+        f'        <a href="{h(SETMORE_CONSULT_URL)}" class="nav__cta" target="_blank" rel="noopener">Book</a>',
         text,
         count=1,
     )
     text = re.sub(
         r'<p><a href="booking\.html"(?: aria-current="page")?>Start an inquiry</a><br />\s*or DM me — I answer both\.<br />I’ll contact you to schedule\.</p>',
-        f'<p><a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />\n'
+        f'<p><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />\n'
         f'         <a href="booking.html"{current}>Send a tattoo inquiry</a><br />\n'
         f"         or DM me — I answer both.</p>",
         text,
@@ -555,7 +555,7 @@ def patch_shared_chrome(text: str, page: str) -> str:
     text = re.sub(
         r'(<nav class="foot__links" aria-label="Footer">.*?<a href="merch\.html"(?: aria-current="page")?>Merch</a>\s*)<a href="booking\.html"(?: aria-current="page")?>Book</a>',
         rf'\1<a href="booking.html"{current}>Tattoo inquiry</a>\n'
-        f'    <a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book</a>',
+        f'    <a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book</a>',
         text,
         count=1,
         flags=re.S,
@@ -589,11 +589,11 @@ def patch_index(origin: str, og_image: dict) -> None:
     text = ensure_maps_cid_in_sameas(text)
     text = text.replace(
         '<a class="btn btn--seal" href="booking.html"><span>Start a project</span></a>',
-        f'<a class="btn btn--seal" href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener"><span>Start a project</span></a>',
+        f'<a class="btn btn--seal" href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener"><span>Start a project</span></a>',
     )
     text = text.replace(
         '<a class="btn" href="booking.html"><span>Start an inquiry</span></a>',
-        f'<a class="btn" href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener"><span>Start a consultation</span></a>',
+        f'<a class="btn" href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener"><span>Start a consultation</span></a>',
     )
     text = text.replace('<li>Merch <span><a href="merch.html">Future releases</a></span></li>',
                         '<li>Merch <span><a href="merch.html">Prints and shirts</a></span></li>')
@@ -711,7 +711,7 @@ def write_gallery_pages(assets: list[dict], groups: dict[str, dict], origin: str
     </div>
   </section>
 
-  <p class="page__go"><a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a></p>
+  <p class="page__go"><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a></p>
 """
     (ROOT / "portfolio.html").write_text(
         interior_page(
@@ -996,7 +996,7 @@ def main() -> int:
         extras=[
             (
                 '<p class="page__go" style="text-align:left;margin-top:1.8rem"><a href="booking.html">Begin a consultation</a></p>',
-                f'<p class="page__go" style="text-align:left;margin-top:1.8rem"><a href="{h(ACUITY_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a></p>',
+                f'<p class="page__go" style="text-align:left;margin-top:1.8rem"><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a></p>',
             )
         ],
     )

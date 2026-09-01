@@ -17,9 +17,7 @@ SITE_ASSETS = ROOT / "data" / "site-assets.json"
 LOCAL_MANIFEST = ROOT / "media" / "local-manifest.json"
 PREVIEW_ORIGIN = "https://prorok.jarrettwroten.com"
 PRODUCTION_ORIGIN = "https://www.dylanprorok.com"
-ACUITY_CONSULT_URL = (
-    "https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225"
-)
+SETMORE_CONSULT_URL = "https://dylanproroktattoo.setmore.com/"
 GOOGLE_MAPS_CID = "https://www.google.com/maps?cid=12163001512038007552"
 BUSINESS_NAME = "Dylan Prorok Tattoo"
 PERSON_NAME = "Dylan Prorok"

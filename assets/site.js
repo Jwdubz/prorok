@@ -224,7 +224,7 @@
     }
   }
 
-  const consultHref = cfg.consultationUrl || "https://dylanprorok.as.me/";
+  const consultHref = cfg.consultationUrl || "https://dylanproroktattoo.setmore.com/";
 
   function safeParam(value, pattern) {
     const text = String(value || "");

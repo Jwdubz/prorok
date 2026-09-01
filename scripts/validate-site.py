@@ -25,6 +25,7 @@ from prorok_assets import (  # noqa: E402
     FROZEN_MANIFEST,
     GOOGLE_MAPS_CID,
     PRODUCT_URLS,
+    SETMORE_CONSULT_URL,
     SITE_ASSETS,
     VISUAL_LABELS,
     load_visual_labels,
@@ -38,7 +39,6 @@ PAGES = [
     "art.html",
     "merch.html",
 ]
-ACUITY = "https://dylanprorok.as.me/schedule/b21deb93/appointment/61957220/calendar/10046225"
 INTERNAL = (
     "worktree",
     "being recovered",
@@ -421,6 +421,20 @@ def check_correction_wave(failures: list[str]) -> None:
         if found_paths and found_paths != set(SITE_MEDIA):
             failures.append(f"site media paths drifted: {sorted(found_paths)}")
 
+    retirement_sources = [ROOT / page for page in PAGES] + [
+        ROOT / "assets/config.js",
+        ROOT / "assets/site.js",
+        ROOT / "scripts/prorok_assets.py",
+        ROOT / "scripts/apply-recovered-site.py",
+    ]
+    for source_path in retirement_sources:
+        source_text = source_path.read_text(encoding="utf-8").lower()
+        for retired_token in ("acu" + "ity", "as" + ".me"):
+            if retired_token in source_text:
+                failures.append(
+                    f"{source_path.relative_to(ROOT).as_posix()}: retired booking provider token {retired_token!r} remains"
+                )
+
     index_raw = (ROOT / "index.html").read_text(encoding="utf-8")
     about_raw = (ROOT / "about.html").read_text(encoding="utf-8")
     if SITE_MEDIA[0] not in index_raw:
@@ -559,8 +573,8 @@ def check_correction_wave(failures: list[str]) -> None:
         if not any('data-prorok-form="inquiry"' in form for form in forms):
             failures.append(f"{page}: missing inquiry form for privacy check")
         for form in forms:
-            if ACUITY not in form:
-                failures.append(f"{page}: form fallback is not the exact Acuity URL")
+            if SETMORE_CONSULT_URL not in form:
+                failures.append(f"{page}: form fallback is not the exact Setmore consultation URL")
             if "inquiry-fallback" in form:
                 failures.append(f"{page}: provisional inquiry-fallback copy is still visible")
             if "Book a virtual consultation" not in form:
@@ -602,10 +616,10 @@ def check_correction_wave(failures: list[str]) -> None:
     if submit_at < 0 or enable_at < 0 or enable_at < submit_at:
         failures.append("site.js must attach submit before enabling visitor controls")
     if "window.location.assign(consultHref)" not in site_js:
-        failures.append("site.js empty-endpoint submit must go directly to Acuity")
+        failures.append("site.js empty-endpoint submit must go directly to Setmore")
     empty_block = re.search(r"if\s*\(\s*!endpoint\s*\)\s*\{([^}]+)\}", site_js)
     if not empty_block or "location.assign" not in empty_block.group(1) or "validateInquiry" in empty_block.group(1):
-        failures.append("site.js empty-endpoint submit must go directly to Acuity without validation")
+        failures.append("site.js empty-endpoint submit must go directly to Setmore without validation")
     css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
     if ".no-js .loader" not in css:
         failures.append("site.css must hide the loader in no-js")
@@ -759,25 +773,27 @@ def check_launch_product_urls(failures: list[str]) -> None:
                 failures.append(f"{page}: JSON-LD {idx} parse error: {exc}")
 
 
-def primary_book_targets(index_html: str) -> list[str]:
-    targets = []
-    nav = re.search(r'class="nav__header-cta"[^>]*href="([^"]+)"|href="([^"]+)"[^>]*class="nav__header-cta"', index_html)
-    if nav:
-        targets.append(next(g for g in nav.groups() if g))
-    else:
-        cta = re.search(r'<a href="([^"]+)"[^>]*class="nav__header-cta"', index_html)
-        if cta:
-            targets.append(cta.group(1))
-    for pattern in (
-        r'<a class="btn btn--seal" href="([^"]+)"[^>]*>\s*<span>Start a project</span>',
-        r'<a class="btn" href="([^"]+)"[^>]*>\s*<span>Start a consultation</span>',
-        r'<a class="btn" href="([^"]+)"[^>]*>\s*<span>Start an inquiry</span>',
-        r'<section class="visit"[\s\S]*?<h3>Booking</h3>\s*<p><a href="([^"]+)"',
-        r'id="consult-dock"\s*href="([^"]+)"',
-    ):
-        match = re.search(pattern, index_html)
-        if match:
-            targets.append(match.group(1))
+def booking_cta_targets(page_html: str) -> list[tuple[str, str]]:
+    """Return every anchor that functions as a public booking CTA."""
+    labels = {
+        "book",
+        "book a consultation",
+        "book a virtual consultation",
+        "start a consultation",
+        "start a project",
+    }
+    cta_classes = {"nav__header-cta", "consult-dock", "btn--consultation"}
+    targets: list[tuple[str, str]] = []
+    for match in re.finditer(r"<a\b(?P<attrs>[^>]*)>(?P<body>[\s\S]*?)</a>", page_html, flags=re.I):
+        attrs = match.group("attrs")
+        href_match = re.search(r'\bhref="([^"]+)"', attrs, flags=re.I)
+        if not href_match:
+            continue
+        class_match = re.search(r'\bclass="([^"]+)"', attrs, flags=re.I)
+        classes = set(class_match.group(1).split()) if class_match else set()
+        label = " ".join(unescape(re.sub(r"<[^>]+>", " ", match.group("body"))).split()).lower()
+        if label in labels or classes.intersection(cta_classes):
+            targets.append((label or "classed booking CTA", href_match.group(1)))
     return targets
 
 
@@ -859,16 +875,24 @@ def main() -> int:
 
         if page == "booking.html" and parser.inquiry_forms < 1:
             failures.append("booking.html: missing inquiry form")
-        if parser.nav_cta != ACUITY:
-            failures.append(f"{page}: header consultation CTA must use the exact Acuity URL")
+        if parser.nav_cta != SETMORE_CONSULT_URL:
+            failures.append(f"{page}: header consultation CTA must use the exact Setmore consultation URL")
         expected_mark = "#top" if page == "index.html" else "index.html#top"
         expected_primary_link = "index.html#top" if page == "portfolio.html" else "portfolio.html"
-        expected_nav_hrefs = [expected_mark, expected_primary_link, ACUITY]
+        expected_nav_hrefs = [expected_mark, expected_primary_link, SETMORE_CONSULT_URL]
         if parser.nav_hrefs != expected_nav_hrefs:
             failures.append(
                 f"{page}: primary header must contain only mark, the page-appropriate route, and consultation CTA; "
                 f"found {parser.nav_hrefs}"
             )
+        booking_targets = booking_cta_targets(raw)
+        if not booking_targets:
+            failures.append(f"{page}: no public booking CTA found")
+        for label, href in booking_targets:
+            if href != SETMORE_CONSULT_URL:
+                failures.append(
+                    f"{page}: booking CTA {label!r} must use the exact Setmore consultation URL; found {href!r}"
+                )
         if page == "portfolio.html" and not re.search(
             r'<a href="index\.html#top"[^>]*class="nav__home"[^>]*>Home</a>', raw
         ):
@@ -879,15 +903,15 @@ def main() -> int:
     index_raw = (ROOT / "index.html").read_text(encoding="utf-8")
     if '<a href="portfolio.html">The Full Portfolio</a>' not in index_raw:
         failures.append("index.html: portfolio passage link must read 'The Full Portfolio'")
-    for page in ("index.html", "portfolio.html"):
+    for page in PAGES:
         raw = (ROOT / page).read_text(encoding="utf-8")
         dock = re.search(
             r'<a class="consult-dock" id="consult-dock"\s*href="([^"]+)"[^>]*>'
             r'Book a Virtual Consultation</a>',
             raw,
         )
-        if not dock or dock.group(1) != ACUITY:
-            failures.append(f"{page}: persistent consultation dock must use the exact Acuity URL")
+        if not dock or dock.group(1) != SETMORE_CONSULT_URL:
+            failures.append(f"{page}: persistent consultation dock must use the exact Setmore consultation URL")
     dock_sources = (
         ("site.js", (ROOT / "assets/site.js").read_text(encoding="utf-8")),
         ("wheel-beat.js", (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")),
@@ -927,17 +951,23 @@ def main() -> int:
     config = (ROOT / "assets/config.js").read_text(encoding="utf-8")
     empty_endpoint = 'formEndpoint: ""' in config or "formEndpoint:''" in config
     if empty_endpoint:
-        targets = primary_book_targets(index_raw)
+        targets = [href for _label, href in booking_cta_targets(index_raw)]
         if not targets:
             failures.append("index.html: could not find primary Book paths")
-        booking_only = [href for href in targets if "booking.html" in href and "as.me" not in href]
-        if booking_only:
+        internal_booking_targets = [
+            href
+            for href in targets
+            if not urlparse(href).scheme
+            and not urlparse(href).netloc
+            and urlparse(href).path.endswith("booking.html")
+        ]
+        if internal_booking_targets:
             failures.append(
-                "empty-endpoint build: primary Book paths point only to booking.html: "
-                + ", ".join(booking_only)
+                "empty-endpoint build: primary Book paths must not point to internal booking.html: "
+                + ", ".join(internal_booking_targets)
             )
-        if ACUITY not in index_raw:
-            failures.append("index.html: missing working Acuity consultation URL")
+        if SETMORE_CONSULT_URL not in index_raw:
+            failures.append("index.html: missing working Setmore consultation URL")
         if "Tattoo inquiry" not in index_raw or "booking.html" not in index_raw:
             failures.append("index.html: missing Tattoo inquiry route to booking.html")
     if re.search(r"sk-[A-Za-z0-9]{10,}", config) or re.search(r"apiKey\s*[:=]\s*['\"][^'\"]+", config):
