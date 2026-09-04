@@ -225,8 +225,8 @@ def visit_footer(current: str) -> str:
     <div class="visit__block">
       <h3>Booking</h3>
       <p><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />
-         <a href="booking.html"{book_current}>Send a tattoo inquiry</a><br />
-         or DM me — I answer both.</p>
+         <a href="booking.html"{book_current}>Prepare your tattoo inquiry</a><br />
+         or send me a DM.</p>
     </div>
     <div class="visit__block">
       <h3>Elsewhere</h3>
@@ -295,14 +295,14 @@ def inquiry_form(prefix: str) -> str:
     <div class="field">
       <label class="check" for="{i('newsletter')}">
         <input id="{i('newsletter')}" name="newsletter" data-field-name="newsletter" data-js-enable type="checkbox" value="yes" disabled />
-        <span>Optional: email me when merchandise or flash releases go up. Leave this unchecked if you only want a reply about this tattoo.</span>
+        <span>Optional reminder: ask Dylan about merchandise and flash updates. Checking this box does not subscribe you to emails.</span>
       </label>
     </div>
 
     <div class="field">
       <label class="field__label" for="{i('phone')}">Phone</label>
       <input id="{i('phone')}" name="phone" data-field-name="phone" data-js-enable type="tel" autocomplete="tel" disabled aria-describedby="{i('phone-hint')}" />
-      <p class="field__hint" id="{i('phone-hint')}">Optional. Use this if you would rather be reached by phone.</p>
+      <p class="field__hint" id="{i('phone-hint')}">Have this ready if you prefer a call. Enter your contact details in Setmore.</p>
     </div>
 
     <fieldset class="field" data-field="location" aria-describedby="{i('location-error')}">
@@ -332,7 +332,7 @@ def inquiry_form(prefix: str) -> str:
     </div>
 
     <div class="form-actions">
-      <button class="btn btn--seal" type="submit"><span>Book a virtual consultation</span></button>
+      <button class="btn btn--seal" type="submit"><span>Continue to Setmore</span></button>
     </div>
     <div class="form-status" role="status" aria-live="polite" hidden></div>
   </form>"""
@@ -547,8 +547,8 @@ def patch_shared_chrome(text: str, page: str) -> str:
     text = re.sub(
         r'<p><a href="booking\.html"(?: aria-current="page")?>Start an inquiry</a><br />\s*or DM me — I answer both\.<br />I’ll contact you to schedule\.</p>',
         f'<p><a href="{h(SETMORE_CONSULT_URL)}" target="_blank" rel="noopener">Book a virtual consultation</a><br />\n'
-        f'         <a href="booking.html"{current}>Send a tattoo inquiry</a><br />\n'
-        f"         or DM me — I answer both.</p>",
+        f'         <a href="booking.html"{current}>Prepare your tattoo inquiry</a><br />\n'
+        f"         or send me a DM.</p>",
         text,
         count=1,
     )
@@ -560,6 +560,8 @@ def patch_shared_chrome(text: str, page: str) -> str:
         count=1,
         flags=re.S,
     )
+    text = text.replace(">Send a tattoo inquiry</a>", ">Prepare your tattoo inquiry</a>")
+    text = text.replace("or DM me — I answer both.</p>", "or send me a DM.</p>")
     return text
 
 
@@ -577,6 +579,10 @@ def patch_index(origin: str, og_image: dict) -> None:
     text = text.replace("alluring enough to draw you closer", "alluring to draw you closer")
     text = text.replace("Dylan Prorok at Heritage Tattoo", BUSINESS_NAME)
     text = text.replace("Dylan Prorok Tattoos on Google", f"{BUSINESS_NAME} on Google")
+    text = text.replace(
+        "An opportunity to discuss your vision, review references, and gather pictures and tracings of where the tattoo will be placed. The consultation is free and can be done virtually or in person at the shop.",
+        "Talk through your vision, references and placement. Meet virtually for free in 15 minutes, or at Heritage Tattoo for one hour and $200. That $200 goes toward your first session.",
+    )
     text = text.replace(
         "media/site/dylon-prorok-original-japenese-tattoo-art-las-vegas-nevada.webp",
         "media/site/dylan-prorok-tattooing-large-scale-piece.webp",
@@ -603,7 +609,7 @@ def patch_index(origin: str, og_image: dict) -> None:
       <span class="sec__jp" aria-hidden="true">始め</span>
       <h2 data-split>How to get started</h2>
       <p>I’d love to sit down and discuss your tattoo ideas more in depth. Whether you’re looking for a fully custom piece, know exactly what subject matter you’d like tattooed, or would just like to ask a few questions before committing to a tattoo, it all begins with a consultation.</p>
-      <p>Fill out the form below to get started. I will respond as soon as possible. I’m excited to see what we can create together.</p>
+      <p>These questions help you prepare. Your answers and photo references are not sent from this page. Continue to Setmore to choose a consultation and provide your details.</p>
     </div>
     {inquiry_form("home-")}
   </div>
@@ -985,7 +991,19 @@ def main() -> int:
         extras=[
             (
                 "Start a tattoo consultation with Dylan Prorok in Las Vegas. Describe the work, placement, and references, then book a virtual consultation if the form cannot send yet.",
+                "Book a free 15-minute virtual tattoo consultation or a one-hour in-person consultation for $200, credited toward your first tattoo session.",
+            ),
+            (
                 "Start a tattoo consultation with Dylan Prorok in Las Vegas. Describe the work, placement, and references. The consultation is free and can be done virtually or in person.",
+                "Book a free 15-minute virtual tattoo consultation or a one-hour in-person consultation for $200, credited toward your first tattoo session.",
+            ),
+            (
+                "Tell Dylan what you want to carry. The consultation is free and can be done virtually or in person.",
+                "Book a free 15-minute virtual tattoo consultation or a one-hour in-person consultation for $200, credited toward your first tattoo session.",
+            ),
+            (
+                "Fill out the form below to get started. I will respond as soon as possible. I’m excited to see what we can create together.",
+                "These questions help you prepare. Your answers and photo references are not sent from this page. Continue to Setmore to choose a consultation and provide your details.",
             ),
         ],
     )

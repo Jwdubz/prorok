@@ -302,7 +302,7 @@
   function setInquiryButtonLabel(form, endpoint) {
     const label = form.querySelector(".form-actions .btn span");
     if (!label) return;
-    label.textContent = endpoint ? "Send the inquiry" : "Book a virtual consultation";
+    label.textContent = endpoint ? "Send the inquiry" : "Continue to Setmore";
   }
 
   function validateInquiry(form) {

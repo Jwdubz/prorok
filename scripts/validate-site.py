@@ -59,7 +59,9 @@ REQUIRED_COPY = [
     ("index.html", "Each piece begins with a picture and tracing"),
     ("index.html", "as if you were born with the tattoo"),
     ("index.html", "Scale and precision"),
-    ("index.html", "The consultation is free"),
+    ("index.html", "Meet virtually for free in 15 minutes"),
+    ("index.html", "Heritage Tattoo for one hour and $200"),
+    ("index.html", "That $200 goes toward your first session"),
     ("index.html", "one session each month"),
     ("index.html", "free touch-ups"),
     ("index.html", "One-shot tattoos and small bangers always welcome"),
@@ -73,6 +75,9 @@ REQUIRED_COPY = [
     ("booking.html", "Las Vegas local"),
     ("booking.html", "Traveling to Las Vegas"),
     ("booking.html", "Out-of-town convention or guest spot"),
+    ("booking.html", "Book a free 15-minute virtual tattoo consultation"),
+    ("booking.html", "one-hour in-person consultation for $200"),
+    ("booking.html", "credited toward your first tattoo session"),
     ("flash.html", "confirmed before booking"),
     ("merch.html", "Gwap Geisha Print"),
     ("merch.html", "Ko Omote T-Shirt"),
@@ -577,8 +582,8 @@ def check_correction_wave(failures: list[str]) -> None:
                 failures.append(f"{page}: form fallback is not the exact Setmore consultation URL")
             if "inquiry-fallback" in form:
                 failures.append(f"{page}: provisional inquiry-fallback copy is still visible")
-            if "Book a virtual consultation" not in form:
-                failures.append(f"{page}: empty-endpoint submit label must book the consultation")
+            if "Continue to Setmore" not in form:
+                failures.append(f"{page}: empty-endpoint submit label must explain the Setmore handoff")
             if 'name="location"' not in form or form.count('name="location"') < 3:
                 failures.append(f"{page}: missing native location radio group")
             for field in PRIVACY_FIELDS:
