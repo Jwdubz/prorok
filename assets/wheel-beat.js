@@ -24,7 +24,7 @@
     const { height, headerBottom, bottomClearance } = chromeGeometry();
     return height - headerBottom - bottomClearance >= MINIMUM_DESKTOP_STAGE;
   };
-  const reducedMotion = params.get("motion") === "reduced";
+  const reducedMotion = root.dataset.motion === "reduced";
 
   const disabled = (reason) => {
     root.dataset.wheelBeatMode = "off";

@@ -1,7 +1,7 @@
 (() => {
   const cfg = window.PROROK || {};
 
-  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = document.documentElement.dataset.motion === "reduced";
   const isMobile = matchMedia("(max-width: 880px)").matches;
   const pageParams = new URLSearchParams(location.search);
   const beatWheelRequested = pageParams.get("wheel") !== "off"

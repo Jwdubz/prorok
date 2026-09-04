@@ -18,8 +18,9 @@
 
   const lenis = window.PROROK_LENIS;
   const pageParams = new URLSearchParams(location.search);
+  const reducedMotion = document.documentElement.dataset.motion === "reduced";
   const beatWheelRequested = pageParams.get("wheel") !== "off"
-    && pageParams.get("motion") !== "reduced";
+    && !reducedMotion;
   const healedVideo = document.querySelector("#healed .healed-montage video");
   const healedSourceQuery = matchMedia("(max-width: 600px)");
 
@@ -108,12 +109,12 @@
     scrollTrigger: { trigger: ".steps", start: "top 80%" } });
   gsap.from(".door", { y: 60, opacity: 0, duration: 1, stagger: .12, ease: "power3.out",
     scrollTrigger: { trigger: ".doors__grid", start: "top 80%" } });
-  gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+  if (!reducedMotion) {
     gsap.utils.toArray(".voices__card").forEach((card) => {
       gsap.from(card, { y: 36, duration: 1.1, ease: "power3.out",
         scrollTrigger: { trigger: card, start: "top 82%" } });
     });
-  });
+  }
   gsap.from(".visit__block", { y: 40, opacity: 0, duration: 1, stagger: .1, ease: "power3.out",
     scrollTrigger: { trigger: ".visit", start: "top 82%" } });
 

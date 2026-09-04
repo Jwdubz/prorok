@@ -27,7 +27,8 @@ PRODUCT_URLS = (
 )
 NOJS_BOOT = (
     '<script>document.documentElement.className='
-    'document.documentElement.className.replace(/\\bno-js\\b/,"js");</script>'
+    'document.documentElement.className.replace(/\\bno-js\\b/,"js");'
+    'document.documentElement.dataset.motion=new URLSearchParams(location.search).get("motion")==="reduced"?"reduced":"full";</script>'
 )
 
 SUBDIR_BY_SUBCATEGORY = {

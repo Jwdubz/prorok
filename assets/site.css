@@ -421,8 +421,6 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .nav__links a,.nav__more-btn{font-size:.66rem;letter-spacing:.13em}
   .nav__header-cta{padding:.68rem .9rem;font-size:.875rem;letter-spacing:.07em}
 }
-@media (prefers-reduced-motion:reduce){
-  .grain{animation:none}
-  #petals{display:none}
-  .btn::before{transition:none}
-}
+html[data-motion="reduced"] .grain{animation:none}
+html[data-motion="reduced"] #petals{display:none}
+html[data-motion="reduced"] .btn::before{transition:none}
