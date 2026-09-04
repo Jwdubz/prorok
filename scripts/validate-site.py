@@ -830,8 +830,11 @@ def main() -> int:
             if "noindex" in robots_blob:
                 failures.append(f"{page}: noindex remains in indexable mode")
         else:
-            if "noindex" not in robots_blob or "nofollow" not in robots_blob:
-                failures.append(f"{page}: missing noindex/nofollow for preview host")
+            directives = [{value.strip().lower() for value in meta.split(",")} for meta in parser.robots_meta]
+            if not directives or any("noindex" not in values for values in directives):
+                failures.append(f"{page}: missing explicit noindex for preview host")
+            if page == "index.html" and any("follow" not in values for values in directives):
+                failures.append(f"{page}: preview homepage must preserve the crawlable noindex/follow policy")
         if parser.has_concept_banner or "Unofficial Design Concept" in raw:
             failures.append(f"{page}: concept banner still present")
         if not parser.has_skip:
@@ -983,9 +986,10 @@ def main() -> int:
         if "Disallow: /" in robots and "Allow: /" not in robots:
             failures.append("robots.txt blocks crawlers in indexable mode")
     else:
-        if "Disallow: /" not in robots:
-            failures.append("robots.txt must Disallow / on the preview host")
-    if f"Sitemap: {origin}/sitemap.xml" not in robots:
+        if "Allow: /" not in robots or re.search(r"(?m)^Disallow:\s*/\s*$", robots):
+            failures.append("robots.txt must allow crawling so preview noindex directives can be read")
+    declared_sitemaps = re.findall(r"(?mi)^Sitemap:\s*(\S+)", robots)
+    if (indexable and not declared_sitemaps) or any(url != f"{origin}/sitemap.xml" for url in declared_sitemaps):
         failures.append("robots.txt sitemap origin mismatch")
 
     try:
