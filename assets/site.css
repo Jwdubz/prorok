@@ -9,7 +9,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:initial;scroll-padding-top:100px;scroll-padding-bottom:100px}
+html{scroll-behavior:initial}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{background:var(--sumi);color:var(--paper);font-family:var(--sans);
@@ -28,12 +28,6 @@ button,input,textarea,select{font:inherit;color:inherit}
 :focus{outline:none}
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
 .visit :focus-visible,.foot :focus-visible{outline-color:var(--sumi)}
-:where(a,button,input,textarea,select,[tabindex]):focus-visible{scroll-margin-block:110px}
-main[tabindex="-1"]:focus{outline:none}
-.motion-toggle{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:110;
-  padding:.5rem .75rem;min-height:34px;border:1px solid var(--paper-dim);border-radius:99px;
-  background:var(--sumi);color:var(--paper);font-size:.75rem;line-height:1.2;cursor:pointer}
-.motion-toggle:hover{background:var(--sumi-2)}
 
 .skip-link{position:absolute;left:1rem;top:-5rem;z-index:300;
   background:var(--paper);color:var(--sumi);
@@ -48,7 +42,6 @@ main[tabindex="-1"]:focus{outline:none}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}
   40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
 
-#petals{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:80}
 
 .wheel-beat-curtain{position:fixed;left:0;right:0;z-index:70;
   background:var(--wheel-beat-field-color,var(--sumi));opacity:0;
@@ -210,7 +203,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 .btn--seal:hover{color:var(--paper);border-color:var(--vermilion)}
 
 .doors{padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);max-width:82rem;margin:0 auto}
-.doors__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+.doors__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:clamp(1.2rem,3vw,2.4rem);margin-top:clamp(3rem,7vh,4.5rem)}
 .door{border:1px solid rgba(239,231,216,.18);padding:clamp(2rem,4vw,3rem);
   position:relative;overflow:hidden;transition:border-color .5s,background .5s;
@@ -253,7 +246,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 .folio img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
 .folio figcaption{position:absolute;left:0;right:0;bottom:0;padding:.85rem 1rem;
   font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--paper);background:linear-gradient(rgba(8,7,6,.72),rgba(8,7,6,.85))}
+  color:var(--paper);background:linear-gradient(transparent,rgba(8,7,6,.72))}
 .folio figure.folio__lead{display:block;width:min(36rem,100%);
   margin:0 auto clamp(.9rem,2.2vw,1.5rem)}
 .folio__lead img{width:100%;height:auto;object-fit:cover;object-position:50% 12%}
@@ -297,7 +290,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 .folio-flow > figure:nth-of-type(7n + 3){grid-column:span 5;aspect-ratio:4 / 5.05}
 .folio-flow > figure:nth-of-type(7n + 4){grid-column:span 7;aspect-ratio:3 / 4.02}
 .folio-flow > figure:nth-of-type(11n + 6){grid-column:span 6;aspect-ratio:1 / 1.01}
-.folio-group{grid-column:1 / -1;min-width:0}
+.folio-group{grid-column:1 / -1}
 .folio-group__note{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--paper-dim);margin:0 0 .85rem}
 .folio-group__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
@@ -305,7 +298,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 .folio-flow figcaption,.flash-grid figcaption,.art-grid figcaption,
 .product__gallery figcaption{position:absolute;left:0;right:0;bottom:0;
   padding:.85rem 1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--paper);background:linear-gradient(rgba(8,7,6,.72),rgba(8,7,6,.85))}
+  color:var(--paper);background:linear-gradient(transparent,rgba(8,7,6,.72))}
 .folio-flow figure,.flash-grid figure,.art-grid figure,.product__gallery figure{
   margin:0;overflow:hidden;background:#080706;position:relative}
 .folio-flow img,.flash-grid img,.art-grid img,.product__gallery img{
@@ -315,14 +308,14 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 
 .flash-grid,.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr));
   gap:clamp(1.2rem,3vw,2rem);margin-top:clamp(2.2rem,6vh,3.6rem)}
-.flash-card,.art-card{display:flex;flex-direction:column;gap:.85rem;min-width:0}
+.flash-card,.art-card{display:flex;flex-direction:column;gap:.85rem}
 .flash-card .card__action,.art-card .card__action{margin:0}
 .card__action a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.15rem}
 
 .product-list{display:grid;gap:clamp(3.5rem,9vh,6rem);margin-top:clamp(2.4rem,6vh,4rem)}
 .product h2{font-family:var(--jp);font-size:clamp(1.8rem,3.6vw,2.8rem);margin:.2rem 0 .6rem}
-.product__price{font-family:var(--jp);font-size:1.25rem;color:#d36958;margin-bottom:.7rem}
+.product__price{font-family:var(--jp);font-size:1.25rem;color:var(--vermilion);margin-bottom:.7rem}
 .product__copy{max-width:36rem;color:var(--paper-dim);line-height:1.75;margin-bottom:1.4rem}
 .product__gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));
   gap:clamp(.8rem,2vw,1.3rem);margin-bottom:1.6rem}
@@ -340,14 +333,14 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
 .field input[type="text"],.field input[type="email"],.field input[type="tel"],
 .field textarea{
   width:100%;background:transparent;border:0;border-radius:0;
-  border-bottom:1px solid rgba(239,231,216,.4);
+  border-bottom:1px solid rgba(239,231,216,.28);
   color:var(--paper);padding:.75rem 0;font-size:1rem}
 .field textarea{min-height:8.5rem;resize:vertical;line-height:1.6}
 .field input:focus-visible,.field textarea:focus-visible{
-  outline:2px solid var(--consult-yellow);outline-offset:3px;border-bottom-color:var(--paper)}
+  outline:none;border-bottom-color:var(--paper)}
 .field.is-invalid input,.field.is-invalid textarea,.field.is-invalid .radios{
   border-bottom-color:var(--vermilion)}
-.field__error{display:none;color:#d36958;font-size:.8rem;margin-top:.45rem}
+.field__error{display:none;color:var(--vermilion);font-size:.8rem;margin-top:.45rem}
 .field.is-invalid .field__error{display:block}
 .radios{display:flex;flex-direction:column;gap:.75rem;padding:.4rem 0 0}
 .radio,.check{display:flex;align-items:flex-start;gap:.75rem;
@@ -387,7 +380,6 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   font-size:1.05rem;transform:rotate(-4deg);text-transform:none}
 
 @media (max-width:880px){
-  .motion-toggle{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px));right:.9rem}
   .nav{padding:1.05rem .9rem;gap:.45rem}
   .nav__mark span{display:none}
   .nav__panel{display:block;position:static;margin-left:auto;padding:0;
@@ -405,7 +397,7 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .folio-flow > figure,
   .folio-flow > figure:nth-of-type(n){grid-column:auto;aspect-ratio:auto}
   .folio-flow img,.folio-group__grid img{height:auto;object-fit:contain}
-  .folio-group__grid{grid-template-columns:minmax(0,1fr)}
+  .folio-group__grid{grid-template-columns:1fr}
   .folio-group__grid figure{aspect-ratio:auto}
   .artist{display:block}
   .artist__img{aspect-ratio:4/5;margin-bottom:1.5rem}
@@ -415,19 +407,11 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .folio__row--5-7 figure:first-child,
   .folio__row--8-4 figure:first-child{aspect-ratio:4 / 5}
   .folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
-  #petals{display:none}
 }
 @media (max-width:360px){
   .nav{padding-inline:.65rem;gap:.3rem}
   .nav__links a{font-size:.64rem;letter-spacing:.08em}
   .nav__header-cta{padding:.58rem .65rem;font-size:.75rem;letter-spacing:.045em}
-}
-@media (max-width:880px) and (max-height:450px){
-  /* High zoom and short landscape views need reading space between fixed controls. */
-  .site-header{position:absolute}
-  html{scroll-padding-top:12px;scroll-padding-bottom:130px}
-  :where(a,button,input,textarea,select,[tabindex]):focus-visible{scroll-margin-top:12px;scroll-margin-bottom:130px}
-  .foot{padding-bottom:calc(8.5rem + env(safe-area-inset-bottom,0px))}
 }
 @media (min-width:881px) and (max-width:1120px){
   .nav__mark span{display:none}
@@ -435,6 +419,5 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .nav__links a,.nav__more-btn{font-size:.66rem;letter-spacing:.13em}
   .nav__header-cta{padding:.68rem .9rem;font-size:.875rem;letter-spacing:.07em}
 }
-html[data-motion="reduced"] .grain{animation-play-state:paused}
-html[data-motion="reduced"] #petals{display:none}
+html[data-motion="reduced"] .grain{animation:none}
 html[data-motion="reduced"] .btn::before{transition:none}

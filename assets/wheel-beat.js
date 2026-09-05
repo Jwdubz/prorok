@@ -24,7 +24,7 @@
     const { height, headerBottom, bottomClearance } = chromeGeometry();
     return height - headerBottom - bottomClearance >= MINIMUM_DESKTOP_STAGE;
   };
-  const isReducedMotion = () => root.dataset.motion === "reduced";
+  const reducedMotion = root.dataset.motion === "reduced";
 
   const disabled = (reason) => {
     root.dataset.wheelBeatMode = "off";
@@ -105,7 +105,9 @@
   let focusFallbackTimer = 0;
   let nativeSettleTimer = 0;
   const SCROLL_TAU_SECONDS = .41;
-  const SCROLL_DURATION_MS = Math.round(SCROLL_TAU_SECONDS * 4.6 * 1000);
+  const SCROLL_DURATION_MS = reducedMotion
+    ? 0
+    : Math.round(SCROLL_TAU_SECONDS * 4.6 * 1000);
   let smoothScrollFrame = 0;
   let smoothScrollWatchdog = 0;
   let smoothScrollGeneration = 0;
@@ -140,13 +142,9 @@
     stepped: false
   };
   root.dataset.wheelBeatTau = String(SCROLL_TAU_SECONDS);
-  root.dataset.wheelBeatTransitionMs = String(isReducedMotion() ? 0 : SCROLL_DURATION_MS);
+  root.dataset.wheelBeatTransitionMs = String(SCROLL_DURATION_MS);
   root.dataset.wheelBeatQuietMs = String(GESTURE_QUIET_MS);
-  root.dataset.wheelBeatMotion = isReducedMotion() ? "reduced" : "full";
-  addEventListener("prorok:motion-change", () => {
-    root.dataset.wheelBeatMotion = isReducedMotion() ? "reduced" : "full";
-    root.dataset.wheelBeatTransitionMs = String(isReducedMotion() ? 0 : SCROLL_DURATION_MS);
-  });
+  root.dataset.wheelBeatMotion = reducedMotion ? "reduced" : "full";
   state.canCaptureWheel = (event) => {
     if (event?.ctrlKey || !event?.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return false;
     if (ownsVerticalScroll(event.target, Math.sign(event.deltaY))) return false;
@@ -645,7 +643,7 @@
       releaseIfReady();
     };
 
-    if (isReducedMotion()) {
+    if (reducedMotion) {
       if (lenis && typeof lenis.scrollTo === "function") {
         lenis.scrollTo(target, { immediate: true, force: true });
       } else {

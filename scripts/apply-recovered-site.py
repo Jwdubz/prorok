@@ -183,7 +183,7 @@ def nav(current: str) -> str:
     shop_current = current in {"flash.html", "art.html", "merch.html"}
     return f"""<header class="site-header">
   <nav class="nav" aria-label="Primary">
-    <a class="nav__mark" href="{href('#top')}" aria-label="Dylan Prorok home"><i aria-hidden="true">和彫</i><span>Dylan Prorok</span></a>
+    <a class="nav__mark" href="{href('#top')}"><i>和彫</i><span>Dylan Prorok</span></a>
     <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="site-menu">Menu</button>
     <div class="nav__panel" id="site-menu">
       <div class="nav__links">
@@ -471,7 +471,6 @@ def interior_page(
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="grain" aria-hidden="true"></div>
-<canvas id="petals" aria-hidden="true"></canvas>
 
 {nav(page)}
 

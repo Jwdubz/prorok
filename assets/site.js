@@ -52,19 +52,14 @@
       if (!el) return;
       e.preventDefault();
       closeNav();
-      // Scrolling alone leaves keyboard focus in the header. Move it to the destination.
-      if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
-      el.focus({ preventScroll: true });
-      const instant = a.classList.contains("skip-link") || window.PROROK_MOTION?.paused;
       if (lenis) {
         lenis.scrollTo(el, {
           offset: -92,
-          immediate: Boolean(instant),
           duration: 1.6,
           easing: (t) => 1 - Math.pow(1 - t, 4)
         });
       } else {
-        el.scrollIntoView({ behavior: instant ? "auto" : "smooth", block: "start" });
+        el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       }
     });
   });
@@ -132,59 +127,6 @@
     link.addEventListener("click", closeNav);
   });
 
-  if (!isMobile) {
-    const cv = document.getElementById("petals");
-    if (cv && cv.getContext) {
-      const ctx = cv.getContext("2d");
-      const COLORS = ["rgba(178,58,44,A)", "rgba(140,47,34,A)", "rgba(239,231,216,A)", "rgba(162,145,127,A)"];
-      let W, H;
-      const dpr = Math.min(devicePixelRatio || 1, 2);
-      const size = () => {
-        W = innerWidth; H = innerHeight;
-        cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      };
-      size();
-      addEventListener("resize", size);
-      const r = (a, b) => a + Math.random() * (b - a);
-      const make = (seed) => ({
-        x: r(-40, W + 40), y: seed ? r(-H * .2, H) : r(-120, -20), size: r(4, 10),
-        vy: r(.3, .95), vx: r(-.3, .45), rot: r(0, Math.PI * 2), vr: r(-.02, .02),
-        swayAmp: r(10, 40), swaySpeed: r(.4, 1.1), phase: r(0, Math.PI * 2),
-        color: COLORS[Math.random() * COLORS.length | 0].replace("A", r(.18, .5).toFixed(2)),
-        squish: r(.55, .8)
-      });
-      const P = Array.from({ length: 22 }, () => make(true));
-      const draw = (p) => {
-        ctx.save();
-        ctx.translate(p.x + Math.sin(p.phase) * p.swayAmp, p.y);
-        ctx.rotate(p.rot); ctx.scale(1, p.squish); ctx.beginPath();
-        const d = p.size;
-        ctx.moveTo(0, -d);
-        ctx.bezierCurveTo(d, -d * .6, d * .9, d * .7, 0, d);
-        ctx.bezierCurveTo(-d * .9, d * .7, -d, -d * .6, 0, -d);
-        ctx.fillStyle = p.color; ctx.fill(); ctx.restore();
-      };
-      let lastY = scrollY, vel = 0, t = 0;
-      (function loop() {
-        if (window.PROROK_MOTION?.paused) {
-          lastY = scrollY;
-          requestAnimationFrame(loop);
-          return;
-        }
-        const y = scrollY; vel += (y - lastY - vel) * .08; lastY = y; t += .016;
-        ctx.clearRect(0, 0, W, H);
-        for (const p of P) {
-          p.phase += p.swaySpeed * .016;
-          p.y += p.vy + Math.min(Math.abs(vel) * .03, 2.4);
-          p.x += p.vx + Math.sin(t * .5 + p.phase) * .2;
-          p.rot += p.vr + vel * 4e-4;
-          if (p.y > H + 40 || p.x < -80 || p.x > W + 80) Object.assign(p, make(false));
-          draw(p);
-        }
-        requestAnimationFrame(loop);
-      })();
-    }
-  }
 
   if (window.gsap) {
     const head = document.querySelector(".page .sec__head, .folio-page .sec__head");

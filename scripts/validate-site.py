@@ -802,8 +802,27 @@ def booking_cta_targets(page_html: str) -> list[tuple[str, str]]:
     return targets
 
 
+def check_no_particle_overlays(failures: list[str]) -> None:
+    """Keep the owner's rejected particle effect out of pages, runtime and recovery templates."""
+    sources = [ROOT / page for page in PAGES] + list((ROOT / "assets").glob("*.js")) + [
+        ROOT / "assets/site.css", ROOT / "scripts/apply-recovered-site.py"
+    ]
+    particle_id = r"(?:petals|particles?|falling[-_ ]?dots?|dots|confetti|snowfall|sparks)"
+    patterns = [
+        rf"(?:id|class)\s*=\s*[\"'][^\"']*\b{particle_id}\b",
+        rf"(?:getElementById|querySelector)\(\s*[\"'][#.]?{particle_id}[\"']",
+        rf"[#.]{particle_id}\s*\{{",
+        r"\b(?:particlesJS|tsParticles)\b|\bconfetti\s*\(",
+    ]
+    for path in sources:
+        source = path.read_text(encoding="utf-8")
+        if any(re.search(pattern, source, flags=re.I) for pattern in patterns):
+            failures.append(f"{path.relative_to(ROOT)}: particle overlays are prohibited by AGENTS.md")
+
+
 def main() -> int:
     failures: list[str] = []
+    check_no_particle_overlays(failures)
     notes: list[str] = []
     origin, indexable = expected_origin()
     parsed_pages: dict[str, PageParser] = {}
