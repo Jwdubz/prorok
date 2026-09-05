@@ -157,6 +157,11 @@ def portfolio_body(items: list[dict]) -> str:
 
 def apply_portfolio_page(items: list[dict]) -> None:
     text = PORTFOLIO.read_text(encoding="utf-8")
+    text = re.sub(
+        r'href="assets/site\.css(?:\?[^\"]*)?"',
+        'href="assets/site.css?v=20260904-uniform-portfolio"',
+        text,
+    )
     text = text.replace(
         "media/portfolio/irezumi/TAT-IRE-051.webp",
         items[0]["src"],

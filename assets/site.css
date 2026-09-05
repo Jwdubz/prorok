@@ -281,15 +281,11 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   line-height:1.2;margin-bottom:1rem}
 .library-seam p{font-size:1.02rem;line-height:1.85;color:var(--paper-dim);margin-bottom:1.1rem}
 
-.folio-flow{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+.folio-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(.9rem,2.2vw,1.5rem);margin-top:clamp(1.4rem,4vh,2.4rem);align-items:start}
 .folio-flow figure,.flash-grid figure,.art-grid figure,.product__gallery figure{
   content-visibility:auto;contain-intrinsic-size:400px 520px}
-.folio-flow > figure{grid-column:span 4;aspect-ratio:3 / 4}
-.folio-flow > figure:nth-of-type(7n + 1){grid-column:span 8;aspect-ratio:4 / 5}
-.folio-flow > figure:nth-of-type(7n + 3){grid-column:span 5;aspect-ratio:4 / 5.05}
-.folio-flow > figure:nth-of-type(7n + 4){grid-column:span 7;aspect-ratio:3 / 4.02}
-.folio-flow > figure:nth-of-type(11n + 6){grid-column:span 6;aspect-ratio:1 / 1.01}
+.folio-flow > figure{min-width:0;aspect-ratio:3 / 4}
 .folio-group{grid-column:1 / -1}
 .folio-group__note{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--paper-dim);margin:0 0 .85rem}
@@ -393,10 +389,8 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
     font-size:.875rem;letter-spacing:.06em}
   .consult-dock{min-height:50px;font-size:.82rem;letter-spacing:.06em;padding:.92rem 1rem;
     max-width:calc(100vw - 1.6rem)}
-  .folio-flow{grid-template-columns:1fr}
-  .folio-flow > figure,
-  .folio-flow > figure:nth-of-type(n){grid-column:auto;aspect-ratio:auto}
-  .folio-flow img,.folio-group__grid img{height:auto;object-fit:contain}
+  .folio-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .folio-group__grid img{height:auto;object-fit:contain}
   .folio-group__grid{grid-template-columns:1fr}
   .folio-group__grid figure{aspect-ratio:auto}
   .artist{display:block}
@@ -407,6 +401,9 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .folio__row--5-7 figure:first-child,
   .folio__row--8-4 figure:first-child{aspect-ratio:4 / 5}
   .folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
+}
+@media (max-width:600px){
+  .folio-flow{grid-template-columns:1fr}
 }
 @media (max-width:360px){
   .nav{padding-inline:.65rem;gap:.3rem}
