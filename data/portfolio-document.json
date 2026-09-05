@@ -271,17 +271,6 @@
       "sha256": "c76ccaefbaf2cce5d1010cb7bb854da8b2f3e30e7b8beee5934f4e949eef5715",
       "alt": "Geisha and hannya pair.",
       "caption": "Geisha and hannya pair."
-    },
-    {
-      "order": 25,
-      "asset_id": "TAT-DOC-025",
-      "source_object_id": "kix.nvbve47xr584",
-      "src": "media/portfolio/document-20260904/portfolio-25.jpg",
-      "width": 2048,
-      "height": 2048,
-      "sha256": "fdcb0e377b2bddca759a728a217cf44add62a4f1b2f8e32f5e33cfeb2aa66825",
-      "alt": "Snake and peony neck tattoo.",
-      "caption": "Snake and peony neck tattoo."
     }
   ]
 }

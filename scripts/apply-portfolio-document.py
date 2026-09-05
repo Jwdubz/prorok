@@ -26,6 +26,8 @@ PORTFOLIO = ROOT / "portfolio.html"
 MANIFEST = ROOT / "assets" / "portfolio-manifest.json"
 SITEMAP_IMAGES = ROOT / "sitemap-images.xml"
 ORIGIN = "https://prorok.jarrettwroten.com"
+# Owner removed the neck photograph from the gallery on 2026-09-04.
+EXCLUDED_SOURCE_OBJECT_IDS = {"kix.nvbve47xr584"}
 
 CAPTIONS = [
     "Peony and cherry blossom sleeve.",
@@ -70,6 +72,8 @@ def seed(source_input: Path) -> None:
         raise SystemExit(f"expected {len(CAPTIONS)} source images, found {len(source_rows)}")
     items = []
     for index, source_row in enumerate(source_rows, start=1):
+        if source_row["object_id"] in EXCLUDED_SOURCE_OBJECT_IDS:
+            continue
         path = IMAGE_DIR / f"portfolio-{index:02d}.jpg"
         if not path.exists():
             raise SystemExit(f"missing downloaded source image: {path}")
@@ -115,8 +119,11 @@ def load_data() -> dict:
     items = payload.get("items") or []
     if [item.get("order") for item in items] != list(range(1, len(items) + 1)):
         raise SystemExit("portfolio-document.json order is not contiguous")
-    if len(items) != len(CAPTIONS):
-        raise SystemExit(f"portfolio-document.json expected {len(CAPTIONS)} items, found {len(items)}")
+    expected_count = len(CAPTIONS) - len(EXCLUDED_SOURCE_OBJECT_IDS)
+    if len(items) != expected_count:
+        raise SystemExit(f"portfolio-document.json expected {expected_count} items, found {len(items)}")
+    if any(item.get("source_object_id") in EXCLUDED_SOURCE_OBJECT_IDS for item in items):
+        raise SystemExit("portfolio-document.json includes an owner-excluded photograph")
     return payload
 
 

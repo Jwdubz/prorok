@@ -660,8 +660,8 @@ def check_document_portfolio(failures: list[str]) -> None:
     expected_orders = list(range(1, len(items) + 1))
     if [item.get("order") for item in items] != expected_orders:
         failures.append("portfolio-document.json orders are not contiguous")
-    if len(items) != 25:
-        failures.append(f"portfolio-document.json expected 25 items, found {len(items)}")
+    if len(items) != 24:
+        failures.append(f"portfolio-document.json expected 24 items, found {len(items)}")
     if payload.get("source", {}).get("document_id") != "1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc":
         failures.append("portfolio-document.json source document ID drifted")
 
@@ -1071,7 +1071,7 @@ def main() -> int:
         failures.append("index.html: leftover How to get started teaser #start")
 
     folio = parsed_pages.get("portfolio.html")
-    expected_portfolio_figures = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    expected_portfolio_figures = 24 if DOCUMENT_PORTFOLIO.exists() else 132
     if folio and folio.portfolio_figures != expected_portfolio_figures:
         failures.append(f"portfolio.html: expected {expected_portfolio_figures} figures, found {folio.portfolio_figures}")
     flash = parsed_pages.get("flash.html")
@@ -1146,12 +1146,12 @@ def main() -> int:
             manifest_files.append(rel)
             if not (ROOT / rel).exists():
                 failures.append(f"manifest asset missing: {rel}")
-    expected_manifest_items = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    expected_manifest_items = 24 if DOCUMENT_PORTFOLIO.exists() else 132
     if len(manifest_files) != expected_manifest_items:
         failures.append(f"portfolio-manifest.json expected {expected_manifest_items} items, found {len(manifest_files)}")
     images_map = (ROOT / "sitemap-images.xml").read_text(encoding="utf-8")
     image_locs = re.findall(r"<image:loc>(.*?)</image:loc>", images_map)
-    expected_image_floor = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    expected_image_floor = 24 if DOCUMENT_PORTFOLIO.exists() else 132
     if len(image_locs) < expected_image_floor:
         failures.append(f"sitemap-images.xml expected at least {expected_image_floor} images, found {len(image_locs)}")
     for rel in manifest_files:
