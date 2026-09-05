@@ -28,7 +28,7 @@
     if (!healedVideo) return;
     healedVideo.removeAttribute("src");
     healedVideo.load();
-    healedVideo.play().catch(() => {});
+    if (!window.PROROK_MOTION?.paused) healedVideo.play().catch(() => {});
   }
 
   if (healedSourceQuery.addEventListener) {

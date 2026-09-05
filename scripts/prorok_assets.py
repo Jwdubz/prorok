@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import re
 from functools import lru_cache
 from pathlib import Path
@@ -29,6 +30,7 @@ NOJS_BOOT = (
     '<script>document.documentElement.className='
     'document.documentElement.className.replace(/\\bno-js\\b/,"js");'
     'document.documentElement.dataset.motion=new URLSearchParams(location.search).get("motion")==="reduced"?"reduced":"full";</script>'
+    '\n<script src="assets/motion.js?v=20260904-access-1"></script>'
 )
 
 SUBDIR_BY_SUBCATEGORY = {
@@ -234,6 +236,10 @@ def load_visual_labels() -> dict[str, tuple[str, str]]:
 
 
 def labels_for(row: dict, rows: list[dict]) -> tuple[str, str]:
+    accessible_alt = load_accessibility_alts().get(row["asset_id"])
+    if accessible_alt:
+        caption = VIEW_FALLBACK[row["source_subcategory"]].format(n=view_number(rows, row["asset_id"]))
+        return accessible_alt, caption
     visual = load_visual_labels().get(row["asset_id"])
     if visual:
         return visual
@@ -251,6 +257,12 @@ def labels_for(row: dict, rows: list[dict]) -> tuple[str, str]:
     if alt[0].islower():
         alt = alt[0].upper() + alt[1:]
     return alt, short_caption(alt)
+
+
+@lru_cache(maxsize=1)
+def load_accessibility_alts() -> dict[str, str]:
+    path = ROOT / "data" / "accessibility-alts.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
 def group_note(group_id: str, relationship: str, member_ids: list[str]) -> str:

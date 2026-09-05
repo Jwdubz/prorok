@@ -52,14 +52,19 @@
       if (!el) return;
       e.preventDefault();
       closeNav();
+      // Scrolling alone leaves keyboard focus in the header. Move it to the destination.
+      if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+      el.focus({ preventScroll: true });
+      const instant = a.classList.contains("skip-link") || window.PROROK_MOTION?.paused;
       if (lenis) {
         lenis.scrollTo(el, {
           offset: -92,
+          immediate: Boolean(instant),
           duration: 1.6,
           easing: (t) => 1 - Math.pow(1 - t, 4)
         });
       } else {
-        el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        el.scrollIntoView({ behavior: instant ? "auto" : "smooth", block: "start" });
       }
     });
   });
@@ -127,7 +132,7 @@
     link.addEventListener("click", closeNav);
   });
 
-  if (!isMobile && !reduceMotion) {
+  if (!isMobile) {
     const cv = document.getElementById("petals");
     if (cv && cv.getContext) {
       const ctx = cv.getContext("2d");
@@ -161,6 +166,11 @@
       };
       let lastY = scrollY, vel = 0, t = 0;
       (function loop() {
+        if (window.PROROK_MOTION?.paused) {
+          lastY = scrollY;
+          requestAnimationFrame(loop);
+          return;
+        }
         const y = scrollY; vel += (y - lastY - vel) * .08; lastY = y; t += .016;
         ctx.clearRect(0, 0, W, H);
         for (const p of P) {
