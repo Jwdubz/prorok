@@ -68,8 +68,12 @@
 
   gsap.to(".hero__img", { scale: 1.16, yPercent: 9, ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-  gsap.to(".hero__content", { y: -90, opacity: 0, ease: "none",
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "70% top", scrub: true } });
+  // In the stacked layout the photo comes first: fading against the whole hero
+  // would erase the copy before it reaches the screen. Revert on narrow/short resize.
+  gsap.matchMedia().add("(min-width: 881px) and (min-height: 700px)", () => {
+    gsap.to(".hero__content", { y: -90, opacity: 0, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "70% top", scrub: true } });
+  });
 
   gsap.from(".thesis__jp", { opacity: 0, letterSpacing: "1.5em", duration: 1.4, ease: "power3.out",
     scrollTrigger: { trigger: ".thesis", start: "top 72%" } });

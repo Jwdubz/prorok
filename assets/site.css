@@ -422,6 +422,13 @@ html[data-wheel-beat-mode="on"] #begin .door .btn{
   .nav__links a{font-size:.64rem;letter-spacing:.08em}
   .nav__header-cta{padding:.58rem .65rem;font-size:.75rem;letter-spacing:.045em}
 }
+@media (max-width:880px) and (max-height:450px){
+  /* High zoom and short landscape views need reading space between fixed controls. */
+  .site-header{position:absolute}
+  html{scroll-padding-top:12px;scroll-padding-bottom:130px}
+  :where(a,button,input,textarea,select,[tabindex]):focus-visible{scroll-margin-top:12px;scroll-margin-bottom:130px}
+  .foot{padding-bottom:calc(8.5rem + env(safe-area-inset-bottom,0px))}
+}
 @media (min-width:881px) and (max-width:1120px){
   .nav__mark span{display:none}
   .nav__links{gap:.78rem}
