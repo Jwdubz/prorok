@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "source": {
+    "title": "Portfolio",
+    "document_id": "1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc",
+    "document_url": "https://docs.google.com/document/d/1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc",
+    "tab_id": "t.0",
+    "order_basis": "Google Docs inline-object order"
+  },
+  "items": [
+    {
+      "order": 1,
+      "asset_id": "TAT-DOC-001",
+      "source_object_id": "kix.l4or7bqlugq",
+      "src": "media/portfolio/document-20260904/portfolio-01.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "a39471932ee2ebe46e547332ad6bbdb23f412714a28231fd458d8e80406d7a8c",
+      "alt": "Peony and cherry blossom sleeve.",
+      "caption": "Peony and cherry blossom sleeve."
+    },
+    {
+      "order": 2,
+      "asset_id": "TAT-DOC-002",
+      "source_object_id": "kix.5gpwvzopa1rw",
+      "src": "media/portfolio/document-20260904/portfolio-02.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "ec6a1a2bcfc81280cbf5411780cff77e4e36f9f16e2df6aa836149a85cfdea2d",
+      "alt": "Floral charm and bell sleeve detail.",
+      "caption": "Floral charm and bell sleeve detail."
+    },
+    {
+      "order": 3,
+      "asset_id": "TAT-DOC-003",
+      "source_object_id": "kix.hlg6m1lllw3x",
+      "src": "media/portfolio/document-20260904/portfolio-03.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "4444eaa6a11dda99960553986130f7e382f84b374c208ac393fc3e9a4c4589a7",
+      "alt": "Peony sleeve, full view.",
+      "caption": "Peony sleeve, full view."
+    },
+    {
+      "order": 4,
+      "asset_id": "TAT-DOC-004",
+      "source_object_id": "kix.c41u8rbolqb2",
+      "src": "media/portfolio/document-20260904/portfolio-04.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "12688f5462d0838a58d54570aa8739bd4f3eef5c4519ac83d11566796876d610",
+      "alt": "Floral charm and bell, angled view.",
+      "caption": "Floral charm and bell, angled view."
+    },
+    {
+      "order": 5,
+      "asset_id": "TAT-DOC-005",
+      "source_object_id": "kix.sqnxopj97v7h",
+      "src": "media/portfolio/document-20260904/portfolio-05.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "936478cde7fc8a0d5094612564ba6defd4ecf3d44e5eef1a413011ff52865080",
+      "alt": "Crane and peony sleeve.",
+      "caption": "Crane and peony sleeve."
+    },
+    {
+      "order": 6,
+      "asset_id": "TAT-DOC-006",
+      "source_object_id": "kix.s01gigpy2z5k",
+      "src": "media/portfolio/document-20260904/portfolio-06.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "5590fe5ec1e3b1d503a67008b64b53562089010acb7f1d937127ec3fe8c9d4b2",
+      "alt": "Crane sleeve, inner view.",
+      "caption": "Crane sleeve, inner view."
+    },
+    {
+      "order": 7,
+      "asset_id": "TAT-DOC-007",
+      "source_object_id": "kix.s9r8r85vjpbb",
+      "src": "media/portfolio/document-20260904/portfolio-07.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "804d2beb2bf24c6c0d872276db84b3d05507697a63f5b60575b8ece70ba38984",
+      "alt": "Dragon backpiece.",
+      "caption": "Dragon backpiece."
+    },
+    {
+      "order": 8,
+      "asset_id": "TAT-DOC-008",
+      "source_object_id": "kix.4543mbc4t3qu",
+      "src": "media/portfolio/document-20260904/portfolio-08.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "76072f8b9d01c387a81eb6bc2bb6f41088ea0e8330ca0f550f123f038d1e40ee",
+      "alt": "Red snake and cat sleeve.",
+      "caption": "Red snake and cat sleeve."
+    },
+    {
+      "order": 9,
+      "asset_id": "TAT-DOC-009",
+      "source_object_id": "kix.11xe1lstqdbo",
+      "src": "media/portfolio/document-20260904/portfolio-09.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "f35012b2434154f190217e550a522520620e6293333de3cd99e116de8caf2c73",
+      "alt": "Snake and peony sleeve.",
+      "caption": "Snake and peony sleeve."
+    },
+    {
+      "order": 10,
+      "asset_id": "TAT-DOC-010",
+      "source_object_id": "kix.wjwhdcxy7zux",
+      "src": "media/portfolio/document-20260904/portfolio-10.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "397a59811aecacf2899c8300e6ae09911319cf81ab554a19b2d69b2c6782441a",
+      "alt": "Peony and fox mask sleeve.",
+      "caption": "Peony and fox mask sleeve."
+    },
+    {
+      "order": 11,
+      "asset_id": "TAT-DOC-011",
+      "source_object_id": "kix.9w1j5cv56s8f",
+      "src": "media/portfolio/document-20260904/portfolio-11.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "51f0d177f4116ff772fd97770651f65423852059d217fcb0876abaab30cf4aa9",
+      "alt": "Peony and fox mask, extended view.",
+      "caption": "Peony and fox mask, extended view."
+    },
+    {
+      "order": 12,
+      "asset_id": "TAT-DOC-012",
+      "source_object_id": "kix.4fac3w6t6o9",
+      "src": "media/portfolio/document-20260904/portfolio-12.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "44854bbaf37af0e9c6b947ef8657731fb1b31cf5a8bb251347ad6fc4b090760b",
+      "alt": "Frog procession.",
+      "caption": "Frog procession."
+    },
+    {
+      "order": 13,
+      "asset_id": "TAT-DOC-013",
+      "source_object_id": "kix.z9cwolmhkq4a",
+      "src": "media/portfolio/document-20260904/portfolio-13.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "807f37dbca0e074591960f3363ae77b60e2fcc5385ac995497f0a2f127b74d63",
+      "alt": "Dragon and Daruma sleeve.",
+      "caption": "Dragon and Daruma sleeve."
+    },
+    {
+      "order": 14,
+      "asset_id": "TAT-DOC-014",
+      "source_object_id": "kix.50p061ymm9pa",
+      "src": "media/portfolio/document-20260904/portfolio-14.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "64258eabec5439c65b349bc1bd55c4e0422fc8bc52204dcc2a09a54fac074f64",
+      "alt": "Dragon and Daruma, inner view.",
+      "caption": "Dragon and Daruma, inner view."
+    },
+    {
+      "order": 15,
+      "asset_id": "TAT-DOC-015",
+      "source_object_id": "kix.6ycj7qxwrbup",
+      "src": "media/portfolio/document-20260904/portfolio-15.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "f7965308047e111cd8e80775ab51d8f0e59ffe430844b00fc6e5108101749c2c",
+      "alt": "Geisha head with red flowers.",
+      "caption": "Geisha head with red flowers."
+    },
+    {
+      "order": 16,
+      "asset_id": "TAT-DOC-016",
+      "source_object_id": "kix.5bq0iqd00fau",
+      "src": "media/portfolio/document-20260904/portfolio-16.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "27686320cac4bf2414b8e8f0d29af5dc24b4a1faeaca0976d7f7689e4969b575",
+      "alt": "Snake and peony thigh tattoo.",
+      "caption": "Snake and peony thigh tattoo."
+    },
+    {
+      "order": 17,
+      "asset_id": "TAT-DOC-017",
+      "source_object_id": "kix.8a3ffe8pm5j",
+      "src": "media/portfolio/document-20260904/portfolio-17.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "0ef69b12ca4acbf7763b3390ebded8958bc49771d5c75376f9e8730f87b17711",
+      "alt": "Snake and peony, alternate view.",
+      "caption": "Snake and peony, alternate view."
+    },
+    {
+      "order": 18,
+      "asset_id": "TAT-DOC-018",
+      "source_object_id": "kix.h2eih0thfq71",
+      "src": "media/portfolio/document-20260904/portfolio-18.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "5f0fb911c67345771d3ba17af9841463d3136f217a967f229e2edafb126db48e",
+      "alt": "Black and grey dragon sleeve.",
+      "caption": "Black and grey dragon sleeve."
+    },
+    {
+      "order": 19,
+      "asset_id": "TAT-DOC-019",
+      "source_object_id": "kix.jfox4t9ncywv",
+      "src": "media/portfolio/document-20260904/portfolio-19.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "578aed2b2ead7fe179b1e2bf4179a6dd556444c974b303d0998e63075ce53d34",
+      "alt": "Skull-headed octopus.",
+      "caption": "Skull-headed octopus."
+    },
+    {
+      "order": 20,
+      "asset_id": "TAT-DOC-020",
+      "source_object_id": "kix.9cyt5fehggde",
+      "src": "media/portfolio/document-20260904/portfolio-20.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "15ccc41b4e21ab9dc599b5d4a197e9c5b39c4f9432eb8e662b5378e82ddae31a",
+      "alt": "Black and grey tiger.",
+      "caption": "Black and grey tiger."
+    },
+    {
+      "order": 21,
+      "asset_id": "TAT-DOC-021",
+      "source_object_id": "kix.cx4wu6keek55",
+      "src": "media/portfolio/document-20260904/portfolio-21.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "f417c568cc6bd1f7953b1a99bcd793b312cc7a3a7f6dd6474d6d58a5b017dc2e",
+      "alt": "Color snake and peony.",
+      "caption": "Color snake and peony."
+    },
+    {
+      "order": 22,
+      "asset_id": "TAT-DOC-022",
+      "source_object_id": "kix.nk4vgk6qm2j1",
+      "src": "media/portfolio/document-20260904/portfolio-22.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "45c0c08aa4489a9ae24805c83c1b109b8d7cce6221896efbe0755681e0b048ce",
+      "alt": "Hannya mask.",
+      "caption": "Hannya mask."
+    },
+    {
+      "order": 23,
+      "asset_id": "TAT-DOC-023",
+      "source_object_id": "kix.rjg0j6bad95",
+      "src": "media/portfolio/document-20260904/portfolio-23.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "d24d873f68028a5b83f47cd1c63311ea388041dbb3bb9d1f7e556cfc52dc3751",
+      "alt": "Geisha portrait.",
+      "caption": "Geisha portrait."
+    },
+    {
+      "order": 24,
+      "asset_id": "TAT-DOC-024",
+      "source_object_id": "kix.3hg4f3oiw4yk",
+      "src": "media/portfolio/document-20260904/portfolio-24.jpg",
+      "width": 1536,
+      "height": 2048,
+      "sha256": "c76ccaefbaf2cce5d1010cb7bb854da8b2f3e30e7b8beee5934f4e949eef5715",
+      "alt": "Geisha and hannya pair.",
+      "caption": "Geisha and hannya pair."
+    },
+    {
+      "order": 25,
+      "asset_id": "TAT-DOC-025",
+      "source_object_id": "kix.nvbve47xr584",
+      "src": "media/portfolio/document-20260904/portfolio-25.jpg",
+      "width": 2048,
+      "height": 2048,
+      "sha256": "fdcb0e377b2bddca759a728a217cf44add62a4f1b2f8e32f5e33cfeb2aa66825",
+      "alt": "Snake and peony neck tattoo.",
+      "caption": "Snake and peony neck tattoo."
+    }
+  ]
+}

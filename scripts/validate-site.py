@@ -39,6 +39,7 @@ PAGES = [
     "art.html",
     "merch.html",
 ]
+DOCUMENT_PORTFOLIO = ROOT / "data" / "portfolio-document.json"
 INTERNAL = (
     "worktree",
     "being recovered",
@@ -182,7 +183,7 @@ class PageParser(HTMLParser):
                 self.merch_images += 1
         if tag == "section":
             self._section_id = ad.get("id", "")
-            if self._section_id in {"irezumi", "color", "bng", "additional"}:
+            if self._section_id in {"irezumi", "color", "bng", "additional", "document-order"}:
                 self._in_folio = True
             if self._section_id == "flash-library":
                 self._in_flash = True
@@ -648,6 +649,115 @@ def load_configure_launch():
     return module
 
 
+def check_document_portfolio(failures: list[str]) -> None:
+    """Validate the ordered Google-Doc portfolio against its rendered consumer."""
+    origin, _ = expected_origin()
+    if not DOCUMENT_PORTFOLIO.exists():
+        failures.append("missing data/portfolio-document.json")
+        return
+    payload = json.loads(DOCUMENT_PORTFOLIO.read_text(encoding="utf-8"))
+    items = payload.get("items") or []
+    expected_orders = list(range(1, len(items) + 1))
+    if [item.get("order") for item in items] != expected_orders:
+        failures.append("portfolio-document.json orders are not contiguous")
+    if len(items) != 25:
+        failures.append(f"portfolio-document.json expected 25 items, found {len(items)}")
+    if payload.get("source", {}).get("document_id") != "1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc":
+        failures.append("portfolio-document.json source document ID drifted")
+
+    expected_ids = [f"TAT-DOC-{index:03d}" for index in range(1, len(items) + 1)]
+    expected_srcs = [item.get("src", "") for item in items]
+    for item in items:
+        asset_id = item.get("asset_id", "")
+        rel = item.get("src", "")
+        path = ROOT / rel
+        if not rel.startswith("media/portfolio/document-20260904/") or path.suffix.lower() not in {".jpg", ".jpeg"}:
+            failures.append(f"{asset_id}: document portfolio path is outside the JPEG source folder")
+            continue
+        if not path.exists():
+            failures.append(f"{asset_id}: document portfolio image missing: {rel}")
+            continue
+        if sha256_file(path) != item.get("sha256"):
+            failures.append(f"{asset_id}: document portfolio sha256 mismatch")
+        try:
+            image_format, size = decode_webp(path)
+        except Exception as exc:  # pragma: no cover - the message is the useful failure
+            failures.append(f"{asset_id}: document portfolio image decode failed: {exc}")
+            continue
+        if image_format != "JPEG":
+            failures.append(f"{asset_id}: document portfolio format {image_format!r} != 'JPEG'")
+        if size != (item.get("width"), item.get("height")):
+            failures.append(f"{asset_id}: document portfolio dimensions {size} != {(item.get('width'), item.get('height'))}")
+        if not item.get("source_object_id"):
+            failures.append(f"{asset_id}: source inline-object ID missing")
+        if not item.get("alt") or not item.get("caption"):
+            failures.append(f"{asset_id}: alt and caption are required")
+
+    manifest = json.loads((ROOT / "assets/portfolio-manifest.json").read_text(encoding="utf-8"))
+    manifest_categories = manifest.get("categories") or []
+    manifest_items = [item for category in manifest_categories for item in category.get("items", [])]
+    if [item.get("asset_id") for item in manifest_items] != expected_ids:
+        failures.append("portfolio-manifest.json IDs do not match document order")
+    if [item.get("src") for item in manifest_items] != expected_srcs:
+        failures.append("portfolio-manifest.json paths do not match document order")
+    if len(manifest_categories) != 1 or manifest_categories[0].get("id") != "document-order":
+        failures.append("portfolio-manifest.json must have one document-order category")
+    if manifest_items != items:
+        failures.append("portfolio-manifest.json items drifted from data/portfolio-document.json")
+
+    raw = (ROOT / "portfolio.html").read_text(encoding="utf-8")
+    figure_matches = re.findall(
+        r'<figure\b[^>]*data-asset-id="([^"]+)"[^>]*>\s*'
+        r'<img\b([^>]*)>\s*<figcaption>([\s\S]*?)</figcaption>\s*</figure>',
+        raw,
+        flags=re.I,
+    )
+    rendered = []
+    for asset_id, attrs, caption in figure_matches:
+        def attr(name: str) -> str:
+            match = re.search(rf'\b{name}="([^"]*)"', attrs, flags=re.I)
+            return unescape(match.group(1)) if match else ""
+
+        rendered.append(
+            {
+                "asset_id": asset_id,
+                "src": attr("src"),
+                "alt": attr("alt"),
+                "width": int(attr("width") or 0),
+                "height": int(attr("height") or 0),
+                "caption": unescape(caption).strip(),
+            }
+        )
+    expected_rendered = [
+        {
+            "asset_id": item["asset_id"],
+            "src": item["src"],
+            "alt": item["alt"],
+            "width": item["width"],
+            "height": item["height"],
+            "caption": item["caption"],
+        }
+        for item in items
+    ]
+    if rendered != expected_rendered:
+        failures.append("portfolio.html figures do not match the document sequence and metadata")
+    if re.search(r"media/portfolio/(?:irezumi|color|black-and-grey|other)/", raw):
+        failures.append("portfolio.html still references the superseded portfolio image folders")
+
+    sitemap = unescape((ROOT / "sitemap-images.xml").read_text(encoding="utf-8"))
+    block_match = re.search(
+        rf"  <url>\s*<loc>{re.escape(origin + '/portfolio.html')}</loc>[\s\S]*?</url>",
+        sitemap,
+    )
+    if not block_match:
+        failures.append("sitemap-images.xml missing Portfolio URL block")
+    else:
+        block = block_match.group(0)
+        sitemap_srcs = re.findall(r"<image:loc>(.*?)</image:loc>", block)
+        if sitemap_srcs != [f"{origin}/{src}" for src in expected_srcs]:
+            failures.append("sitemap-images.xml Portfolio images do not match document order")
+
+
 def check_visual_labels(failures: list[str]) -> None:
     labels = load_visual_labels()
     if len(labels) != 132:
@@ -677,6 +787,9 @@ def check_visual_labels(failures: list[str]) -> None:
                 break
         if FILENAME_LABEL.match((row.get("alt") or "").strip()) or FILENAME_LABEL.match((row.get("caption") or "").strip()):
             failures.append(f"{row['asset_id']}: filename-only tattoo label")
+    if DOCUMENT_PORTFOLIO.exists():
+        check_document_portfolio(failures)
+        return
     portfolio = (ROOT / "portfolio.html").read_text(encoding="utf-8")
     manifest = json.loads((ROOT / "assets/portfolio-manifest.json").read_text(encoding="utf-8"))
     seen: set[str] = set()
@@ -958,8 +1071,9 @@ def main() -> int:
         failures.append("index.html: leftover How to get started teaser #start")
 
     folio = parsed_pages.get("portfolio.html")
-    if folio and folio.portfolio_figures != 132:
-        failures.append(f"portfolio.html: expected 132 figures, found {folio.portfolio_figures}")
+    expected_portfolio_figures = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    if folio and folio.portfolio_figures != expected_portfolio_figures:
+        failures.append(f"portfolio.html: expected {expected_portfolio_figures} figures, found {folio.portfolio_figures}")
     flash = parsed_pages.get("flash.html")
     if flash and flash.flash_figures != 20:
         failures.append(f"flash.html: expected 20 figures, found {flash.flash_figures}")
@@ -1032,12 +1146,14 @@ def main() -> int:
             manifest_files.append(rel)
             if not (ROOT / rel).exists():
                 failures.append(f"manifest asset missing: {rel}")
-    if len(manifest_files) != 132:
-        failures.append(f"portfolio-manifest.json expected 132 items, found {len(manifest_files)}")
+    expected_manifest_items = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    if len(manifest_files) != expected_manifest_items:
+        failures.append(f"portfolio-manifest.json expected {expected_manifest_items} items, found {len(manifest_files)}")
     images_map = (ROOT / "sitemap-images.xml").read_text(encoding="utf-8")
     image_locs = re.findall(r"<image:loc>(.*?)</image:loc>", images_map)
-    if len(image_locs) < 132:
-        failures.append(f"sitemap-images.xml expected at least 132 images, found {len(image_locs)}")
+    expected_image_floor = 25 if DOCUMENT_PORTFOLIO.exists() else 132
+    if len(image_locs) < expected_image_floor:
+        failures.append(f"sitemap-images.xml expected at least {expected_image_floor} images, found {len(image_locs)}")
     for rel in manifest_files:
         if f"{origin}/{rel}" not in image_locs:
             failures.append(f"sitemap-images.xml missing {rel}")

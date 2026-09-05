@@ -965,6 +965,22 @@ def pick_image(assets: list[dict], asset_id: str, fallback_src: str, width: int,
     return {"src": fallback_src, "width": width, "height": height}
 
 
+def apply_document_portfolio_if_present(origin: str) -> None:
+    """Keep recovery runs from replaying the superseded legacy portfolio gallery."""
+    document_data = ROOT / "data" / "portfolio-document.json"
+    document_script = ROOT / "scripts" / "apply-portfolio-document.py"
+    if not document_data.exists() or not document_script.exists():
+        return
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("apply_portfolio_document", document_script)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("could not load apply-portfolio-document.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    module.apply(origin)
+
+
 def main() -> int:
     if not LOCAL_MANIFEST.exists():
         print("missing media/local-manifest.json; run import-legacy-assets.py first", file=sys.stderr)
@@ -982,6 +998,7 @@ def main() -> int:
     }
     write_gallery_pages(assets, groups, origin, images)
     write_manifests(assets, origin)
+    apply_document_portfolio_if_present(origin)
     patch_index(origin, images["index"])
     patch_simple_page(
         "booking.html",

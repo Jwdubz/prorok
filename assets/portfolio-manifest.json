@@ -1,1220 +1,291 @@
 {
-  "version": 2,
-  "note": "Generated from media/local-manifest.json. Do not invent subjects, titles, or availability.",
+  "version": 3,
+  "source": {
+    "title": "Portfolio",
+    "document_id": "1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc",
+    "document_url": "https://docs.google.com/document/d/1f2FyO-MOKiaOUQfH712Sue2D61K-kBUoRVjR0fwocnc",
+    "order_basis": "Google Docs inline-object order"
+  },
   "categories": [
     {
-      "id": "irezumi",
-      "label": "Irezumi",
-      "jp": "入れ墨",
+      "id": "document-order",
+      "label": "Portfolio",
+      "jp": "作品集",
       "items": [
         {
-          "asset_id": "TAT-IRE-001",
-          "src": "media/portfolio/irezumi/TAT-IRE-001.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Japanese sleeve with a crane, peonies, cherry blossoms, and black wind bars.",
-          "caption": "Crane and peony sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-002",
-          "src": "media/portfolio/irezumi/TAT-IRE-002.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color sleeve with a samurai dog, cherry blossoms, and black wind bars.",
-          "caption": "Samurai dog sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-003",
-          "src": "media/portfolio/irezumi/TAT-IRE-003.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Japanese sleeve with large peonies and cherry blossoms.",
-          "caption": "Peony sleeve, upper view.",
-          "duplicate_group": "IRE-FLORAL-OMAMORI-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-004",
-          "src": "media/portfolio/irezumi/TAT-IRE-004.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Full view of a color peony and cherry blossom sleeve.",
-          "caption": "Peony sleeve, outer view.",
-          "duplicate_group": "IRE-FLORAL-OMAMORI-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-005",
-          "src": "media/portfolio/irezumi/TAT-IRE-005.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Close view of peonies and floral details on a color sleeve.",
-          "caption": "Peony sleeve, lower view.",
-          "duplicate_group": "IRE-FLORAL-OMAMORI-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-006",
-          "src": "media/portfolio/irezumi/TAT-IRE-006.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a color peony sleeve with an omamori charm.",
-          "caption": "Peony and omamori sleeve.",
-          "duplicate_group": "IRE-FLORAL-OMAMORI-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-007",
-          "src": "media/portfolio/irezumi/TAT-IRE-007.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Close view of an omamori charm, blossoms, and wind bars.",
-          "caption": "Omamori sleeve detail.",
-          "duplicate_group": "IRE-FLORAL-OMAMORI-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-008",
-          "src": "media/portfolio/irezumi/TAT-IRE-008.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color frog chef holding a knife on the upper arm.",
-          "caption": "Frog chef.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-009",
-          "src": "media/portfolio/irezumi/TAT-IRE-009.webp",
-          "width": 1236,
-          "height": 1600,
-          "alt": "Color skull-headed octopus figure in a robe.",
-          "caption": "Skull-headed octopus.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-010",
-          "src": "media/portfolio/irezumi/TAT-IRE-010.webp",
-          "width": 1500,
-          "height": 1500,
-          "alt": "Black and grey hannya mask on the thigh.",
-          "caption": "Hannya mask.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-011",
-          "src": "media/portfolio/irezumi/TAT-IRE-011.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red severed geisha head on the thigh.",
-          "caption": "Geisha namakubi.",
-          "duplicate_group": "IRE-LIKELY-11-12"
-        },
-        {
-          "asset_id": "TAT-IRE-012",
-          "src": "media/portfolio/irezumi/TAT-IRE-012.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red geisha head and hannya mask tattoos on both thighs.",
-          "caption": "Geisha and hannya pair.",
-          "duplicate_group": "IRE-LIKELY-11-12"
-        },
-        {
-          "asset_id": "TAT-IRE-013",
-          "src": "media/portfolio/irezumi/TAT-IRE-013.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red crane with cherry blossoms on the forearm.",
-          "caption": "Crane and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-014",
-          "src": "media/portfolio/irezumi/TAT-IRE-014.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Japanese dragon cover-up across the upper thigh.",
-          "caption": "Dragon cover-up.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-015",
-          "src": "media/portfolio/irezumi/TAT-IRE-015.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color guardian lion tattoo centered on the knee.",
-          "caption": "Guardian lion knee tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-016",
-          "src": "media/portfolio/irezumi/TAT-IRE-016.webp",
-          "width": 1440,
-          "height": 1440,
-          "alt": "Red peony tattoo across the shoulder.",
-          "caption": "Peony shoulder tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-017",
-          "src": "media/portfolio/irezumi/TAT-IRE-017.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red Japanese dragon head across the chest.",
-          "caption": "Dragon chest tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-018",
-          "src": "media/portfolio/irezumi/TAT-IRE-018.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red hannya masks surrounding a chrysanthemum on the forearm.",
-          "caption": "Hannya masks and chrysanthemum.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-019",
-          "src": "media/portfolio/irezumi/TAT-IRE-019.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Linework Japanese dragon coiled around a sword on the arm.",
-          "caption": "Dragon and sword.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-020",
-          "src": "media/portfolio/irezumi/TAT-IRE-020.webp",
-          "width": 1500,
-          "height": 1581,
-          "alt": "Black and grey Japanese tiger on the forearm.",
-          "caption": "Tiger forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-021",
-          "src": "media/portfolio/irezumi/TAT-IRE-021.webp",
-          "width": 1500,
-          "height": 1500,
-          "alt": "Color frog procession tattoo.",
-          "caption": "Frog procession.",
-          "duplicate_group": "IRE-FROG"
-        },
-        {
-          "asset_id": "TAT-IRE-022",
-          "src": "media/portfolio/irezumi/TAT-IRE-022.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a color frog procession tattoo.",
-          "caption": "Frog procession, alternate view.",
-          "duplicate_group": "IRE-FROG"
-        },
-        {
-          "asset_id": "TAT-IRE-023",
-          "src": "media/portfolio/irezumi/TAT-IRE-023.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red koi with a peony and waves.",
-          "caption": "Koi and peony.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-024",
-          "src": "media/portfolio/irezumi/TAT-IRE-024.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red masked figure with octopus tentacles and blossoms.",
-          "caption": "Masked octopus figure.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-025",
-          "src": "media/portfolio/irezumi/TAT-IRE-025.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey hannya mask centered on the throat.",
-          "caption": "Hannya throat tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-026",
-          "src": "media/portfolio/irezumi/TAT-IRE-026.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color snake coiled around a peony on the thigh.",
-          "caption": "Snake and peony.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-027",
-          "src": "media/portfolio/irezumi/TAT-IRE-027.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color koi with cherry blossoms on the forearm.",
-          "caption": "Koi and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-028",
-          "src": "media/portfolio/irezumi/TAT-IRE-028.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Outer view of a color Japanese dragon and Daruma sleeve with flowers.",
-          "caption": "Dragon and Daruma sleeve, outer view.",
-          "duplicate_group": "IRE-DRAGON-DARUMA-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-029",
-          "src": "media/portfolio/irezumi/TAT-IRE-029.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Side view of a color Japanese dragon and Daruma sleeve with flowers.",
-          "caption": "Dragon and Daruma sleeve, side view.",
-          "duplicate_group": "IRE-DRAGON-DARUMA-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-030",
-          "src": "media/portfolio/irezumi/TAT-IRE-030.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Inner view of a color Japanese dragon and Daruma sleeve with flowers.",
-          "caption": "Dragon and Daruma sleeve, inner view.",
-          "duplicate_group": "IRE-DRAGON-DARUMA-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-031",
-          "src": "media/portfolio/irezumi/TAT-IRE-031.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color cartoon frog flexing on the wrist.",
-          "caption": "Flexing frog.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-032",
-          "src": "media/portfolio/irezumi/TAT-IRE-032.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Outer view of a black and red samurai helmet and crow sleeve.",
-          "caption": "Samurai helmet and crow sleeve, outer view.",
-          "duplicate_group": "IRE-SAMURAI-CROW-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-033",
-          "src": "media/portfolio/irezumi/TAT-IRE-033.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a black and red samurai helmet and crow sleeve.",
-          "caption": "Samurai helmet and crow sleeve, inner view.",
-          "duplicate_group": "IRE-SAMURAI-CROW-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-034",
-          "src": "media/portfolio/irezumi/TAT-IRE-034.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Outer view of a black and red sleeve with a snake and hannya mask.",
-          "caption": "Snake and hannya sleeve, outer view.",
-          "duplicate_group": "IRE-SNAKE-CAT-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-035",
-          "src": "media/portfolio/irezumi/TAT-IRE-035.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Inner view of a black and red sleeve with a snake, cat, and hannya mask.",
-          "caption": "Snake and cat sleeve, inner view.",
-          "duplicate_group": "IRE-SNAKE-CAT-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-036",
-          "src": "media/portfolio/irezumi/TAT-IRE-036.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Outer view of a black and red sleeve with peonies, a moth, and kitsune mask.",
-          "caption": "Kitsune and peony sleeve, outer view.",
-          "duplicate_group": "IRE-KITSUNE-MOTH-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-037",
-          "src": "media/portfolio/irezumi/TAT-IRE-037.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Back view of a black and red sleeve with peonies, a moth, and kitsune mask.",
-          "caption": "Kitsune and peony sleeve, back view.",
-          "duplicate_group": "IRE-KITSUNE-MOTH-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-038",
-          "src": "media/portfolio/irezumi/TAT-IRE-038.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Front view of a black and red sleeve with peonies, a moth, and kitsune mask.",
-          "caption": "Kitsune and peony sleeve, front view.",
-          "duplicate_group": "IRE-KITSUNE-MOTH-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-039",
-          "src": "media/portfolio/irezumi/TAT-IRE-039.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Inner view of a black and red sleeve with peonies, a moth, and kitsune mask.",
-          "caption": "Kitsune and peony sleeve, inner view.",
-          "duplicate_group": "IRE-KITSUNE-MOTH-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-040",
-          "src": "media/portfolio/irezumi/TAT-IRE-040.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Blackwork chrysanthemum on the calf.",
-          "caption": "Chrysanthemum calf tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-041",
-          "src": "media/portfolio/irezumi/TAT-IRE-041.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey peony on the forearm.",
-          "caption": "Peony forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-042",
-          "src": "media/portfolio/irezumi/TAT-IRE-042.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Outer view of a black and grey snake and flower sleeve with red accents.",
-          "caption": "Snake and flower sleeve, outer view.",
-          "duplicate_group": "IRE-SNAKE-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-043",
-          "src": "media/portfolio/irezumi/TAT-IRE-043.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Inner view of a black and grey snake and flower sleeve with red accents.",
-          "caption": "Snake and flower sleeve, inner view.",
-          "duplicate_group": "IRE-SNAKE-PEONY-SLEEVE"
-        },
-        {
-          "asset_id": "TAT-IRE-044",
-          "src": "media/portfolio/irezumi/TAT-IRE-044.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red geisha holding a snake, framed by cherry blossoms.",
-          "caption": "Geisha and snake.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-045",
-          "src": "media/portfolio/irezumi/TAT-IRE-045.webp",
-          "width": 1425,
-          "height": 1600,
-          "alt": "Black and grey hannya mask with dice and stars across the hand.",
-          "caption": "Hannya hand tattoo.",
-          "duplicate_group": "IRE-HANNYA-HAND"
-        },
-        {
-          "asset_id": "TAT-IRE-046",
-          "src": "media/portfolio/irezumi/TAT-IRE-046.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a black and grey hannya mask with dice and stars across the hand.",
-          "caption": "Hannya hand tattoo, alternate view.",
-          "duplicate_group": "IRE-HANNYA-HAND"
-        },
-        {
-          "asset_id": "TAT-IRE-047",
-          "src": "media/portfolio/irezumi/TAT-IRE-047.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red geisha head with cherry blossoms on the thigh.",
-          "caption": "Geisha and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-048",
-          "src": "media/portfolio/irezumi/TAT-IRE-048.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red Japanese dragon head on the calf.",
-          "caption": "Dragon calf tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-049",
-          "src": "media/portfolio/irezumi/TAT-IRE-049.webp",
-          "width": 826,
-          "height": 826,
-          "alt": "Black and grey chrysanthemum across the upper arm.",
-          "caption": "Chrysanthemum upper arm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-050",
-          "src": "media/portfolio/irezumi/TAT-IRE-050.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey swallow with cherry blossoms on the shoulder.",
-          "caption": "Swallow and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-051",
-          "src": "media/portfolio/irezumi/TAT-IRE-051.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey Japanese dragon backpiece.",
-          "caption": "Dragon backpiece.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-052",
-          "src": "media/portfolio/irezumi/TAT-IRE-052.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red Daruma nested inside a chrysanthemum on the upper arm.",
-          "caption": "Daruma and chrysanthemum.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-053",
-          "src": "media/portfolio/irezumi/TAT-IRE-053.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey hannya mask with red cherry blossoms on the upper arm.",
-          "caption": "Hannya and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-054",
-          "src": "media/portfolio/irezumi/TAT-IRE-054.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey koi with waves on the forearm.",
-          "caption": "Koi and waves.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-055",
-          "src": "media/portfolio/irezumi/TAT-IRE-055.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey lotus seed pod and waves on the forearm.",
-          "caption": "Lotus and waves.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-056",
-          "src": "media/portfolio/irezumi/TAT-IRE-056.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey coiled dragon on the thigh.",
-          "caption": "Coiled dragon, first view.",
-          "duplicate_group": "IRE-LIKELY-56-57"
-        },
-        {
-          "asset_id": "TAT-IRE-057",
-          "src": "media/portfolio/irezumi/TAT-IRE-057.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a black and grey coiled dragon on the thigh.",
-          "caption": "Coiled dragon, alternate view.",
-          "duplicate_group": "IRE-LIKELY-56-57"
-        },
-        {
-          "asset_id": "TAT-IRE-058",
-          "src": "media/portfolio/irezumi/TAT-IRE-058.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey koi with waves and flowers on the forearm.",
-          "caption": "Koi, waves, and flowers.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-059",
-          "src": "media/portfolio/irezumi/TAT-IRE-059.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Japanese sleeve with a seated monk, peony, and red flowers.",
-          "caption": "Monk and peony sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-060",
-          "src": "media/portfolio/irezumi/TAT-IRE-060.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Japanese dragon and koi sleeve.",
-          "caption": "Dragon and koi sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-061",
-          "src": "media/portfolio/irezumi/TAT-IRE-061.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red tiger and koi sleeve with waves.",
-          "caption": "Tiger and koi sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-062",
-          "src": "media/portfolio/irezumi/TAT-IRE-062.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey sacred jewel resting in a lotus with flames.",
-          "caption": "Sacred jewel and lotus.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-063",
-          "src": "media/portfolio/irezumi/TAT-IRE-063.webp",
-          "width": 1280,
-          "height": 1600,
-          "alt": "Black and grey Pisces koi pair on the upper arm.",
-          "caption": "Pisces koi.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-064",
-          "src": "media/portfolio/irezumi/TAT-IRE-064.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey swallows carrying an omamori charm on the chest.",
-          "caption": "Swallows and omamori.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-065",
-          "src": "media/portfolio/irezumi/TAT-IRE-065.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey Japanese tiger with waves on the thigh.",
-          "caption": "Tiger thigh tattoo.",
-          "duplicate_group": "IRE-TIGER"
-        },
-        {
-          "asset_id": "TAT-IRE-066",
-          "src": "media/portfolio/irezumi/TAT-IRE-066.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a black and grey Japanese tiger with waves on the thigh.",
-          "caption": "Tiger thigh tattoo, alternate view.",
-          "duplicate_group": "IRE-TIGER"
-        },
-        {
-          "asset_id": "TAT-IRE-067",
-          "src": "media/portfolio/irezumi/TAT-IRE-067.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey snake and peony on the thigh with red accents.",
-          "caption": "Snake and peony thigh tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-068",
-          "src": "media/portfolio/irezumi/TAT-IRE-068.webp",
-          "width": 1500,
-          "height": 1500,
-          "alt": "Black and grey paired faces with sweeping black hair on the arm.",
-          "caption": "Paired faces.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-069",
-          "src": "media/portfolio/irezumi/TAT-IRE-069.webp",
-          "width": 1500,
-          "height": 1500,
-          "alt": "Black and grey uchide no kozuchi mallet with waves and ribbon.",
-          "caption": "Magic mallet and waves.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-070",
-          "src": "media/portfolio/irezumi/TAT-IRE-070.webp",
-          "width": 1280,
-          "height": 1600,
-          "alt": "Black and grey hannya mask with waves on the lower leg.",
-          "caption": "Hannya mask and waves.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-071",
-          "src": "media/portfolio/irezumi/TAT-IRE-071.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color geisha holding a stack of cash.",
-          "caption": "Geisha with cash.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-072",
-          "src": "media/portfolio/irezumi/TAT-IRE-072.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red Japanese dragon with cherry blossoms on the thigh.",
-          "caption": "Dragon and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-073",
-          "src": "media/portfolio/irezumi/TAT-IRE-073.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and red koi with waves and cherry blossoms on the forearm.",
-          "caption": "Koi and cherry blossoms.",
-          "duplicate_group": "IRE-SLEEVE-73-74"
-        },
-        {
-          "asset_id": "TAT-IRE-074",
-          "src": "media/portfolio/irezumi/TAT-IRE-074.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and red frog warrior with a sword and koi on the forearm.",
-          "caption": "Frog warrior and koi.",
-          "duplicate_group": "IRE-SLEEVE-73-74"
-        },
-        {
-          "asset_id": "TAT-IRE-075",
-          "src": "media/portfolio/irezumi/TAT-IRE-075.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and red koi with cherry blossoms on the forearm.",
-          "caption": "Koi and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-076",
-          "src": "media/portfolio/irezumi/TAT-IRE-076.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and grey paired cherries drawn as smiling faces on the lower leg.",
-          "caption": "Cherry faces.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-077",
-          "src": "media/portfolio/irezumi/TAT-IRE-077.webp",
-          "width": 728,
-          "height": 1500,
-          "alt": "Black and grey split mask beneath a chrysanthemum on the forearm.",
-          "caption": "Split mask and chrysanthemum.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-078",
-          "src": "media/portfolio/irezumi/TAT-IRE-078.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and grey hand with an eye in its palm holding a flame.",
-          "caption": "Hand, eye, and flame.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-079",
-          "src": "media/portfolio/irezumi/TAT-IRE-079.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and grey peony on the forearm.",
-          "caption": "Peony forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-080",
-          "src": "media/portfolio/irezumi/TAT-IRE-080.webp",
-          "width": 841,
-          "height": 1500,
-          "alt": "Kitsune mask and cherry blossoms across the hand.",
-          "caption": "Kitsune hand tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-081",
-          "src": "media/portfolio/irezumi/TAT-IRE-081.webp",
-          "width": 864,
-          "height": 1500,
-          "alt": "Black and grey sleeve with a woman's portrait, Noh mask, and red eye accents.",
-          "caption": "Woman and Noh mask sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-082",
-          "src": "media/portfolio/irezumi/TAT-IRE-082.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and grey lucky cat surrounded by cherry blossoms.",
-          "caption": "Lucky cat and cherry blossoms.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-083",
-          "src": "media/portfolio/irezumi/TAT-IRE-083.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Color snake coiled around a chrysanthemum on the forearm.",
-          "caption": "Snake and chrysanthemum.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-084",
-          "src": "media/portfolio/irezumi/TAT-IRE-084.webp",
-          "width": 645,
-          "height": 1500,
-          "alt": "Black and grey geisha, peony, and koi sleeve.",
-          "caption": "Geisha sleeve.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-085",
-          "src": "media/portfolio/irezumi/TAT-IRE-085.webp",
-          "width": 1125,
-          "height": 1500,
-          "alt": "Black and grey chrysanthemum across the upper arm.",
-          "caption": "Chrysanthemum upper arm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-086",
-          "src": "media/portfolio/irezumi/TAT-IRE-086.webp",
-          "width": 1262,
-          "height": 1500,
-          "alt": "Color Monkey King portrait on the side of the neck.",
-          "caption": "Monkey King neck tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-IRE-087",
-          "src": "media/portfolio/irezumi/TAT-IRE-087.webp",
-          "width": 720,
-          "height": 900,
-          "alt": "Outer view of a blackwork sleeve filled with chrysanthemums and peonies.",
-          "caption": "Flower sleeve, outer view.",
-          "duplicate_group": "IRE-FLOWER-SLEEVE-87-88"
-        },
-        {
-          "asset_id": "TAT-IRE-088",
-          "src": "media/portfolio/irezumi/TAT-IRE-088.webp",
-          "width": 720,
-          "height": 900,
-          "alt": "Inner view of a blackwork sleeve filled with chrysanthemums and peonies.",
-          "caption": "Flower sleeve, inner view.",
-          "duplicate_group": "IRE-FLOWER-SLEEVE-87-88"
-        }
-      ]
-    },
-    {
-      "id": "color",
-      "label": "Illustrative Color",
-      "jp": "色彩",
-      "items": [
-        {
-          "asset_id": "TAT-COL-001",
-          "src": "media/portfolio/color/TAT-COL-001.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Star Wars sleeve with Kylo Ren, a red lightsaber, and the Death Star.",
-          "caption": "Star Wars sleeve, outer view.",
-          "duplicate_group": "COL-SLEEVE-01-03"
-        },
-        {
-          "asset_id": "TAT-COL-002",
-          "src": "media/portfolio/color/TAT-COL-002.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a color Star Wars sleeve with stormtroopers and TIE fighters.",
-          "caption": "Star Wars sleeve, inner view.",
-          "duplicate_group": "COL-SLEEVE-01-03"
-        },
-        {
-          "asset_id": "TAT-COL-003",
-          "src": "media/portfolio/color/TAT-COL-003.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Back view of a color Star Wars sleeve with Darth Vader, spacecraft, and a lightsaber.",
-          "caption": "Star Wars sleeve, back view.",
-          "duplicate_group": "COL-SLEEVE-01-03"
-        },
-        {
-          "asset_id": "TAT-COL-004",
-          "src": "media/portfolio/color/TAT-COL-004.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color monarch butterfly on the side of the neck.",
-          "caption": "Monarch butterfly neck tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-COL-005",
-          "src": "media/portfolio/color/TAT-COL-005.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Pink cherry blossom branches across the upper arm and shoulder.",
-          "caption": "Cherry blossom branches.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-COL-006",
-          "src": "media/portfolio/color/TAT-COL-006.webp",
-          "width": 843,
-          "height": 1124,
-          "alt": "Black and grey hooded skull above a red chrysanthemum.",
-          "caption": "Hooded skull and chrysanthemum.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-COL-007",
-          "src": "media/portfolio/color/TAT-COL-007.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color geometric bird with stylized clouds.",
-          "caption": "Geometric bird.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-COL-008",
-          "src": "media/portfolio/color/TAT-COL-008.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color Medusa with snakes across the upper back and shoulder.",
-          "caption": "Medusa upper back tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-COL-009",
-          "src": "media/portfolio/color/TAT-COL-009.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black snake coiled around a red peony on the side of the neck.",
-          "caption": "Snake and peony neck tattoo.",
-          "duplicate_group": ""
-        }
-      ]
-    },
-    {
-      "id": "bng",
-      "label": "Black & Grey",
-      "jp": "墨",
-      "items": [
-        {
-          "asset_id": "TAT-BNG-001",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-001.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey panther and woman's face on the forearm.",
-          "caption": "Panther and portrait.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-002",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-002.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey winged figure on the forearm.",
-          "caption": "Winged figure.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-003",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-003.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Linework flowers arranged vertically along the spine.",
-          "caption": "Floral spine tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-004",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-004.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey coiled snake centered on the upper back.",
-          "caption": "Coiled snake backpiece.",
-          "duplicate_group": "BNG-SNAKE-BACK-04-30"
-        },
-        {
-          "asset_id": "TAT-BNG-005",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-005.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey floral tattoo wrapping the upper arm.",
-          "caption": "Floral upper arm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-006",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-006.webp",
-          "width": 1280,
-          "height": 1600,
-          "alt": "Black and grey skull beneath a spiderweb on the forearm.",
-          "caption": "Skull and spiderweb.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-007",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-007.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey rose and rosary with a cross on the wrist.",
-          "caption": "Rose and rosary.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-008",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-008.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Symmetrical black linework design spanning the back.",
-          "caption": "Symmetrical back design.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-009",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-009.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Blackwork dragon head tattoo above the ear.",
-          "caption": "Dragon head tattoo.",
-          "duplicate_group": "BNG-HEAD-09-10"
-        },
-        {
-          "asset_id": "TAT-BNG-010",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-010.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Alternate view of a blackwork dragon head tattoo above the ear.",
-          "caption": "Dragon head tattoo, alternate view.",
-          "duplicate_group": "BNG-HEAD-09-10"
-        },
-        {
-          "asset_id": "TAT-BNG-011",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-011.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Fine-line flowers and leaves on the forearm.",
-          "caption": "Floral forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-012",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-012.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Mirrored black linework tigers with red flowers across the abdomen.",
-          "caption": "Paired tigers and flowers.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-013",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-013.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey five-petal flower on the forearm.",
-          "caption": "Five-petal flower.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-014",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-014.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey spider with a flower on its abdomen.",
-          "caption": "Spider and flower.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-015",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-015.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey horned mask with a small flower.",
-          "caption": "Horned mask.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-016",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-016.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey hooded skull on the side of the neck.",
-          "caption": "Hooded skull neck tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-017",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-017.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Blackwork crown of thorns on the forearm.",
-          "caption": "Crown of thorns.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-018",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-018.webp",
-          "width": 1280,
-          "height": 1600,
-          "alt": "Black and grey anatomical heart with an eye and cross.",
-          "caption": "Heart with eye.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-019",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-019.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey folding knife with roses.",
-          "caption": "Knife and roses.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-020",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-020.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey embracing skeletons and roses on the thigh.",
-          "caption": "Skeletons and roses.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-021",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-021.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey grinning mask with a spider above it.",
-          "caption": "Mask and spider.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-022",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-022.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey butterfly on the forearm.",
-          "caption": "Butterfly forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-023",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-023.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Matching black and grey guardian lion tattoos on both thighs.",
-          "caption": "Paired guardian lions.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-024",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-024.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey rose on the forearm.",
-          "caption": "Rose forearm tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-025",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-025.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Blackwork cross above a ram skull on the forearm.",
-          "caption": "Cross and ram skull.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-026",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-026.webp",
-          "width": 1500,
-          "height": 1500,
-          "alt": "Blackwork owl head covering the back of the hand.",
-          "caption": "Owl hand tattoo.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-027",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-027.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey flower beneath crossed arrows on the forearm.",
-          "caption": "Flower and crossed arrows.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-028",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-028.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey Vegeta portrait on the upper arm with crossed arrows.",
-          "caption": "Vegeta portrait.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-029",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-029.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey hooded woman's portrait on the shoulder.",
-          "caption": "Hooded portrait.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-BNG-030",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-030.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Full view of a black and grey coiled snake centered on the back.",
-          "caption": "Coiled snake backpiece, full view.",
-          "duplicate_group": "BNG-SNAKE-BACK-04-30"
-        },
-        {
-          "asset_id": "TAT-BNG-031",
-          "src": "media/portfolio/black-and-grey/TAT-BNG-031.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey skull wearing a helmet marked with the number 3.",
-          "caption": "Helmeted skull.",
-          "duplicate_group": ""
-        }
-      ]
-    },
-    {
-      "id": "other",
-      "label": "Additional work",
-      "jp": "他",
-      "items": [
-        {
-          "asset_id": "TAT-AGG-001",
-          "src": "media/portfolio/other/TAT-AGG-001.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Red and black lettering reading “I LOVE YOU / Get Away From Me” on the thigh.",
-          "caption": "Love You lettering.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-AGG-002",
-          "src": "media/portfolio/other/TAT-AGG-002.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Small black crescent moon with two cats and three stars on the upper back.",
-          "caption": "Cats on a crescent moon.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-AGG-003",
-          "src": "media/portfolio/other/TAT-AGG-003.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Black and grey dragon sleeve in progress.",
-          "caption": "Dragon sleeve in progress.",
-          "duplicate_group": ""
-        },
-        {
-          "asset_id": "TAT-AGG-004",
-          "src": "media/portfolio/other/TAT-AGG-004.webp",
-          "width": 1200,
-          "height": 1600,
-          "alt": "Color eagle backpiece with red lightning bolts and patriotic emblems.",
-          "caption": "Eagle backpiece.",
-          "duplicate_group": ""
+          "order": 1,
+          "asset_id": "TAT-DOC-001",
+          "source_object_id": "kix.l4or7bqlugq",
+          "src": "media/portfolio/document-20260904/portfolio-01.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "a39471932ee2ebe46e547332ad6bbdb23f412714a28231fd458d8e80406d7a8c",
+          "alt": "Peony and cherry blossom sleeve.",
+          "caption": "Peony and cherry blossom sleeve."
+        },
+        {
+          "order": 2,
+          "asset_id": "TAT-DOC-002",
+          "source_object_id": "kix.5gpwvzopa1rw",
+          "src": "media/portfolio/document-20260904/portfolio-02.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "ec6a1a2bcfc81280cbf5411780cff77e4e36f9f16e2df6aa836149a85cfdea2d",
+          "alt": "Floral charm and bell sleeve detail.",
+          "caption": "Floral charm and bell sleeve detail."
+        },
+        {
+          "order": 3,
+          "asset_id": "TAT-DOC-003",
+          "source_object_id": "kix.hlg6m1lllw3x",
+          "src": "media/portfolio/document-20260904/portfolio-03.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "4444eaa6a11dda99960553986130f7e382f84b374c208ac393fc3e9a4c4589a7",
+          "alt": "Peony sleeve, full view.",
+          "caption": "Peony sleeve, full view."
+        },
+        {
+          "order": 4,
+          "asset_id": "TAT-DOC-004",
+          "source_object_id": "kix.c41u8rbolqb2",
+          "src": "media/portfolio/document-20260904/portfolio-04.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "12688f5462d0838a58d54570aa8739bd4f3eef5c4519ac83d11566796876d610",
+          "alt": "Floral charm and bell, angled view.",
+          "caption": "Floral charm and bell, angled view."
+        },
+        {
+          "order": 5,
+          "asset_id": "TAT-DOC-005",
+          "source_object_id": "kix.sqnxopj97v7h",
+          "src": "media/portfolio/document-20260904/portfolio-05.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "936478cde7fc8a0d5094612564ba6defd4ecf3d44e5eef1a413011ff52865080",
+          "alt": "Crane and peony sleeve.",
+          "caption": "Crane and peony sleeve."
+        },
+        {
+          "order": 6,
+          "asset_id": "TAT-DOC-006",
+          "source_object_id": "kix.s01gigpy2z5k",
+          "src": "media/portfolio/document-20260904/portfolio-06.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "5590fe5ec1e3b1d503a67008b64b53562089010acb7f1d937127ec3fe8c9d4b2",
+          "alt": "Crane sleeve, inner view.",
+          "caption": "Crane sleeve, inner view."
+        },
+        {
+          "order": 7,
+          "asset_id": "TAT-DOC-007",
+          "source_object_id": "kix.s9r8r85vjpbb",
+          "src": "media/portfolio/document-20260904/portfolio-07.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "804d2beb2bf24c6c0d872276db84b3d05507697a63f5b60575b8ece70ba38984",
+          "alt": "Dragon backpiece.",
+          "caption": "Dragon backpiece."
+        },
+        {
+          "order": 8,
+          "asset_id": "TAT-DOC-008",
+          "source_object_id": "kix.4543mbc4t3qu",
+          "src": "media/portfolio/document-20260904/portfolio-08.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "76072f8b9d01c387a81eb6bc2bb6f41088ea0e8330ca0f550f123f038d1e40ee",
+          "alt": "Red snake and cat sleeve.",
+          "caption": "Red snake and cat sleeve."
+        },
+        {
+          "order": 9,
+          "asset_id": "TAT-DOC-009",
+          "source_object_id": "kix.11xe1lstqdbo",
+          "src": "media/portfolio/document-20260904/portfolio-09.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "f35012b2434154f190217e550a522520620e6293333de3cd99e116de8caf2c73",
+          "alt": "Snake and peony sleeve.",
+          "caption": "Snake and peony sleeve."
+        },
+        {
+          "order": 10,
+          "asset_id": "TAT-DOC-010",
+          "source_object_id": "kix.wjwhdcxy7zux",
+          "src": "media/portfolio/document-20260904/portfolio-10.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "397a59811aecacf2899c8300e6ae09911319cf81ab554a19b2d69b2c6782441a",
+          "alt": "Peony and fox mask sleeve.",
+          "caption": "Peony and fox mask sleeve."
+        },
+        {
+          "order": 11,
+          "asset_id": "TAT-DOC-011",
+          "source_object_id": "kix.9w1j5cv56s8f",
+          "src": "media/portfolio/document-20260904/portfolio-11.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "51f0d177f4116ff772fd97770651f65423852059d217fcb0876abaab30cf4aa9",
+          "alt": "Peony and fox mask, extended view.",
+          "caption": "Peony and fox mask, extended view."
+        },
+        {
+          "order": 12,
+          "asset_id": "TAT-DOC-012",
+          "source_object_id": "kix.4fac3w6t6o9",
+          "src": "media/portfolio/document-20260904/portfolio-12.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "44854bbaf37af0e9c6b947ef8657731fb1b31cf5a8bb251347ad6fc4b090760b",
+          "alt": "Frog procession.",
+          "caption": "Frog procession."
+        },
+        {
+          "order": 13,
+          "asset_id": "TAT-DOC-013",
+          "source_object_id": "kix.z9cwolmhkq4a",
+          "src": "media/portfolio/document-20260904/portfolio-13.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "807f37dbca0e074591960f3363ae77b60e2fcc5385ac995497f0a2f127b74d63",
+          "alt": "Dragon and Daruma sleeve.",
+          "caption": "Dragon and Daruma sleeve."
+        },
+        {
+          "order": 14,
+          "asset_id": "TAT-DOC-014",
+          "source_object_id": "kix.50p061ymm9pa",
+          "src": "media/portfolio/document-20260904/portfolio-14.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "64258eabec5439c65b349bc1bd55c4e0422fc8bc52204dcc2a09a54fac074f64",
+          "alt": "Dragon and Daruma, inner view.",
+          "caption": "Dragon and Daruma, inner view."
+        },
+        {
+          "order": 15,
+          "asset_id": "TAT-DOC-015",
+          "source_object_id": "kix.6ycj7qxwrbup",
+          "src": "media/portfolio/document-20260904/portfolio-15.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "f7965308047e111cd8e80775ab51d8f0e59ffe430844b00fc6e5108101749c2c",
+          "alt": "Geisha head with red flowers.",
+          "caption": "Geisha head with red flowers."
+        },
+        {
+          "order": 16,
+          "asset_id": "TAT-DOC-016",
+          "source_object_id": "kix.5bq0iqd00fau",
+          "src": "media/portfolio/document-20260904/portfolio-16.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "27686320cac4bf2414b8e8f0d29af5dc24b4a1faeaca0976d7f7689e4969b575",
+          "alt": "Snake and peony thigh tattoo.",
+          "caption": "Snake and peony thigh tattoo."
+        },
+        {
+          "order": 17,
+          "asset_id": "TAT-DOC-017",
+          "source_object_id": "kix.8a3ffe8pm5j",
+          "src": "media/portfolio/document-20260904/portfolio-17.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "0ef69b12ca4acbf7763b3390ebded8958bc49771d5c75376f9e8730f87b17711",
+          "alt": "Snake and peony, alternate view.",
+          "caption": "Snake and peony, alternate view."
+        },
+        {
+          "order": 18,
+          "asset_id": "TAT-DOC-018",
+          "source_object_id": "kix.h2eih0thfq71",
+          "src": "media/portfolio/document-20260904/portfolio-18.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "5f0fb911c67345771d3ba17af9841463d3136f217a967f229e2edafb126db48e",
+          "alt": "Black and grey dragon sleeve.",
+          "caption": "Black and grey dragon sleeve."
+        },
+        {
+          "order": 19,
+          "asset_id": "TAT-DOC-019",
+          "source_object_id": "kix.jfox4t9ncywv",
+          "src": "media/portfolio/document-20260904/portfolio-19.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "578aed2b2ead7fe179b1e2bf4179a6dd556444c974b303d0998e63075ce53d34",
+          "alt": "Skull-headed octopus.",
+          "caption": "Skull-headed octopus."
+        },
+        {
+          "order": 20,
+          "asset_id": "TAT-DOC-020",
+          "source_object_id": "kix.9cyt5fehggde",
+          "src": "media/portfolio/document-20260904/portfolio-20.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "15ccc41b4e21ab9dc599b5d4a197e9c5b39c4f9432eb8e662b5378e82ddae31a",
+          "alt": "Black and grey tiger.",
+          "caption": "Black and grey tiger."
+        },
+        {
+          "order": 21,
+          "asset_id": "TAT-DOC-021",
+          "source_object_id": "kix.cx4wu6keek55",
+          "src": "media/portfolio/document-20260904/portfolio-21.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "f417c568cc6bd1f7953b1a99bcd793b312cc7a3a7f6dd6474d6d58a5b017dc2e",
+          "alt": "Color snake and peony.",
+          "caption": "Color snake and peony."
+        },
+        {
+          "order": 22,
+          "asset_id": "TAT-DOC-022",
+          "source_object_id": "kix.nk4vgk6qm2j1",
+          "src": "media/portfolio/document-20260904/portfolio-22.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "45c0c08aa4489a9ae24805c83c1b109b8d7cce6221896efbe0755681e0b048ce",
+          "alt": "Hannya mask.",
+          "caption": "Hannya mask."
+        },
+        {
+          "order": 23,
+          "asset_id": "TAT-DOC-023",
+          "source_object_id": "kix.rjg0j6bad95",
+          "src": "media/portfolio/document-20260904/portfolio-23.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "d24d873f68028a5b83f47cd1c63311ea388041dbb3bb9d1f7e556cfc52dc3751",
+          "alt": "Geisha portrait.",
+          "caption": "Geisha portrait."
+        },
+        {
+          "order": 24,
+          "asset_id": "TAT-DOC-024",
+          "source_object_id": "kix.3hg4f3oiw4yk",
+          "src": "media/portfolio/document-20260904/portfolio-24.jpg",
+          "width": 1536,
+          "height": 2048,
+          "sha256": "c76ccaefbaf2cce5d1010cb7bb854da8b2f3e30e7b8beee5934f4e949eef5715",
+          "alt": "Geisha and hannya pair.",
+          "caption": "Geisha and hannya pair."
+        },
+        {
+          "order": 25,
+          "asset_id": "TAT-DOC-025",
+          "source_object_id": "kix.nvbve47xr584",
+          "src": "media/portfolio/document-20260904/portfolio-25.jpg",
+          "width": 2048,
+          "height": 2048,
+          "sha256": "fdcb0e377b2bddca759a728a217cf44add62a4f1b2f8e32f5e33cfeb2aa66825",
+          "alt": "Snake and peony neck tattoo.",
+          "caption": "Snake and peony neck tattoo."
         }
       ]
     }
