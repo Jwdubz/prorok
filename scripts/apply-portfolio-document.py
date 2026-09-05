@@ -132,9 +132,12 @@ def figure(item: dict, eager: bool = False) -> str:
     priority = ' fetchpriority="high"' if eager else ""
     return (
         f'      <figure data-asset-id="{html.escape(item["asset_id"], quote=True)}">\n'
+        f'        <a class="folio__open" href="{html.escape(item["src"], quote=True)}" '
+        f'aria-label="Enlarge: {html.escape(item["caption"], quote=True)}" aria-haspopup="dialog">\n'
         f'        <img src="{html.escape(item["src"], quote=True)}" '
         f'alt="{html.escape(item["alt"], quote=True)}" width="{item["width"]}" '
         f'height="{item["height"]}" decoding="async" loading="{loading}"{priority} />\n'
+        '        </a>\n'
         f'        <figcaption>{html.escape(item["caption"])}</figcaption>\n'
         "      </figure>"
     )
@@ -181,6 +184,26 @@ def apply_portfolio_page(items: list[dict]) -> None:
         raise SystemExit("portfolio.html main boundary not found")
     opening_end = text.find(">", start) + 1
     text = text[:opening_end] + "\n" + portfolio_body(items) + text[end:]
+    if 'assets/portfolio-viewer.css' not in text:
+        text = text.replace('</head>', '<link rel="stylesheet" href="assets/portfolio-viewer.css?v=20260905-viewer-1">\n</head>')
+    if 'id="portfolio-viewer"' not in text:
+        text = text.replace('</body>', '''<dialog class="portfolio-viewer" id="portfolio-viewer" aria-label="Tattoo photograph" aria-describedby="portfolio-viewer-caption" data-lenis-prevent>
+  <header class="portfolio-viewer__bar">
+    <p class="portfolio-viewer__caption" id="portfolio-viewer-caption"></p>
+    <button type="button" class="portfolio-viewer__button" data-viewer-close aria-label="Close photo viewer" autofocus>Close ×</button>
+  </header>
+  <div class="portfolio-viewer__stage" data-lenis-prevent tabindex="0" aria-label="Photograph; scroll to explore when zoomed">
+    <img class="portfolio-viewer__image" alt="" role="button" tabindex="0" aria-label="Zoom in" />
+  </div>
+  <footer class="portfolio-viewer__bar portfolio-viewer__footer">
+    <button type="button" class="portfolio-viewer__button" data-viewer-previous aria-label="Previous photograph">← Previous</button>
+    <span class="portfolio-viewer__counter" aria-live="polite"></span>
+    <button type="button" class="portfolio-viewer__button" data-viewer-next aria-label="Next photograph">Next →</button>
+    <button type="button" class="portfolio-viewer__button" data-viewer-zoom aria-pressed="false">Zoom in</button>
+  </footer>
+</dialog>
+<script src="assets/portfolio-viewer.js?v=20260905-viewer-1"></script>
+</body>''')
     PORTFOLIO.write_text(text, encoding="utf-8")
 
 

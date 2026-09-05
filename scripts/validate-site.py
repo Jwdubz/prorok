@@ -708,16 +708,19 @@ def check_document_portfolio(failures: list[str]) -> None:
     raw = (ROOT / "portfolio.html").read_text(encoding="utf-8")
     figure_matches = re.findall(
         r'<figure\b[^>]*data-asset-id="([^"]+)"[^>]*>\s*'
-        r'<img\b([^>]*)>\s*<figcaption>([\s\S]*?)</figcaption>\s*</figure>',
+        r'<a\b([^>]*)>\s*<img\b([^>]*)>\s*</a>\s*<figcaption>([\s\S]*?)</figcaption>\s*</figure>',
         raw,
         flags=re.I,
     )
     rendered = []
-    for asset_id, attrs, caption in figure_matches:
+    for asset_id, link_attrs, attrs, caption in figure_matches:
         def attr(name: str) -> str:
             match = re.search(rf'\b{name}="([^"]*)"', attrs, flags=re.I)
             return unescape(match.group(1)) if match else ""
 
+        link_href = re.search(r'\bhref="([^"]+)"', link_attrs)
+        if not link_href or unescape(link_href.group(1)) != attr("src") or 'class="folio__open"' not in link_attrs:
+            failures.append(f"{asset_id}: photograph must link to its full-resolution source")
         rendered.append(
             {
                 "asset_id": asset_id,
