@@ -564,6 +564,63 @@ def patch_shared_chrome(text: str, page: str) -> str:
     return text
 
 
+DEPOSIT_POLICY = '''  <section class="page__lede" id="deposit-policy" aria-labelledby="deposit-policy-title" style="scroll-margin-top:110px">
+    <h2 class="field__label" id="deposit-policy-title">Deposit policy</h2>
+    <p>Your $200 deposit goes toward the total price of your tattoo at the final session.</p>
+    <p>Your deposit will be forfeited if you miss a scheduled appointment without calling, or reschedule with less than 72 hours’ notice.</p>
+    <p>If your deposit is forfeited, you will need to leave another deposit before scheduling your next session.</p>
+  </section>
+
+'''
+
+
+def final_owner_updates(text: str, page: str) -> str:
+    """Preserve Dylan's final 2026-09-06 copy and photo directions on recovery."""
+    text = text.replace("toward your first session", "toward your final session")
+    text = text.replace("toward your first tattoo session", "toward your final tattoo session")
+    if page == "booking.html":
+        if 'id="deposit-policy"' not in text:
+            text = text.replace("  <!-- FORM INTEGRATION:", DEPOSIT_POLICY + "  <!-- FORM INTEGRATION:")
+        return text
+    if page != "index.html":
+        return text
+    text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
+    text = text.replace(
+        "A tattoo should be legible <em>from across the room.</em>",
+        "A tattoo should have the power to be legible <em>from across the room,</em>",
+    )
+    text = text.replace(
+        "Powerful enough to be read from a distance, <em>alluring to draw you closer.</em>",
+        "with the allure <em>to draw you closer.</em>",
+    )
+    text = text.replace("modern elements", "timeless elements")
+    text = re.sub(
+        r'<img loading="lazy" alt="[^"]*"\s+src="media/site/japanese-sleeve-composition.webp" width="1200" height="1600" />',
+        '<img loading="lazy" alt="Healed snake and peony sleeve with black, grey, and red detail"\n'
+        '        src="media/portfolio/document-20260904/portfolio-09.jpg" width="1536" height="2048" />',
+        text,
+    )
+    text = re.sub(
+        r'A \$200 non-refundable deposit holds the\s+date and pays for the drawing done outside the appointment\.',
+        'A $200 non-refundable deposit holds the date and goes toward the total price of your tattoo at the final session. <a href="booking.html#deposit-policy" style="display:inline-block;text-decoration:underline;text-underline-offset:3px">Read the deposit policy.</a>',
+        text,
+    )
+    if "Read more reviews on Google" not in text:
+        text = re.sub(
+            r'(<article class="voices__card voices__card--smith"[\s\S]*?</footer>)',
+            rf'\1\n        <p class="page__go"><a href="{GOOGLE_MAPS_CID}" target="_blank" rel="noopener">Read more reviews on Google</a></p>',
+            text,
+            count=1,
+        )
+    if "Bring your unique ideas to life" not in text:
+        text = text.replace(
+            '<li>Flash <span><a href="flash.html">Pre-drawn designs</a></span></li>',
+            '<li>Flash <span><a href="flash.html">Pre-drawn designs</a></span></li>\n'
+            '        <li>Custom <span>Bring your unique ideas to life</span></li>',
+        )
+    return text
+
+
 def patch_index(origin: str, og_image: dict) -> None:
     path = ROOT / "index.html"
     text = path.read_text(encoding="utf-8")
@@ -623,7 +680,7 @@ def patch_index(origin: str, og_image: dict) -> None:
         text,
         count=1,
     )
-    path.write_text(text, encoding="utf-8")
+    path.write_text(final_owner_updates(text, "index.html"), encoding="utf-8")
 
 
 def patch_simple_page(page: str, origin: str, og_image: dict, extras: list[tuple[str, str]] | None = None) -> None:
@@ -652,7 +709,7 @@ def patch_simple_page(page: str, origin: str, og_image: dict, extras: list[tuple
         )
     for old, new in extras or []:
         text = text.replace(old, new)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(final_owner_updates(text, page), encoding="utf-8")
 
 
 def write_gallery_pages(assets: list[dict], groups: dict[str, dict], origin: str, images: dict[str, dict]) -> None:

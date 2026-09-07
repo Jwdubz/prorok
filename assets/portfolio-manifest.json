@@ -43,7 +43,7 @@
           "height": 2048,
           "sha256": "4444eaa6a11dda99960553986130f7e382f84b374c208ac393fc3e9a4c4589a7",
           "alt": "Peony sleeve, full view.",
-          "caption": "Peony sleeve, full view."
+          "caption": "Peony sleeve, full view (healed)."
         },
         {
           "order": 4,
@@ -54,7 +54,7 @@
           "height": 2048,
           "sha256": "12688f5462d0838a58d54570aa8739bd4f3eef5c4519ac83d11566796876d610",
           "alt": "Floral charm and bell, angled view.",
-          "caption": "Floral charm and bell, angled view."
+          "caption": "Floral charm and bell, angled view (healed)."
         },
         {
           "order": 5,
@@ -98,7 +98,7 @@
           "height": 2048,
           "sha256": "76072f8b9d01c387a81eb6bc2bb6f41088ea0e8330ca0f550f123f038d1e40ee",
           "alt": "Red snake and cat sleeve.",
-          "caption": "Red snake and cat sleeve."
+          "caption": "Red snake and cat sleeve (healed)."
         },
         {
           "order": 9,
@@ -109,7 +109,7 @@
           "height": 2048,
           "sha256": "f35012b2434154f190217e550a522520620e6293333de3cd99e116de8caf2c73",
           "alt": "Snake and peony sleeve.",
-          "caption": "Snake and peony sleeve."
+          "caption": "Snake and peony sleeve (healed)."
         },
         {
           "order": 10,
@@ -120,7 +120,7 @@
           "height": 2048,
           "sha256": "397a59811aecacf2899c8300e6ae09911319cf81ab554a19b2d69b2c6782441a",
           "alt": "Peony and fox mask sleeve.",
-          "caption": "Peony and fox mask sleeve."
+          "caption": "Peony and fox mask sleeve (healed)."
         },
         {
           "order": 11,
@@ -131,7 +131,7 @@
           "height": 2048,
           "sha256": "51f0d177f4116ff772fd97770651f65423852059d217fcb0876abaab30cf4aa9",
           "alt": "Peony and fox mask, extended view.",
-          "caption": "Peony and fox mask, extended view."
+          "caption": "Peony and fox mask, extended view (healed)."
         },
         {
           "order": 12,
@@ -153,7 +153,7 @@
           "height": 2048,
           "sha256": "807f37dbca0e074591960f3363ae77b60e2fcc5385ac995497f0a2f127b74d63",
           "alt": "Dragon and Daruma sleeve.",
-          "caption": "Dragon and Daruma sleeve."
+          "caption": "Dragon and Daruma sleeve (healed)."
         },
         {
           "order": 14,
@@ -164,7 +164,7 @@
           "height": 2048,
           "sha256": "64258eabec5439c65b349bc1bd55c4e0422fc8bc52204dcc2a09a54fac074f64",
           "alt": "Dragon and Daruma, inner view.",
-          "caption": "Dragon and Daruma, inner view."
+          "caption": "Dragon and Daruma, inner view (healed)."
         },
         {
           "order": 15,
@@ -197,7 +197,7 @@
           "height": 2048,
           "sha256": "0ef69b12ca4acbf7763b3390ebded8958bc49771d5c75376f9e8730f87b17711",
           "alt": "Snake and peony, alternate view.",
-          "caption": "Snake and peony, alternate view."
+          "caption": "Snake and peony, alternate view (healed)."
         },
         {
           "order": 18,
@@ -208,7 +208,7 @@
           "height": 2048,
           "sha256": "5f0fb911c67345771d3ba17af9841463d3136f217a967f229e2edafb126db48e",
           "alt": "Black and grey dragon sleeve.",
-          "caption": "Black and grey dragon sleeve."
+          "caption": "Black and grey dragon sleeve (healed)."
         },
         {
           "order": 19,
@@ -230,7 +230,7 @@
           "height": 2048,
           "sha256": "15ccc41b4e21ab9dc599b5d4a197e9c5b39c4f9432eb8e662b5378e82ddae31a",
           "alt": "Black and grey tiger.",
-          "caption": "Black and grey tiger."
+          "caption": "Black and grey tiger (healed)."
         },
         {
           "order": 21,
@@ -274,7 +274,7 @@
           "height": 2048,
           "sha256": "c76ccaefbaf2cce5d1010cb7bb854da8b2f3e30e7b8beee5934f4e949eef5715",
           "alt": "Geisha and hannya pair.",
-          "caption": "Geisha and hannya pair."
+          "caption": "Geisha and hannya pair (healed)."
         }
       ]
     }

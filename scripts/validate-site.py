@@ -50,11 +50,11 @@ INTERNAL = (
 )
 REQUIRED_COPY = [
     ("index.html", "Designed to be seen."),
-    ("index.html", "Crafted to BE remembered."),
-    ("index.html", "A tattoo should be legible"),
+    ("index.html", "Crafted to be remembered."),
+    ("index.html", "A tattoo should have the power to be legible"),
     ("index.html", "from across the room"),
-    ("index.html", "Powerful enough to be read from a distance"),
-    ("index.html", "alluring to draw you closer"),
+    ("index.html", "with the allure"),
+    ("index.html", "to draw you closer"),
     ("index.html", "Bigger is better."),
     ("index.html", "Traditional composition crafted to individual body flow"),
     ("index.html", "Each piece begins with a picture and tracing"),
@@ -62,7 +62,11 @@ REQUIRED_COPY = [
     ("index.html", "Scale and precision"),
     ("index.html", "Meet virtually for free in 15 minutes"),
     ("index.html", "Heritage Tattoo for one hour and $200"),
-    ("index.html", "That $200 goes toward your first session"),
+    ("index.html", "That $200 goes toward your final session"),
+    ("index.html", "timeless elements"),
+    ("index.html", "Read more reviews on Google"),
+    ("index.html", "Bring your unique ideas to life"),
+    ("index.html", "booking.html#deposit-policy"),
     ("index.html", "one session each month"),
     ("index.html", "free touch-ups"),
     ("index.html", "One-shot tattoos and small bangers always welcome"),
@@ -78,7 +82,9 @@ REQUIRED_COPY = [
     ("booking.html", "Out-of-town convention or guest spot"),
     ("booking.html", "Book a free 15-minute virtual tattoo consultation"),
     ("booking.html", "one-hour in-person consultation for $200"),
-    ("booking.html", "credited toward your first tattoo session"),
+    ("booking.html", "credited toward your final tattoo session"),
+    ("booking.html", "less than 72 hours’ notice"),
+    ("booking.html", "before scheduling your next session"),
     ("flash.html", "confirmed before booking"),
     ("merch.html", "Gwap Geisha Print"),
     ("merch.html", "Ko Omote T-Shirt"),
@@ -445,8 +451,8 @@ def check_correction_wave(failures: list[str]) -> None:
     about_raw = (ROOT / "about.html").read_text(encoding="utf-8")
     if SITE_MEDIA[0] not in index_raw:
         failures.append("index.html scale image is not the local site WebP")
-    if SITE_MEDIA[1] not in index_raw:
-        failures.append("index.html first Work panel is not the local site WebP")
+    if 'src="media/portfolio/document-20260904/portfolio-09.jpg"' not in index_raw:
+        failures.append("index.html first Work panel is not Dylan's final supplied photograph")
     if SITE_MEDIA[2] not in about_raw:
         failures.append("about.html portrait is not the local site WebP")
 
