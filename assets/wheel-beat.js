@@ -5,7 +5,7 @@
   const dock = document.getElementById("consult-dock");
   const header = document.querySelector(".site-header");
   const root = document.documentElement;
-  const MINIMUM_DESKTOP_STAGE = 520;
+  const MINIMUM_DESKTOP_STAGE = 360;
   const isDesktopViewport = () => matchMedia("(min-width: 881px)").matches;
   const visibleHeight = () => Math.round(window.visualViewport?.height || innerHeight);
   const layoutHeight = () => document.documentElement.clientHeight || innerHeight;
@@ -147,6 +147,7 @@
   root.dataset.wheelBeatMotion = reducedMotion ? "reduced" : "full";
   state.canCaptureWheel = (event) => {
     if (event?.ctrlKey || !event?.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return false;
+    if (touchTargetIsNative(event.target)) return false;
     if (ownsVerticalScroll(event.target, Math.sign(event.deltaY))) return false;
     if (!armed || resizeSettling || gestureLocked) return true;
     if (focusFallbackLocked) return false;
@@ -232,7 +233,7 @@
       { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
       { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
       { anchor: craftHead, group: group(craftHead, stepsContainer), label: "What a large project is" },
-      { anchor: beginHead, group: group(begin), label: "Begin", atomic: true },
+      { anchor: begin, group: group(begin), label: "Begin", atomic: true },
       { anchor: visit, group: group(visit, foot), label: "Visit" }
     ];
     const mobileDefinitions = [
@@ -305,6 +306,15 @@
     return !meaningfulFocus || Boolean(header?.contains(active) || dock?.contains(active));
   }
 
+  function resumeWheelFromLink() {
+    const active = document.activeElement;
+    if (active?.matches('a[href], button') && !touchTargetIsNative(active)) {
+      clearTimeout(focusFallbackTimer);
+      focusFallbackLocked = false;
+      active.blur();
+    }
+  }
+
   function paintField(group, { respectFocus = true, guardChrome = false } = {}) {
     const bounds = groupBounds(group || []);
     if (!bounds) {
@@ -314,6 +324,15 @@
     if (respectFocus && !focusAllowsGroup(group)) {
       hideRestingField();
       return false;
+    }
+    const active = document.activeElement;
+    if (respectFocus && guardChrome && active && active !== document.body && active !== root
+      && !header?.contains(active) && !dock?.contains(active)) {
+      const focusedRect = active.getBoundingClientRect();
+      if (focusedRect.top < topInset || focusedRect.bottom > bottomInsetStart) {
+        hideRestingField();
+        return false;
+      }
     }
     const viewportHeight = visibleHeight();
     const matteTop = clamp(
@@ -358,12 +377,14 @@
       hideRestingField();
       return;
     }
-    if (state.state === "moving") {
+    if (state.state === "moving" && !gestureLocked) {
       hideRestingField();
       return;
     }
-    const group = beatGroups[state.index] || [];
-    paintField(group, { respectFocus: true });
+    const visibleIndex = state.state === "moving" ? nearestIndex(scrollY) : state.index;
+    const group = beatGroups[visibleIndex] || [];
+    root.dataset.wheelBeatVisibleIndex = String(visibleIndex);
+    paintField(group, { respectFocus: state.state !== "moving", guardChrome: visibleIndex !== 0 });
   }
 
   function refreshStops() {
@@ -374,11 +395,11 @@
     bottomInsetStart = usableBottom;
     const minimumStage = isDesktopViewport() ? MINIMUM_DESKTOP_STAGE : 360;
     const usableHeight = Math.max(minimumStage, usableBottom - topInset);
-    const mediaBottom = Math.max(topInset + 200, viewportHeight);
-    const scaleMediaHeight = Math.max(420, mediaBottom - topInset);
+    const scaleMediaHeight = usableHeight;
     root.style.setProperty("--wheel-beat-stage-height", usableHeight + "px");
     root.style.setProperty("--wheel-beat-full-stage-height", scaleMediaHeight + "px");
-    root.style.setProperty("--wheel-beat-scale-media-height", Math.max(420, viewportHeight) + "px");
+    root.style.setProperty("--wheel-beat-bottom-clearance", bottomClearance + "px");
+    root.style.setProperty("--wheel-beat-scale-media-height", usableHeight + "px");
     root.style.setProperty("--wheel-beat-work-media-height", Math.max(160, usableHeight - 218) + "px");
     root.style.setProperty("--wheel-beat-healed-media-height", Math.max(160, scaleMediaHeight - 218) + "px");
     document.documentElement.offsetHeight;
@@ -402,9 +423,14 @@
     const definitions = beatDefinitions();
     const topGroup = definitions[0]?.group || [];
     const endGroup = definitions[definitions.length - 1]?.group || [];
+    const visitHeading = document.querySelector("#visit h2");
+    const headingFitsAtEnd = !visitHeading || visitHeading.getBoundingClientRect().top + scrollY - maxScroll >= topInset;
+    const terminalGroup = headingFitsAtEnd ? endGroup : [
+      ...document.querySelectorAll("#visit .visit__block"), document.querySelector(".foot")
+    ].filter(Boolean);
     const raw = [
       { y: 0, label: "top", group: topGroup, terminal: true },
-      { y: maxScroll, label: "end", group: endGroup, terminal: true }
+      { y: maxScroll, label: "end", group: terminalGroup, terminal: true }
     ];
 
     definitions.forEach((definition) => {
@@ -420,15 +446,23 @@
         terminal: false
       });
       const bottomAligned = clamp(Math.round(absoluteBottom - usableBottom), 0, maxScroll);
-      const minimumContinuation = Math.max(140, Math.round(viewportHeight * .2));
-      if (!definition.atomic
-        && definition.anchor.id !== "top"
-        && bounds.bottom - bounds.top > usableHeight + 24
-        && bottomAligned - clamp(Math.round(absoluteTop - topInset), 0, maxScroll) >= minimumContinuation) {
+      const firstStop = clamp(Math.round(absoluteTop - topInset), 0, maxScroll);
+      if (definition.anchor.id !== "top"
+        && bounds.bottom - bounds.top > usableHeight + 8
+        && bottomAligned - firstStop > 8) {
+        const readingGroup = definition.group.flatMap((element) => {
+          if (element.matches(".sec__head")) return [];
+          if (element.id === "begin") return [element.querySelector(".doors__grid")];
+          return [element];
+        }).filter(Boolean);
+        const readingStep = Math.max(140, usableHeight - 80);
+        for (let y = firstStop + readingStep; y < bottomAligned - 8; y += readingStep) {
+          raw.push({ y: Math.round(y), label: definition.label + " — continuation", group: readingGroup, terminal: false });
+        }
         raw.push({
           y: bottomAligned,
           label: definition.label + " — continuation",
-          group: definition.group,
+          group: readingGroup,
           terminal: false
         });
       }
@@ -438,7 +472,7 @@
     const unique = [];
     raw.forEach((beat) => {
       const previous = unique[unique.length - 1];
-      if (!previous || beat.terminal || beat.y - previous.y > 48) {
+      if (!previous || beat.terminal || beat.y - previous.y > 8) {
         unique.push(beat);
       }
     });
@@ -448,14 +482,14 @@
     if (unique[unique.length - 1].y !== maxScroll) {
       unique.push({ y: maxScroll, label: "end", group: endGroup, terminal: true });
     }
-    const terminalDistance = Math.max(140, Math.round(viewportHeight * .2));
     const terminal = unique[unique.length - 1];
     const beforeTerminal = unique[unique.length - 2];
     const terminalSharesGroup = beforeTerminal?.group === terminal?.group;
     if (beforeTerminal
       && !beforeTerminal.terminal
       && terminal.terminal
-      && (terminalSharesGroup || terminal.y - beforeTerminal.y < terminalDistance)) {
+      && terminalSharesGroup
+      && terminal.y - beforeTerminal.y <= 8) {
       unique.splice(unique.length - 2, 1);
     }
 
@@ -615,7 +649,7 @@
     state.state = "moving";
     movementComplete = false;
     root.dataset.wheelBeatTransition = "moving";
-    hideRestingField();
+    updateRestingField();
     syncState();
 
     let finished = false;
@@ -708,7 +742,7 @@
     state.gestureId += 1;
     state.fromIndex = fromIndex;
     state.direction = direction;
-    if (nextIndex === fromIndex) {
+    if (nextIndex === fromIndex && Math.abs(current - state.stops[fromIndex]) <= 12) {
       state.boundaryAttempts += 1;
       state.targetY = state.stops[fromIndex];
       state.state = "settling";
@@ -936,6 +970,7 @@
     if (paused || !viewportCanFitBeat()) return;
     if (!event.cancelable || event.ctrlKey) return;
     if (!event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    if (touchTargetIsNative(event.target)) return;
     const direction = Math.sign(event.deltaY);
     if (ownsVerticalScroll(event.target, direction)) return;
     if (resizeSettling || !armed) {
@@ -957,6 +992,7 @@
       syncState();
       return;
     }
+    resumeWheelFromLink();
     if (focusFallbackLocked || !atomicCaptureFocusIsSafe()) {
       holdFocusFallback();
       return;
@@ -973,9 +1009,16 @@
   }
 
   addEventListener("wheel", onWheel, { capture: true, passive: false });
+  if (lenis && typeof lenis.on === "function") {
+    // Paint in the same animation tick as Lenis, before the browser's scroll event.
+    lenis.on("scroll", () => {
+      if (gestureLocked && !resizeSettling) updateRestingField();
+    });
+  }
   addEventListener("scroll", () => {
     state.currentY = Math.round(scrollY);
     state.currentIndex = nearestIndex(scrollY);
+    if (gestureLocked && !resizeSettling) updateRestingField();
     if (!gestureLocked && !resizeSettling) {
       state.index = state.currentIndex;
       state.settledY = state.currentY;
@@ -1166,6 +1209,11 @@
       state.state = "idle";
       syncState();
     }
-    updateRestingField();
+    if (!fixedChrome && focused !== document.body && focused !== root) {
+      // Native keyboard navigation must be able to reach links behind the matte.
+      hideRestingField();
+    } else {
+      updateRestingField();
+    }
   });
 })();

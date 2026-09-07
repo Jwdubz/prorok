@@ -544,13 +544,13 @@ def check_correction_wave(failures: list[str]) -> None:
         if token not in wheel_js:
             failures.append(f"wheel-beat.js missing desktop beat token {token}")
     for token in (
-        "const MINIMUM_DESKTOP_STAGE = 520",
+        "const MINIMUM_DESKTOP_STAGE = 360",
         "desktopDefinitions.map((definition) => ({ ...definition, atomic: true }))",
         "const terminalSharesGroup = beforeTerminal?.group === terminal?.group",
-        "terminalSharesGroup || terminal.y - beforeTerminal.y < terminalDistance",
+        "terminal.y - beforeTerminal.y <= 8",
     ):
         if token not in wheel_js:
-            failures.append(f"wheel-beat.js missing the no-partial-desktop-beat contract: {token}")
+            failures.append(f"wheel-beat.js missing the desktop viewport and stop contract: {token}")
     for token in (
         'html[data-wheel-beat-mode="on"] #thesis',
         'html[data-wheel-beat-mode="on"] #work > .panel:has(+ .work__to-folio)',

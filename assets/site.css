@@ -48,8 +48,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   pointer-events:none;transition:none}
 .wheel-beat-curtain--top{top:0;height:var(--wheel-beat-matte-top,0px)}
 .wheel-beat-curtain--bottom{top:var(--wheel-beat-matte-bottom-start,100vh);bottom:0}
-html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"][data-wheel-beat-state="idle"] .wheel-beat-curtain,
-html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"][data-wheel-beat-state="settling"] .wheel-beat-curtain{
+html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
   opacity:1;pointer-events:auto}
 
 @media (min-width:881px){
@@ -64,6 +63,8 @@ html[data-wheel-beat-mode="on"] #scale .scale__track img{
 
 html[data-wheel-beat-mode="on"] #work > .sec__head{
   margin-bottom:1rem}
+html[data-wheel-beat-mode="on"] #work .panel__img{
+  width:auto;max-height:var(--wheel-beat-stage-height);justify-self:center}
 html[data-wheel-beat-mode="on"] #work > .sec__head + .panel .panel__img{
   width:auto;height:var(--wheel-beat-work-media-height,auto);max-width:100%;
   max-height:none;justify-self:center;aspect-ratio:3 / 4}
@@ -105,7 +106,7 @@ html[data-wheel-beat-mode="on"] .thesis__seal{
   transform:rotate(-4deg)!important}
 
 html[data-wheel-beat-mode="on"] #begin{
-  width:100%;min-height:var(--wheel-beat-full-stage-height,var(--wheel-beat-stage-height,auto));
+  width:100%;min-height:var(--wheel-beat-stage-height,auto);
   padding:clamp(.75rem,2vh,1.25rem) clamp(1rem,4vw,3rem);
   display:grid;grid-template-rows:auto minmax(0,1fr);align-content:center}
 html[data-wheel-beat-mode="on"] #begin > .sec__head{
@@ -131,6 +132,8 @@ html[data-wheel-beat-mode="on"] #begin .door li{
   font-size:clamp(.74rem,.9vw,.84rem);padding:.32rem 0}
 html[data-wheel-beat-mode="on"] #begin .door .btn{
   padding:.75rem 1.5rem;font-size:.68rem}
+html[data-wheel-beat-mode="on"] .foot{
+  padding-bottom:calc(2.2rem + var(--wheel-beat-bottom-clearance,90px) + env(safe-area-inset-bottom,0px))}
 }
 
 .site-header{position:fixed;top:0;left:0;right:0;z-index:100}

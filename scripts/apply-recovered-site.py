@@ -584,6 +584,10 @@ def final_owner_updates(text: str, page: str) -> str:
         return text
     if page != "index.html":
         return text
+    text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
+                  'href="assets/site.css?v=20260906-beat-isolation"', text)
+    text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
+                  'src="assets/wheel-beat.js?v=20260906-beat-isolation"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
