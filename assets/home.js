@@ -1,7 +1,7 @@
 (() => {
   const loader = document.getElementById("loader");
   const hashTarget = location.hash && location.hash !== "#"
-    ? document.querySelector(["#healed", "#fresh-healed"].includes(location.hash)
+    ? document.querySelector(["#healed", "#fresh-healed", "#healed-trio"].includes(location.hash)
       ? "#healed .sec__head" : location.hash)
     : null;
 
@@ -22,15 +22,15 @@
   const reducedMotion = document.documentElement.dataset.motion === "reduced";
   const beatWheelRequested = pageParams.get("wheel") !== "off"
     && !reducedMotion;
-  const healedVideo = document.querySelector("#healed .healed-montage video");
+  const healedVideos = Array.from(document.querySelectorAll("#healed .healed-montage video"));
 
   if (beatWheelRequested) {
     document.querySelectorAll("#work .panel img").forEach((img) => {
       img.loading = "eager";
     });
-    if (healedVideo) healedVideo.preload = "auto";
+    healedVideos.forEach((video) => { video.preload = "auto"; });
   }
-  if (healedVideo) healedVideo.play().catch(() => {});
+  healedVideos.forEach((video) => { video.play().catch(() => {}); });
 
   function hero() {
     gsap.timeline({ defaults: { ease: "power4.out" } })

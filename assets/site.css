@@ -51,19 +51,31 @@ button,input,textarea,select{font:inherit;color:inherit}
 html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
   opacity:1;pointer-events:auto}
 
-.fresh-healed__pair{--comparison-height:min(76svh,52rem);
-  position:relative;width:100%;aspect-ratio:139 / 120;
-  max-width:calc(var(--comparison-height) * 139 / 120);margin:clamp(3rem,8vh,5rem) auto 0;
+.healed-comparisons{--comparison-height:min(76svh,52rem);--comparison-gap:clamp(1rem,2vw,2rem);
+  display:grid;grid-template-columns:minmax(0,76589fr) minmax(0,32400fr);
+  gap:var(--comparison-gap);align-items:start;width:100%;
+  max-width:calc(var(--comparison-height) * 139 / 120 + var(--comparison-height) * 270 / 551 + var(--comparison-gap));
+  margin:clamp(3rem,8vh,5rem) auto 0}
+/* Column weights preserve equal heights at the two native composite aspect ratios. */
+.fresh-healed__pair,.healed-trio{position:relative;width:100%;margin:0;
   overflow:hidden;background:#080706}
-.fresh-healed__pair video{width:100%;height:100%;object-fit:contain}
+.fresh-healed__pair{aspect-ratio:139 / 120}
+.healed-trio{aspect-ratio:270 / 551;container-type:inline-size}
+.healed-comparisons video{width:100%;height:100%;object-fit:contain}
 .fresh-healed__labels{position:absolute;bottom:0;left:0;right:0;
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.877698%;pointer-events:none}
-.fresh-healed__labels span{
+.fresh-healed__labels span,.healed-trio__labels span{
   padding:2rem .5rem clamp(.8rem,2vw,1.25rem);text-align:center;pointer-events:none;
   font-size:clamp(.9rem,1.6vw,1.2rem);font-weight:500;letter-spacing:.08em;
   color:var(--paper);text-shadow:0 1px 5px rgba(0,0,0,.8);
   background:linear-gradient(transparent,rgba(0,0,0,.55))}
-html[data-wheel-beat-mode="on"] .fresh-healed__pair{
+.healed-trio__labels{position:absolute;inset:0;pointer-events:none}
+.healed-trio__labels span{position:absolute;bottom:0;width:48.333333%;
+  padding-inline:.25rem;font-size:clamp(1rem,6cqw,1.2rem);text-shadow:none}
+.healed-trio__labels .healed-trio__label--top{bottom:43.738657%;left:0;width:100%}
+.healed-trio__label--left{left:0}
+.healed-trio__label--right{right:0}
+html[data-wheel-beat-mode="on"] .healed-comparisons{
   --comparison-height:var(--wheel-beat-healed-media-height,76svh)}
 
 @media (min-width:881px){
@@ -421,6 +433,9 @@ html[data-wheel-beat-mode="on"] .foot{
 }
 @media (max-width:600px){
   .folio-flow{grid-template-columns:1fr}
+  .healed-comparisons{grid-template-columns:minmax(0,1fr);justify-items:center;gap:2rem}
+  .healed-comparisons .fresh-healed__pair{max-width:calc(var(--comparison-height) * 139 / 120)}
+  .healed-comparisons .healed-trio{max-width:calc(var(--comparison-height) * 270 / 551)}
 }
 @media (max-width:360px){
   .nav{padding-inline:.65rem;gap:.3rem}

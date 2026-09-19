@@ -574,18 +574,32 @@ DEPOSIT_POLICY = '''  <section class="page__lede" id="deposit-policy" aria-label
 '''
 
 
-FRESH_HEALED_FIGURE = '''    <figure class="healed-montage fresh-healed__pair" id="fresh-healed">
-      <video autoplay muted loop playsinline preload="metadata" width="2224" height="1920"
-        poster="media/video/fresh-healed-synced.jpg"
-        aria-label="Synchronized Fresh (left) and Healed (right) tattoo comparison">
-        <source src="media/video/fresh-healed-synced.mp4" type="video/mp4" />
-      </video>
-      <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
-    </figure>'''
+HEALED_COMPARISONS = '''    <div class="healed-montage healed-comparisons">
+      <figure class="fresh-healed__pair" id="fresh-healed">
+        <video autoplay muted loop playsinline preload="metadata" width="2224" height="1920"
+          poster="media/video/fresh-healed-synced.jpg"
+          aria-label="Synchronized Fresh (left) and Healed (right) tattoo comparison">
+          <source src="media/video/fresh-healed-synced.mp4" type="video/mp4" />
+        </video>
+        <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
+      </figure>
+      <figure class="healed-trio" id="healed-trio">
+        <video autoplay muted loop playsinline preload="metadata" width="1080" height="2204"
+          poster="media/video/healed-trio.jpg"
+          aria-label="Healed tattoo (top) with Fresh views (bottom left and bottom right)">
+          <source src="media/video/healed-trio.mp4" type="video/mp4" />
+        </video>
+        <div class="healed-trio__labels">
+          <span class="healed-trio__label--top">Healed</span>
+          <span class="healed-trio__label--left">Fresh</span>
+          <span class="healed-trio__label--right">Fresh</span>
+        </div>
+      </figure>
+    </div>'''
 
 
 def ensure_fresh_healed_comparison(text: str) -> str:
-    """Keep the approved comparison in Healed, never as an additional section."""
+    """Keep both approved comparisons together in the existing Healed beat."""
     text = re.sub(
         r'<section class="fresh-healed"[^>]*>[\s\S]*?</section>\n*',
         "",
@@ -598,9 +612,18 @@ def ensure_fresh_healed_comparison(text: str) -> str:
         "",
         text,
     )
+    updated, count = re.subn(
+        r'(?m)^ *<div\b(?=[^>]*\bclass="[^"]*\bhealed-comparisons\b)[^>]*>'
+        r'[\s\S]*?</figure>\s*</div>',
+        HEALED_COMPARISONS,
+        text,
+        count=1,
+    )
+    if count:
+        return updated
     return re.sub(
         r'(?m)^ *<figure\b(?=[^>]*\bclass="[^"]*\bhealed-montage\b)[^>]*>[\s\S]*?</figure>',
-        FRESH_HEALED_FIGURE,
+        HEALED_COMPARISONS,
         text,
         count=1,
     )
@@ -617,11 +640,11 @@ def final_owner_updates(text: str, page: str) -> str:
     if page != "index.html":
         return text
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
-                  'href="assets/site.css?v=20260919-healed-single-beat"', text)
+                  'href="assets/site.css?v=20260919-healed-trio"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-healed-single-beat"', text)
+                  'src="assets/wheel-beat.js?v=20260919-healed-trio"', text)
     text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
-                  'src="assets/home.js?v=20260919-healed-single-beat"', text)
+                  'src="assets/home.js?v=20260919-healed-trio"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
