@@ -208,7 +208,7 @@
     const workHead = document.querySelector("#work > .sec__head");
     const workPanels = Array.from(document.querySelectorAll("#work > .panel"));
     const portfolioLink = document.querySelector("#work > .work__to-folio");
-    const freshHealed = document.querySelector("#fresh-healed .fresh-healed__pair");
+    const freshHealed = document.getElementById("fresh-healed");
     const healedHead = document.querySelector("#healed .sec__head");
     const healedMontage = document.querySelector("#healed .healed-montage");
     const voicesHead = document.querySelector("#voices > .sec__head");

@@ -574,8 +574,8 @@ DEPOSIT_POLICY = '''  <section class="page__lede" id="deposit-policy" aria-label
 '''
 
 
-FRESH_HEALED_SECTION = '''<section class="fresh-healed" id="fresh-healed" aria-label="Fresh and healed tattoo comparison">
-  <div class="fresh-healed__pair">
+FRESH_HEALED_SECTION = '''<section class="fresh-healed" aria-label="Fresh and healed tattoo comparison">
+  <div class="fresh-healed__pair" id="fresh-healed">
     <figure class="fresh-healed__video">
       <video autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
         poster="media/video/fresh-7733.jpg" aria-label="Fresh tattoo">
@@ -617,7 +617,7 @@ def final_owner_updates(text: str, page: str) -> str:
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
                   'href="assets/site.css?v=20260919-fresh-healed"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-fresh-healed"', text)
+                  'src="assets/wheel-beat.js?v=20260919-fresh-healed-2"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
