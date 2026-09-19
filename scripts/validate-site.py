@@ -972,6 +972,26 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
     wheel_js = (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")
     if "anchor: freshHealed" in wheel_js:
         failures.append("wheel-beat.js: comparison must not create a duplicate standalone beat")
+    for viewport in ("desktop", "mobile"):
+        definitions = re.search(
+            rf'const {viewport}Definitions\s*=\s*\[([\s\S]*?)\n\s*\];', wheel_js
+        )
+        healed_beats = re.findall(
+            r'\{[^{}]*\banchor\s*:\s*healed(?:Head|Montage)\b[^{}]*\}',
+            definitions.group(1) if definitions else "",
+        )
+        combined = len(healed_beats) == 1 and all(
+            re.search(pattern, healed_beats[0])
+            for pattern in (
+                r'\banchor\s*:\s*healedHead\b',
+                r'\bgroup\s*:\s*group\(\s*healedHead\s*,\s*healedMontage\s*\)',
+                r'\batomic\s*:\s*true\b',
+            )
+        )
+        if not combined:
+            failures.append(
+                f"wheel-beat.js: {viewport} Healed heading and comparison must share one atomic beat"
+            )
 
 
 def main() -> int:

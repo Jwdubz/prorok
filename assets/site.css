@@ -64,7 +64,7 @@ html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
   color:var(--paper);text-shadow:0 1px 5px rgba(0,0,0,.8);
   background:linear-gradient(transparent,rgba(0,0,0,.55))}
 html[data-wheel-beat-mode="on"] .fresh-healed__pair{
-  --comparison-height:var(--wheel-beat-stage-height,76svh)}
+  --comparison-height:var(--wheel-beat-healed-media-height,76svh)}
 
 @media (min-width:881px){
 html[data-wheel-beat-mode="on"] #scale{

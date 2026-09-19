@@ -1,7 +1,8 @@
 (() => {
   const loader = document.getElementById("loader");
   const hashTarget = location.hash && location.hash !== "#"
-    ? document.querySelector(location.hash)
+    ? document.querySelector(["#healed", "#fresh-healed"].includes(location.hash)
+      ? "#healed .sec__head" : location.hash)
     : null;
 
   function hideLoader() {

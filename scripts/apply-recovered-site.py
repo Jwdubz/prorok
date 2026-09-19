@@ -617,11 +617,11 @@ def final_owner_updates(text: str, page: str) -> str:
     if page != "index.html":
         return text
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
-                  'href="assets/site.css?v=20260919-healed-comparison"', text)
+                  'href="assets/site.css?v=20260919-healed-single-beat"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-healed-comparison"', text)
+                  'src="assets/wheel-beat.js?v=20260919-healed-single-beat"', text)
     text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
-                  'src="assets/home.js?v=20260919-healed-comparison"', text)
+                  'src="assets/home.js?v=20260919-healed-single-beat"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
