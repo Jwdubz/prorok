@@ -22,20 +22,6 @@
   const beatWheelRequested = pageParams.get("wheel") !== "off"
     && !reducedMotion;
   const healedVideo = document.querySelector("#healed .healed-montage video");
-  const healedSourceQuery = matchMedia("(max-width: 600px)");
-
-  function refreshHealedSource() {
-    if (!healedVideo) return;
-    healedVideo.removeAttribute("src");
-    healedVideo.load();
-    healedVideo.play().catch(() => {});
-  }
-
-  if (healedSourceQuery.addEventListener) {
-    healedSourceQuery.addEventListener("change", refreshHealedSource);
-  } else {
-    healedSourceQuery.addListener(refreshHealedSource);
-  }
 
   if (beatWheelRequested) {
     document.querySelectorAll("#work .panel img").forEach((img) => {
@@ -43,7 +29,7 @@
     });
     if (healedVideo) healedVideo.preload = "auto";
   }
-  refreshHealedSource();
+  if (healedVideo) healedVideo.play().catch(() => {});
 
   function hero() {
     gsap.timeline({ defaults: { ease: "power4.out" } })

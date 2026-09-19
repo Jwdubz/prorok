@@ -942,6 +942,38 @@ def check_no_particle_overlays(failures: list[str]) -> None:
             failures.append(f"{path.relative_to(ROOT)}: particle overlays are prohibited by AGENTS.md")
 
 
+def check_healed_comparison(raw: str, failures: list[str]) -> None:
+    """The approved synchronized pair replaces the old Healed video exactly once."""
+    source = 'src="media/video/fresh-healed-synced.mp4"'
+    if raw.count(source) != 1:
+        failures.append("index.html: expected exactly one synchronized Fresh/Healed source")
+    if re.search(r'<section\b[^>]*\bclass="[^"]*\bfresh-healed\b', raw):
+        failures.append("index.html: the standalone Fresh/Healed section must stay removed")
+    if re.search(r'src="healed-montage(?:-mobile)?\.mp4', raw):
+        failures.append("index.html: the superseded Healed montage must not return")
+    healed = re.search(r'<section\b[^>]*\bid="healed"[^>]*>([\s\S]*?)</section>', raw)
+    figure = re.search(
+        r'<figure\b(?=[^>]*\bid="fresh-healed")(?=[^>]*\bclass="[^"]*\bhealed-montage\b)'
+        r'(?=[^>]*\bclass="[^"]*\bfresh-healed__pair\b)[^>]*>([\s\S]*?)</figure>',
+        healed.group(1) if healed else "",
+    )
+    if not figure:
+        failures.append("index.html: synchronized comparison must occupy the Healed figure")
+        return
+    content = figure.group(1)
+    if content.count("<video ") != 1 or content.count("<source ") != 1 or source not in content:
+        failures.append("index.html: Healed comparison must use one shared video timeline")
+    for attribute in ('width="2224"', 'height="1920"', 'poster="media/video/fresh-healed-synced.jpg"'):
+        if attribute not in content:
+            failures.append(f"index.html: Healed comparison missing {attribute}")
+    labels = re.search(r'<div class="fresh-healed__labels">([\s\S]*?)</div>', content)
+    if not labels or re.findall(r'<span>(.*?)</span>', labels.group(1)) != ["Fresh", "Healed"]:
+        failures.append("index.html: comparison labels must be Fresh on the left, Healed on the right")
+    wheel_js = (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")
+    if "anchor: freshHealed" in wheel_js:
+        failures.append("wheel-beat.js: comparison must not create a duplicate standalone beat")
+
+
 def main() -> int:
     failures: list[str] = []
     check_no_particle_overlays(failures)
@@ -1076,6 +1108,7 @@ def main() -> int:
             failures.append(f"site.css: floating consultation dock missing bottom-center contract {token}")
     if 'data-prorok-form="inquiry"' in index_raw or 'class="inquiry-chapter"' in index_raw:
         failures.append("index.html: homepage inquiry form must stay removed")
+    check_healed_comparison(index_raw, failures)
     if 'id="start"' in index_raw:
         failures.append("index.html: leftover How to get started teaser #start")
 

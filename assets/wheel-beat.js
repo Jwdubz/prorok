@@ -208,7 +208,6 @@
     const workHead = document.querySelector("#work > .sec__head");
     const workPanels = Array.from(document.querySelectorAll("#work > .panel"));
     const portfolioLink = document.querySelector("#work > .work__to-folio");
-    const freshHealed = document.getElementById("fresh-healed");
     const healedHead = document.querySelector("#healed .sec__head");
     const healedMontage = document.querySelector("#healed .healed-montage");
     const voicesHead = document.querySelector("#voices > .sec__head");
@@ -229,8 +228,8 @@
       { anchor: workHead, group: group(workHead, workPanels[0]), label: "The Work", atomic: true },
       { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
       { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
-      { anchor: freshHealed, group: group(freshHealed), label: "Fresh and healed", atomic: true },
-      { anchor: healedHead, group: group(healedHead, healedMontage), label: "Healed", atomic: true },
+      { anchor: healedHead, group: group(healedHead), label: "Healed", atomic: true },
+      { anchor: healedMontage, group: group(healedMontage), label: "Fresh and healed", atomic: true },
       { anchor: voicesHead, group: group(voicesHead, voices[0]), label: "In their words" },
       { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
       { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
@@ -246,7 +245,6 @@
       { anchor: workPanels[0], group: group(workPanels[0]), label: labelFor(workPanels[0]) },
       { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
       { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
-      { anchor: freshHealed, group: group(freshHealed), label: "Fresh and healed", atomic: true },
       { anchor: healedHead, group: group(healedHead), label: "Healed" },
       { anchor: healedMontage, group: group(healedMontage), label: "Healed work" },
       { anchor: voicesHead, group: group(voicesHead), label: "In their words" },
@@ -404,17 +402,11 @@
     root.style.setProperty("--wheel-beat-bottom-clearance", bottomClearance + "px");
     root.style.setProperty("--wheel-beat-scale-media-height", usableHeight + "px");
     root.style.setProperty("--wheel-beat-work-media-height", Math.max(160, usableHeight - 218) + "px");
-    root.style.setProperty("--wheel-beat-healed-media-height", Math.max(160, scaleMediaHeight - 218) + "px");
     document.documentElement.offsetHeight;
     const workHeadingHeight = document.querySelector("#work > .sec__head")?.getBoundingClientRect().height || 0;
-    const healedHeadingHeight = document.querySelector("#healed .sec__head")?.getBoundingClientRect().height || 0;
     root.style.setProperty(
       "--wheel-beat-work-media-height",
       Math.max(160, usableHeight - Math.ceil(workHeadingHeight) - 16) + "px"
-    );
-    root.style.setProperty(
-      "--wheel-beat-healed-media-height",
-      Math.max(160, scaleMediaHeight - Math.ceil(healedHeadingHeight) - 16) + "px"
     );
     document.documentElement.offsetHeight;
     if (window.ScrollTrigger && typeof ScrollTrigger.refresh === "function") {
@@ -1106,7 +1098,6 @@
         root.style.removeProperty("--wheel-beat-full-stage-height");
         root.style.removeProperty("--wheel-beat-scale-media-height");
         root.style.removeProperty("--wheel-beat-work-media-height");
-        root.style.removeProperty("--wheel-beat-healed-media-height");
         root.dataset.wheelBeatMode = "paused";
         resizeTimer = 0;
         document.documentElement.offsetHeight;

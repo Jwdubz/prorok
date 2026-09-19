@@ -574,32 +574,36 @@ DEPOSIT_POLICY = '''  <section class="page__lede" id="deposit-policy" aria-label
 '''
 
 
-FRESH_HEALED_SECTION = '''<section class="fresh-healed" aria-label="Fresh and healed tattoo comparison">
-  <div class="fresh-healed__pair" id="fresh-healed">
-    <video autoplay muted loop playsinline preload="metadata" width="2224" height="1920"
-      poster="media/video/fresh-healed-synced.jpg"
-      aria-label="Synchronized Fresh (left) and Healed (right) tattoo comparison">
-      <source src="media/video/fresh-healed-synced.mp4" type="video/mp4" />
-    </video>
-    <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
-  </div>
-</section>
-
-'''
+FRESH_HEALED_FIGURE = '''    <figure class="healed-montage fresh-healed__pair" id="fresh-healed">
+      <video autoplay muted loop playsinline preload="metadata" width="2224" height="1920"
+        poster="media/video/fresh-healed-synced.jpg"
+        aria-label="Synchronized Fresh (left) and Healed (right) tattoo comparison">
+        <source src="media/video/fresh-healed-synced.mp4" type="video/mp4" />
+      </video>
+      <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
+    </figure>'''
 
 
 def ensure_fresh_healed_comparison(text: str) -> str:
-    """Restore the synchronized comparison, including upgrades from the separate clips."""
-    updated, count = re.subn(
+    """Keep the approved comparison in Healed, never as an additional section."""
+    text = re.sub(
         r'<section class="fresh-healed"[^>]*>[\s\S]*?</section>\n*',
-        FRESH_HEALED_SECTION,
+        "",
+        text,
+    )
+    # Current framing lives in site.css; old inline montage rules would override it.
+    text = re.sub(r'(?m)^\.healed-montage(?: video|::after)?\{[^}]*\}\n', "", text)
+    text = re.sub(
+        r'@media \(max-width:600px\)\{\s*\.healed-montage\{aspect-ratio:3 / 4\}\s*\}\n',
+        "",
+        text,
+    )
+    return re.sub(
+        r'(?m)^ *<figure\b(?=[^>]*\bclass="[^"]*\bhealed-montage\b)[^>]*>[\s\S]*?</figure>',
+        FRESH_HEALED_FIGURE,
         text,
         count=1,
     )
-    if count:
-        return updated
-    healed_section = '<section class="craft" id="healed" style="background:var(--sumi)">'
-    return text.replace(healed_section, FRESH_HEALED_SECTION + healed_section, 1)
 
 
 def final_owner_updates(text: str, page: str) -> str:
@@ -613,9 +617,11 @@ def final_owner_updates(text: str, page: str) -> str:
     if page != "index.html":
         return text
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
-                  'href="assets/site.css?v=20260919-fresh-healed-sync"', text)
+                  'href="assets/site.css?v=20260919-healed-comparison"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-fresh-healed-2"', text)
+                  'src="assets/wheel-beat.js?v=20260919-healed-comparison"', text)
+    text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
+                  'src="assets/home.js?v=20260919-healed-comparison"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
