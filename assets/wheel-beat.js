@@ -208,6 +208,7 @@
     const workHead = document.querySelector("#work > .sec__head");
     const workPanels = Array.from(document.querySelectorAll("#work > .panel"));
     const portfolioLink = document.querySelector("#work > .work__to-folio");
+    const freshHealed = document.querySelector("#fresh-healed .fresh-healed__pair");
     const healedHead = document.querySelector("#healed .sec__head");
     const healedMontage = document.querySelector("#healed .healed-montage");
     const voicesHead = document.querySelector("#voices > .sec__head");
@@ -228,6 +229,7 @@
       { anchor: workHead, group: group(workHead, workPanels[0]), label: "The Work", atomic: true },
       { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
       { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
+      { anchor: freshHealed, group: group(freshHealed), label: "Fresh and healed", atomic: true },
       { anchor: healedHead, group: group(healedHead, healedMontage), label: "Healed", atomic: true },
       { anchor: voicesHead, group: group(voicesHead, voices[0]), label: "In their words" },
       { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
@@ -244,6 +246,7 @@
       { anchor: workPanels[0], group: group(workPanels[0]), label: labelFor(workPanels[0]) },
       { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
       { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
+      { anchor: freshHealed, group: group(freshHealed), label: "Fresh and healed", atomic: true },
       { anchor: healedHead, group: group(healedHead), label: "Healed" },
       { anchor: healedMontage, group: group(healedMontage), label: "Healed work" },
       { anchor: voicesHead, group: group(voicesHead), label: "In their words" },
