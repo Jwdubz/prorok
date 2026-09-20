@@ -576,25 +576,28 @@ DEPOSIT_POLICY = '''  <section class="page__lede" id="deposit-policy" aria-label
 
 HEALED_COMPARISONS = '''    <div class="healed-montage healed-comparisons">
       <figure class="fresh-healed__pair" id="fresh-healed">
-        <video autoplay muted loop playsinline preload="metadata" width="2224" height="1920"
-          poster="media/video/fresh-healed-synced.jpg"
-          aria-label="Synchronized Fresh (left) and Healed (right) tattoo comparison">
-          <source src="media/video/fresh-healed-synced.mp4" type="video/mp4" />
+        <video data-sleeve-fresh autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
+          aria-label="Fresh tattoo, left view">
+          <source src="media/video/original-7733.mp4" type="video/mp4" />
+        </video>
+        <video data-sleeve-healed muted playsinline preload="metadata" width="1080" height="1920"
+          aria-label="Healed tattoo, right view">
+          <source src="media/video/original-8247.mp4" type="video/mp4" />
         </video>
         <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
       </figure>
       <figure class="healed-trio" id="healed-trio">
         <video class="healed-trio__video--left" autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
-          poster="media/video/fresh-8472.jpg" aria-label="Fresh tattoo, top left view">
-          <source src="media/video/fresh-8472.mp4" type="video/mp4" />
+          aria-label="Fresh tattoo, top left view">
+          <source src="media/video/original-8472.mp4" type="video/mp4" />
         </video>
         <video class="healed-trio__video--right" autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
-          poster="media/video/fresh-7264.jpg" aria-label="Fresh tattoo, top right view">
-          <source src="media/video/fresh-7264.mp4" type="video/mp4" />
+          aria-label="Fresh tattoo, top right view">
+          <source src="media/video/original-7264.mp4" type="video/mp4" />
         </video>
-        <video class="healed-trio__video--bottom" autoplay muted loop playsinline preload="metadata" width="1080" height="1240"
-          poster="media/video/healed-9277.jpg" aria-label="Healed tattoo, bottom view">
-          <source src="media/video/healed-9277.mp4" type="video/mp4" />
+        <video class="healed-trio__video--bottom" data-loop-end="9.4" autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
+          aria-label="Healed tattoo, bottom view">
+          <source src="media/video/original-9277.mp4" type="video/mp4" />
         </video>
         <div class="healed-trio__labels">
           <span class="healed-trio__label--left">Fresh</span>
@@ -647,11 +650,20 @@ def final_owner_updates(text: str, page: str) -> str:
     if page != "index.html":
         return text
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
-                  'href="assets/site.css?v=20260919-trio-fresh-top"', text)
+                  'href="assets/site.css?v=20260920-original-hdr"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-trio-fresh-top"', text)
+                  'src="assets/wheel-beat.js?v=20260920-original-hdr"', text)
     text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
-                  'src="assets/home.js?v=20260919-trio-fresh-top"', text)
+                  'src="assets/home.js?v=20260920-original-hdr"', text)
+    text = re.sub(r'src="assets/sleeve-sync\.js(?:\?[^\"]*)?"',
+                  'src="assets/sleeve-sync.js?v=20260920-original-hdr"', text)
+    if 'src="assets/sleeve-sync.js?' not in text:
+        text = text.replace(
+            '<script src="assets/home.js?v=20260920-original-hdr"></script>',
+            '<script src="assets/sleeve-sync.js?v=20260920-original-hdr"></script>\n'
+            '<script src="assets/home.js?v=20260920-original-hdr"></script>',
+            1,
+        )
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",

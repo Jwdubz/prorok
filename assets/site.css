@@ -62,8 +62,12 @@ html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
 .fresh-healed__pair{aspect-ratio:139 / 120}
 .healed-trio{aspect-ratio:270 / 551;container-type:inline-size}
 .healed-comparisons video{width:100%;height:100%;object-fit:contain}
+.fresh-healed__pair video{position:absolute;top:0;width:48.561151%;height:100%}
+.fresh-healed__pair [data-sleeve-fresh]{left:0}
+.fresh-healed__pair [data-sleeve-healed]{right:0}
 .healed-trio video{position:absolute;width:48.333333%;height:42.105263%;top:0}
-.healed-trio .healed-trio__video--bottom{top:auto;left:0;bottom:0;width:100%;height:56.261343%}
+.healed-trio .healed-trio__video--bottom{top:auto;left:0;bottom:0;width:100%;height:56.261343%;
+  object-fit:cover;object-position:center 41.1764706%}
 .healed-trio__video--left{left:0}
 .healed-trio__video--right{right:0}
 .fresh-healed__labels{position:absolute;bottom:0;left:0;right:0;
@@ -107,7 +111,7 @@ html[data-wheel-beat-mode="on"] #healed .sec__head{
 html[data-wheel-beat-mode="on"] #healed .healed-montage{
   margin:1rem auto 0;clip-path:none!important}
 html[data-wheel-beat-mode="on"] #healed .healed-montage video{
-  object-fit:contain;transform:none!important}
+  transform:none!important}
 html[data-wheel-beat-mode="on"] #healed .sec__head,
 html[data-wheel-beat-mode="on"] #healed .sec__head *,
 html[data-wheel-beat-mode="on"] #healed .healed-montage,

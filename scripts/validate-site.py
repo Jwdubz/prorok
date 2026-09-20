@@ -957,21 +957,24 @@ def check_made_to_age_photo(raw: str, failures: list[str]) -> None:
 
 
 def check_healed_comparison(raw: str, failures: list[str]) -> None:
-    """Both approved comparisons occupy the same Healed beat, once each."""
+    """Five original-source players occupy the same Healed beat, once each."""
     comparisons = (
-        ("fresh-healed", "fresh-healed__pair", ((None, "fresh-healed-synced", 2224, 1920),)),
+        ("fresh-healed", "fresh-healed__pair", (
+            ("fresh", "original-7733"),
+            ("healed", "original-8247"),
+        )),
         ("healed-trio", "healed-trio", (
-            ("left", "fresh-8472", 1080, 1920),
-            ("right", "fresh-7264", 1080, 1920),
-            ("bottom", "healed-9277", 1080, 1240),
+            ("left", "original-8472"),
+            ("right", "original-7264"),
+            ("bottom", "original-9277"),
         )),
     )
     for _identifier, _class_name, players in comparisons:
-        for _position, asset, _width, _height in players:
+        for _position, asset in players:
             if raw.count(f'src="media/video/{asset}.mp4"') != 1:
                 failures.append(f"index.html: expected exactly one {asset} video source")
-    if 'src="media/video/healed-trio.mp4"' in raw:
-        failures.append("index.html: the trio must use its three independent video loops")
+    if re.search(r'src="media/video/(?:healed-trio|fresh-healed-synced|fresh-8472|fresh-7264|healed-9277)\.mp4"', raw):
+        failures.append("index.html: Healed comparisons must not restore superseded tone-mapped sources")
     if re.search(r'<section\b[^>]*\bclass="[^"]*\bfresh-healed\b', raw):
         failures.append("index.html: the standalone Fresh/Healed section must stay removed")
     if re.search(r'src="healed-montage(?:-mobile)?\.mp4', raw):
@@ -989,6 +992,10 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
     figures = re.findall(r'<figure\b[^>]*\bid="([^"]+)"', wrapper.group(1))
     if figures != ["fresh-healed", "healed-trio"]:
         failures.append("index.html: Healed must show the original pair followed by the trio in one wrapper")
+    if len(re.findall(r'<video\b', wrapper.group(1))) != 5:
+        failures.append("index.html: Healed comparisons must contain five original-source players")
+    if re.search(r'\bposter\s*=', wrapper.group(1)):
+        failures.append("index.html: Healed comparisons must not restore tone-mapped posters")
     contents = {}
     for identifier, class_name, players in comparisons:
         figure = re.search(
@@ -1000,22 +1007,29 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
         contents[identifier] = content
         videos = re.findall(r'<video\b[\s\S]*?</video>', content)
         if len(videos) != len(players):
-            failures.append(f"index.html: {identifier} must contain {len(players)} independent video player(s)")
-        for video, (position, asset, width, height) in zip(videos, players):
+            failures.append(f"index.html: {identifier} must contain {len(players)} original-source video players")
+        for video, (position, asset) in zip(videos, players):
             if video.count("<source ") != 1 or f'src="media/video/{asset}.mp4"' not in video:
-                failures.append(f"index.html: {identifier} {position or 'pair'} must show {asset}")
-            attributes = [f'width="{width}"', f'height="{height}"', f'poster="media/video/{asset}.jpg"']
-            if position:
+                failures.append(f"index.html: {identifier} {position} must show {asset}")
+            attributes = ['width="1080"', 'height="1920"']
+            if identifier == "healed-trio":
                 attributes.append(f'class="healed-trio__video--{position}"')
                 description = "Healed tattoo, bottom view" if position == "bottom" else f"Fresh tattoo, top {position} view"
                 attributes.append(f'aria-label="{description}"')
+            else:
+                attributes.append(f'data-sleeve-{position}')
+            if asset == "original-9277":
+                attributes.append('data-loop-end="9.4"')
             for attribute in attributes:
                 if attribute not in video:
                     failures.append(f"index.html: {asset} missing {attribute}")
             opening_tag = video.split(">", 1)[0]
-            for attribute in ("autoplay", "muted", "loop", "playsinline"):
-                if not re.search(rf'\b{attribute}\b', opening_tag):
+            required = ("muted", "playsinline") if position == "healed" else ("autoplay", "muted", "loop", "playsinline")
+            for attribute in required:
+                if not re.search(rf'\s{attribute}(?:\s|=|$)', opening_tag):
                     failures.append(f"index.html: {asset} missing {attribute}")
+            if position == "healed" and re.search(r'\s(?:autoplay|loop)(?:\s|=|$)', opening_tag):
+                failures.append("index.html: the synchronized Healed follower must not autoplay or loop independently")
     labels = re.search(r'<div class="fresh-healed__labels">([\s\S]*?)</div>', contents["fresh-healed"])
     if not labels or re.findall(r'<span>(.*?)</span>', labels.group(1)) != ["Fresh", "Healed"]:
         failures.append("index.html: comparison labels must be Fresh on the left, Healed on the right")
@@ -1024,6 +1038,10 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
     )
     if trio_labels != [("left", "Fresh"), ("right", "Fresh"), ("bottom", "Healed")]:
         failures.append("index.html: trio labels must be Fresh top left and Fresh top right above Healed")
+    sync_scripts = list(re.finditer(r'<script src="assets/sleeve-sync\.js(?:\?[^\"]*)?"></script>', raw))
+    home_script = re.search(r'<script src="assets/home\.js(?:\?[^\"]*)?"></script>', raw)
+    if len(sync_scripts) != 1 or not home_script or sync_scripts[0].start() > home_script.start():
+        failures.append("index.html: the sleeve synchronization script must load exactly once before home.js")
     wheel_js = (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")
     if "anchor: freshHealed" in wheel_js:
         failures.append("wheel-beat.js: comparison must not create a duplicate standalone beat")

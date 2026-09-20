@@ -12,6 +12,14 @@
     loader.setAttribute("aria-hidden", "true");
   }
 
+  document.querySelectorAll("#healed video[data-loop-end]").forEach((video) => {
+    const loopEnd = Number(video.dataset.loopEnd);
+    if (!Number.isFinite(loopEnd) || loopEnd <= 0) return;
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= loopEnd) video.currentTime = 0;
+    });
+  });
+
   if (!window.gsap || !window.ScrollTrigger) {
     hideLoader();
     return;
@@ -30,7 +38,9 @@
     });
     healedVideos.forEach((video) => { video.preload = "auto"; });
   }
-  healedVideos.forEach((video) => { video.play().catch(() => {}); });
+  healedVideos.forEach((video) => {
+    if (!video.hasAttribute("data-sleeve-healed")) video.play().catch(() => {});
+  });
 
   function hero() {
     gsap.timeline({ defaults: { ease: "power4.out" } })
