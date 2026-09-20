@@ -668,6 +668,11 @@ def final_owner_updates(text: str, page: str) -> str:
         '        src="media/portfolio/document-20260904/portfolio-09.jpg" width="1536" height="2048" />',
         text,
     )
+    text = text.replace(
+        'src="healed-color-sleeve-clean.jpg" width="720" height="960"',
+        'src="media/site/healed-peony-sleeve-full.png" width="1536" height="2048"',
+        1,
+    )
     text = re.sub(
         r'A \$200 non-refundable deposit holds the\s+date and pays for the drawing done outside the appointment\.',
         'A $200 non-refundable deposit holds the date and goes toward the total price of your tattoo at the final session. <a href="booking.html#deposit-policy" style="display:inline-block;text-decoration:underline;text-underline-offset:3px">Read the deposit policy.</a>',

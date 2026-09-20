@@ -942,6 +942,20 @@ def check_no_particle_overlays(failures: list[str]) -> None:
             failures.append(f"{path.relative_to(ROOT)}: particle overlays are prohibited by AGENTS.md")
 
 
+def check_made_to_age_photo(raw: str, failures: list[str]) -> None:
+    """Preserve the owner's full-sleeve replacement in its requested homepage panel."""
+    figure = re.search(
+        r'<figure class="panel__img">\s*(<img\b[^>]+>)\s*</figure>\s*'
+        r'<div class="panel__text">\s*<span class="panel__num">[^<]*</span>\s*'
+        r'<h3>Made to age</h3>',
+        raw,
+    )
+    image_tag = figure.group(1) if figure else ""
+    for attribute in ('src="media/site/healed-peony-sleeve-full.png"', 'width="1536"', 'height="2048"'):
+        if attribute not in image_tag:
+            failures.append(f"index.html: Made to age photo missing {attribute}")
+
+
 def check_healed_comparison(raw: str, failures: list[str]) -> None:
     """Both approved comparisons occupy the same Healed beat, once each."""
     comparisons = (
@@ -1169,6 +1183,7 @@ def main() -> int:
             failures.append(f"site.css: floating consultation dock missing bottom-center contract {token}")
     if 'data-prorok-form="inquiry"' in index_raw or 'class="inquiry-chapter"' in index_raw:
         failures.append("index.html: homepage inquiry form must stay removed")
+    check_made_to_age_photo(index_raw, failures)
     check_healed_comparison(index_raw, failures)
     if 'id="start"' in index_raw:
         failures.append("index.html: leftover How to get started teaser #start")
