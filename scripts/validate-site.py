@@ -947,9 +947,9 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
     comparisons = (
         ("fresh-healed", "fresh-healed__pair", ((None, "fresh-healed-synced", 2224, 1920),)),
         ("healed-trio", "healed-trio", (
-            ("top", "healed-9277", 1080, 1240),
             ("left", "fresh-8472", 1080, 1920),
             ("right", "fresh-7264", 1080, 1920),
+            ("bottom", "healed-9277", 1080, 1240),
         )),
     )
     for _identifier, _class_name, players in comparisons:
@@ -993,6 +993,8 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
             attributes = [f'width="{width}"', f'height="{height}"', f'poster="media/video/{asset}.jpg"']
             if position:
                 attributes.append(f'class="healed-trio__video--{position}"')
+                description = "Healed tattoo, bottom view" if position == "bottom" else f"Fresh tattoo, top {position} view"
+                attributes.append(f'aria-label="{description}"')
             for attribute in attributes:
                 if attribute not in video:
                     failures.append(f"index.html: {asset} missing {attribute}")
@@ -1004,10 +1006,10 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
     if not labels or re.findall(r'<span>(.*?)</span>', labels.group(1)) != ["Fresh", "Healed"]:
         failures.append("index.html: comparison labels must be Fresh on the left, Healed on the right")
     trio_labels = re.findall(
-        r'<span class="healed-trio__label--(top|left|right)">(.*?)</span>', contents["healed-trio"]
+        r'<span class="healed-trio__label--(top|left|right|bottom)">(.*?)</span>', contents["healed-trio"]
     )
-    if trio_labels != [("top", "Healed"), ("left", "Fresh"), ("right", "Fresh")]:
-        failures.append("index.html: trio labels must be Healed above Fresh left and Fresh right")
+    if trio_labels != [("left", "Fresh"), ("right", "Fresh"), ("bottom", "Healed")]:
+        failures.append("index.html: trio labels must be Fresh top left and Fresh top right above Healed")
     wheel_js = (ROOT / "assets/wheel-beat.js").read_text(encoding="utf-8")
     if "anchor: freshHealed" in wheel_js:
         failures.append("wheel-beat.js: comparison must not create a duplicate standalone beat")

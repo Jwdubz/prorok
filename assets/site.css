@@ -62,8 +62,8 @@ html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
 .fresh-healed__pair{aspect-ratio:139 / 120}
 .healed-trio{aspect-ratio:270 / 551;container-type:inline-size}
 .healed-comparisons video{width:100%;height:100%;object-fit:contain}
-.healed-trio video{position:absolute;width:48.333333%;height:42.105263%;bottom:0}
-.healed-trio .healed-trio__video--top{top:0;left:0;bottom:auto;width:100%;height:56.261343%}
+.healed-trio video{position:absolute;width:48.333333%;height:42.105263%;top:0}
+.healed-trio .healed-trio__video--bottom{top:auto;left:0;bottom:0;width:100%;height:56.261343%}
 .healed-trio__video--left{left:0}
 .healed-trio__video--right{right:0}
 .fresh-healed__labels{position:absolute;bottom:0;left:0;right:0;
@@ -74,9 +74,9 @@ html[data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] .wheel-beat-curtain{
   color:var(--paper);text-shadow:0 1px 5px rgba(0,0,0,.8);
   background:linear-gradient(transparent,rgba(0,0,0,.55))}
 .healed-trio__labels{position:absolute;inset:0;pointer-events:none}
-.healed-trio__labels span{position:absolute;bottom:0;width:48.333333%;
+.healed-trio__labels span{position:absolute;bottom:57.894737%;width:48.333333%;
   padding-inline:.25rem;font-size:clamp(1rem,6cqw,1.2rem);text-shadow:none}
-.healed-trio__labels .healed-trio__label--top{bottom:43.738657%;left:0;width:100%}
+.healed-trio__labels .healed-trio__label--bottom{bottom:0;left:0;width:100%}
 .healed-trio__label--left{left:0}
 .healed-trio__label--right{right:0}
 html[data-wheel-beat-mode="on"] .healed-comparisons{

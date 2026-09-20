@@ -584,22 +584,22 @@ HEALED_COMPARISONS = '''    <div class="healed-montage healed-comparisons">
         <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
       </figure>
       <figure class="healed-trio" id="healed-trio">
-        <video class="healed-trio__video--top" autoplay muted loop playsinline preload="metadata" width="1080" height="1240"
-          poster="media/video/healed-9277.jpg" aria-label="Healed tattoo, top view">
-          <source src="media/video/healed-9277.mp4" type="video/mp4" />
-        </video>
         <video class="healed-trio__video--left" autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
-          poster="media/video/fresh-8472.jpg" aria-label="Fresh tattoo, bottom left view">
+          poster="media/video/fresh-8472.jpg" aria-label="Fresh tattoo, top left view">
           <source src="media/video/fresh-8472.mp4" type="video/mp4" />
         </video>
         <video class="healed-trio__video--right" autoplay muted loop playsinline preload="metadata" width="1080" height="1920"
-          poster="media/video/fresh-7264.jpg" aria-label="Fresh tattoo, bottom right view">
+          poster="media/video/fresh-7264.jpg" aria-label="Fresh tattoo, top right view">
           <source src="media/video/fresh-7264.mp4" type="video/mp4" />
         </video>
+        <video class="healed-trio__video--bottom" autoplay muted loop playsinline preload="metadata" width="1080" height="1240"
+          poster="media/video/healed-9277.jpg" aria-label="Healed tattoo, bottom view">
+          <source src="media/video/healed-9277.mp4" type="video/mp4" />
+        </video>
         <div class="healed-trio__labels">
-          <span class="healed-trio__label--top">Healed</span>
           <span class="healed-trio__label--left">Fresh</span>
           <span class="healed-trio__label--right">Fresh</span>
+          <span class="healed-trio__label--bottom">Healed</span>
         </div>
       </figure>
     </div>'''
@@ -647,11 +647,11 @@ def final_owner_updates(text: str, page: str) -> str:
     if page != "index.html":
         return text
     text = re.sub(r'href="assets/site\.css(?:\?[^\"]*)?"',
-                  'href="assets/site.css?v=20260919-trio-independent"', text)
+                  'href="assets/site.css?v=20260919-trio-fresh-top"', text)
     text = re.sub(r'src="assets/wheel-beat\.js(?:\?[^\"]*)?"',
-                  'src="assets/wheel-beat.js?v=20260919-trio-independent"', text)
+                  'src="assets/wheel-beat.js?v=20260919-trio-fresh-top"', text)
     text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
-                  'src="assets/home.js?v=20260919-trio-independent"', text)
+                  'src="assets/home.js?v=20260919-trio-fresh-top"', text)
     text = text.replace("Crafted to BE remembered.", "Crafted to be remembered.")
     text = text.replace(
         "A tattoo should be legible <em>from across the room.</em>",
