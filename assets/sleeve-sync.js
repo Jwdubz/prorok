@@ -8,11 +8,19 @@
   // file or combining the SDR Fresh and HDR Healed pixels into one color space.
   const anchors = [[0, 0], [5, 2.8], [8, 5.5], [11, 8.5], [14.5, 11], [18, 12.5]];
   const driftTolerance = 0.12;
+  const hardDriftTolerance = 0.75;
   let frame = null;
   let previousFreshTime = null;
   let buffering = false;
   let playPending = false;
   let playRejected = false;
+  let followerPlaying = false;
+  let needsAlignment = true;
+  let alignAfter = 0;
+  let retryAfter = 0;
+
+  healed.muted = true;
+  healed.playsInline = true;
 
   function ready() {
     return fresh.readyState >= 1 && healed.readyState >= 1
@@ -42,34 +50,58 @@
     frame = null;
   }
 
+  function requestPlayback() {
+    if (!active() || playPending || playRejected || performance.now() < retryAfter
+      || (!healed.paused && followerPlaying)) return;
+    // A play request is what permits metadata-only mobile loading to progress.
+    // Do not require a decoded frame or seek to a moving target before this.
+    playPending = true;
+    healed.play().then(() => {
+      followerPlaying = active();
+    }).catch((error) => {
+      followerPlaying = false;
+      if (error.name === "AbortError") retryAfter = performance.now() + 500;
+      else playRejected = true;
+    }).finally(() => {
+      playPending = false;
+      if (!active()) healed.pause();
+      schedule();
+    });
+  }
+
   function synchronize(force = false) {
-    if (!ready()) {
+    if (force) needsAlignment = true;
+    if (!active()) {
       healed.pause();
       return;
     }
+    requestPlayback();
+    if (!ready() || playPending || !followerPlaying || healed.paused
+      || healed.seeking || healed.readyState < 2) return;
     const time = fresh.currentTime;
     const looped = previousFreshTime !== null && time < previousFreshTime - driftTolerance;
     previousFreshTime = time;
+    if (looped) needsAlignment = true;
     const target = targetAt(time);
-    if (Math.abs(healed.playbackRate - target.rate) > 0.001) healed.playbackRate = target.rate;
-    const tolerance = force || looped ? 1 / 60 : driftTolerance;
-    if (!healed.seeking && Math.abs(healed.currentTime - target.time) > tolerance) {
+    const drift = target.time - healed.currentTime;
+    const tolerance = needsAlignment ? 1 / 60 : hardDriftTolerance;
+    let rate = target.rate;
+    if (performance.now() >= alignAfter && Math.abs(drift) > tolerance) {
+      needsAlignment = false;
+      alignAfter = performance.now() + 500;
       healed.currentTime = target.time;
+    } else if (!needsAlignment && Math.abs(drift) > driftTolerance) {
+      // Small decoder/seek delays are caught up while playing, not by chasing
+      // each completed seek with another seek before a frame can be displayed.
+      rate += Math.max(-0.15, Math.min(0.15, drift * 0.5));
+    } else if (Math.abs(drift) <= 1 / 60) {
+      needsAlignment = false;
     }
-    if (!active()) {
-      healed.pause();
-    } else if (healed.paused && !healed.seeking && healed.readyState >= 2 && !playPending && !playRejected) {
-      playPending = true;
-      healed.play().catch(() => { playRejected = true; }).finally(() => {
-        playPending = false;
-        // A pause or tab switch can happen while play() is still pending.
-        if (!active()) healed.pause();
-      });
-    }
+    if (Math.abs(healed.playbackRate - rate) > 0.001) healed.playbackRate = rate;
   }
 
   function schedule() {
-    if (frame !== null || !active() || !ready()) return;
+    if (frame !== null || !active() || playRejected) return;
     frame = requestAnimationFrame(() => {
       frame = null;
       synchronize();
@@ -80,12 +112,14 @@
   function resume() {
     buffering = false;
     playRejected = false;
+    retryAfter = 0;
     synchronize(true);
     schedule();
   }
 
   function suspend() {
     stopFrames();
+    followerPlaying = false;
     healed.pause();
   }
 
@@ -99,18 +133,38 @@
   // timeupdate also covers native loops and browsers that throttle animation frames.
   fresh.addEventListener("timeupdate", () => { synchronize(); schedule(); });
   [fresh, healed].forEach((video) => {
-    video.addEventListener("loadedmetadata", () => { synchronize(true); schedule(); });
+    video.addEventListener("loadedmetadata", () => { synchronize(); schedule(); });
     video.addEventListener("canplay", () => {
-      playRejected = false;
       synchronize();
       schedule();
     });
   });
-  healed.addEventListener("seeked", () => { synchronize(); schedule(); });
+  healed.addEventListener("playing", () => {
+    if (!active()) { healed.pause(); return; }
+    followerPlaying = true;
+    schedule();
+  });
+  healed.addEventListener("pause", () => { followerPlaying = false; });
+  healed.addEventListener("seeked", () => {
+    alignAfter = performance.now() + 500;
+    requestPlayback();
+    schedule();
+  });
+  function retryFromGesture() {
+    if (!active()) return;
+    playRejected = false;
+    retryAfter = 0;
+    requestPlayback();
+    schedule();
+  }
+  pair.addEventListener("pointerdown", retryFromGesture, { passive: true });
+  pair.addEventListener("touchend", retryFromGesture, { passive: true });
+  pair.addEventListener("keydown", retryFromGesture);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) suspend();
     else {
       playRejected = false;
+      retryAfter = 0;
       synchronize(true);
       schedule();
     }

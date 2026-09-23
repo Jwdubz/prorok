@@ -656,11 +656,11 @@ def final_owner_updates(text: str, page: str) -> str:
     text = re.sub(r'src="assets/home\.js(?:\?[^\"]*)?"',
                   'src="assets/home.js?v=20260920-original-hdr"', text)
     text = re.sub(r'src="assets/sleeve-sync\.js(?:\?[^\"]*)?"',
-                  'src="assets/sleeve-sync.js?v=20260920-original-hdr"', text)
+                  'src="assets/sleeve-sync.js?v=20260923-iphone-startup"', text)
     if 'src="assets/sleeve-sync.js?' not in text:
         text = text.replace(
             '<script src="assets/home.js?v=20260920-original-hdr"></script>',
-            '<script src="assets/sleeve-sync.js?v=20260920-original-hdr"></script>\n'
+            '<script src="assets/sleeve-sync.js?v=20260923-iphone-startup"></script>\n'
             '<script src="assets/home.js?v=20260920-original-hdr"></script>',
             1,
         )
