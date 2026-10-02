@@ -1,0 +1,3620 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>index native adapter preview</title><!-- Dylan Prorok approved page: index; page-level injection only. -->
+<script>document.documentElement.dataset.prorokPage="index";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo%3Awght%40400%3B500%3B600%3B800&amp;family=Shippori%20Mincho%3Awght%40400%3B500%3B600%3B700&amp;display=swap&amp;text=%20%21%22%23%24%25%26%27%28%29%2A%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C2%A0%C2%A1%C2%A2%C2%A3%C2%A4%C2%A5%C2%A6%C2%A7%C2%A8%C2%A9%C2%AA%C2%AB%C2%AC%C2%AD%C2%AE%C2%AF%C2%B0%C2%B1%C2%B2%C2%B3%C2%B4%C2%B5%C2%B6%C2%B7%C2%B8%C2%B9%C2%BA%C2%BB%C2%BC%C2%BD%C2%BE%C2%BF%C3%80%C3%81%C3%82%C3%83%C3%84%C3%85%C3%86%C3%87%C3%88%C3%89%C3%8A%C3%8B%C3%8C%C3%8D%C3%8E%C3%8F%C3%90%C3%91%C3%92%C3%93%C3%94%C3%95%C3%96%C3%97%C3%98%C3%99%C3%9A%C3%9B%C3%9C%C3%9D%C3%9E%C3%9F%C3%A0%C3%A1%C3%A2%C3%A3%C3%A4%C3%A5%C3%A6%C3%A7%C3%A8%C3%A9%C3%AA%C3%AB%C3%AC%C3%AD%C3%AE%C3%AF%C3%B0%C3%B1%C3%B2%C3%B3%C3%B4%C3%B5%C3%B6%C3%B7%C3%B8%C3%B9%C3%BA%C3%BB%C3%BC%C3%BD%C3%BE%C3%BF%C4%80%C4%81%C4%82%C4%83%C4%84%C4%85%C4%86%C4%87%C4%88%C4%89%C4%8A%C4%8B%C4%8C%C4%8D%C4%8E%C4%8F%C4%90%C4%91%C4%92%C4%93%C4%94%C4%95%C4%96%C4%97%C4%98%C4%99%C4%9A%C4%9B%C4%9C%C4%9D%C4%9E%C4%9F%C4%A0%C4%A1%C4%A2%C4%A3%C4%A4%C4%A5%C4%A6%C4%A7%C4%A8%C4%A9%C4%AA%C4%AB%C4%AC%C4%AD%C4%AE%C4%AF%C4%B0%C4%B1%C4%B2%C4%B3%C4%B4%C4%B5%C4%B6%C4%B7%C4%B8%C4%B9%C4%BA%C4%BB%C4%BC%C4%BD%C4%BE%C4%BF%C5%80%C5%81%C5%82%C5%83%C5%84%C5%85%C5%86%C5%87%C5%88%C5%89%C5%8A%C5%8B%C5%8C%C5%8D%C5%8E%C5%8F%C5%90%C5%91%C5%92%C5%93%C5%94%C5%95%C5%96%C5%97%C5%98%C5%99%C5%9A%C5%9B%C5%9C%C5%9D%C5%9E%C5%9F%C5%A0%C5%A1%C5%A2%C5%A3%C5%A4%C5%A5%C5%A6%C5%A7%C5%A8%C5%A9%C5%AA%C5%AB%C5%AC%C5%AD%C5%AE%C5%AF%C5%B0%C5%B1%C5%B2%C5%B3%C5%B4%C5%B5%C5%B6%C5%B7%C5%B8%C5%B9%C5%BA%C5%BB%C5%BC%C5%BD%C5%BE%C5%BF%C6%80%C6%81%C6%82%C6%83%C6%84%C6%85%C6%86%C6%87%C6%88%C6%89%C6%8A%C6%8B%C6%8C%C6%8D%C6%8E%C6%8F%C6%90%C6%91%C6%92%C6%93%C6%94%C6%95%C6%96%C6%97%C6%98%C6%99%C6%9A%C6%9B%C6%9C%C6%9D%C6%9E%C6%9F%C6%A0%C6%A1%C6%A2%C6%A3%C6%A4%C6%A5%C6%A6%C6%A7%C6%A8%C6%A9%C6%AA%C6%AB%C6%AC%C6%AD%C6%AE%C6%AF%C6%B0%C6%B1%C6%B2%C6%B3%C6%B4%C6%B5%C6%B6%C6%B7%C6%B8%C6%B9%C6%BA%C6%BB%C6%BC%C6%BD%C6%BE%C6%BF%C7%80%C7%81%C7%82%C7%83%C7%84%C7%85%C7%86%C7%87%C7%88%C7%89%C7%8A%C7%8B%C7%8C%C7%8D%C7%8E%C7%8F%C7%90%C7%91%C7%92%C7%93%C7%94%C7%95%C7%96%C7%97%C7%98%C7%99%C7%9A%C7%9B%C7%9C%C7%9D%C7%9E%C7%9F%C7%A0%C7%A1%C7%A2%C7%A3%C7%A4%C7%A5%C7%A6%C7%A7%C7%A8%C7%A9%C7%AA%C7%AB%C7%AC%C7%AD%C7%AE%C7%AF%C7%B0%C7%B1%C7%B2%C7%B3%C7%B4%C7%B5%C7%B6%C7%B7%C7%B8%C7%B9%C7%BA%C7%BB%C7%BC%C7%BD%C7%BE%C7%BF%C8%80%C8%81%C8%82%C8%83%C8%84%C8%85%C8%86%C8%87%C8%88%C8%89%C8%8A%C8%8B%C8%8C%C8%8D%C8%8E%C8%8F%C8%90%C8%91%C8%92%C8%93%C8%94%C8%95%C8%96%C8%97%C8%98%C8%99%C8%9A%C8%9B%C8%9C%C8%9D%C8%9E%C8%9F%C8%A0%C8%A1%C8%A2%C8%A3%C8%A4%C8%A5%C8%A6%C8%A7%C8%A8%C8%A9%C8%AA%C8%AB%C8%AC%C8%AD%C8%AE%C8%AF%C8%B0%C8%B1%C8%B2%C8%B3%C8%B4%C8%B5%C8%B6%C8%B7%C8%B8%C8%B9%C8%BA%C8%BB%C8%BC%C8%BD%C8%BE%C8%BF%C9%80%C9%81%C9%82%C9%83%C9%84%C9%85%C9%86%C9%87%C9%88%C9%89%C9%8A%C9%8B%C9%8C%C9%8D%C9%8E%C9%8F%CC%80%CC%81%CC%82%CC%83%CC%84%CC%85%CC%86%CC%87%CC%88%CC%89%CC%8A%CC%8B%CC%8C%CC%8D%CC%8E%CC%8F%CC%90%CC%91%CC%92%CC%93%CC%94%CC%95%CC%96%CC%97%CC%98%CC%99%CC%9A%CC%9B%CC%9C%CC%9D%CC%9E%CC%9F%CC%A0%CC%A1%CC%A2%CC%A3%CC%A4%CC%A5%CC%A6%CC%A7%CC%A8%CC%A9%CC%AA%CC%AB%CC%AC%CC%AD%CC%AE%CC%AF%CC%B0%CC%B1%CC%B2%CC%B3%CC%B4%CC%B5%CC%B6%CC%B7%CC%B8%CC%B9%CC%BA%CC%BB%CC%BC%CC%BD%CC%BE%CC%BF%CD%80%CD%81%CD%82%CD%83%CD%84%CD%85%CD%86%CD%87%CD%88%CD%89%CD%8A%CD%8B%CD%8C%CD%8D%CD%8E%CD%8F%CD%90%CD%91%CD%92%CD%93%CD%94%CD%95%CD%96%CD%97%CD%98%CD%99%CD%9A%CD%9B%CD%9C%CD%9D%CD%9E%CD%9F%CD%A0%CD%A1%CD%A2%CD%A3%CD%A4%CD%A5%CD%A6%CD%A7%CD%A8%CD%A9%CD%AA%CD%AB%CD%AC%CD%AD%CD%AE%CD%AF%E2%80%93%E2%80%94%E2%80%99%E2%80%9C%E2%86%90%E2%86%92%E2%98%85%E3%81%8D%E3%81%8F%E3%82%81%E3%82%8B%E3%82%8C%E3%83%BB%E4%B8%80%E4%B8%89%E4%B8%8B%E4%BA%88%E4%BA%8C%E4%BA%94%E4%BB%96%E4%BD%9C%E5%85%A5%E5%88%BA%E5%92%8C%E5%93%81%E5%9B%9B%E5%9B%B3%E5%A2%A8%E5%A3%B0%E5%A4%A7%E5%A7%8B%E5%B0%8F%E5%B7%A5%E5%B8%AB%E5%B9%B4%E5%BD%AB%E7%89%A9%E7%94%9F%E7%94%BB%E7%A8%8B%E7%B4%84%E7%B5%8C%E7%B5%B5%E9%9B%86%E9%9D%92" rel="stylesheet">
+<style data-prorok-styles="index">
+
+/* Only the imported content is reset; native editor, store and account UI remain intact. */
+#prorok-site{font-size:16px;font-weight:400;line-height:normal;letter-spacing:normal;text-transform:none;text-align:left;isolation:isolate;width:100%;min-width:0}
+#prorok-site :where(*){all:revert}
+
+
+#prorok-site{
+  --sumi:#14100e; --sumi-2:#201915;
+  --paper:#efe7d8; --paper-dim:#a2917f;
+  --vermilion:#b23a2c; --seal:#8c2f22;
+  --consult-yellow:#e3b94f; --consult-yellow-hover:#f0cd72;
+  --sans:"Archivo", system-ui, sans-serif;
+  --jp:"Shippori Mincho", serif;
+  --ease:cubic-bezier(.7,0,.2,1);
+}
+#prorok-site *{margin:0;padding:0;box-sizing:border-box}
+html[data-prorok-page]{scroll-behavior:initial}
+html[data-prorok-page].lenis,
+html[data-prorok-page].lenis #prorok-site{height:auto}
+html[data-prorok-page].lenis.lenis-smooth{scroll-behavior:auto!important}
+#prorok-site{background:var(--sumi);color:var(--paper);font-family:var(--sans);
+     overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html[data-prorok-page].no-js,
+html[data-prorok-page].no-js #prorok-site{overflow:auto;height:auto}
+html[data-prorok-page].no-js #prorok-site .loader{display:none!important}
+#prorok-site img,
+#prorok-site video{display:block;max-width:100%}
+#prorok-site a{color:inherit;text-decoration:none}
+#prorok-site h1,
+#prorok-site h2,
+#prorok-site h3,
+#prorok-site h4{font-weight:400}
+#prorok-site button,
+#prorok-site input,
+#prorok-site textarea,
+#prorok-site select{font:inherit;color:inherit}
+#prorok-site .char{display:inline-block;will-change:transform}
+#prorok-site .word{display:inline-block;white-space:nowrap}
+#prorok-site .line{display:block;overflow:hidden}
+#prorok-site .line>span{display:block;will-change:transform}
+#prorok-site :focus{outline:none}
+#prorok-site :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+#prorok-site .visit :focus-visible,
+#prorok-site .foot :focus-visible{outline-color:var(--sumi)}
+#prorok-site .skip-link{position:absolute;left:1rem;top:-5rem;z-index:300;
+  background:var(--paper);color:var(--sumi);
+  padding:.75rem 1.1rem;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:600}
+#prorok-site .skip-link:focus,
+#prorok-site .skip-link:focus-visible{top:1rem;outline:2px solid var(--vermilion);outline-offset:3px}
+#prorok-site .grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;
+  z-index:90;opacity:.42;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}
+  40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
+#prorok-site .wheel-beat-curtain{position:fixed;left:0;right:0;z-index:70;
+  background:var(--wheel-beat-field-color,var(--sumi));opacity:0;
+  pointer-events:none;transition:none}
+#prorok-site .wheel-beat-curtain--top{top:0;height:var(--wheel-beat-matte-top,0px)}
+#prorok-site .wheel-beat-curtain--bottom{top:var(--wheel-beat-matte-bottom-start,100vh);bottom:0}
+html[data-prorok-page][data-wheel-beat-mode="on"][data-wheel-beat-matte="on"] #prorok-site .wheel-beat-curtain{
+  opacity:1;pointer-events:auto}
+#prorok-site .healed-comparisons{--comparison-height:min(76svh,52rem);--comparison-gap:clamp(1rem,2vw,2rem);
+  display:grid;grid-template-columns:minmax(0,76589fr) minmax(0,32400fr);
+  gap:var(--comparison-gap);align-items:start;width:100%;
+  max-width:calc(var(--comparison-height) * 139 / 120 + var(--comparison-height) * 270 / 551 + var(--comparison-gap));
+  margin:clamp(3rem,8vh,5rem) auto 0}
+#prorok-site .fresh-healed__pair,
+#prorok-site .healed-trio{position:relative;width:100%;margin:0;
+  overflow:hidden;background:#080706}
+#prorok-site .fresh-healed__pair{aspect-ratio:139 / 120}
+#prorok-site .healed-trio{aspect-ratio:270 / 551;container-type:inline-size}
+#prorok-site .healed-comparisons video{width:100%;height:100%;object-fit:contain}
+#prorok-site .fresh-healed__pair video{position:absolute;top:0;width:48.561151%;height:100%}
+#prorok-site .fresh-healed__pair [data-sleeve-fresh]{left:0}
+#prorok-site .fresh-healed__pair [data-sleeve-healed]{right:0}
+#prorok-site .healed-trio video{position:absolute;width:48.333333%;height:42.105263%;top:0}
+#prorok-site .healed-trio .healed-trio__video--bottom{top:auto;left:0;bottom:0;width:100%;height:56.261343%;
+  object-fit:cover;object-position:center 41.1764706%}
+#prorok-site .healed-trio__video--left{left:0}
+#prorok-site .healed-trio__video--right{right:0}
+#prorok-site .fresh-healed__labels{position:absolute;bottom:0;left:0;right:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.877698%;pointer-events:none}
+#prorok-site .fresh-healed__labels span,
+#prorok-site .healed-trio__labels span{
+  padding:2rem .5rem clamp(.8rem,2vw,1.25rem);text-align:center;pointer-events:none;
+  font-size:clamp(.9rem,1.6vw,1.2rem);font-weight:500;letter-spacing:.08em;
+  color:var(--paper);text-shadow:0 1px 5px rgba(0,0,0,.8);
+  background:linear-gradient(transparent,rgba(0,0,0,.55))}
+#prorok-site .healed-trio__labels{position:absolute;inset:0;pointer-events:none}
+#prorok-site .healed-trio__labels span{position:absolute;bottom:57.894737%;width:48.333333%;
+  padding-inline:.25rem;font-size:clamp(1rem,6cqw,1.2rem);text-shadow:none}
+#prorok-site .healed-trio__labels .healed-trio__label--bottom{bottom:0;left:0;width:100%}
+#prorok-site .healed-trio__label--left{left:0}
+#prorok-site .healed-trio__label--right{right:0}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .healed-comparisons{
+  --comparison-height:var(--wheel-beat-healed-media-height,76svh)}
+
+@media (min-width:881px){
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #scale{
+  display:grid;place-items:center;min-height:var(--wheel-beat-stage-height,auto)}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #scale .scale__pin{
+  width:100%;max-width:none;height:var(--wheel-beat-scale-media-height,100svh);overflow:hidden}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #scale .scale__track{
+  height:100%}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #scale .scale__track img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .sec__head{
+  margin-bottom:1rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work .panel__img{
+  width:auto;max-height:var(--wheel-beat-stage-height);justify-self:center}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .sec__head + .panel .panel__img{
+  width:auto;height:var(--wheel-beat-work-media-height,auto);max-width:100%;
+  max-height:none;justify-self:center;aspect-ratio:3 / 4}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .sec__head + .panel .panel__img img{
+  object-fit:contain}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .sec__head{
+  margin-bottom:1rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .healed-montage{
+  margin:1rem auto 0;clip-path:none!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .healed-montage video{
+  transform:none!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .sec__head,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .sec__head *,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .healed-montage,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #healed .healed-montage video{
+  opacity:1!important;visibility:visible!important;transform:none!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .thesis__jp,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .thesis__text .line > span,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .thesis__seal,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work .panel__num,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work .panel__text h3,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work .panel__text p,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .sec__head .char,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .sec__head .sec__jp,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .sec__head p,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .step,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .door,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .voices__card,
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .visit__block{
+  opacity:1!important;visibility:visible!important;transform:none!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .thesis__jp{
+  letter-spacing:.62em!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .sec__head .sec__jp{
+  letter-spacing:.66em!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .thesis__seal{
+  transform:rotate(-4deg)!important}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin{
+  width:100%;min-height:var(--wheel-beat-stage-height,auto);
+  padding:clamp(.75rem,2vh,1.25rem) clamp(1rem,4vw,3rem);
+  display:grid;grid-template-rows:auto minmax(0,1fr);align-content:center}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin > .sec__head{
+  margin-bottom:0}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .sec__jp{
+  margin-bottom:.5rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .sec__head h2{
+  font-size:clamp(2.2rem,4.5vw,4rem);line-height:1}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .sec__head p{
+  margin-top:.65rem;line-height:1.45}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .doors__grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(.75rem,1.5vw,1.5rem);margin-top:clamp(.75rem,2vh,1.25rem)}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door{
+  padding:clamp(1.1rem,2vw,2rem)}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door h3{
+  font-size:clamp(1.35rem,2vw,1.9rem);margin:.4rem 0 .65rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door p{
+  font-size:clamp(.82rem,1vw,.93rem);line-height:1.55;margin-bottom:.8rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door ul{
+  margin-bottom:1rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door li{
+  font-size:clamp(.74rem,.9vw,.84rem);padding:.32rem 0}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #begin .door .btn{
+  padding:.75rem 1.5rem;font-size:.68rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site .foot{
+  padding-bottom:calc(2.2rem + var(--wheel-beat-bottom-clearance,90px) + env(safe-area-inset-bottom,0px))}
+}
+#prorok-site .site-header{position:fixed;top:0;left:0;right:0;z-index:100}
+#prorok-site .nav{display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem clamp(1.2rem,4vw,3.2rem);gap:1rem}
+#prorok-site .nav__mark{display:flex;align-items:baseline;gap:.7rem;flex-shrink:0}
+#prorok-site .nav__mark i{font-family:var(--jp);font-style:normal;font-size:1.35rem;color:var(--vermilion)}
+#prorok-site .nav__mark span{font-size:.74rem;letter-spacing:.36em;text-transform:uppercase;font-weight:600}
+#prorok-site .nav__toggle{display:none}
+#prorok-site .nav__panel{margin-left:auto}
+#prorok-site .nav__links{display:flex;align-items:center;gap:clamp(.75rem,2vw,1.85rem)}
+#prorok-site .nav__links a,
+#prorok-site .nav__more-btn{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper-dim);position:relative;transition:color .3s;font-weight:500;
+  background:none;border:0;padding:0;cursor:pointer}
+#prorok-site .nav__links a::after,
+#prorok-site .nav__more-btn::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:1px;
+  background:var(--vermilion);transform:scaleX(0);transform-origin:right;
+  transition:transform .45s var(--ease)}
+#prorok-site .nav__links a:hover,
+#prorok-site .nav__more-btn:hover{color:var(--paper)}
+#prorok-site .nav__links a:hover::after,
+#prorok-site .nav__more-btn:hover::after,
+#prorok-site .nav__links a[aria-current="page"]::after,
+#prorok-site .nav__more.is-open .nav__more-btn::after{
+  transform:scaleX(1);transform-origin:left}
+#prorok-site .nav__header-cta{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+  min-height:42px;padding:.72rem 1.1rem;border:1px solid rgba(239,231,216,.18);
+  border-radius:99px;background:var(--consult-yellow);color:var(--sumi);
+  font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  white-space:nowrap;box-shadow:0 10px 24px rgba(20,16,14,.28);
+  transition:background .3s,transform .3s var(--ease),box-shadow .3s}
+#prorok-site .nav__header-cta:hover{background:var(--consult-yellow-hover);transform:translateY(-1px);
+  box-shadow:0 13px 28px rgba(20,16,14,.36)}
+#prorok-site .nav__portfolio,
+#prorok-site .nav__home{color:var(--paper)!important}
+#prorok-site .nav__more{position:relative}
+#prorok-site .nav__sub{position:absolute;top:calc(100% + .85rem);right:0;min-width:11rem;
+  display:none;flex-direction:column;align-items:flex-start;gap:.85rem;
+  padding:1rem 1.15rem;background:rgba(20,16,14,.96);
+  border:1px solid rgba(239,231,216,.16);
+  box-shadow:0 16px 36px rgba(8,7,6,.35)}
+#prorok-site .nav__more.is-open .nav__sub,
+#prorok-site .nav__more:hover .nav__sub,
+#prorok-site .nav__more:focus-within .nav__sub{display:flex}
+#prorok-site .nav__sub a{letter-spacing:.2em}
+#prorok-site .consult-dock{position:fixed;left:50%;z-index:140;
+  bottom:calc(1.05rem + env(safe-area-inset-bottom, 0px));
+  transform:translateX(-50%);
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:56px;padding:1rem 1.8rem;border-radius:99px;white-space:nowrap;
+  background:var(--consult-yellow);color:var(--sumi);
+  font-size:1rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
+  box-shadow:0 12px 28px rgba(20,16,14,.38);
+  transition:transform .45s var(--ease), opacity .45s var(--ease),
+             background .3s, color .3s}
+#prorok-site .consult-dock:hover{background:var(--consult-yellow-hover)}
+#prorok-site .sec__head{text-align:center;margin-bottom:clamp(3.5rem,9vh,6rem)}
+#prorok-site .sec__jp{font-family:var(--jp);letter-spacing:.66em;color:var(--vermilion);
+  font-size:.95rem;display:block;margin-bottom:1.1rem}
+#prorok-site .sec__head h1,
+#prorok-site .sec__head h2{font-family:var(--jp);font-size:clamp(2.2rem,6vw,4.6rem);letter-spacing:.01em}
+#prorok-site .sec__head p{margin:1.2rem auto 0;max-width:38rem;color:var(--paper-dim);
+  line-height:1.75;font-size:1rem}
+#prorok-site .btn{display:inline-block;border:1px solid rgba(239,231,216,.4);border-radius:99px;
+  padding:.95rem 2.2rem;letter-spacing:.24em;text-transform:uppercase;font-size:.74rem;
+  font-weight:600;position:relative;overflow:hidden;transition:color .4s,border-color .4s;
+  align-self:flex-start;background:transparent;cursor:pointer}
+#prorok-site .btn span{position:relative;z-index:1}
+#prorok-site .btn--consultation{white-space:nowrap;letter-spacing:.18em}
+#prorok-site .btn::before{content:"";position:absolute;inset:0;background:var(--paper);
+  transform:translateY(101%);transition:transform .5s var(--ease)}
+#prorok-site .btn:hover{color:var(--sumi);border-color:var(--paper)}
+#prorok-site .btn:hover::before{transform:translateY(0)}
+#prorok-site .btn--seal{border-color:var(--vermilion)}
+#prorok-site .btn--seal::before{background:var(--vermilion)}
+#prorok-site .btn--seal:hover{color:var(--paper);border-color:var(--vermilion)}
+#prorok-site .doors{padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);max-width:82rem;margin:0 auto}
+#prorok-site .doors__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(1.2rem,3vw,2.4rem);margin-top:clamp(3rem,7vh,4.5rem)}
+#prorok-site .door{border:1px solid rgba(239,231,216,.18);padding:clamp(2rem,4vw,3rem);
+  position:relative;overflow:hidden;transition:border-color .5s,background .5s;
+  display:flex;flex-direction:column}
+#prorok-site .door:hover{border-color:rgba(239,231,216,.42);background:rgba(239,231,216,.03)}
+#prorok-site .door--primary{border-color:rgba(178,58,44,.5)}
+#prorok-site .door--primary:hover{border-color:var(--vermilion)}
+#prorok-site .door i{font-family:var(--jp);font-style:normal;color:var(--vermilion);font-size:1.5rem}
+#prorok-site .door h3{font-family:var(--jp);font-size:clamp(1.5rem,2.6vw,2.1rem);margin:.6rem 0 .9rem;
+  line-height:1.2}
+#prorok-site .door p{font-size:.96rem;line-height:1.75;color:var(--paper-dim);margin-bottom:1.5rem}
+#prorok-site .door ul{list-style:none;margin-bottom:2rem}
+#prorok-site .door li{font-size:.88rem;color:var(--paper-dim);padding:.5rem 0;
+  border-bottom:1px solid rgba(239,231,216,.09);display:flex;justify-content:space-between;gap:1rem}
+#prorok-site .door li span{color:var(--paper)}
+#prorok-site .door .btn{margin-top:auto}
+#prorok-site .artist{padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);max-width:88rem;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.6rem,4vw,4rem);align-items:center}
+#prorok-site .artist__img{grid-column:1 / 6;overflow:hidden;aspect-ratio:3 / 2}
+#prorok-site .artist__img img{width:100%;height:100%;object-fit:cover;will-change:transform}
+#prorok-site .artist__text{grid-column:6 / 13}
+#prorok-site .artist__text h1{font-family:var(--jp);font-size:clamp(1.9rem,4vw,3.2rem);
+  margin:.7rem 0 1.3rem;line-height:1.15}
+#prorok-site .artist__text p{font-size:1rem;line-height:1.85;color:var(--paper-dim);
+  max-width:34rem;margin-bottom:1.1rem}
+#prorok-site .page{position:relative;padding:clamp(7rem,16vh,10rem) clamp(1.2rem,5vw,5rem)
+  clamp(5rem,12vh,8rem);max-width:92rem;margin:0 auto}
+#prorok-site .page--narrow{max-width:46rem}
+#prorok-site .page__lede{max-width:40rem;margin:0 auto 2.4rem;color:var(--paper-dim);
+  font-size:1.05rem;line-height:1.85}
+#prorok-site .page__lede p + p{margin-top:1.1rem}
+#prorok-site .page__go{text-align:center;margin:2.2rem 0 0}
+#prorok-site .page__go a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
+  color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.18rem}
+#prorok-site .folio{margin-top:clamp(2.2rem,6vh,4.2rem)}
+#prorok-site .folio figure{margin:0;overflow:hidden;background:#080706;position:relative}
+#prorok-site .folio img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+#prorok-site .folio figcaption{position:absolute;left:0;right:0;bottom:0;padding:.85rem 1rem;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper);background:linear-gradient(transparent,rgba(8,7,6,.72))}
+#prorok-site .folio figure.folio__lead{display:block;width:min(36rem,100%);
+  margin:0 auto clamp(.9rem,2.2vw,1.5rem)}
+#prorok-site .folio__lead img{width:100%;height:auto;object-fit:cover;object-position:50% 12%}
+#prorok-site .folio__row{display:grid;gap:clamp(.9rem,2.2vw,1.5rem);
+  margin-bottom:clamp(.9rem,2.2vw,1.5rem)}
+#prorok-site .folio__row--7-5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+#prorok-site .folio__row--5-7{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+#prorok-site .folio__row--8-4{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+#prorok-site .folio__row--7-5 figure:first-child{aspect-ratio:3 / 4.02}
+#prorok-site .folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
+#prorok-site .folio__row--7-5 figure:last-child img{object-position:50% 42%}
+#prorok-site .folio__row--8-4 figure:first-child img{object-position:50% 16%}
+#prorok-site .folio__row--5-7 figure:first-child{aspect-ratio:3 / 4.02}
+#prorok-site .folio__row--5-7 figure:last-child{aspect-ratio:4 / 5.05}
+#prorok-site .folio__row--8-4 figure:first-child{aspect-ratio:4 / 5.05}
+#prorok-site .folio__row--8-4 figure:last-child{aspect-ratio:3 / 4.02}
+#prorok-site .folio-cat{margin-top:clamp(4.5rem,10vh,7rem)}
+#prorok-site .folio-cat:first-of-type{margin-top:clamp(2.2rem,6vh,4.2rem)}
+#prorok-site .folio-cat__head{display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;margin-bottom:clamp(1.6rem,4vh,2.6rem);
+  border-bottom:1px solid rgba(239,231,216,.12);padding-bottom:1rem}
+#prorok-site .folio-cat__head h2{font-family:var(--jp);font-size:clamp(1.6rem,3.4vw,2.6rem)}
+#prorok-site .folio-cat__head span{font-family:var(--jp);letter-spacing:.4em;color:var(--vermilion);font-size:.85rem}
+#prorok-site .folio-jump{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 1.4rem;
+  margin:0 0 clamp(1.4rem,4vh,2.4rem)}
+#prorok-site .folio-jump a{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--paper-dim);border-bottom:1px solid rgba(178,58,44,.45);padding-bottom:.15rem}
+#prorok-site .folio-jump a:hover{color:var(--paper)}
+#prorok-site .library-seam{margin-top:clamp(3rem,8vh,5rem);max-width:36rem}
+#prorok-site .library-seam h2{font-family:var(--jp);font-size:clamp(1.8rem,3.6vw,2.8rem);
+  line-height:1.2;margin-bottom:1rem}
+#prorok-site .library-seam p{font-size:1.02rem;line-height:1.85;color:var(--paper-dim);margin-bottom:1.1rem}
+#prorok-site .folio-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(.9rem,2.2vw,1.5rem);margin-top:clamp(1.4rem,4vh,2.4rem);align-items:start}
+#prorok-site .folio-flow figure,
+#prorok-site .flash-grid figure,
+#prorok-site .art-grid figure,
+#prorok-site .product__gallery figure{
+  content-visibility:auto;contain-intrinsic-size:400px 520px}
+#prorok-site .folio-flow > figure{min-width:0;aspect-ratio:3 / 4}
+#prorok-site .folio-group{grid-column:1 / -1}
+#prorok-site .folio-group__note{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--paper-dim);margin:0 0 .85rem}
+#prorok-site .folio-group__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:clamp(.9rem,2.2vw,1.5rem)}
+#prorok-site .folio-flow figcaption,
+#prorok-site .flash-grid figcaption,
+#prorok-site .art-grid figcaption,
+#prorok-site .product__gallery figcaption{position:absolute;left:0;right:0;bottom:0;
+  padding:.85rem 1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper);background:linear-gradient(transparent,rgba(8,7,6,.72))}
+#prorok-site .folio-flow figure,
+#prorok-site .flash-grid figure,
+#prorok-site .art-grid figure,
+#prorok-site .product__gallery figure{
+  margin:0;overflow:hidden;background:#080706;position:relative}
+#prorok-site .folio-flow img,
+#prorok-site .flash-grid img,
+#prorok-site .art-grid img,
+#prorok-site .product__gallery img{
+  width:100%;height:100%;object-fit:cover;display:block}
+#prorok-site .flash-grid figure,
+#prorok-site .art-grid figure{aspect-ratio:3 / 4}
+#prorok-site .folio-group__grid figure{aspect-ratio:3 / 4}
+#prorok-site .flash-grid,
+#prorok-site .art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr));
+  gap:clamp(1.2rem,3vw,2rem);margin-top:clamp(2.2rem,6vh,3.6rem)}
+#prorok-site .flash-card,
+#prorok-site .art-card{display:flex;flex-direction:column;gap:.85rem}
+#prorok-site .flash-card .card__action,
+#prorok-site .art-card .card__action{margin:0}
+#prorok-site .card__action a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.15rem}
+#prorok-site .product-list{display:grid;gap:clamp(3.5rem,9vh,6rem);margin-top:clamp(2.4rem,6vh,4rem)}
+#prorok-site .product h2{font-family:var(--jp);font-size:clamp(1.8rem,3.6vw,2.8rem);margin:.2rem 0 .6rem}
+#prorok-site .product__price{font-family:var(--jp);font-size:1.25rem;color:var(--vermilion);margin-bottom:.7rem}
+#prorok-site .product__copy{max-width:36rem;color:var(--paper-dim);line-height:1.75;margin-bottom:1.4rem}
+#prorok-site .product__gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));
+  gap:clamp(.8rem,2vw,1.3rem);margin-bottom:1.6rem}
+#prorok-site .product__gallery figure{aspect-ratio:1 / 1}
+#prorok-site .product__go{display:inline-block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.15rem}
+#prorok-site .inquiry{max-width:40rem;margin:clamp(2rem,6vh,3.5rem) auto 0}
+#prorok-site .field{margin-bottom:1.85rem}
+#prorok-site .field__label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:600;margin-bottom:.45rem}
+#prorok-site .field__hint{font-size:.92rem;line-height:1.7;color:var(--paper-dim);margin:0 0 .7rem}
+#prorok-site .field__example{font-family:var(--jp);font-style:italic;color:var(--paper-dim);
+  font-size:.95rem;line-height:1.6;margin:0 0 .8rem}
+#prorok-site .field input[type="text"],
+#prorok-site .field input[type="email"],
+#prorok-site .field input[type="tel"],
+#prorok-site .field textarea{
+  width:100%;background:transparent;border:0;border-radius:0;
+  border-bottom:1px solid rgba(239,231,216,.28);
+  color:var(--paper);padding:.75rem 0;font-size:1rem}
+#prorok-site .field textarea{min-height:8.5rem;resize:vertical;line-height:1.6}
+#prorok-site .field input:focus-visible,
+#prorok-site .field textarea:focus-visible{
+  outline:none;border-bottom-color:var(--paper)}
+#prorok-site .field.is-invalid input,
+#prorok-site .field.is-invalid textarea,
+#prorok-site .field.is-invalid .radios{
+  border-bottom-color:var(--vermilion)}
+#prorok-site .field__error{display:none;color:var(--vermilion);font-size:.8rem;margin-top:.45rem}
+#prorok-site .field.is-invalid .field__error{display:block}
+#prorok-site .radios{display:flex;flex-direction:column;gap:.75rem;padding:.4rem 0 0}
+#prorok-site .radio,
+#prorok-site .check{display:flex;align-items:flex-start;gap:.75rem;
+  font-size:1rem;line-height:1.45;color:var(--paper);cursor:pointer;
+  min-height:44px}
+#prorok-site .radio input,
+#prorok-site .check input{margin-top:.28rem;accent-color:var(--vermilion);width:1.05rem;height:1.05rem}
+#prorok-site .field--file input[type="file"]{display:block;width:100%;padding:.8rem 0;color:var(--paper-dim)}
+#prorok-site .form-actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2rem}
+#prorok-site .form-status{margin-top:1.6rem;padding:1.25rem 1.35rem;border-left:3px solid var(--vermilion);
+  background:rgba(32,25,21,.72);color:var(--paper);line-height:1.7}
+#prorok-site .form-status[hidden]{display:none}
+#prorok-site .form-status a{border-bottom:1px solid var(--vermilion)}
+#prorok-site .form-status p + p{margin-top:.8rem}
+#prorok-site .visit{background:var(--paper);color:var(--sumi);padding:clamp(5rem,12vh,8rem)
+  clamp(1.2rem,5vw,5rem)}
+#prorok-site .visit__inner{max-width:82rem;margin:0 auto;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(2rem,5vw,4rem)}
+#prorok-site .visit h2{font-family:var(--jp);font-size:clamp(1.9rem,4.6vw,3.4rem);grid-column:1/-1;
+  margin-bottom:1rem;line-height:1.1}
+#prorok-site .visit__block h3{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--seal);margin-bottom:.9rem;font-weight:700}
+#prorok-site .visit__block p,
+#prorok-site .visit__block a{font-family:var(--jp);font-size:1.06rem;line-height:1.75;
+  color:var(--sumi)}
+#prorok-site .visit__block a{border-bottom:1px solid rgba(20,16,14,.3);transition:border-color .3s}
+#prorok-site .visit__block a:hover{border-color:var(--seal)}
+#prorok-site .foot{background:var(--paper);color:var(--sumi);border-top:1px solid rgba(20,16,14,.14);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;
+  padding:1.5rem clamp(1.2rem,5vw,5rem);
+  padding-bottom:calc(2.2rem + env(safe-area-inset-bottom, 0px));
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+#prorok-site .foot__links{display:flex;flex-wrap:wrap;gap:.55rem 1.1rem}
+#prorok-site .foot__links a{border-bottom:1px solid rgba(20,16,14,.18)}
+#prorok-site .foot__links a:hover{border-color:var(--seal)}
+#prorok-site .foot__seal{font-family:var(--jp);color:var(--paper);background:var(--seal);
+  width:2.3rem;height:2.3rem;display:grid;place-items:center;border-radius:4px;
+  font-size:1.05rem;transform:rotate(-4deg);text-transform:none}
+
+@media (max-width:880px){
+#prorok-site .nav{padding:1.05rem .9rem;gap:.45rem}
+#prorok-site .nav__mark span{display:none}
+#prorok-site .nav__panel{display:block;position:static;margin-left:auto;padding:0;
+    background:transparent;border:0;box-shadow:none;
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+#prorok-site .nav__links{flex-direction:row;align-items:center;gap:.45rem}
+#prorok-site .nav__links a{display:inline-flex;align-items:center;min-height:44px;
+    font-size:.72rem;letter-spacing:.12em;white-space:nowrap}
+#prorok-site .nav__links a::after{display:none}
+#prorok-site .nav__header-cta{min-height:44px;padding:.65rem .82rem;
+    font-size:.875rem;letter-spacing:.06em}
+#prorok-site .consult-dock{min-height:50px;font-size:.82rem;letter-spacing:.06em;padding:.92rem 1rem;
+    max-width:calc(100vw - 1.6rem)}
+#prorok-site .folio-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+#prorok-site .folio-group__grid img{height:auto;object-fit:contain}
+#prorok-site .folio-group__grid{grid-template-columns:1fr}
+#prorok-site .folio-group__grid figure{aspect-ratio:auto}
+#prorok-site .artist{display:block}
+#prorok-site .artist__img{aspect-ratio:4/5;margin-bottom:1.5rem}
+#prorok-site .folio__row--7-5,
+#prorok-site .folio__row--5-7,
+#prorok-site .folio__row--8-4{grid-template-columns:1fr}
+#prorok-site .folio__lead{max-width:none}
+#prorok-site .folio__row--7-5 figure:first-child,
+#prorok-site .folio__row--5-7 figure:first-child,
+#prorok-site .folio__row--8-4 figure:first-child{aspect-ratio:4 / 5}
+#prorok-site .folio__row--7-5 figure:last-child{aspect-ratio:1 / 1.01}
+}
+@media (max-width:600px){
+#prorok-site .folio-flow{grid-template-columns:1fr}
+#prorok-site .healed-comparisons{grid-template-columns:minmax(0,1fr);justify-items:center;gap:2rem}
+#prorok-site .healed-comparisons .fresh-healed__pair{max-width:calc(var(--comparison-height) * 139 / 120)}
+#prorok-site .healed-comparisons .healed-trio{max-width:calc(var(--comparison-height) * 270 / 551)}
+}
+@media (max-width:360px){
+#prorok-site .nav{padding-inline:.65rem;gap:.3rem}
+#prorok-site .nav__links a{font-size:.64rem;letter-spacing:.08em}
+#prorok-site .nav__header-cta{padding:.58rem .65rem;font-size:.75rem;letter-spacing:.045em}
+}
+@media (min-width:881px) and (max-width:1120px){
+#prorok-site .nav__mark span{display:none}
+#prorok-site .nav__links{gap:.78rem}
+#prorok-site .nav__links a,
+#prorok-site .nav__more-btn{font-size:.66rem;letter-spacing:.13em}
+#prorok-site .nav__header-cta{padding:.68rem .9rem;font-size:.875rem;letter-spacing:.07em}
+}
+html[data-prorok-page][data-motion="reduced"] #prorok-site .grain{animation:none}
+html[data-prorok-page][data-motion="reduced"] #prorok-site .btn::before{transition:none}
+
+
+html[data-prorok-page].no-js #prorok-site .loader{display:none!important}
+#prorok-site .loader{position:fixed;inset:0;z-index:200;background:var(--sumi);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#prorok-site .loader__seal{font-family:var(--jp);font-size:2.6rem;color:var(--paper);
+  background:var(--seal);width:5rem;height:5rem;display:grid;place-items:center;
+  border-radius:4px;box-shadow:0 0 0 2px var(--sumi),0 0 0 3px rgba(140,47,34,.45);
+  transform:rotate(-4deg)}
+#prorok-site .loader__bar{width:180px;height:2px;background:rgba(239,231,216,.16);overflow:hidden}
+#prorok-site .loader__bar span{display:block;height:100%;width:100%;background:var(--paper);
+  transform:scaleX(0);transform-origin:left}
+#prorok-site .hero{position:relative;min-height:100vh;overflow:hidden;
+  display:grid;grid-template-columns:1.02fr .98fr;align-items:center}
+#prorok-site .hero__media{position:relative;height:100vh;min-height:640px;overflow:hidden;order:2}
+#prorok-site .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 42%;will-change:transform;filter:saturate(.94) contrast(1.04)}
+#prorok-site .hero__wash{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right, var(--sumi) 0%, rgba(20,16,14,.55) 14%,
+                    rgba(20,16,14,0) 46%),
+    linear-gradient(to bottom, rgba(20,16,14,.55) 0%, rgba(20,16,14,0) 20%,
+                    rgba(20,16,14,0) 74%, var(--sumi) 100%)}
+#prorok-site .hero__content{position:relative;z-index:2;order:1;
+  padding:clamp(6rem,14vh,9rem) clamp(1.4rem,3vw,3rem) clamp(4rem,10vh,6rem)
+          clamp(1.4rem,5vw,4.5rem)}
+#prorok-site .hero__kicker span{display:inline-block;font-size:clamp(.68rem,1.1vw,.8rem);
+  letter-spacing:.46em;text-transform:uppercase;color:var(--paper-dim);font-weight:600}
+#prorok-site .hero__title{font-family:var(--jp);font-size:clamp(2.1rem,7.2vw,7.2rem);line-height:1;
+  letter-spacing:-.005em;margin:1.1rem 0 1.5rem;color:var(--paper);white-space:nowrap}
+#prorok-site .hero__sub{font-family:var(--jp);font-size:clamp(1.05rem,2.3vw,1.7rem);
+  line-height:1.5;color:var(--paper);max-width:34rem}
+#prorok-site .hero__sub em{font-style:italic;color:var(--consult-yellow)}
+#prorok-site .hero__vertical{position:absolute;right:clamp(1rem,3.4vw,2.8rem);top:50%;
+  transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);
+  font-size:clamp(1rem,1.7vw,1.3rem);letter-spacing:.5em;color:var(--paper-dim);
+  opacity:.8;z-index:2}
+#prorok-site .hero__scroll{position:absolute;bottom:2rem;right:clamp(1.2rem,5vw,4.5rem);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem}
+#prorok-site .hero__scroll span{font-size:.64rem;letter-spacing:.36em;text-transform:uppercase;
+  color:var(--paper-dim);writing-mode:vertical-rl}
+#prorok-site .hero__scroll i{width:1px;height:52px;background:rgba(239,231,216,.28);
+  overflow:hidden;position:relative;display:block}
+#prorok-site .hero__scroll i::after{content:"";position:absolute;inset:0;background:var(--vermilion);
+  animation:cue 2s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}55%,100%{transform:translateY(100%)}}
+#prorok-site .thesis{position:relative;padding:clamp(7rem,18vh,13rem) 1.5rem;max-width:64rem;
+  margin:0 auto;text-align:center}
+#prorok-site .thesis__jp{font-family:var(--jp);letter-spacing:.62em;color:var(--vermilion);
+  margin-bottom:2.4rem;font-size:clamp(.9rem,1.5vw,1.1rem)}
+#prorok-site .thesis__text{font-family:var(--jp);font-size:clamp(1.6rem,4.3vw,3.3rem);
+  line-height:1.36;color:var(--paper)}
+#prorok-site .thesis__text em{font-style:italic;color:var(--paper-dim)}
+#prorok-site .thesis__seal{margin:3rem auto 0;font-family:var(--jp);font-size:.9rem;color:var(--paper);
+  background:var(--seal);width:3rem;height:3rem;display:grid;place-items:center;
+  border-radius:4px;transform:rotate(-4deg);line-height:1.1}
+#prorok-site .scale{position:relative}
+#prorok-site .scale__pin{height:auto;overflow:visible;background:var(--sumi);position:relative}
+#prorok-site .scale__track{position:relative;width:100%;height:auto}
+#prorok-site .scale__track img{width:100%;height:auto;display:block}
+#prorok-site .scale__caption{position:absolute;right:clamp(1.2rem,4vw,4rem);
+  bottom:clamp(2rem,8vh,4.5rem);max-width:25rem;z-index:3;
+  background:rgba(20,16,14,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  padding:1.7rem 1.9rem;border-left:3px solid var(--vermilion)}
+#prorok-site .scale__num{font-family:var(--jp);color:var(--vermilion);font-size:1.25rem}
+#prorok-site .scale__caption h3{font-family:var(--jp);font-size:clamp(1.5rem,2.8vw,2.2rem);
+  margin:.45rem 0 .7rem;line-height:1.15}
+#prorok-site .scale__caption p{font-size:.94rem;line-height:1.7;color:var(--paper-dim)}
+#prorok-site .work{position:relative;padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);
+  max-width:92rem;margin:0 auto}
+#prorok-site .panel{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.4rem,4vw,4rem);
+  align-items:center;margin-bottom:clamp(5rem,13vh,10rem)}
+#prorok-site .panel:last-child{margin-bottom:0}
+#prorok-site .panel__img{grid-column:1 / 7;overflow:hidden;aspect-ratio:3 / 4;max-height:82vh}
+#prorok-site .panel__img img{width:100%;height:100%;object-fit:cover;will-change:transform}
+#prorok-site .panel__text{grid-column:7 / 13}
+#prorok-site .panel--right .panel__img{grid-column:7 / 13;order:2}
+#prorok-site .panel--right .panel__text{grid-column:1 / 7;order:1}
+#prorok-site .panel__num{font-family:var(--jp);color:var(--vermilion);font-size:1.3rem}
+#prorok-site .panel__text h3{font-family:var(--jp);font-size:clamp(1.7rem,3.3vw,2.7rem);
+  line-height:1.18;margin:.7rem 0 1.1rem}
+#prorok-site .panel__text p{font-size:1rem;line-height:1.8;color:var(--paper-dim);max-width:28rem}
+#prorok-site .craft{background:var(--sumi-2);padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem)}
+#prorok-site .craft__inner{max-width:78rem;margin:0 auto}
+#prorok-site .steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(1.6rem,3.5vw,3rem);margin-top:clamp(3rem,7vh,4.5rem)}
+#prorok-site .step{border-top:1px solid rgba(239,231,216,.16);padding-top:1.4rem}
+#prorok-site .step i{font-family:var(--jp);font-style:normal;color:var(--vermilion);font-size:1.2rem}
+#prorok-site .step h3{font-family:var(--jp);font-size:1.25rem;margin:.5rem 0 .7rem;font-weight:500}
+#prorok-site .step p{font-size:.93rem;line-height:1.75;color:var(--paper-dim)}
+#prorok-site .work__to-folio{display:block;text-align:center;
+  margin-top:clamp(2.4rem,7vh,4.2rem)}
+#prorok-site .work__to-folio a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
+  color:var(--consult-yellow);border-bottom:1px solid var(--consult-yellow);
+  padding-bottom:.18rem}
+#prorok-site .work:has(> .work__to-folio){padding-bottom:3.5rem}
+#prorok-site #healed{padding-top:3.5rem}
+#prorok-site #voices .sec__head{margin-bottom:clamp(1.35rem,3.4vh,2.2rem)}
+#prorok-site .voices__list{display:flex;flex-direction:column;
+  gap:clamp(4.4rem,11vh,8.2rem)}
+#prorok-site .voices__card{display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(1.5rem,4vw,3.4rem);align-items:start;margin:0}
+#prorok-site .voices__card--shannon{align-items:center}
+#prorok-site .voices__shot{overflow:hidden;background:#080706;max-width:100%;
+  max-height:82vh}
+#prorok-site .voices__shot img{width:100%;height:100%;object-fit:cover;
+  filter:saturate(.94) contrast(1.04)}
+#prorok-site .voices__body{min-width:0;border-left:3px solid var(--vermilion);
+  padding-left:clamp(1.05rem,2.2vw,1.75rem)}
+#prorok-site .voices__mark{display:block;font-family:var(--jp);color:var(--vermilion);
+  font-size:clamp(2.3rem,4.4vw,3.4rem);line-height:.78;margin:0 0 .55rem}
+#prorok-site .voices__card blockquote{margin:0}
+#prorok-site .voices__card blockquote p{font-family:var(--jp);line-height:1.7;
+  color:var(--paper);overflow-wrap:break-word;text-wrap:pretty}
+#prorok-site .voices__card--jordan .voices__shot{grid-column:1/6;aspect-ratio:3/4;
+  width:min(100%,calc(70vh * 3 / 4))}
+#prorok-site .voices__card--jordan .voices__body{grid-column:6/13}
+#prorok-site .voices__card--jordan .voices__shot img{object-position:50% 4%}
+#prorok-site .voices__card--jordan .voices__mark{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:.28rem}
+#prorok-site .voices__card--jordan blockquote p{font-size:clamp(1.02rem,1.5vw,1.22rem);line-height:1.6}
+#prorok-site .voices__card--jordan .voices__meta{margin-top:1.05rem;gap:.3rem}
+#prorok-site .voices__card--shannon .voices__shot{grid-column:7/13;order:2;
+  aspect-ratio:1080/1440;width:min(100%,calc(82vh * 1080 / 1440));
+  justify-self:end}
+#prorok-site .voices__card--shannon .voices__body{grid-column:1/7;order:1}
+#prorok-site .voices__card--shannon .voices__shot img{object-position:50% 46%}
+#prorok-site .voices__card--shannon blockquote p{font-size:clamp(1.02rem,1.45vw,1.18rem);
+  line-height:1.72}
+#prorok-site .voices__card--smith .voices__shot{grid-column:1/5;aspect-ratio:590/787;
+  width:min(100%,calc(72vh * 590 / 787))}
+#prorok-site .voices__card--smith .voices__body{grid-column:5/13}
+#prorok-site .voices__card--smith .voices__shot img{object-position:50% 42%}
+#prorok-site .voices__card--smith blockquote p{font-size:clamp(1.06rem,1.65vw,1.26rem)}
+#prorok-site .voices__meta{margin-top:1.45rem;display:flex;flex-direction:column;
+  align-items:flex-start;gap:.42rem}
+#prorok-site .voices__rating{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem .8rem}
+#prorok-site .voices__stars{color:var(--vermilion);letter-spacing:.16em;font-size:.92rem;
+  line-height:1}
+#prorok-site .voices__score{font-size:.72rem;letter-spacing:.06em;color:var(--paper-dim)}
+#prorok-site .voices__who{font-style:normal;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;color:var(--paper-dim)}
+#prorok-site .voices__attr{font-size:.72rem;letter-spacing:.08em;color:var(--paper-dim)}
+#prorok-site .voices__src{font-size:.72rem;letter-spacing:.08em;color:var(--paper-dim);
+  border-bottom:1px solid rgba(178,58,44,.45)}
+#prorok-site .voices__src:hover{color:var(--paper)}
+#prorok-site .start{padding:clamp(6rem,14vh,10rem) clamp(1.2rem,5vw,5rem);
+  max-width:46rem;margin:0 auto;text-align:center}
+#prorok-site .start .sec__head{margin-bottom:1.6rem}
+#prorok-site .start__copy p{font-size:1.05rem;line-height:1.85;color:var(--paper-dim);margin-bottom:1.1rem}
+#prorok-site .start__go{margin-top:2rem}
+#prorok-site .start__go a{font-family:var(--jp);font-size:clamp(1.15rem,2.2vw,1.5rem);
+  color:var(--paper);border-bottom:1px solid var(--vermilion);padding-bottom:.18rem}
+
+@media (min-width:881px){
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #thesis{
+    padding:clamp(2.5rem,6vh,3rem) 1.5rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #thesis .thesis__jp{
+    margin-bottom:1rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #thesis .thesis__seal{
+    margin-top:1rem}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .panel:has(+ .work__to-folio){
+    margin-bottom:0}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .panel:has(+ .work__to-folio) .panel__img{
+    width:min(100%,23rem);height:auto;
+    max-height:none;justify-self:center}
+html[data-prorok-page][data-wheel-beat-mode="on"] #prorok-site #work > .work__to-folio{
+    margin-top:1.1rem}
+}
+@media (max-width:880px){
+#prorok-site .loader{display:none}
+#prorok-site .steps{grid-template-columns:1fr}
+#prorok-site .hero__vertical{display:none}
+#prorok-site .hero{grid-template-columns:1fr;min-height:0}
+#prorok-site .hero__media{order:1;height:62vh;min-height:380px}
+#prorok-site .hero__content{order:2;padding-top:clamp(2rem,5vh,3rem)}
+#prorok-site .hero__wash{background:linear-gradient(to bottom,rgba(20,16,14,.45) 0%,
+    rgba(20,16,14,0) 24%,rgba(20,16,14,0) 66%,var(--sumi) 100%)}
+#prorok-site .hero__scroll{display:none}
+#prorok-site .panel,
+#prorok-site .panel--right{display:block}
+#prorok-site .panel__img{aspect-ratio:4/5;margin-bottom:1.5rem}
+#prorok-site .panel{margin-bottom:4.5rem}
+#prorok-site .scale__caption{position:relative;right:auto;bottom:auto;left:auto;max-width:none;
+    margin:1.2rem 1rem 0}
+#prorok-site .voices__card,
+#prorok-site .voices__card--jordan,
+#prorok-site .voices__card--shannon,
+#prorok-site .voices__card--smith{
+    display:block;
+    padding-bottom:calc(6.8rem + env(safe-area-inset-bottom, 0px))}
+#prorok-site .voices__list{gap:clamp(2rem,5vh,3rem)}
+#prorok-site .voices__card--shannon .voices__shot,
+#prorok-site .voices__card--shannon .voices__body{order:unset}
+#prorok-site .voices__card--jordan .voices__shot{aspect-ratio:811/1440}
+#prorok-site .voices__card--jordan .voices__shot,
+#prorok-site .voices__card--shannon .voices__shot,
+#prorok-site .voices__card--smith .voices__shot{
+    margin-bottom:1.4rem;max-height:none;width:100%;justify-self:auto}
+#prorok-site .voices__body{padding-left:1rem}
+#prorok-site .voices__card--jordan blockquote p,
+#prorok-site .voices__card--shannon blockquote p,
+#prorok-site .voices__card--smith blockquote p{font-size:1.08rem}
+#prorok-site .work:has(> .work__to-folio){padding-bottom:3rem}
+#prorok-site #healed{padding-top:3rem}
+}
+html[data-prorok-page][data-motion="reduced"] #prorok-site .hero__scroll i::after{animation:none}
+html[data-prorok-page][data-motion="reduced"] #prorok-site .voices__card{opacity:1;transform:none}
+
+
+/* Verified on the actual /approved-preview classic section, 2026-09-24.
+   These rules are page-gated and never target authored nested sections. */
+html[data-prorok-page] body{margin:0;background:#14100e}
+/* Squarespace intentionally disables block scripts while editing. */
+html[data-prorok-page] body.sqs-edit-mode #prorok-site .loader{display:none!important}
+html[data-prorok-page] #header,
+html[data-prorok-page] #footer-sections{display:none!important}
+html[data-prorok-page] #siteWrapper,
+html[data-prorok-page] #siteWrapper > #page,
+html[data-prorok-page] #page > #page-regions,
+html[data-prorok-page] #page-regions > .region,
+html[data-prorok-page] #page-regions > .region > .page-section,
+html[data-prorok-page] #page-regions > .region > .page-section > .content-wrapper,
+html[data-prorok-page] #page-regions > .region > .page-section > .content-wrapper > .content{
+  width:100%!important;max-width:none!important;min-width:0!important;
+  margin:0!important;padding:0!important;min-height:0!important;
+  background:#14100e;transform:none!important;box-sizing:border-box}
+html[data-prorok-page] #page-regions > .region > .page-section{
+  display:block!important;overflow:visible!important}
+html[data-prorok-page] #page-regions > .region > .page-section > .content-wrapper > .content > .sqs-layout,
+html[data-prorok-page] #page-regions > .region > .page-section > .content-wrapper > .content > .sqs-layout > .sqs-row,
+html[data-prorok-page] #page-regions > .region > .page-section > .content-wrapper > .content > .sqs-layout > .sqs-row > .sqs-col,
+html[data-prorok-page] .sqs-block-code:has(#prorok-site),
+html[data-prorok-page] .sqs-block-code > .sqs-block-content:has(#prorok-site){
+  display:block!important;float:none!important;width:100%!important;max-width:none!important;
+  margin:0!important;padding:0!important;min-height:0!important;box-sizing:border-box}
+
+</style>
+<noscript><style>#prorok-site .loader{display:none!important}</style></noscript>
+</head><body><div id="prorok-site" data-prorok-page="index">
+<noscript><style>[data-prorok-photo]{display:none!important}</style></noscript>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="loader" id="loader">
+  <div class="loader__seal">彫</div>
+  <div class="loader__bar"><span></span></div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__mark" href="#top"><i>和彫</i><span>Dylan Prorok</span></a>
+    <div class="nav__panel">
+      <div class="nav__links">
+        <a href="/portfolio" class="nav__portfolio">Portfolio</a>
+      </div>
+    </div>
+    <a href="https://dylanproroktattoo.setmore.com/"
+       class="nav__header-cta" target="_blank" rel="noopener">Book a Consultation</a>
+  </nav>
+</header>
+
+<a class="consult-dock" id="consult-dock"
+   href="https://dylanproroktattoo.setmore.com/"
+   target="_blank" rel="noopener">Book a Virtual Consultation</a>
+
+<main id="main">
+
+<header class="hero" id="top">
+  <div class="hero__media">
+    <img class="hero__img" loading="eager" fetchpriority="high" alt="Dylan Prorok tattooing at Heritage Tattoo in Las Vegas"
+         src="https://prorok.jarrettwroten.com/dylan-portrait.jpg" width="617" height="849" />
+    <div class="hero__wash"></div>
+  </div>
+  <div class="hero__vertical" aria-hidden="true">刺青・一生</div>
+  <div class="hero__content">
+    <p class="hero__kicker line"><span>Heritage Tattoo — Las Vegas, Nevada</span></p>
+    <h1 class="hero__title" data-split>Dylan Prorok</h1>
+    <div class="hero__sub">
+      <span class="line"><span>Large-Scale Japanese Tattooing.</span></span>
+      <span class="line"><span><em>Designed to be seen.</em></span></span>
+      <span class="line"><span><em>Crafted to be remembered.</em></span></span>
+    </div>
+  </div>
+  <div class="hero__scroll"><span>Scroll</span><i></i></div>
+</header>
+
+<section class="thesis" id="thesis">
+  <p class="thesis__jp" aria-hidden="true">大きく彫る</p>
+  <h2 class="thesis__text">
+    <span class="line"><span>A tattoo should have the power to be legible <em>from across the room,</em></span></span>
+    <span class="line"><span>with the allure <em>to draw you closer.</em></span></span>
+  </h2>
+  <div class="thesis__seal">彫師</div>
+</section>
+
+<section class="scale" id="scale">
+  <div class="scale__pin">
+    <div class="scale__track">
+      <img data-prorok-photo loading="lazy" fetchpriority="low" decoding="async" alt="Dylan Prorok tattooing a large-scale Japanese piece"
+           src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;1500&#x27;%20height=&#x27;1000&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/media/site/dylan-prorok-tattooing-large-scale-piece.webp" width="1500" height="1000" />
+      <noscript><img src="https://prorok.jarrettwroten.com/media/site/dylan-prorok-tattooing-large-scale-piece.webp" width="1500" height="1000" alt="Dylan Prorok tattooing a large-scale Japanese piece" /></noscript>
+    </div>
+    <div class="scale__caption">
+      <span class="scale__num">一</span>
+      <h3>Bigger is better.</h3>
+      <p>You are not looking at a Piece. You are Travelling through a Story.</p>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="sec__head">
+    <span class="sec__jp" aria-hidden="true">作品</span>
+    <h2 data-split>The Work</h2>
+    <p>Dylan Prorok creates Japanese tattoos at Heritage Tattoo in Las Vegas. Traditional composition crafted to individual body flow, carried with timeless elements and contemporary themes. Each piece is made custom to the individual it will live on.</p>
+  </div>
+
+  <div class="panel">
+    <figure class="panel__img">
+      <img data-prorok-photo loading="lazy" fetchpriority="low" alt="Healed snake and peony sleeve with black, grey, and red detail"
+        src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;1536&#x27;%20height=&#x27;2048&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/media/portfolio/document-20260904/portfolio-09.jpg" width="1536" height="2048" />
+      <noscript><img src="https://prorok.jarrettwroten.com/media/portfolio/document-20260904/portfolio-09.jpg" width="1536" height="2048" alt="Healed snake and peony sleeve with black, grey, and red detail" /></noscript>
+    </figure>
+    <div class="panel__text">
+      <span class="panel__num">二</span>
+      <h3>Composition before ink</h3>
+      <p>Each piece begins with a picture and tracing of the body part where the tattoo will be placed, so the tattoo can be designed to fit your body’s natural flow.</p>
+    </div>
+  </div>
+
+  <div class="panel panel--right">
+    <figure class="panel__img">
+      <img data-prorok-photo loading="lazy" fetchpriority="low" alt="Full-colour Japanese dragon sleeve on a client wearing a clean black tank top"
+        src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;1500&#x27;%20height=&#x27;2000&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/crafted-for-individual-dragon-sleeve.jpg" width="1500" height="2000" />
+      <noscript><img src="https://prorok.jarrettwroten.com/crafted-for-individual-dragon-sleeve.jpg" width="1500" height="2000" alt="Full-colour Japanese dragon sleeve on a client wearing a clean black tank top" /></noscript>
+    </figure>
+    <div class="panel__text">
+      <span class="panel__num">三</span>
+      <h3>Crafted to gain from each individual</h3>
+      <p>My aim is to design the tattoo to fit the body as if you were born with the tattoo. The tattoo is built to accentuate the person wearing it.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <figure class="panel__img">
+      <picture style="display:contents">
+        <source type="image/webp" data-src="https://prorok.jarrettwroten.com/media/site/healed-peony-sleeve-full-lossless.webp" />
+        <img data-prorok-photo loading="lazy" fetchpriority="low" alt="Healed full-colour Japanese peony sleeve on a client wearing black"
+          src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;1536&#x27;%20height=&#x27;2048&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/media/site/healed-peony-sleeve-full.png" width="1536" height="2048" />
+      </picture>
+      <noscript><picture style="display:contents"><source type="image/webp" srcset="https://prorok.jarrettwroten.com/media/site/healed-peony-sleeve-full-lossless.webp" /><img src="https://prorok.jarrettwroten.com/media/site/healed-peony-sleeve-full.png" width="1536" height="2048" alt="Healed full-colour Japanese peony sleeve on a client wearing black" /></picture></noscript>
+    </figure>
+    <div class="panel__text">
+      <span class="panel__num">四</span>
+      <h3>Made to age</h3>
+      <p>Scale and precision are what let a tattoo age gracefully. Line weight, space to breathe, and contrast are chosen strategically so the tattoo can age gracefully in the decades to come.</p>
+    </div>
+  </div>
+
+  <p class="work__to-folio"><a href="/portfolio">The Full Portfolio</a></p>
+</section>
+
+<section class="craft" id="healed" style="background:var(--sumi)">
+  <div class="craft__inner">
+    <div class="sec__head">
+      <span class="sec__jp" aria-hidden="true">経年</span>
+      <h2 data-split>Healed</h2>
+      <p>Fresh ink photographs well. Healed ink tells the truth. These are pieces
+         after they settled — which is the only way to judge whether a tattoo was
+         built to last.</p>
+    </div>
+    <div class="healed-montage healed-comparisons">
+      <figure class="fresh-healed__pair" id="fresh-healed">
+        <video data-sleeve-fresh muted loop playsinline preload="none" width="1080" height="1920"
+          aria-label="Fresh tattoo, left view">
+          <source src="https://prorok.jarrettwroten.com/media/video/original-7733.mp4" type="video/mp4" />
+        </video>
+        <video data-sleeve-healed muted playsinline preload="none" width="1080" height="1920"
+          aria-label="Healed tattoo, right view">
+          <source src="https://prorok.jarrettwroten.com/media/video/original-8247.mp4" type="video/mp4" />
+        </video>
+        <div class="fresh-healed__labels"><span>Fresh</span><span>Healed</span></div>
+      </figure>
+      <figure class="healed-trio" id="healed-trio">
+        <video class="healed-trio__video--left" muted loop playsinline preload="none" width="1080" height="1920"
+          aria-label="Fresh tattoo, top left view">
+          <source src="https://prorok.jarrettwroten.com/media/video/original-8472.mp4" type="video/mp4" />
+        </video>
+        <video class="healed-trio__video--right" muted loop playsinline preload="none" width="1080" height="1920"
+          aria-label="Fresh tattoo, top right view">
+          <source src="https://prorok.jarrettwroten.com/media/video/original-7264.mp4" type="video/mp4" />
+        </video>
+        <video class="healed-trio__video--bottom" data-loop-end="9.4" muted loop playsinline preload="none" width="1080" height="1920"
+          aria-label="Healed tattoo, bottom view">
+          <source src="https://prorok.jarrettwroten.com/media/video/original-9277.mp4" type="video/mp4" />
+        </video>
+        <div class="healed-trio__labels">
+          <span class="healed-trio__label--left">Fresh</span>
+          <span class="healed-trio__label--right">Fresh</span>
+          <span class="healed-trio__label--bottom">Healed</span>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="voices" style="padding-top:0">
+  <div class="sec__head">
+    <span class="sec__jp" aria-hidden="true">声</span>
+    <h2 data-split>In their words</h2>
+    <p>The people wearing the work.</p>
+  </div>
+  <div class="voices__list">
+    <article class="voices__card voices__card--jordan" aria-labelledby="voice-jordan">
+      <figure class="voices__shot">
+        <img data-prorok-photo src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;811&#x27;%20height=&#x27;1440&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/reviews/jordan-perez.webp" width="811" height="1440" loading="lazy" fetchpriority="low" decoding="async"
+             alt="Jordan Perez standing outdoors with both finished sleeves visible: a full-color floral Japanese sleeve and a black-and-grey mythic sleeve">
+        <noscript><img src="https://prorok.jarrettwroten.com/reviews/jordan-perez.webp" width="811" height="1440" alt="Jordan Perez standing outdoors with both finished sleeves visible: a full-color floral Japanese sleeve and a black-and-grey mythic sleeve" /></noscript>
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>I had both of my sleeves done by Dylan and i can't be more happy with how each one has turned out beautiful and an absolute masterpiece of art! I am also looking forward to going back and getting more done by him and would recommend him to anyone thinking of getting a tattoo that they would admire and appreciate and is always becoming the topic of conversations.</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-jordan">Jordan Perez</cite>
+          <span class="voices__attr">Google Review · 3 photos</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoo on Google</a>
+          <a class="voices__src" href="/portfolio#jordan-perez-project">See Jordan's sleeves</a>
+        </footer>
+      </div>
+    </article>
+
+    <article class="voices__card voices__card--shannon" aria-labelledby="voice-shannon">
+      <figure class="voices__shot">
+        <img data-prorok-photo src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;1080&#x27;%20height=&#x27;1440&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/reviews/shannon-ranus.webp" width="1080" height="1440" loading="lazy" fetchpriority="low" decoding="async"
+             alt="Traditional Japanese koi fish tattoo with cherry blossoms on a lower leg, photographed on a paper towel">
+        <noscript><img src="https://prorok.jarrettwroten.com/reviews/shannon-ranus.webp" width="1080" height="1440" alt="Traditional Japanese koi fish tattoo with cherry blossoms on a lower leg, photographed on a paper towel" /></noscript>
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>My twin sister and I traveled to Las Vegas from AZ for our birthday and got matching tattoos by Dylan. He was extremely kind and professional from the moment we stepped in the shop. I told him that we were looking to get a traditional Japanese koi fish with cherry blossoms and the design he created is absolutely gorgeous. His artistry is incredible and our experience getting tattooed by him was wonderful. The shop is also very clean and quite mesmerizing with an eclectic array of decor. I would definitely come back to Dylan if I want any more traditional Japanese tattoos in the future - he’s worth the travel time. I am very grateful to have had such a delightful experience and appreciate his kindness and helping us celebrate!</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-shannon">Shannon Ranus</cite>
+          <span class="voices__attr">Google Review · 2 photos</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoo on Google</a>
+          <a class="voices__src" href="/portfolio#shannon-ranus-project">See the koi tattoo</a>
+        </footer>
+      </div>
+    </article>
+
+    <article class="voices__card voices__card--smith" aria-labelledby="voice-smith">
+      <figure class="voices__shot">
+        <img data-prorok-photo src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20width=&#x27;590&#x27;%20height=&#x27;787&#x27;/%3E" data-src="https://prorok.jarrettwroten.com/reviews/smith.webp" width="590" height="787" loading="lazy" fetchpriority="low" decoding="async"
+             alt="Black-and-grey Japanese tiger tattoo wrapping the hip and upper thigh">
+        <noscript><img src="https://prorok.jarrettwroten.com/reviews/smith.webp" width="590" height="787" alt="Black-and-grey Japanese tiger tattoo wrapping the hip and upper thigh" /></noscript>
+      </figure>
+      <div class="voices__body">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote cite="https://www.google.com/maps?cid=12163001512038007552">
+          <p>I discovered Dylan my tattoo artist online, and was really drawn to his art pieces, because it really fits my aesthetic. He does consultation work before agreeing to any design for the final tattoo. Very smooth process in between sessions and also after care. I highly recommend Dylan if it’s your first time getting big piece of work done ! Also the ambiance of the shop 10/10 very relaxing great music and very clean !</p>
+        </blockquote>
+        <footer class="voices__meta">
+          <p class="voices__rating">
+            <span class="voices__stars" aria-hidden="true">★★★★★</span>
+            <span class="voices__score">Rated 5.0 out of 5</span>
+          </p>
+          <cite class="voices__who" id="voice-smith">Smith</cite>
+          <span class="voices__attr">Google Review · 1 photo</span>
+          <a class="voices__src" href="https://www.google.com/maps?cid=12163001512038007552"
+             target="_blank" rel="noopener">Dylan Prorok Tattoo on Google</a>
+          <a class="voices__src" href="/portfolio#smith-project">See the tiger tattoo</a>
+        </footer>
+        <p class="page__go"><a href="https://www.google.com/maps?cid=12163001512038007552" target="_blank" rel="noopener">Read more reviews on Google</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="craft" id="craft">
+  <div class="craft__inner">
+    <div class="sec__head">
+      <span class="sec__jp" aria-hidden="true">工程</span>
+      <h2 data-split>What a large project is</h2>
+      <p>A large-scale piece is a relationship measured in consistent sessions. Here is an overview of what that looks like before you commit.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <i>一</i><h3>Inquiry</h3>
+        <p>You send placement, rough size, budget range and any reference. Not a deposit —
+           a conversation starter.</p>
+      </div>
+      <div class="step">
+        <i>二</i><h3>Consultation</h3>
+        <p>Talk through your vision, references and placement. Meet virtually for free in 15 minutes, or at Heritage Tattoo for one hour and $200. That $200 goes toward your first session.</p>
+      </div>
+      <div class="step">
+        <i>三</i><h3>Drawing</h3>
+        <p>The piece is drawn for you specifically. A $200 non-refundable deposit holds the date and goes toward the total price of your tattoo at the final session. <a href="/booking#deposit-policy" style="display:inline-block;text-decoration:underline;text-underline-offset:3px">Read the deposit policy.</a></p>
+      </div>
+      <div class="step">
+        <i>四</i><h3>Sessions</h3>
+        <p>Large-scale work is built through consistency. I encourage clients to commit to one session each month, each session being anywhere from 4–8 hours. From experience, this is the best route to completing a large-scale project in a timely manner that allows the tattoo to age evenly.</p>
+      </div>
+      <div class="step">
+        <i>五</i><h3>Healing &amp; wear</h3>
+        <p>After each appointment I will provide aftercare instructions. I offer free touch-ups on my work for up to 6 months after the last appointment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doors" id="begin">
+  <div class="sec__head">
+    <span class="sec__jp" aria-hidden="true">予約</span>
+    <h2 data-split>Begin</h2>
+    <p>Large Scale or Flash<br />Which will tell your Story?</p>
+  </div>
+  <div class="doors__grid">
+
+    <div class="door door--primary">
+      <i>大</i>
+      <h3>A large-scale project</h3>
+      <p>Sleeve, back, body suit, or a piece meant to grow across sessions. Starts with a
+         conversation about your body and what you want to carry.</p>
+      <ul>
+        <li>Placement <span>Back · Chest · Arm · Leg · Body Suit</span></li>
+        <li>Scale <span>8&quot; and up, or ongoing</span></li>
+        <li>Commitment <span>Multiple sessions</span></li>
+      </ul>
+      <a class="btn btn--seal" href="https://dylanproroktattoo.setmore.com/" target="_blank" rel="noopener"><span>Start a project</span></a>
+    </div>
+
+    <div class="door">
+      <i>小</i>
+      <h3>A one-shot flash or custom piece</h3>
+      <p>One-shot tattoos and small bangers always welcome. Pick from the pre-drawn flash for a flat-price tattoo, or bring a custom idea that can be finished according to your allotted budget.</p>
+      <ul>
+        <li>Placement <span>Anywhere it fits</span></li>
+        <li>Flash <span><a href="/flash">Pre-drawn designs</a></span></li>
+        <li>Custom <span>Bring your unique ideas to life</span></li>
+      </ul>
+      <a class="btn btn--consultation" href="https://dylanproroktattoo.setmore.com/" target="_blank" rel="noopener"><span>Start a consultation</span></a>
+    </div>
+
+    <div class="door">
+      <i>他</i>
+      <h3>Art, flash &amp; merch</h3>
+      <p>Commissions, paintings and murals, periodic merch drops, and a flash gallery to
+         browse. Not tattoo-related requests welcome too.</p>
+      <ul>
+        <li>Flash <span><a href="/flash">Browse flash designs</a></span></li>
+        <li>Art <span><a href="/art">Artwork and murals</a></span></li>
+        <li>Merch <span><a href="/merch">Prints and shirts</a></span></li>
+      </ul>
+      <a class="btn" href="/flash"><span>Explore</span></a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<section class="visit" id="visit">
+  <div class="visit__inner">
+    <h2>Come Find Me.</h2>
+    <div class="visit__block">
+      <h3>Studio</h3>
+      <p><a class="visit__address"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Heritage%20Tattoo%2C%203827%20Sunset%20Rd%2C%20Las%20Vegas%2C%20NV%2089120"
+            target="_blank" rel="noopener"
+            aria-label="Open Heritage Tattoo at 3827 Sunset Road in Google Maps">Heritage Tattoo<br />3827 Sunset Rd<br />Las Vegas, NV 89120</a></p>
+    </div>
+    <div class="visit__block">
+      <h3>Usual hours</h3>
+      <p>Tuesday – Saturday<br />Noon – 8pm</p>
+    </div>
+    <div class="visit__block">
+      <h3>Booking</h3>
+      <p><a href="https://dylanproroktattoo.setmore.com/" target="_blank" rel="noopener">Book A Virtual Consultation Now</a><br />
+         <a href="/booking">Prepare your tattoo inquiry</a><br />
+         or send me a DM.</p>
+    </div>
+    <div class="visit__block">
+      <h3>Elsewhere</h3>
+      <p><a href="https://www.instagram.com/dylanprorok/" target="_blank" rel="noopener">@dylanprorok</a> ·
+         <a href="https://www.tiktok.com/@dylanprorok_dylontattoo" target="_blank" rel="noopener">TikTok</a><br />
+         <a href="https://www.instagram.com/heritagetattoolv/" target="_blank" rel="noopener">@heritagetattoolv</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>© 2026 Dylan Prorok</span>
+  <nav class="foot__links" aria-label="Footer">
+    <a href="/portfolio">Portfolio</a>
+    <a href="/about">About</a>
+    <a href="/flash">Flash</a>
+    <a href="/art">Art</a>
+    <a href="/merch">Merch</a>
+    <a href="/booking">Tattoo inquiry</a>
+    <a href="https://dylanproroktattoo.setmore.com/" target="_blank" rel="noopener">Book</a>
+  </nav>
+  <span class="foot__seal">彫</span>
+  <span>Las Vegas, Nevada</span>
+</footer>
+</div>
+<script data-prorok-bootstrap="index">
+(() => {
+  const prorokRoot = document.getElementById("prorok-site");
+  if (!prorokRoot || prorokRoot.dataset.started) return;
+  prorokRoot.dataset.started = "loading";
+  document.documentElement.dataset.prorokPage = "index";
+  document.documentElement.dataset.motion = new URLSearchParams(location.search).get("motion") === "reduced" ? "reduced" : "full";
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
+
+  // Preserve the two confirmed legacy homepage entry points before home.js
+  // resolves its opening scroll target. Other pages/fragments are unchanged.
+  const legacyAnchors = { "#contact": "#begin", "#details": "#craft" };
+  if (Object.hasOwn(legacyAnchors, location.hash)) {
+    history.replaceState(history.state, "", location.pathname + location.search + legacyAnchors[location.hash]);
+  }
+
+  const startupErrors = [];
+  // DOM-only essentials must not depend on downloading animation libraries.
+try {
+(() => {
+  // Native lazy-loading may fetch far below the fold on a slow connection.
+  // Keep the opening portrait eager; release these seven photos only when their
+  // stable layout shells approach the viewport, before their reveal begins.
+  const pending = new Map(Array.from(prorokRoot.querySelectorAll("img[data-prorok-photo]"))
+    .map((image) => [image, image.closest(".scale, .panel, .voices__card") || image.parentElement]));
+  const lookahead = 1250;
+  const awaitingPaint = new Set();
+  let observer;
+  let paintObserver;
+  let painted = true;
+  let frame = 0;
+  let frameIntent = false;
+
+  function release(image) {
+    if (!pending.has(image)) return;
+    const shell = pending.get(image);
+    pending.delete(image);
+    awaitingPaint.delete(image);
+    observer?.unobserve(shell);
+    const picture = image.closest("picture");
+    const sources = picture ? Array.from(picture.querySelectorAll("source[data-src]")) : [];
+    // A failed derivative is allowed one attempt at its untouched original.
+    if (sources.length) image.addEventListener("error", () => {
+      sources.forEach((source) => source.removeAttribute("srcset"));
+      image.src = image.dataset.src;
+    }, { once: true });
+    image.loading = "eager";
+    sources.forEach((source) => { source.srcset = source.dataset.src; });
+    image.src = image.dataset.src;
+    image.dataset.prorokPhoto = "requested";
+  }
+
+  function releaseAll() {
+    Array.from(pending.keys()).forEach(release);
+    observer?.disconnect();
+    paintObserver?.disconnect();
+  }
+
+  function request(image, userIntent = false) {
+    if (painted || userIntent) release(image);
+    else awaitingPaint.add(image);
+  }
+
+  function openingPainted() {
+    painted = true;
+    paintObserver?.disconnect();
+    Array.from(awaitingPaint).forEach(release);
+  }
+
+  function check(offset = 0, userIntent = false) {
+    const bottom = (window.innerHeight || 800) + lookahead;
+    const approaching = [];
+    pending.forEach((shell, image) => {
+      const rect = shell.getBoundingClientRect();
+      if (rect.top - offset <= bottom && rect.bottom - offset >= -lookahead) approaching.push(image);
+      else awaitingPaint.delete(image);
+    });
+    // Read every shell before assigning any source: never interleave layout
+    // reads with image writes during a scroll, resize, or planned jump.
+    approaching.forEach((image) => request(image, userIntent));
+  }
+
+  function schedule(userIntent = false) {
+    if (!pending.size || (!painted && !userIntent)) return;
+    frameIntent ||= userIntent;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const intent = frameIntent;
+      frameIntent = false;
+      try { check(0, intent); } catch (_) { releaseAll(); }
+    });
+  }
+
+  function prepareHash(hash) {
+    if (!hash || hash === "#") return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+    const target = document.getElementById(id);
+    if (target) check(target.getBoundingClientRect().top - 92, true);
+  }
+
+  try {
+    if (!("IntersectionObserver" in window)) { releaseAll(); return; }
+    // Initial intersection delivery can precede the opening's actual paint.
+    // Hold only ordinary background requests until FCP; real navigation intent
+    // below bypasses this gate. Older browsers retain ordinary IO behavior.
+    try {
+      if (typeof PerformanceObserver === "function"
+        && PerformanceObserver.supportedEntryTypes?.includes("paint")
+        && !performance.getEntriesByType("paint").some((entry) => entry.name === "first-contentful-paint")) {
+        painted = false;
+        paintObserver = new PerformanceObserver((list) => {
+          if (list.getEntries().some((entry) => entry.name === "first-contentful-paint")) openingPainted();
+        });
+        paintObserver.observe({ type: "paint", buffered: true });
+      }
+    } catch (_) { openingPainted(); }
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        pending.forEach((shell, image) => {
+          if (shell !== entry.target) return;
+          if (entry.isIntersecting) request(image);
+          else awaitingPaint.delete(image);
+        });
+      });
+    }, { rootMargin: lookahead + "px 0px", threshold: 0 });
+    pending.forEach((shell) => observer.observe(shell));
+    // Initial observer delivery uses the browser's first layout. Do not force
+    // that layout synchronously while the native page is still initializing.
+    // A real deep link is the exception: warm its destination before the jump.
+    prepareHash(location.hash);
+    addEventListener("scroll", () => schedule(true), { passive: true });
+    addEventListener("resize", () => schedule(), { passive: true });
+    addEventListener("pageshow", () => schedule());
+    addEventListener("hashchange", () => { prepareHash(location.hash); schedule(); });
+    addEventListener("beforeprint", releaseAll);
+    addEventListener("prorok:wheel-beat", (event) => {
+      if (event.detail?.phase === "start" && Number.isFinite(event.detail.targetY)) {
+        check(event.detail.targetY - window.scrollY, true);
+      }
+    });
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest?.("a[href]");
+      if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey
+        || event.altKey || link.target === "_blank" || link.hasAttribute("download")) return;
+      const next = new URL(link.href, location.href);
+      if (next.origin === location.origin && next.pathname === location.pathname) prepareHash(next.hash);
+    }, true);
+  } catch (_) {
+    // Optional browser facilities must never make the approved photos vanish.
+    releaseAll();
+  }
+})();
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok early component", error); }
+  const routes = new Set(["/", "/about", "/art", "/booking", "/flash", "/merch", "/portfolio"]);
+  prorokRoot.addEventListener("click", (event) => {
+    const link = event.target.closest?.("a[href]");
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank" || link.hasAttribute("download")) return;
+    if (link.getAttribute("href").startsWith("#")) return;
+    const next = new URL(link.href, location.href);
+    if (next.origin !== location.origin || !routes.has(next.pathname)) return;
+    // A full navigation gives each native Squarespace page one clean initialization.
+    event.preventDefault();
+    event.stopPropagation();
+    location.assign(next.href);
+  });
+  const load = (src) => new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.async = false;
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error("Library failed: " + src));
+    document.head.appendChild(script);
+  });
+  // Fetch together, execute in source order; the imported DOM is complete.
+  const librariesReady = Promise.allSettled(["https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js", "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js", "https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"].map(load));
+  const ready = async () => {
+    try {
+      for (const result of await librariesReady) {
+        if (result.status === "rejected") {
+          startupErrors.push(result.reason);
+          console.warn("Dylan Prorok optional animation library", result.reason);
+        }
+      }
+try {
+/* Integration seam for inquiry and newsletter delivery.
+   GitHub Pages cannot process multipart forms or store uploads.
+   Set formEndpoint to a same-origin or CORS-enabled POST URL when ready.
+   Leave it empty to fail openly to the existing Setmore consultation.
+   Never place secrets, API keys, or inbox addresses here. */
+/* Launch seam: scripts/configure-launch.py rewrites origin, robots, canonicals,
+   Open Graph, JSON-LD, and sitemaps. Default rehearsal stays on the GitHub
+   preview host and remains non-indexable. Pass --indexable only for a real
+   production origin cutover. This file never holds secrets. */
+window.PROROK = {
+  origin: "https://prorok.jarrettwroten.com",
+  consultationUrl: "https://dylanproroktattoo.setmore.com/",
+  schedulingUrl: "https://dylanproroktattoo.setmore.com/",
+  formEndpoint: "",
+  newsletterEndpoint: "",
+  acceptedImageTypes: ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"],
+  maxImageBytes: 10 * 1024 * 1024
+};
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok component", error); }
+
+try {
+(() => {
+  const cfg = window.PROROK || {};
+
+  const reduceMotion = document.documentElement.dataset.motion === "reduced";
+  const isMobile = matchMedia("(max-width: 880px)").matches;
+  const pageParams = new URLSearchParams(location.search);
+  const beatWheelRequested = pageParams.get("wheel") !== "off"
+    && Boolean(prorokRoot.querySelector("#top.hero"));
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  let lenis = null;
+  const hasGsapDriver = Boolean(window.gsap && gsap.ticker && typeof gsap.ticker.add === "function");
+  const hasRafDriver = typeof requestAnimationFrame === "function";
+  if (window.Lenis && (hasGsapDriver || hasRafDriver)) {
+    const lenisOptions = { lerp: 0.09 };
+    if (beatWheelRequested) {
+      lenisOptions.virtualScroll = ({ event }) => {
+        if (!matchMedia("(min-width: 881px)").matches) return true;
+        const beat = window.PROROK_WHEEL_BEAT;
+        const type = String(event?.type || "");
+        if (type.includes("wheel")) {
+          const canCapture = typeof beat?.canCaptureWheel === "function"
+            ? beat.canCaptureWheel(event)
+            : false;
+          return !(beat?.enabled && canCapture);
+        }
+        return true;
+      };
+    }
+    lenis = new Lenis(lenisOptions);
+    if (window.ScrollTrigger) lenis.on("scroll", ScrollTrigger.update);
+    if (hasGsapDriver) {
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const tick = (time) => {
+        lenis.raf(time);
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+  window.PROROK_LENIS = lenis;
+
+  prorokRoot.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const target = a.getAttribute("href");
+      const el = target && target !== "#" ? prorokRoot.querySelector(target) : null;
+      if (!el) return;
+      e.preventDefault();
+      closeNav();
+      if (lenis) {
+        lenis.scrollTo(el, {
+          offset: -92,
+          duration: 1.6,
+          easing: (t) => 1 - Math.pow(1 - t, 4)
+        });
+      } else {
+        el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      }
+    });
+  });
+
+  prorokRoot.querySelectorAll("[data-split]").forEach((el) => {
+    const text = el.textContent.trim();
+    el.setAttribute("aria-label", text);
+    el.innerHTML = text.split(/\s+/).map((w) =>
+      `<span class="word" aria-hidden="true">${[...w].map((c) => `<span class="char">${c}</span>`).join("")}</span>`
+    ).join(" ");
+  });
+
+  const nav = prorokRoot.querySelector(".nav");
+  const toggle = prorokRoot.querySelector(".nav__toggle");
+  const more = prorokRoot.querySelector(".nav__more");
+  const moreBtn = prorokRoot.querySelector(".nav__more-btn");
+
+  function closeNav() {
+    if (!nav) return;
+    nav.classList.remove("is-open");
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+    }
+  }
+
+  function closeMore() {
+    if (!more || !moreBtn) return;
+    more.classList.remove("is-open");
+    moreBtn.setAttribute("aria-expanded", "false");
+  }
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const open = !nav.classList.contains("is-open");
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.textContent = open ? "Close" : "Menu";
+      if (open) {
+        const first = nav.querySelector(".nav__links a");
+        first?.focus();
+      }
+    });
+  }
+
+  if (moreBtn && more) {
+    moreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = !more.classList.contains("is-open");
+      more.classList.toggle("is-open", open);
+      moreBtn.setAttribute("aria-expanded", String(open));
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeNav();
+      closeMore();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (more && !more.contains(e.target)) closeMore();
+  });
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeNav);
+  });
+
+
+  if (window.gsap) {
+    const head = prorokRoot.querySelector(".page .sec__head, .folio-page .sec__head");
+    if (head) {
+      const chars = head.querySelectorAll(".char");
+      if (chars.length) {
+        gsap.from(chars, { yPercent: 120, opacity: 0, stagger: .035, duration: 1, ease: "power4.out" });
+      }
+      const jp = head.querySelector(".sec__jp");
+      if (jp) gsap.from(jp, { opacity: 0, letterSpacing: "1.6em", duration: 1.3, ease: "power3.out" });
+      const p = head.querySelector("p");
+      if (p) gsap.from(p, { y: 26, opacity: 0, duration: 1, ease: "power3.out" });
+    }
+    if (window.ScrollTrigger && !reduceMotion) {
+      const figs = gsap.utils.toArray(".folio figure, .folio-flow figure, .flash-grid figure, .art-grid figure");
+      if (figs.length) {
+        ScrollTrigger.batch(figs, {
+          start: "top 92%",
+          once: true,
+          onEnter: (batch) => {
+            gsap.fromTo(batch, { opacity: 0, y: 22 }, {
+              opacity: 1, y: 0, duration: .85, stagger: .05, ease: "power3.out"
+            });
+          }
+        });
+      }
+      const artistImg = prorokRoot.querySelector(".artist__img");
+      const artistText = prorokRoot.querySelector(".artist__text");
+      if (artistImg) {
+        gsap.from(artistImg, {
+          opacity: 0,
+          y: 28,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: artistImg, start: "top 82%" }
+        });
+      }
+      if (artistText) {
+        gsap.from(artistText, {
+          opacity: 0,
+          y: 24,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: artistText, start: "top 80%" }
+        });
+      }
+    }
+  }
+
+  const consultHref = cfg.consultationUrl || "https://dylanproroktattoo.setmore.com/";
+
+  function safeParam(value, pattern) {
+    const text = String(value || "");
+    return pattern.test(text) ? text : "";
+  }
+
+  function prefillInquiryFromQuery() {
+    const params = new URLSearchParams(location.search);
+    const source = safeParam(params.get("source"), /^[a-z]{1,24}$/);
+    const design = safeParam(params.get("design"), /^[A-Z]{3}(?:-[A-Z]{3})?-[A-Z0-9]{3}$/);
+    if (!source && !design) return;
+    prorokRoot.querySelectorAll("[data-prorok-form='inquiry']").forEach((form) => {
+      const field = form.querySelector("[data-field-name='description']");
+      if (!field || field.value.trim()) return;
+      const parts = [];
+      if (source === "flash") parts.push("Flash archive");
+      else if (source === "art") parts.push("Art archive");
+      else if (source === "merch") parts.push("Merchandise listing");
+      else if (source) parts.push("Inquiry");
+      if (design) parts.push("reference " + design);
+      field.value = parts.join(" — ") + ".";
+    });
+  }
+  prefillInquiryFromQuery();
+
+  function setError(field, message) {
+    if (!field) return;
+    field.classList.toggle("is-invalid", Boolean(message));
+    const err = field.querySelector(".field__error");
+    if (err) err.textContent = message || "";
+    const isLocation = field.getAttribute("data-field") === "location" || field.matches("fieldset");
+    const controls = isLocation
+      ? Array.from(field.querySelectorAll("input[type='radio']"))
+      : Array.from(field.querySelectorAll("input, textarea, select"));
+    if (isLocation) {
+      if (message) field.setAttribute("aria-invalid", "true");
+      else field.removeAttribute("aria-invalid");
+    }
+    controls.forEach((control) => {
+      if (message) control.setAttribute("aria-invalid", "true");
+      else control.removeAttribute("aria-invalid");
+    });
+  }
+
+  function validEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  const ACCEPTED_IMAGE_TYPES = cfg.acceptedImageTypes || [
+    "image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"
+  ];
+  const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"];
+
+  function collectFiles(input) {
+    return Array.from(input?.files || []);
+  }
+
+  function isAcceptedImageFile(file) {
+    const type = String(file.type || "").toLowerCase();
+    if (type) return ACCEPTED_IMAGE_TYPES.includes(type);
+    const name = String(file.name || "").toLowerCase();
+    return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => name.endsWith(ext));
+  }
+
+  function fieldControl(form, name) {
+    return form.querySelector(`[data-field-name="${name}"]`);
+  }
+
+  function enableVisitorControls(form) {
+    form.querySelectorAll("[data-js-enable]").forEach((el) => {
+      el.disabled = false;
+    });
+  }
+
+  function setInquiryButtonLabel(form, endpoint) {
+    const label = form.querySelector(".form-actions .btn span");
+    if (!label) return;
+    label.textContent = endpoint ? "Send the inquiry" : "Continue to Setmore";
+  }
+
+  function validateInquiry(form) {
+    let ok = true;
+    const name = fieldControl(form, "name");
+    const description = fieldControl(form, "description");
+    const placement = fieldControl(form, "placement");
+    const email = fieldControl(form, "email");
+    const location = form.querySelector("[data-field-name='location']:checked");
+    const photos = fieldControl(form, "photos");
+
+    const nameField = name?.closest(".field");
+    if (nameField) {
+      const bad = !name.value.trim();
+      setError(nameField, bad ? "Name is required." : "");
+      if (bad) ok = false;
+    }
+    const descField = description?.closest(".field");
+    if (descField) {
+      const bad = !description.value.trim();
+      setError(descField, bad ? "Describe the tattoo you have in mind." : "");
+      if (bad) ok = false;
+    }
+    const placeField = placement?.closest(".field");
+    if (placeField) {
+      const bad = !placement.value.trim();
+      setError(placeField, bad ? "Add a placement and approximate size." : "");
+      if (bad) ok = false;
+    }
+    const emailField = email?.closest(".field");
+    if (emailField) {
+      const value = email.value.trim();
+      const bad = !value || !validEmail(value);
+      setError(emailField, bad ? "Enter a working email so I can reply." : "");
+      if (bad) ok = false;
+    }
+    const locField = form.querySelector("[data-field='location']");
+    if (locField) {
+      const bad = !location;
+      setError(locField, bad ? "Choose where you are looking to get tattooed." : "");
+      if (bad) ok = false;
+    }
+    const photoField = photos?.closest(".field");
+    if (photoField && photos) {
+      const files = collectFiles(photos);
+      const wrong = files.find((f) => !isAcceptedImageFile(f));
+      const huge = files.find((f) => f.size > (cfg.maxImageBytes || 10 * 1024 * 1024));
+      if (wrong) {
+        setError(photoField, "Use image files only — JPEG, PNG, WebP, or HEIC.");
+        ok = false;
+      } else if (huge) {
+        setError(photoField, "Each image needs to stay under 10 MB.");
+        ok = false;
+      } else {
+        setError(photoField, "");
+      }
+    }
+    return ok;
+  }
+
+  function fallbackMessage() {
+    return `Nothing was sent. Book a virtual consultation and we can talk through the piece there.`;
+  }
+
+  function showStatus(box, html, state) {
+    if (!box) return;
+    box.hidden = false;
+    box.dataset.state = state || "info";
+    box.innerHTML = html;
+  }
+
+  function buildFormData(form) {
+    const body = new FormData();
+    const seenRadio = new Set();
+    form.querySelectorAll("[data-field-name]").forEach((el) => {
+      const key = el.getAttribute("data-field-name");
+      if (!key) return;
+      if (el.type === "radio") {
+        if (seenRadio.has(key)) return;
+        const checked = form.querySelector(`[data-field-name="${key}"]:checked`);
+        if (checked) body.append(key, checked.value);
+        seenRadio.add(key);
+        return;
+      }
+      if (el.type === "checkbox") {
+        if (el.checked) body.append(key, el.value || "yes");
+        return;
+      }
+      if (el.type === "file") {
+        collectFiles(el).forEach((file) => body.append(key, file, file.name));
+        return;
+      }
+      body.append(key, el.value ?? "");
+    });
+    return body;
+  }
+
+  async function postForm(endpoint, form) {
+    const body = buildFormData(form);
+    const res = await fetch(endpoint, { method: "POST", body });
+    if (!res.ok) throw new Error("endpoint-failed");
+  }
+
+  prorokRoot.querySelectorAll("[data-prorok-form]").forEach((form) => {
+    const kind = form.getAttribute("data-prorok-form") || "inquiry";
+    const status = form.querySelector(".form-status") || form.parentElement.querySelector(".form-status");
+    const endpoint = kind === "newsletter"
+      ? (cfg.newsletterEndpoint || cfg.formEndpoint)
+      : cfg.formEndpoint;
+    if (kind === "inquiry") setInquiryButtonLabel(form, endpoint);
+    form.addEventListener("submit", async (e) => {
+      if (!endpoint) {
+        e.preventDefault();
+        window.location.assign(consultHref);
+        return;
+      }
+      e.preventDefault();
+      if (kind === "inquiry" && !validateInquiry(form)) {
+        showStatus(status, "<p>Please complete the highlighted fields.</p>", "error");
+        form.querySelector(".is-invalid input, .is-invalid textarea, .is-invalid .radio input")?.focus();
+        return;
+      }
+      if (kind === "newsletter") {
+        const email = form.querySelector("[data-field-name='email']");
+        const emailField = email?.closest(".field");
+        const consent = form.querySelector("[data-field-name='newsletter']");
+        if (!email?.value.trim() || !validEmail(email.value.trim())) {
+          if (emailField) setError(emailField, "Enter an email address.");
+          showStatus(status, "<p>Enter an email address to be notified.</p>", "error");
+          email?.focus();
+          return;
+        }
+        if (emailField) setError(emailField, "");
+        if (consent && !consent.checked) {
+          showStatus(status, "<p>Check the box if you want to be emailed when a release is actually available. Nothing was stored.</p>", "error");
+          consent.focus();
+          return;
+        }
+      }
+
+      try {
+        await postForm(endpoint, form);
+        showStatus(status, kind === "newsletter"
+          ? "<p>You are on the list. I will write when a release is ready.</p>"
+          : "<p>The inquiry was sent. I will reply as soon as I can.</p>", "ok");
+        form.reset();
+      } catch (err) {
+        showStatus(status, `<p>${fallbackMessage()}</p><p><a href="${consultHref}" target="_blank" rel="noopener">Book a virtual consultation</a></p>`, "error");
+      }
+    });
+    enableVisitorControls(form);
+  });
+})();
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok component", error); }
+
+try {
+(() => {
+  const params = new URLSearchParams(location.search);
+  const requested = params.get("wheel") !== "off";
+  const homepage = Boolean(prorokRoot.querySelector("#top.hero"));
+  const dock = document.getElementById("consult-dock");
+  const header = prorokRoot.querySelector(".site-header");
+  const root = document.documentElement;
+  const MINIMUM_DESKTOP_STAGE = 360;
+  const isDesktopViewport = () => matchMedia("(min-width: 881px)").matches;
+  const visibleHeight = () => Math.round(window.visualViewport?.height || innerHeight);
+  const layoutHeight = () => document.documentElement.clientHeight || innerHeight;
+  const chromeGeometry = () => {
+    const height = visibleHeight();
+    const headerBottom = Math.ceil(header?.getBoundingClientRect().bottom || 92);
+    const dockRect = dock?.getBoundingClientRect();
+    const dockBottomGap = dockRect ? Math.max(0, height - dockRect.bottom) : 0;
+    const bottomClearance = dockRect
+      ? Math.ceil(dockRect.height + dockBottomGap + 16)
+      : 24;
+    return { height, headerBottom, bottomClearance };
+  };
+  const viewportCanFitBeat = () => {
+    if (!isDesktopViewport()) return false;
+    const { height, headerBottom, bottomClearance } = chromeGeometry();
+    return height - headerBottom - bottomClearance >= MINIMUM_DESKTOP_STAGE;
+  };
+  const reducedMotion = root.dataset.motion === "reduced";
+
+  const disabled = (reason) => {
+    root.dataset.wheelBeatMode = "off";
+    window.PROROK_WHEEL_BEAT = { enabled: false, reason };
+  };
+
+  if (!requested) return disabled("query-off");
+  if (!homepage) return disabled("homepage-only");
+
+  const initiallyFits = viewportCanFitBeat();
+  const initialPauseReason = isDesktopViewport() ? "viewport-too-short" : "desktop-only";
+
+  const lenis = window.PROROK_LENIS;
+
+  const state = {
+    enabled: initiallyFits,
+    reason: initiallyFits ? "enabled" : initialPauseReason,
+    transport: lenis && typeof lenis.scrollTo === "function" ? "lenis" : "native",
+    state: initiallyFits ? "booting" : "paused",
+    gestureId: 0,
+    inputCount: 0,
+    suppressedCount: 0,
+    stepCount: 0,
+    boundaryAttempts: 0,
+    index: 0,
+    currentIndex: 0,
+    fromIndex: 0,
+    targetY: 0,
+    currentY: Math.round(scrollY),
+    settledY: Math.round(scrollY),
+    direction: 0,
+    stops: [],
+    labels: []
+  };
+  window.PROROK_WHEEL_BEAT = state;
+  root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+  root.dataset.wheelBeatMode = initiallyFits ? "on" : "paused";
+  let topCurtain = null;
+  let bottomCurtain = null;
+
+  function ensureCurtains() {
+    if (topCurtain && bottomCurtain) return;
+    topCurtain = document.createElement("div");
+    bottomCurtain = document.createElement("div");
+    topCurtain.className = "wheel-beat-curtain wheel-beat-curtain--top";
+    bottomCurtain.className = "wheel-beat-curtain wheel-beat-curtain--bottom";
+    topCurtain.setAttribute("aria-hidden", "true");
+    bottomCurtain.setAttribute("aria-hidden", "true");
+    prorokRoot.append(topCurtain, bottomCurtain);
+  }
+
+  function removeCurtains() {
+    topCurtain?.remove();
+    bottomCurtain?.remove();
+    topCurtain = null;
+    bottomCurtain = null;
+  }
+
+  if (initiallyFits) ensureCurtains();
+
+  let quiet = true;
+  let movementComplete = true;
+  let gestureLocked = false;
+  let activeStep = false;
+  let armed = false;
+  let paused = !initiallyFits;
+  let quietTimer = 0;
+  let resizeTimer = 0;
+  let resizeReleaseFrame = 0;
+  let armFrame = 0;
+  let lastBootInputAt = -Infinity;
+  let documentHeight = 0;
+  let topInset = 92;
+  let bottomInsetStart = visibleHeight();
+  let beatGroups = [];
+  let resizeSettling = false;
+  let focusFallbackLocked = false;
+  let focusFallbackTimer = 0;
+  let nativeSettleTimer = 0;
+  const SCROLL_TAU_SECONDS = .41;
+  const SCROLL_DURATION_MS = reducedMotion
+    ? 0
+    : Math.round(SCROLL_TAU_SECONDS * 4.6 * 1000);
+  let smoothScrollFrame = 0;
+  let smoothScrollWatchdog = 0;
+  let smoothScrollGeneration = 0;
+  let activeGestureType = null;
+  let viewportRefreshPending = false;
+  let nativeTouchActive = false;
+  let nativeTouchSettling = false;
+  let nativeTouchSettleTimer = 0;
+  const GESTURE_QUIET_MS = Math.round(SCROLL_TAU_SECONDS * 1000);
+  const TOUCH_INTENT_PX = 8;
+  const TOUCH_AXIS_RATIO = 1.15;
+  const NATIVE_TOUCH_SELECTOR = [
+    "input",
+    "textarea",
+    "select",
+    "option",
+    '[contenteditable="true"]',
+    '[role="slider"]',
+    '[role="spinbutton"]',
+    "video[controls]",
+    "audio[controls]",
+    "iframe",
+    "[data-beat-native]",
+    "[data-lenis-prevent-touch]"
+  ].join(",");
+  const touchGesture = {
+    id: null,
+    mode: "idle",
+    target: null,
+    startX: 0,
+    startY: 0,
+    stepped: false
+  };
+  root.dataset.wheelBeatTau = String(SCROLL_TAU_SECONDS);
+  root.dataset.wheelBeatTransitionMs = String(SCROLL_DURATION_MS);
+  root.dataset.wheelBeatQuietMs = String(GESTURE_QUIET_MS);
+  root.dataset.wheelBeatMotion = reducedMotion ? "reduced" : "full";
+  state.canCaptureWheel = (event) => {
+    if (event?.ctrlKey || !event?.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return false;
+    if (touchTargetIsNative(event.target)) return false;
+    if (ownsVerticalScroll(event.target, Math.sign(event.deltaY))) return false;
+    if (!armed || resizeSettling || gestureLocked) return true;
+    if (focusFallbackLocked) return false;
+    return atomicCaptureFocusIsSafe();
+  };
+  const clamp = (value, low, high) => Math.min(high, Math.max(low, value));
+
+  function syncState() {
+    root.dataset.wheelBeatState = state.state;
+    root.dataset.wheelBeatIndex = String(state.index);
+    root.dataset.wheelBeatSteps = String(state.stepCount);
+    root.dataset.wheelBeatBoundaries = String(state.boundaryAttempts);
+    root.dataset.wheelBeatInputs = String(state.inputCount);
+    root.dataset.wheelBeatSuppressed = String(state.suppressedCount);
+    root.dataset.wheelBeatTarget = String(Math.round(state.targetY));
+    root.dataset.wheelBeatStopCount = String(state.stops.length);
+    root.dataset.wheelBeatLabel = state.labels[state.index] || "";
+    root.dataset.wheelBeatCurrentIndex = String(state.currentIndex);
+    root.dataset.wheelBeatCurrentY = String(state.currentY);
+    root.dataset.wheelBeatTransport = state.transport;
+    root.dataset.wheelBeatMaxStop = String(state.stops[state.stops.length - 1] || 0);
+    root.dataset.wheelBeatMaxGap = String(state.stops.reduce((largest, stop, index) => {
+      if (!index) return largest;
+      return Math.max(largest, stop - state.stops[index - 1]);
+    }, 0));
+    root.dataset.wheelBeatMinGap = String(state.stops.reduce((smallest, stop, index) => {
+      if (!index) return smallest;
+      return Math.min(smallest, stop - state.stops[index - 1]);
+    }, Infinity));
+  }
+
+  function nearestIndex(y) {
+    if (!state.stops.length) return 0;
+    let best = 0;
+    let distance = Infinity;
+    state.stops.forEach((stop, index) => {
+      const next = Math.abs(stop - y);
+      if (next < distance) {
+        best = index;
+        distance = next;
+      }
+    });
+    return best;
+  }
+
+  function labelFor(element) {
+    if (element.id) return element.id;
+    const heading = element.querySelector("h1, h2, h3");
+    if (heading) return heading.textContent.trim();
+    return element.classList[0] || element.tagName.toLowerCase();
+  }
+
+  function beatDefinitions() {
+    const desktop = isDesktopViewport();
+    const top = document.getElementById("top");
+    const thesis = document.getElementById("thesis");
+    const scale = document.getElementById("scale");
+    const workHead = prorokRoot.querySelector("#work > .sec__head");
+    const workPanels = Array.from(prorokRoot.querySelectorAll("#work > .panel"));
+    const portfolioLink = prorokRoot.querySelector("#work > .work__to-folio");
+    const healedHead = prorokRoot.querySelector("#healed .sec__head");
+    const healedMontage = prorokRoot.querySelector("#healed .healed-montage");
+    const voicesHead = prorokRoot.querySelector("#voices > .sec__head");
+    const voices = Array.from(prorokRoot.querySelectorAll("#voices .voices__card"));
+    const craftHead = prorokRoot.querySelector("#craft .sec__head");
+    const stepsContainer = prorokRoot.querySelector("#craft .steps");
+    const steps = Array.from(prorokRoot.querySelectorAll("#craft .step"));
+    const begin = document.getElementById("begin");
+    const beginHead = prorokRoot.querySelector("#begin > .sec__head");
+    const doors = Array.from(prorokRoot.querySelectorAll("#begin .door"));
+    const visit = document.getElementById("visit");
+    const foot = prorokRoot.querySelector(".foot");
+    const group = (...elements) => elements.filter(Boolean);
+    const desktopDefinitions = [
+      { anchor: top, group: group(top), label: "top" },
+      { anchor: thesis, group: group(thesis), label: "thesis" },
+      { anchor: scale, group: group(scale), label: "scale", atomic: true },
+      { anchor: workHead, group: group(workHead, workPanels[0]), label: "The Work", atomic: true },
+      { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
+      { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
+      { anchor: healedHead, group: group(healedHead, healedMontage), label: "Healed", atomic: true },
+      { anchor: voicesHead, group: group(voicesHead, voices[0]), label: "In their words" },
+      { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
+      { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
+      { anchor: craftHead, group: group(craftHead, stepsContainer), label: "What a large project is" },
+      { anchor: begin, group: group(begin), label: "Begin", atomic: true },
+      { anchor: visit, group: group(visit, foot), label: "Visit" }
+    ];
+    const mobileDefinitions = [
+      { anchor: top, group: group(top), label: "top" },
+      { anchor: thesis, group: group(thesis), label: "thesis" },
+      { anchor: scale, group: group(scale), label: "scale", atomic: true },
+      { anchor: workHead, group: group(workHead), label: "The Work" },
+      { anchor: workPanels[0], group: group(workPanels[0]), label: labelFor(workPanels[0]) },
+      { anchor: workPanels[1], group: group(workPanels[1]), label: labelFor(workPanels[1]) },
+      { anchor: workPanels[2], group: group(workPanels[2], portfolioLink), label: labelFor(workPanels[2]) },
+      { anchor: healedHead, group: group(healedHead, healedMontage), label: "Healed", atomic: true },
+      { anchor: voicesHead, group: group(voicesHead), label: "In their words" },
+      { anchor: voices[0], group: group(voices[0]), label: "Client story — Jordan" },
+      { anchor: voices[1], group: group(voices[1]), label: "Client story — Shannon" },
+      { anchor: voices[2], group: group(voices[2]), label: "Client story — Mike" },
+      { anchor: craftHead, group: group(craftHead, steps[0]), label: "What a large project is" },
+      { anchor: steps[1], group: group(steps[1], steps[2]), label: "Consultation and drawing" },
+      { anchor: steps[3], group: group(steps[3], steps[4]), label: "Sessions and healing" },
+      { anchor: beginHead, group: group(beginHead, doors[0]), label: "Begin" },
+      { anchor: doors[1], group: group(doors[1]), label: labelFor(doors[1]) },
+      { anchor: doors[2], group: group(doors[2]), label: labelFor(doors[2]) },
+      { anchor: visit, group: group(visit), label: "Visit" },
+      { anchor: foot, group: group(foot), label: "Footer" }
+    ];
+    const definitions = desktop
+      ? desktopDefinitions.map((definition) => ({ ...definition, atomic: true }))
+      : mobileDefinitions;
+    return definitions.filter((definition) => definition.anchor && definition.group.length);
+  }
+
+  function groupBounds(group, absolute = false) {
+    const rects = group
+      .filter((element) => element && element.isConnected)
+      .map((element) => element.getBoundingClientRect())
+      .filter((rect) => rect.height || rect.width);
+    if (!rects.length) return null;
+    const offset = absolute ? scrollY : 0;
+    return {
+      top: Math.min(...rects.map((rect) => rect.top)) + offset,
+      bottom: Math.max(...rects.map((rect) => rect.bottom)) + offset
+    };
+  }
+
+  function fieldColor(group) {
+    let element = group[0] || document.body;
+    let owner = element.closest("section, header, footer") || element;
+    while (owner && owner !== document.documentElement) {
+      const color = getComputedStyle(owner).backgroundColor;
+      if (color && color !== "transparent" && color !== "rgba(0, 0, 0, 0)") return color;
+      owner = owner.parentElement;
+    }
+    return getComputedStyle(prorokRoot).backgroundColor || "rgb(20, 16, 14)";
+  }
+
+  function hideRestingField() {
+    root.dataset.wheelBeatMatte = "off";
+  }
+
+  function focusAllowsGroup(group) {
+    const active = document.activeElement;
+    const meaningfulFocus = active && active !== document.body && active !== document.documentElement;
+    if (!meaningfulFocus || header?.contains(active) || dock?.contains(active)) return true;
+    return group.some((element) => element === active || element.contains(active));
+  }
+
+  function atomicCaptureFocusIsSafe() {
+    const active = document.activeElement;
+    const meaningfulFocus = active && active !== document.body && active !== document.documentElement;
+    return !meaningfulFocus || Boolean(header?.contains(active) || dock?.contains(active));
+  }
+
+  function resumeWheelFromLink() {
+    const active = document.activeElement;
+    if (active?.matches('a[href], button') && !touchTargetIsNative(active)) {
+      clearTimeout(focusFallbackTimer);
+      focusFallbackLocked = false;
+      active.blur();
+    }
+  }
+
+  function paintField(group, { respectFocus = true, guardChrome = false } = {}) {
+    const bounds = groupBounds(group || []);
+    if (!bounds) {
+      hideRestingField();
+      return false;
+    }
+    if (respectFocus && !focusAllowsGroup(group)) {
+      hideRestingField();
+      return false;
+    }
+    const active = document.activeElement;
+    if (respectFocus && guardChrome && active && active !== document.body && active !== root
+      && !header?.contains(active) && !dock?.contains(active)) {
+      const focusedRect = active.getBoundingClientRect();
+      if (focusedRect.top < topInset || focusedRect.bottom > bottomInsetStart) {
+        hideRestingField();
+        return false;
+      }
+    }
+    const viewportHeight = visibleHeight();
+    const matteTop = clamp(
+      guardChrome ? Math.max(topInset, Math.ceil(bounds.top)) : Math.ceil(bounds.top),
+      0,
+      viewportHeight
+    );
+    const matteBottomStart = clamp(
+      guardChrome ? Math.min(bottomInsetStart, Math.floor(bounds.bottom)) : Math.floor(bounds.bottom),
+      0,
+      viewportHeight
+    );
+    root.style.setProperty("--wheel-beat-matte-top", matteTop + "px");
+    root.style.setProperty("--wheel-beat-matte-bottom-start", matteBottomStart + "px");
+    root.style.setProperty("--wheel-beat-field-color", fieldColor(group));
+    root.dataset.wheelBeatMatte = "on";
+    return true;
+  }
+
+  function holdFocusFallback() {
+    focusFallbackLocked = true;
+    state.state = "focus-fallback";
+    hideRestingField();
+    clearTimeout(focusFallbackTimer);
+    focusFallbackTimer = setTimeout(() => {
+      focusFallbackLocked = false;
+      if (gestureLocked || resizeSettling || paused || !armed) return;
+      state.currentY = Math.round(scrollY);
+      state.currentIndex = nearestIndex(scrollY);
+      state.index = state.currentIndex;
+      state.targetY = state.stops[state.index] || state.currentY;
+      state.settledY = state.currentY;
+      state.state = "idle";
+      syncState();
+      updateRestingField();
+    }, 260);
+    syncState();
+  }
+
+  function updateRestingField() {
+    if (!armed || paused || state.state === "booting") {
+      hideRestingField();
+      return;
+    }
+    if (state.state === "moving" && !gestureLocked) {
+      hideRestingField();
+      return;
+    }
+    const visibleIndex = state.state === "moving" ? nearestIndex(scrollY) : state.index;
+    const group = beatGroups[visibleIndex] || [];
+    root.dataset.wheelBeatVisibleIndex = String(visibleIndex);
+    paintField(group, { respectFocus: state.state !== "moving", guardChrome: visibleIndex !== 0 });
+  }
+
+  function refreshStops() {
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    const { height: viewportHeight, headerBottom, bottomClearance } = chromeGeometry();
+    topInset = headerBottom;
+    const usableBottom = Math.max(topInset + 200, viewportHeight - bottomClearance);
+    bottomInsetStart = usableBottom;
+    const minimumStage = isDesktopViewport() ? MINIMUM_DESKTOP_STAGE : 360;
+    const usableHeight = Math.max(minimumStage, usableBottom - topInset);
+    const scaleMediaHeight = usableHeight;
+    root.style.setProperty("--wheel-beat-stage-height", usableHeight + "px");
+    root.style.setProperty("--wheel-beat-full-stage-height", scaleMediaHeight + "px");
+    root.style.setProperty("--wheel-beat-bottom-clearance", bottomClearance + "px");
+    root.style.setProperty("--wheel-beat-scale-media-height", usableHeight + "px");
+    root.style.setProperty("--wheel-beat-work-media-height", Math.max(160, usableHeight - 218) + "px");
+    root.style.setProperty("--wheel-beat-healed-media-height", Math.max(160, usableHeight - 218) + "px");
+    document.documentElement.offsetHeight;
+    const workHeadingHeight = prorokRoot.querySelector("#work > .sec__head")?.getBoundingClientRect().height || 0;
+    const healedHeadingHeight = prorokRoot.querySelector("#healed .sec__head")?.getBoundingClientRect().height || 0;
+    root.style.setProperty(
+      "--wheel-beat-work-media-height",
+      Math.max(160, usableHeight - Math.ceil(workHeadingHeight) - 16) + "px"
+    );
+    root.style.setProperty(
+      "--wheel-beat-healed-media-height",
+      Math.max(160, usableHeight - Math.ceil(healedHeadingHeight) - 16) + "px"
+    );
+    document.documentElement.offsetHeight;
+    if (window.ScrollTrigger && typeof ScrollTrigger.refresh === "function") {
+      ScrollTrigger.refresh();
+    }
+    if (lenis && typeof lenis.resize === "function") lenis.resize();
+
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - layoutHeight());
+    const definitions = beatDefinitions();
+    const topGroup = definitions[0]?.group || [];
+    const endGroup = definitions[definitions.length - 1]?.group || [];
+    const visitHeading = prorokRoot.querySelector("#visit h2");
+    const headingFitsAtEnd = !visitHeading || visitHeading.getBoundingClientRect().top + scrollY - maxScroll >= topInset;
+    const terminalGroup = headingFitsAtEnd ? endGroup : [
+      ...prorokRoot.querySelectorAll("#visit .visit__block"), prorokRoot.querySelector(".foot")
+    ].filter(Boolean);
+    const raw = [
+      { y: 0, label: "top", group: topGroup, terminal: true },
+      { y: maxScroll, label: "end", group: terminalGroup, terminal: true }
+    ];
+
+    definitions.forEach((definition) => {
+      const rect = definition.anchor.getBoundingClientRect();
+      const bounds = groupBounds(definition.group, true);
+      if (!rect.height || !bounds) return;
+      const absoluteTop = rect.top + scrollY;
+      const absoluteBottom = bounds.bottom;
+      raw.push({
+        y: clamp(Math.round(absoluteTop - topInset), 0, maxScroll),
+        label: definition.label,
+        group: definition.group,
+        terminal: false
+      });
+      const bottomAligned = clamp(Math.round(absoluteBottom - usableBottom), 0, maxScroll);
+      const firstStop = clamp(Math.round(absoluteTop - topInset), 0, maxScroll);
+      if (definition.anchor.id !== "top"
+        && bounds.bottom - bounds.top > usableHeight + 8
+        && bottomAligned - firstStop > 8) {
+        const readingGroup = definition.group.flatMap((element) => {
+          if (element.matches(".sec__head")) return [];
+          if (element.id === "begin") return [element.querySelector(".doors__grid")];
+          return [element];
+        }).filter(Boolean);
+        const readingStep = Math.max(140, usableHeight - 80);
+        for (let y = firstStop + readingStep; y < bottomAligned - 8; y += readingStep) {
+          raw.push({ y: Math.round(y), label: definition.label + " — continuation", group: readingGroup, terminal: false });
+        }
+        raw.push({
+          y: bottomAligned,
+          label: definition.label + " — continuation",
+          group: readingGroup,
+          terminal: false
+        });
+      }
+    });
+
+    raw.sort((a, b) => a.y - b.y || Number(b.terminal) - Number(a.terminal));
+    const unique = [];
+    raw.forEach((beat) => {
+      const previous = unique[unique.length - 1];
+      if (!previous || beat.terminal || beat.y - previous.y > 8) {
+        unique.push(beat);
+      }
+    });
+    if (!unique.length || unique[0].y !== 0) {
+      unique.unshift({ y: 0, label: "top", group: topGroup, terminal: true });
+    }
+    if (unique[unique.length - 1].y !== maxScroll) {
+      unique.push({ y: maxScroll, label: "end", group: endGroup, terminal: true });
+    }
+    const terminal = unique[unique.length - 1];
+    const beforeTerminal = unique[unique.length - 2];
+    const terminalSharesGroup = beforeTerminal?.group === terminal?.group;
+    if (beforeTerminal
+      && !beforeTerminal.terminal
+      && terminal.terminal
+      && terminalSharesGroup
+      && terminal.y - beforeTerminal.y <= 8) {
+      unique.splice(unique.length - 2, 1);
+    }
+
+    const filled = unique.slice();
+
+    state.stops = filled.map((beat) => beat.y);
+    state.labels = filled.map((beat) => beat.label);
+    beatGroups = filled.map((beat) => beat.group || []);
+    state.currentY = Math.round(scrollY);
+    state.currentIndex = nearestIndex(scrollY);
+    state.index = state.currentIndex;
+    state.targetY = state.stops[state.index] || 0;
+    state.settledY = Math.round(scrollY);
+    documentHeight = document.documentElement.scrollHeight;
+    syncState();
+    updateRestingField();
+  }
+
+  function dispatchBeat(phase) {
+    dispatchEvent(new CustomEvent("prorok:wheel-beat", {
+      detail: {
+        phase,
+        gestureId: state.gestureId,
+        fromIndex: state.fromIndex,
+        toIndex: state.index,
+        direction: state.direction,
+        targetY: state.targetY,
+        settledY: state.settledY,
+        inputCount: state.inputCount,
+        suppressedCount: state.suppressedCount
+      }
+    }));
+  }
+
+  function scheduleQuietRelease() {
+    quiet = false;
+    clearTimeout(quietTimer);
+    quietTimer = setTimeout(() => {
+      quiet = true;
+      releaseIfReady();
+    }, GESTURE_QUIET_MS);
+  }
+
+  function releaseIfReady() {
+    if (paused) {
+      state.state = "paused";
+      syncState();
+      return;
+    }
+    if (!movementComplete) {
+      state.state = "moving";
+    } else if (!quiet) {
+      state.state = "settling";
+    } else {
+      gestureLocked = false;
+      state.state = "idle";
+      state.currentY = Math.round(scrollY);
+      state.currentIndex = nearestIndex(scrollY);
+      state.settledY = Math.round(scrollY);
+      state.index = state.currentIndex;
+      if (activeStep) dispatchBeat("complete");
+      activeStep = false;
+      activeGestureType = null;
+    }
+    syncState();
+    updateRestingField();
+    if (!gestureLocked && state.state === "idle" && viewportRefreshPending) {
+      viewportRefreshPending = false;
+      requestAnimationFrame(onViewportResize);
+    }
+  }
+
+  function cancelActiveMovement() {
+    clearTimeout(quietTimer);
+    clearTimeout(nativeSettleTimer);
+    clearTimeout(smoothScrollWatchdog);
+    smoothScrollGeneration += 1;
+    cancelAnimationFrame(smoothScrollFrame);
+    gestureLocked = false;
+    activeStep = false;
+    activeGestureType = null;
+    if (lenis && typeof lenis.reset === "function") {
+      lenis.reset();
+    } else if (lenis && typeof lenis.stop === "function" && typeof lenis.start === "function") {
+      lenis.stop();
+      lenis.start();
+    } else if (lenis && typeof lenis.scrollTo === "function") {
+      lenis.scrollTo(scrollY, { immediate: true, force: true });
+    }
+    quiet = true;
+    movementComplete = true;
+    state.currentY = Math.round(scrollY);
+    state.currentIndex = nearestIndex(scrollY);
+    state.settledY = state.currentY;
+    root.dataset.wheelBeatTransition = "idle";
+  }
+
+  function yieldToNativeNavigation() {
+    if (!gestureLocked && state.state !== "moving" && state.state !== "settling") return;
+    cancelActiveMovement();
+    state.currentY = Math.round(scrollY);
+    state.currentIndex = nearestIndex(scrollY);
+    state.index = state.currentIndex;
+    state.targetY = state.stops[state.index] || state.currentY;
+    state.settledY = state.currentY;
+    state.state = "idle";
+    syncState();
+    hideRestingField();
+  }
+
+  function settleAtCurrentGeometry() {
+    resizeSettling = true;
+    state.state = "settling";
+    root.style.setProperty("--wheel-beat-matte-top", topInset + "px");
+    root.style.setProperty("--wheel-beat-matte-bottom-start", topInset + "px");
+    root.dataset.wheelBeatMatte = "on";
+    syncState();
+    cancelActiveMovement();
+    refreshStops();
+    const snappedY = state.stops[state.index] ?? scrollY;
+    if (lenis && typeof lenis.scrollTo === "function") {
+      lenis.scrollTo(snappedY, { immediate: true, force: true });
+    } else {
+      scrollTo(0, snappedY);
+    }
+    state.currentY = Math.round(scrollY);
+    state.currentIndex = nearestIndex(scrollY);
+    state.index = state.currentIndex;
+    state.targetY = state.stops[state.index] || state.currentY;
+    state.settledY = state.currentY;
+    state.enabled = true;
+    state.reason = "enabled";
+    armed = true;
+    state.state = "idle";
+    syncState();
+    updateRestingField();
+    cancelAnimationFrame(resizeReleaseFrame);
+    resizeReleaseFrame = requestAnimationFrame(() => {
+      resizeSettling = false;
+      resizeReleaseFrame = 0;
+    });
+  }
+
+  function tauEase(progress) {
+    const durationSeconds = SCROLL_DURATION_MS / 1000;
+    const denominator = 1 - Math.exp(-durationSeconds / SCROLL_TAU_SECONDS);
+    return (1 - Math.exp(-(durationSeconds * progress) / SCROLL_TAU_SECONDS)) / denominator;
+  }
+
+  function smoothToBeat(targetIndex) {
+    const target = state.stops[targetIndex];
+    const generation = ++smoothScrollGeneration;
+    clearTimeout(smoothScrollWatchdog);
+    cancelAnimationFrame(smoothScrollFrame);
+    state.index = targetIndex;
+    state.targetY = target;
+    state.state = "moving";
+    movementComplete = false;
+    root.dataset.wheelBeatTransition = "moving";
+    updateRestingField();
+    syncState();
+
+    let finished = false;
+    const done = () => {
+      if (finished || paused || generation !== smoothScrollGeneration) return;
+      finished = true;
+      clearTimeout(smoothScrollWatchdog);
+      cancelAnimationFrame(smoothScrollFrame);
+      if (Math.abs(scrollY - target) > 1) {
+        if (lenis && typeof lenis.scrollTo === "function") {
+          lenis.scrollTo(target, { immediate: true, force: true });
+        } else {
+          scrollTo(0, target);
+        }
+      }
+      if (window.ScrollTrigger && typeof ScrollTrigger.update === "function") ScrollTrigger.update();
+      state.currentY = Math.round(scrollY);
+      state.currentIndex = nearestIndex(scrollY);
+      state.index = targetIndex;
+      state.targetY = target;
+      state.settledY = state.currentY;
+      movementComplete = true;
+      root.dataset.wheelBeatTransition = "idle";
+      if (activeGestureType === "wheel") scheduleQuietRelease();
+      releaseIfReady();
+    };
+
+    if (reducedMotion) {
+      if (lenis && typeof lenis.scrollTo === "function") {
+        lenis.scrollTo(target, { immediate: true, force: true });
+      } else {
+        scrollTo(0, target);
+      }
+      done();
+      return;
+    }
+
+    if (lenis && typeof lenis.scrollTo === "function") {
+      lenis.scrollTo(target, {
+        duration: SCROLL_DURATION_MS / 1000,
+        easing: tauEase,
+        force: true,
+        userData: { source: "wheel-beat", gestureId: state.gestureId, beatIndex: targetIndex },
+        onComplete: done
+      });
+    } else {
+      const startY = scrollY;
+      const distance = target - startY;
+      const started = performance.now();
+      const tick = (now) => {
+        if (generation !== smoothScrollGeneration || paused || !gestureLocked) return;
+        const progress = clamp((now - started) / SCROLL_DURATION_MS, 0, 1);
+        scrollTo(0, startY + distance * tauEase(progress));
+        if (progress < 1) smoothScrollFrame = requestAnimationFrame(tick);
+        else done();
+      };
+      smoothScrollFrame = requestAnimationFrame(tick);
+    }
+    smoothScrollWatchdog = setTimeout(done, SCROLL_DURATION_MS + 450);
+    releaseIfReady();
+  }
+
+  function moveOneBeat(direction) {
+    if (document.documentElement.scrollHeight !== documentHeight) refreshStops();
+    const current = scrollY;
+    const fromIndex = nearestIndex(current);
+    let nextIndex = fromIndex;
+    if (direction > 0) {
+      nextIndex = state.stops.findIndex((stop) => stop > current + 12);
+      if (nextIndex < 0) nextIndex = state.stops.length - 1;
+      const approachWindow = Math.max(96, Math.round(visibleHeight() * .2));
+      if (nextIndex === fromIndex
+        && state.stops[fromIndex] - current < approachWindow) {
+        nextIndex = Math.min(fromIndex + 1, state.stops.length - 1);
+      }
+    } else {
+      for (let index = state.stops.length - 1; index >= 0; index -= 1) {
+        if (state.stops[index] < current - 12) {
+          nextIndex = index;
+          break;
+        }
+      }
+      const approachWindow = Math.max(96, Math.round(visibleHeight() * .2));
+      if (nextIndex === fromIndex
+        && current - state.stops[fromIndex] < approachWindow) {
+        nextIndex = Math.max(fromIndex - 1, 0);
+      }
+    }
+
+    state.gestureId += 1;
+    state.fromIndex = fromIndex;
+    state.direction = direction;
+    if (nextIndex === fromIndex && Math.abs(current - state.stops[fromIndex]) <= 12) {
+      state.boundaryAttempts += 1;
+      state.targetY = state.stops[fromIndex];
+      state.state = "settling";
+      movementComplete = true;
+      releaseIfReady();
+      return;
+    }
+
+    state.stepCount += 1;
+    state.index = nextIndex;
+    state.targetY = state.stops[nextIndex];
+    state.state = "settling";
+    movementComplete = false;
+    activeStep = true;
+    syncState();
+    dispatchBeat("start");
+    smoothToBeat(nextIndex);
+  }
+
+  function ownsVerticalScroll(target, direction) {
+    let element = target instanceof Element ? target : null;
+    while (element && element !== document.body && element !== document.documentElement) {
+      const style = getComputedStyle(element);
+      if (/auto|scroll/.test(style.overflowY) && element.scrollHeight > element.clientHeight + 1) {
+        const canMove = direction > 0
+          ? element.scrollTop + element.clientHeight < element.scrollHeight - 1
+          : element.scrollTop > 1;
+        if (canMove) return true;
+      }
+      element = element.parentElement;
+    }
+    return false;
+  }
+
+  function resetTouchGesture(mode = "idle") {
+    nativeTouchActive = false;
+    touchGesture.id = null;
+    touchGesture.mode = mode;
+    touchGesture.target = null;
+    touchGesture.startX = 0;
+    touchGesture.startY = 0;
+    touchGesture.stepped = false;
+  }
+
+  function markTouchNative(event) {
+    touchGesture.mode = "native";
+    nativeTouchActive = Boolean(event?.touches?.length);
+    if (touchGesture.id === null && event?.touches?.length) {
+      touchGesture.id = event.touches[0].identifier;
+    }
+  }
+
+  function trackedTouch(list) {
+    for (let index = 0; index < list.length; index += 1) {
+      if (list[index].identifier === touchGesture.id) return list[index];
+    }
+    return null;
+  }
+
+  function touchTargetIsNative(target) {
+    return target instanceof Element && Boolean(target.closest(NATIVE_TOUCH_SELECTOR));
+  }
+
+  function touchBeatThreshold() {
+    return clamp(Math.round(visibleHeight() * .065), 36, 64);
+  }
+
+  function onTouchStart(event) {
+    if (paused || !viewportCanFitBeat()) return;
+    clearTimeout(nativeTouchSettleTimer);
+    nativeTouchSettling = false;
+    if (event.touches.length !== 1) {
+      if (gestureLocked || state.state === "moving") yieldToNativeNavigation();
+      markTouchNative(event);
+      return;
+    }
+    const touch = event.touches[0];
+    touchGesture.id = touch.identifier;
+    touchGesture.mode = touchTargetIsNative(event.target) ? "native" : "pending";
+    nativeTouchActive = touchGesture.mode === "native";
+    touchGesture.target = event.target;
+    touchGesture.startX = touch.clientX;
+    touchGesture.startY = touch.clientY;
+    touchGesture.stepped = false;
+  }
+
+  function onTouchMove(event) {
+    if (paused || !viewportCanFitBeat()) return;
+    if (touchGesture.id === null || touchGesture.mode === "native") return;
+    if (event.touches.length !== 1) {
+      if (gestureLocked || state.state === "moving") yieldToNativeNavigation();
+      markTouchNative(event);
+      return;
+    }
+    const touch = trackedTouch(event.touches);
+    if (!touch) return;
+    const deltaX = touch.clientX - touchGesture.startX;
+    const deltaY = touchGesture.startY - touch.clientY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (touchGesture.mode === "pending") {
+      if (Math.max(absX, absY) < TOUCH_INTENT_PX) return;
+      if (absX * TOUCH_AXIS_RATIO >= absY) {
+        markTouchNative(event);
+        return;
+      }
+      const direction = Math.sign(deltaY);
+      if (!direction || ownsVerticalScroll(touchGesture.target, direction)) {
+        markTouchNative(event);
+        return;
+      }
+      if (!event.cancelable) {
+        markTouchNative(event);
+        return;
+      }
+      touchGesture.mode = "captured";
+      quiet = false;
+      clearTimeout(quietTimer);
+    }
+
+    if (touchGesture.mode !== "captured") return;
+    if (!event.cancelable) {
+      quiet = true;
+      releaseIfReady();
+      markTouchNative(event);
+      return;
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    if (touchGesture.stepped) {
+      state.inputCount += 1;
+      state.suppressedCount += 1;
+      syncState();
+      return;
+    }
+    if (absY < touchBeatThreshold()) return;
+
+    touchGesture.stepped = true;
+    state.inputCount += 1;
+    if (resizeSettling || !armed) {
+      lastBootInputAt = performance.now();
+      state.suppressedCount += 1;
+      state.state = resizeSettling ? "settling" : "booting";
+      syncState();
+      return;
+    }
+    if (gestureLocked) {
+      state.suppressedCount += 1;
+      syncState();
+      return;
+    }
+    if (focusFallbackLocked || !atomicCaptureFocusIsSafe()) {
+      quiet = true;
+      holdFocusFallback();
+      resetTouchGesture();
+      return;
+    }
+
+    gestureLocked = true;
+    activeGestureType = "touch";
+    moveOneBeat(Math.sign(deltaY));
+  }
+
+  function finishTouch(event) {
+    if (touchGesture.mode === "native") {
+      nativeTouchActive = event.touches.length > 0;
+      if (nativeTouchActive) {
+        touchGesture.id = event.touches[0].identifier;
+      } else {
+        resetTouchGesture();
+        nativeTouchSettling = true;
+        clearTimeout(nativeTouchSettleTimer);
+        nativeTouchSettleTimer = setTimeout(() => {
+          nativeTouchSettling = false;
+          refreshAfterNativeTouch();
+        }, 250);
+      }
+      return;
+    }
+    if (touchGesture.id === null) return;
+    const ended = trackedTouch(event.changedTouches);
+    if (!ended) return;
+    if (touchGesture.mode === "captured") {
+      event.stopImmediatePropagation();
+      clearTimeout(quietTimer);
+      quiet = true;
+      releaseIfReady();
+    }
+    resetTouchGesture();
+  }
+
+  function refreshAfterNativeTouch() {
+    if (!viewportRefreshPending || nativeTouchActive) return;
+    viewportRefreshPending = false;
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (!viewportCanFitBeat()) {
+        onViewportResize();
+        return;
+      }
+      if (paused) {
+        paused = false;
+        state.enabled = true;
+        state.reason = "enabled";
+        ensureCurtains();
+        root.dataset.wheelBeatMode = "on";
+        scheduleArm();
+        return;
+      }
+      resizeSettling = false;
+      refreshStops();
+      armed = true;
+      state.enabled = true;
+      state.reason = "enabled";
+      state.state = "idle";
+      syncState();
+      updateRestingField();
+    }, 180);
+  }
+
+  function onWheel(event) {
+    if (paused || !viewportCanFitBeat()) return;
+    if (!event.cancelable || event.ctrlKey) return;
+    if (!event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    if (touchTargetIsNative(event.target)) return;
+    const direction = Math.sign(event.deltaY);
+    if (ownsVerticalScroll(event.target, direction)) return;
+    if (resizeSettling || !armed) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      state.inputCount += 1;
+      lastBootInputAt = performance.now();
+      state.suppressedCount += 1;
+      state.state = resizeSettling ? "settling" : "booting";
+      syncState();
+      return;
+    }
+    if (gestureLocked) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      state.inputCount += 1;
+      scheduleQuietRelease();
+      state.suppressedCount += 1;
+      syncState();
+      return;
+    }
+    resumeWheelFromLink();
+    if (focusFallbackLocked || !atomicCaptureFocusIsSafe()) {
+      holdFocusFallback();
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    state.inputCount += 1;
+    scheduleQuietRelease();
+
+    gestureLocked = true;
+    activeGestureType = "wheel";
+    moveOneBeat(direction);
+  }
+
+  addEventListener("wheel", onWheel, { capture: true, passive: false });
+  if (lenis && typeof lenis.on === "function") {
+    // Paint in the same animation tick as Lenis, before the browser's scroll event.
+    lenis.on("scroll", () => {
+      if (gestureLocked && !resizeSettling) updateRestingField();
+    });
+  }
+  addEventListener("scroll", () => {
+    state.currentY = Math.round(scrollY);
+    state.currentIndex = nearestIndex(scrollY);
+    if (gestureLocked && !resizeSettling) updateRestingField();
+    if (!gestureLocked && !resizeSettling) {
+      state.index = state.currentIndex;
+      state.settledY = state.currentY;
+      state.state = armed && !paused
+        ? (focusFallbackLocked || !focusAllowsGroup(beatGroups[state.currentIndex] || [])
+          ? "focus-fallback"
+          : "moving")
+        : state.state;
+      hideRestingField();
+      if (focusFallbackLocked) holdFocusFallback();
+      clearTimeout(nativeSettleTimer);
+      nativeSettleTimer = setTimeout(() => {
+        if (gestureLocked || paused || !armed) return;
+        if (focusFallbackLocked) return;
+        state.currentY = Math.round(scrollY);
+        state.currentIndex = nearestIndex(scrollY);
+        state.index = state.currentIndex;
+        state.targetY = state.stops[state.index] || state.currentY;
+        state.settledY = state.currentY;
+        state.state = "idle";
+        syncState();
+        updateRestingField();
+      }, 140);
+    }
+    syncState();
+  }, { passive: true });
+  function onViewportResize() {
+    root.dataset.wheelBeatLayout = isDesktopViewport() ? "desktop" : "mobile";
+    if (gestureLocked
+      || !movementComplete
+      || touchGesture.mode === "captured"
+      || touchGesture.mode === "native"
+      || nativeTouchActive
+      || nativeTouchSettling) {
+      viewportRefreshPending = true;
+      return;
+    }
+    viewportRefreshPending = false;
+    if (!paused && root.dataset.wheelBeatMode === "on") {
+      cancelAnimationFrame(resizeReleaseFrame);
+      resizeReleaseFrame = 0;
+      resizeSettling = true;
+      state.state = "settling";
+      root.style.setProperty("--wheel-beat-matte-top", topInset + "px");
+      root.style.setProperty("--wheel-beat-matte-bottom-start", topInset + "px");
+      root.dataset.wheelBeatMatte = "on";
+      syncState();
+      cancelActiveMovement();
+    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (viewportCanFitBeat()) {
+        if (paused) {
+          resizeSettling = false;
+          paused = false;
+          state.enabled = true;
+          state.reason = "enabled";
+          ensureCurtains();
+          root.dataset.wheelBeatMode = "on";
+          scheduleArm();
+        } else if (!armed
+          || loaderIsVisible()
+        || performance.now() - lastBootInputAt < GESTURE_QUIET_MS) {
+          scheduleArm();
+        } else {
+          settleAtCurrentGeometry();
+        }
+      } else {
+        resizeSettling = false;
+        cancelAnimationFrame(resizeReleaseFrame);
+        resizeReleaseFrame = 0;
+        paused = true;
+        armed = false;
+        state.enabled = false;
+        state.reason = isDesktopViewport() ? "viewport-too-short" : "desktop-only";
+        state.state = "paused";
+        cancelActiveMovement();
+        resetTouchGesture();
+        hideRestingField();
+        removeCurtains();
+        root.style.removeProperty("--wheel-beat-stage-height");
+        root.style.removeProperty("--wheel-beat-full-stage-height");
+        root.style.removeProperty("--wheel-beat-scale-media-height");
+        root.style.removeProperty("--wheel-beat-work-media-height");
+        root.style.removeProperty("--wheel-beat-healed-media-height");
+        root.dataset.wheelBeatMode = "paused";
+        resizeTimer = 0;
+        document.documentElement.offsetHeight;
+        if (window.ScrollTrigger && typeof ScrollTrigger.refresh === "function") {
+          ScrollTrigger.refresh();
+        }
+        if (lenis && typeof lenis.resize === "function") lenis.resize();
+        syncState();
+      }
+    }, 180);
+  }
+
+  addEventListener("resize", onViewportResize);
+  window.visualViewport?.addEventListener("resize", onViewportResize);
+
+  function loaderIsVisible() {
+    const loader = document.getElementById("loader");
+    if (!loader || loader.hidden) return false;
+    const style = getComputedStyle(loader);
+    return style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+  }
+
+  function scheduleArm() {
+    cancelAnimationFrame(armFrame);
+    if (paused) {
+      state.enabled = false;
+      state.state = "paused";
+      syncState();
+      return;
+    }
+    state.state = resizeSettling ? "settling" : "booting";
+    syncState();
+    const waitForOpening = () => {
+      if (paused) return;
+      const bootInputIsQuiet = performance.now() - lastBootInputAt >= GESTURE_QUIET_MS;
+      if (loaderIsVisible() || !bootInputIsQuiet) {
+        armFrame = requestAnimationFrame(waitForOpening);
+        return;
+      }
+      refreshStops();
+      armed = true;
+      state.enabled = true;
+      resizeSettling = false;
+      state.state = "idle";
+      syncState();
+      updateRestingField();
+    };
+    armFrame = requestAnimationFrame(waitForOpening);
+  }
+
+  if (initiallyFits) {
+    scheduleArm();
+  } else {
+    syncState();
+    hideRestingField();
+  }
+  addEventListener("load", () => requestAnimationFrame(scheduleArm), { once: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(scheduleArm));
+  }
+  addEventListener("click", (event) => {
+    const anchor = event.target instanceof Element
+      ? event.target.closest('a[href^="#"]')
+      : null;
+    if (anchor) yieldToNativeNavigation();
+  }, true);
+  addEventListener("keydown", (event) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+    const navigationKeys = new Set([
+      "Home",
+      "End",
+      "PageUp",
+      "PageDown",
+      "ArrowUp",
+      "ArrowDown",
+      " "
+    ]);
+    if (navigationKeys.has(event.key)) yieldToNativeNavigation();
+  }, true);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) return;
+    yieldToNativeNavigation();
+    resetTouchGesture();
+  });
+  addEventListener("pagehide", () => {
+    cancelActiveMovement();
+    resetTouchGesture();
+  });
+  addEventListener("focusin", (event) => {
+    const focused = event.target;
+    const fixedChrome = header?.contains(focused) || dock?.contains(focused);
+    if (touchGesture.mode === "captured" && touchTargetIsNative(focused)) {
+      yieldToNativeNavigation();
+      resetTouchGesture();
+    }
+    if (state.state === "moving" && !fixedChrome) {
+      cancelActiveMovement();
+      state.index = nearestIndex(scrollY);
+      state.currentIndex = state.index;
+      state.targetY = state.stops[state.index] || Math.round(scrollY);
+      state.state = "idle";
+      syncState();
+    }
+    if (!fixedChrome && focused !== document.body && focused !== root) {
+      // Native keyboard navigation must be able to reach links behind the matte.
+      hideRestingField();
+    } else {
+      updateRestingField();
+    }
+  });
+})();
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok component", error); }
+
+try {
+(() => {
+  const pair = prorokRoot.querySelector("#fresh-healed");
+  const fresh = pair?.querySelector("[data-sleeve-fresh]");
+  const healed = pair?.querySelector("[data-sleeve-healed]");
+  if (!fresh || !healed) return;
+
+  // Preserve the approved camera-pass alignment without changing either source
+  // file or combining the SDR Fresh and HDR Healed pixels into one color space.
+  const anchors = [[0, 0], [5, 2.8], [8, 5.5], [11, 8.5], [14.5, 11], [18, 12.5]];
+  const driftTolerance = 0.12;
+  const hardDriftTolerance = 0.75;
+  let frame = null;
+  let previousFreshTime = null;
+  let buffering = false;
+  let playPending = false;
+  let playRejected = false;
+  let followerPlaying = false;
+  let needsAlignment = true;
+  let alignAfter = 0;
+  let retryAfter = 0;
+
+  healed.muted = true;
+  healed.playsInline = true;
+
+  function ready() {
+    return fresh.readyState >= 1 && healed.readyState >= 1
+      && Number.isFinite(fresh.duration) && fresh.duration > 18
+      && Number.isFinite(healed.duration) && healed.duration > 12.5;
+  }
+
+  function targetAt(time) {
+    const points = [...anchors, [fresh.duration, healed.duration]];
+    let segment = 0;
+    while (segment < points.length - 2 && time >= points[segment + 1][0]) segment++;
+    const [start, finish] = [points[segment], points[segment + 1]];
+    const rate = (finish[1] - start[1]) / (finish[0] - start[0]);
+    return {
+      // Keep the follower on its final frame until the master's native loop.
+      time: Math.min(healed.duration - 1 / 30, Math.max(0, start[1] + (time - start[0]) * rate)),
+      rate: rate * fresh.playbackRate,
+    };
+  }
+
+  function active() {
+    return !document.hidden && !fresh.paused && !fresh.ended && !fresh.seeking && !buffering;
+  }
+
+  function stopFrames() {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+  }
+
+  function requestPlayback() {
+    if (!active() || playPending || playRejected || performance.now() < retryAfter
+      || (!healed.paused && followerPlaying)) return;
+    // A play request is what permits metadata-only mobile loading to progress.
+    // Do not require a decoded frame or seek to a moving target before this.
+    playPending = true;
+    healed.play().then(() => {
+      followerPlaying = active();
+    }).catch((error) => {
+      followerPlaying = false;
+      if (error.name === "AbortError") retryAfter = performance.now() + 500;
+      else playRejected = true;
+    }).finally(() => {
+      playPending = false;
+      if (!active()) healed.pause();
+      schedule();
+    });
+  }
+
+  function synchronize(force = false) {
+    if (force) needsAlignment = true;
+    if (!active()) {
+      healed.pause();
+      return;
+    }
+    requestPlayback();
+    if (!ready() || playPending || !followerPlaying || healed.paused
+      || healed.seeking || healed.readyState < 2) return;
+    const time = fresh.currentTime;
+    const looped = previousFreshTime !== null && time < previousFreshTime - driftTolerance;
+    previousFreshTime = time;
+    if (looped) needsAlignment = true;
+    const target = targetAt(time);
+    const drift = target.time - healed.currentTime;
+    const tolerance = needsAlignment ? 1 / 60 : hardDriftTolerance;
+    let rate = target.rate;
+    if (performance.now() >= alignAfter && Math.abs(drift) > tolerance) {
+      needsAlignment = false;
+      alignAfter = performance.now() + 500;
+      healed.currentTime = target.time;
+    } else if (!needsAlignment && Math.abs(drift) > driftTolerance) {
+      // Small decoder/seek delays are caught up while playing, not by chasing
+      // each completed seek with another seek before a frame can be displayed.
+      rate += Math.max(-0.15, Math.min(0.15, drift * 0.5));
+    } else if (Math.abs(drift) <= 1 / 60) {
+      needsAlignment = false;
+    }
+    if (Math.abs(healed.playbackRate - rate) > 0.001) healed.playbackRate = rate;
+  }
+
+  function schedule() {
+    if (frame !== null || !active() || playRejected) return;
+    frame = requestAnimationFrame(() => {
+      frame = null;
+      synchronize();
+      schedule();
+    });
+  }
+
+  function resume() {
+    buffering = false;
+    playRejected = false;
+    retryAfter = 0;
+    synchronize(true);
+    schedule();
+  }
+
+  function suspend() {
+    stopFrames();
+    followerPlaying = false;
+    healed.pause();
+  }
+
+  fresh.addEventListener("playing", resume);
+  fresh.addEventListener("pause", suspend);
+  fresh.addEventListener("ended", suspend);
+  fresh.addEventListener("waiting", () => { buffering = true; suspend(); });
+  fresh.addEventListener("seeking", suspend);
+  fresh.addEventListener("seeked", resume);
+  fresh.addEventListener("ratechange", () => synchronize(true));
+  // timeupdate also covers native loops and browsers that throttle animation frames.
+  fresh.addEventListener("timeupdate", () => { synchronize(); schedule(); });
+  [fresh, healed].forEach((video) => {
+    video.addEventListener("loadedmetadata", () => { synchronize(); schedule(); });
+    video.addEventListener("canplay", () => {
+      synchronize();
+      schedule();
+    });
+  });
+  healed.addEventListener("playing", () => {
+    if (!active()) { healed.pause(); return; }
+    followerPlaying = true;
+    schedule();
+  });
+  healed.addEventListener("pause", () => { followerPlaying = false; });
+  healed.addEventListener("seeked", () => {
+    alignAfter = performance.now() + 500;
+    requestPlayback();
+    schedule();
+  });
+  function retryFromGesture() {
+    if (!active()) return;
+    playRejected = false;
+    retryAfter = 0;
+    requestPlayback();
+    schedule();
+  }
+  pair.addEventListener("pointerdown", retryFromGesture, { passive: true });
+  pair.addEventListener("touchend", retryFromGesture, { passive: true });
+  pair.addEventListener("keydown", retryFromGesture);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) suspend();
+    else {
+      playRejected = false;
+      retryAfter = 0;
+      synchronize(true);
+      schedule();
+    }
+  });
+  window.addEventListener("pagehide", suspend);
+  window.addEventListener("pageshow", () => { synchronize(true); schedule(); });
+  synchronize(true);
+  schedule();
+})();
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok component", error); }
+
+try {
+(() => {
+  const loader = document.getElementById("loader");
+  const hashTarget = location.hash && location.hash !== "#"
+    ? prorokRoot.querySelector(["#healed", "#fresh-healed", "#healed-trio"].includes(location.hash)
+      ? "#healed .sec__head" : location.hash)
+    : null;
+
+  function hideLoader() {
+    if (!loader) return;
+    loader.style.display = "none";
+    loader.hidden = true;
+    loader.setAttribute("aria-hidden", "true");
+  }
+
+  // Warm the original files one screen before Healed, not during the opening
+  // portrait. This stays independent of animation-CDN availability and leaves
+  // the sleeve follower's timing/playback under sleeve-sync.js alone.
+  function setupHealedPlayback() {
+    const section = prorokRoot.querySelector("#healed");
+    const montage = prorokRoot.querySelector("#healed .healed-montage");
+    const videos = Array.from(prorokRoot.querySelectorAll("#healed .healed-montage video"));
+    if (!section || !montage || !videos.length) return;
+    const players = videos.filter((video) => !video.hasAttribute("data-sleeve-healed"));
+    const states = new Map(players.map((video) => [video, {
+      pending: false, denied: false, retry: 0, recovering: false, recoveries: 0, needsReload: false,
+      lastTime: video.currentTime, progressAt: performance.now(), recoveryAt: -Infinity,
+    }]));
+    const warmDistance = () => Math.max(800, window.innerHeight || 800);
+    let nearby = false;
+    let warmed = false;
+    let pageHidden = false;
+    let viewportFrame = 0;
+    let stallTimer = 0;
+    const canPlay = () => nearby && !document.hidden && !pageHidden;
+
+    function play(video) {
+      const state = states.get(video);
+      if (!canPlay() || state.pending || state.denied || state.recovering || !video.paused) return;
+      state.pending = true;
+      video.play().catch((error) => {
+        if (error.name === "AbortError") {
+          // A pending request can be interrupted by a viewport/tab pause.
+          if (canPlay()) state.retry = setTimeout(() => { state.retry = 0; play(video); }, 500);
+        } else state.denied = true;
+      }).finally(() => {
+        state.pending = false;
+        // A late play promise must not escape an offscreen/hidden pause.
+        if (!canPlay()) video.pause();
+      });
+    }
+
+    function noteProgress(video, state) {
+      state.lastTime = video.currentTime;
+      state.progressAt = performance.now();
+    }
+
+    function hasBufferedFuture(video) {
+      // A network-starved player must wait for bytes, not repeatedly discard its
+      // buffer. Only repair an idle pipeline with decoded media well ahead.
+      if (video.networkState !== 1 || !Number.isFinite(video.duration)
+        || video.currentTime >= video.duration) return false;
+      const future = Math.min(video.duration, video.currentTime + 2);
+      for (let i = 0; i < video.buffered.length; i++) {
+        if (video.buffered.start(i) <= video.currentTime
+          && video.buffered.end(i) >= future) return true;
+      }
+      return false;
+    }
+
+    function recover(video, state) {
+      const time = video.currentTime;
+      const reload = state.recoveries > 0;
+      state.recovering = true;
+      state.recoveries++;
+      state.recoveryAt = performance.now();
+      video.dataset.playbackRecovery = reload ? "reload" : "seek";
+      let timeout = 0;
+
+      function finish() {
+        clearTimeout(timeout);
+        video.removeEventListener("loadedmetadata", restore);
+        video.removeEventListener("seeked", finish);
+        state.recovering = false;
+        video.dataset.playbackRecovery = "restored";
+        noteProgress(video, state);
+        play(video);
+      }
+
+      function restore() {
+        video.removeEventListener("loadedmetadata", restore);
+        // Restore the exact stalled timestamp: never skip a frame range, change
+        // the approved loop, substitute a source, or silently restart at zero.
+        video.addEventListener("seeked", finish, { once: true });
+        if (time > 0) video.currentTime = time;
+        else finish();
+      }
+
+      timeout = setTimeout(() => {
+        video.dataset.playbackRecovery = "timed-out";
+        if (!reload) {
+          video.removeEventListener("seeked", finish);
+          state.recovering = false;
+          state.needsReload = true;
+          noteProgress(video, state);
+        }
+        // A reload still awaiting metadata keeps its restoration gate. Late
+        // metadata may resume at the saved time, but playback at zero may not.
+      }, 8000);
+      if (reload) {
+        video.pause();
+        video.addEventListener("loadedmetadata", restore, { once: true });
+        video.load();
+      } else {
+        // First flush the decoder with a seek to the SAME timestamp. This keeps
+        // the last native frame and buffer; a full reload is the bounded fallback.
+        video.addEventListener("seeked", finish, { once: true });
+        video.currentTime = time;
+      }
+    }
+
+    function monitorPlayback() {
+      stallTimer = 0;
+      if (!canPlay()) return;
+      players.forEach((video) => {
+        const state = states.get(video);
+        if (Math.abs(video.currentTime - state.lastTime) > 0.02) {
+          state.needsReload = false;
+          noteProgress(video, state);
+          return;
+        }
+        // A timed-out seek initiated by this controller may still report
+        // seeking=true. Only that owned timeout can bypass the normal seek gate.
+        if (state.needsReload && state.recoveries < 2 && !video.paused
+          && !video.ended && !video.error && performance.now() - state.recoveryAt >= 10000
+          && hasBufferedFuture(video)) {
+          state.needsReload = false;
+          recover(video, state);
+          return;
+        }
+        if (state.denied || state.recovering || video.paused
+          || video.ended || video.seeking || video.error || video.readyState < 2) {
+          noteProgress(video, state);
+          return;
+        }
+        if (state.recoveries < 2 && performance.now() - state.progressAt >= 4000
+          && performance.now() - state.recoveryAt >= 10000 && hasBufferedFuture(video)) {
+          recover(video, state);
+        }
+      });
+      stallTimer = setTimeout(monitorPlayback, 1000);
+    }
+
+    function updatePlayback() {
+      if (canPlay()) {
+        if (!warmed) {
+          warmed = true;
+          videos.forEach((video) => { video.preload = "auto"; video.load(); });
+        }
+        players.forEach(play);
+        if (!stallTimer) {
+          players.forEach((video) => noteProgress(video, states.get(video)));
+          stallTimer = setTimeout(monitorPlayback, 1000);
+        }
+      } else {
+        clearTimeout(stallTimer);
+        stallTimer = 0;
+        players.forEach((video) => {
+          const state = states.get(video);
+          clearTimeout(state.retry);
+          state.retry = 0;
+          video.pause();
+        });
+      }
+    }
+
+    function setNearby(value) {
+      if (value && !nearby) states.forEach((state) => { state.denied = false; });
+      nearby = value;
+      updatePlayback();
+    }
+
+    function checkViewport() {
+      const rect = section.getBoundingClientRect();
+      const distance = warmDistance();
+      setNearby(rect.top <= (window.innerHeight || 800) + distance && rect.bottom >= -distance);
+    }
+
+    function scheduleViewportCheck() {
+      if (viewportFrame) return;
+      viewportFrame = requestAnimationFrame(() => { viewportFrame = 0; checkViewport(); });
+    }
+
+    // Observe the un-clipped section rather than the reveal-animated montage.
+    // Native scrolling and the desktop beat layout therefore share one trigger.
+    if (typeof IntersectionObserver === "function") {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { if (entry.target === section) setNearby(entry.isIntersecting); });
+      }, { rootMargin: warmDistance() + "px 0px" });
+      observer.observe(section);
+    } else addEventListener("scroll", scheduleViewportCheck, { passive: true });
+    addEventListener("resize", scheduleViewportCheck, { passive: true });
+    addEventListener("prorok:wheel-beat", (event) => {
+      if (event.detail?.phase === "start" && Number.isFinite(event.detail.targetY)) {
+        const rect = section.getBoundingClientRect();
+        const distance = warmDistance();
+        const plannedTop = rect.top + window.scrollY - event.detail.targetY;
+        if (plannedTop <= (window.innerHeight || 800) + distance
+          && plannedTop + rect.height >= -distance) setNearby(true);
+      } else scheduleViewportCheck();
+    });
+    const retryFromGesture = () => {
+      states.forEach((state) => { state.denied = false; });
+      checkViewport();
+    };
+    montage.addEventListener("pointerdown", retryFromGesture, { passive: true });
+    montage.addEventListener("touchend", retryFromGesture, { passive: true });
+    montage.addEventListener("keydown", retryFromGesture);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) states.forEach((state) => { state.denied = false; });
+      updatePlayback();
+    });
+    addEventListener("pagehide", () => { pageHidden = true; updatePlayback(); });
+    addEventListener("pageshow", () => { pageHidden = false; checkViewport(); });
+    if (["#healed", "#fresh-healed", "#healed-trio"].includes(location.hash)) setNearby(true);
+    else checkViewport();
+  }
+
+  setupHealedPlayback();
+
+  prorokRoot.querySelectorAll("#healed video[data-loop-end]").forEach((video) => {
+    const loopEnd = Number(video.dataset.loopEnd);
+    if (!Number.isFinite(loopEnd) || loopEnd <= 0) return;
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= loopEnd) video.currentTime = 0;
+    });
+  });
+
+  if (!window.gsap || !window.ScrollTrigger) {
+    hideLoader();
+    return;
+  }
+
+  const lenis = window.PROROK_LENIS;
+  const reducedMotion = document.documentElement.dataset.motion === "reduced";
+
+  function hero() {
+    gsap.timeline({ defaults: { ease: "power4.out" } })
+      .from(".hero__title .char", { yPercent: 120, opacity: 0, rotate: 5, duration: 1.3, stagger: .05 })
+      .from(".hero__kicker span", { yPercent: 110, duration: 1 }, "-=0.9")
+      .from(".hero__sub .line > span", { yPercent: 110, opacity: 0, duration: 1, stagger: .12 }, "-=0.8")
+      .from(".hero__vertical", { opacity: 0, y: 30, duration: 1.2 }, "-=0.8")
+      .from(".hero__scroll", { opacity: 0, duration: .8 }, "-=0.6");
+  }
+
+  if (loader) {
+    if (hashTarget || window.matchMedia("(max-width: 880px)").matches) {
+      // On small screens, the portrait is the opening. Do not cover usable
+      // content with a timed loader while the existing text reveal starts.
+      hideLoader();
+      if (!hashTarget) hero();
+    } else {
+      gsap.timeline({ onComplete: hero })
+        .from(".loader__seal", { scale: 0, rotate: -30, duration: .7, ease: "back.out(2)" })
+        .to(".loader__bar span", { scaleX: 1, duration: 1, ease: "power2.inOut" }, "-=0.2")
+        .to(loader, { yPercent: -100, duration: .9, ease: "power4.inOut", delay: .1 })
+        .set(loader, { display: "none" });
+    }
+  }
+
+  gsap.to(".hero__img", { scale: 1.16, yPercent: 9, ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  gsap.to(".hero__content", { y: -90, opacity: 0, ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "70% top", scrub: true } });
+
+  // Only construct lower-page reveals when their stable shell is nearby on
+  // small screens. Every tween keeps its original target, timing and trigger.
+  function createRevealQueue() {
+    const mobile = window.matchMedia?.("(max-width: 880px)") || { matches: false };
+    const pending = new Map();
+    let observer = null;
+    let frame = 0;
+    let listening = false;
+    const height = () => window.innerHeight || 800;
+
+    function finishBatch(shells) {
+      let created = false;
+      shells.forEach((shell) => {
+        const factories = pending.get(shell);
+        if (!factories) return;
+        pending.delete(shell);
+        observer?.unobserve(shell);
+        factories.forEach((factory) => { factory(); created = true; });
+      });
+      if (created) {
+        ScrollTrigger.refresh();
+        ScrollTrigger.update();
+      }
+      if (!pending.size) stopListening();
+    }
+
+    function near(offset = 0) {
+      const distance = height();
+      // Read all bounds before factories write transforms, avoiding a layout
+      // read/write cycle for every individual tween.
+      return Array.from(pending.keys()).filter((shell) => {
+        const rect = shell.getBoundingClientRect();
+        return rect.top - offset <= distance * 2 && rect.bottom - offset >= -distance;
+      });
+    }
+
+    function scan() {
+      frame = 0;
+      finishBatch(near());
+    }
+
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(scan);
+    }
+
+    function reobserve() {
+      observer?.disconnect();
+      if (!pending.size) return;
+      observer = new IntersectionObserver((entries) => {
+        finishBatch(entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target));
+      }, { rootMargin: height() + "px 0px" });
+      pending.forEach((_, shell) => observer.observe(shell));
+    }
+
+    function resize() {
+      if (!mobile.matches) finishBatch(Array.from(pending.keys()));
+      else { reobserve(); scan(); }
+    }
+
+    function prepareAt(target) {
+      if (!target || !pending.size) return;
+      finishBatch(near(target.getBoundingClientRect().top - 92));
+    }
+
+    function prepareAnchor(event) {
+      const link = event.target.closest?.('a[href^="#"]');
+      const href = link?.getAttribute("href");
+      if (href && href !== "#") prepareAt(prorokRoot.querySelector(href));
+    }
+
+    function stopListening() {
+      observer?.disconnect();
+      cancelAnimationFrame(frame);
+      frame = 0;
+      if (!listening) return;
+      removeEventListener("scroll", schedule);
+      removeEventListener("resize", resize);
+      removeEventListener("pageshow", scan);
+      document.removeEventListener("click", prepareAnchor, true);
+      listening = false;
+    }
+
+    return {
+      add(shell, factory) {
+        if (!mobile.matches || typeof IntersectionObserver !== "function" || !shell) {
+          factory();
+          return;
+        }
+        if (!pending.has(shell)) pending.set(shell, []);
+        pending.get(shell).push(factory);
+      },
+      prepareAt,
+      start() {
+        if (!pending.size) return;
+        listening = true;
+        addEventListener("scroll", schedule, { passive: true });
+        addEventListener("resize", resize, { passive: true });
+        addEventListener("pageshow", scan);
+        document.addEventListener("click", prepareAnchor, true);
+        reobserve();
+        if (hashTarget && lenis) prepareAt(hashTarget);
+        scan();
+      },
+    };
+  }
+
+  const homeReveals = createRevealQueue();
+
+  homeReveals.add(prorokRoot.querySelector(".thesis"), () => {
+  gsap.from(".thesis__jp", { opacity: 0, letterSpacing: "1.5em", duration: 1.4, ease: "power3.out",
+    scrollTrigger: { trigger: ".thesis", start: "top 72%" } });
+  gsap.from(".thesis__text .line > span", { yPercent: 115, duration: 1.2, stagger: .18,
+    ease: "power4.out", scrollTrigger: { trigger: ".thesis", start: "top 64%" } });
+  gsap.from(".thesis__seal", { scale: 0, rotate: 25, duration: .8, ease: "back.out(2.5)",
+    scrollTrigger: { trigger: ".thesis__seal", start: "top 90%" } });
+
+  });
+
+  gsap.utils.toArray(".panel").forEach((p) => {
+    homeReveals.add(p, () => {
+    const img = p.querySelector(".panel__img img");
+    const right = p.classList.contains("panel--right");
+    gsap.fromTo(p.querySelector(".panel__img"),
+      { clipPath: right ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0%)", duration: 1.5, delay: .25, ease: "power4.inOut",
+        scrollTrigger: { trigger: p, start: "top 72%" } });
+    gsap.fromTo(img, { scale: 1.32 }, { scale: 1.08, duration: 1.5, delay: .25, ease: "power3.out",
+      scrollTrigger: { trigger: p, start: "top 72%" } });
+    gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: "none",
+      scrollTrigger: { trigger: p, start: "top bottom", end: "bottom top", scrub: true } });
+    gsap.from(p.querySelectorAll(".panel__num, .panel__text h3, .panel__text p"),
+      { y: 44, opacity: 0, duration: 1, stagger: .12, ease: "power3.out",
+        scrollTrigger: { trigger: p, start: "top 58%" } });
+    });
+  });
+
+  gsap.utils.toArray(".sec__head").forEach((h) => {
+    homeReveals.add(h, () => {
+    gsap.from(h.querySelectorAll(".char"), { yPercent: 120, opacity: 0, stagger: .035,
+      duration: 1, ease: "power4.out", scrollTrigger: { trigger: h, start: "top 78%" } });
+    gsap.from(h.querySelector(".sec__jp"), { opacity: 0, letterSpacing: "1.6em", duration: 1.3,
+      ease: "power3.out", scrollTrigger: { trigger: h, start: "top 80%" } });
+    const p = h.querySelector("p");
+    if (p) gsap.from(p, { y: 26, opacity: 0, duration: 1, ease: "power3.out",
+      scrollTrigger: { trigger: h, start: "top 74%" } });
+    });
+  });
+  homeReveals.add(prorokRoot.querySelector("#healed"), () => {
+  gsap.from(".healed-montage", { clipPath: "inset(0 0 100% 0)", duration: 1.2,
+    ease: "power3.out", scrollTrigger: { trigger: ".healed-montage", start: "top 82%" } });
+  });
+  homeReveals.add(prorokRoot.querySelector(".steps"), () => {
+  gsap.from(".step", { y: 50, opacity: 0, duration: .9, stagger: .09, ease: "power3.out",
+    scrollTrigger: { trigger: ".steps", start: "top 80%" } });
+  });
+  homeReveals.add(prorokRoot.querySelector(".doors__grid"), () => {
+  gsap.from(".door", { y: 60, opacity: 0, duration: 1, stagger: .12, ease: "power3.out",
+    scrollTrigger: { trigger: ".doors__grid", start: "top 80%" } });
+  });
+  if (!reducedMotion) {
+    gsap.utils.toArray(".voices__card").forEach((card) => {
+      homeReveals.add(card.parentElement, () => {
+      gsap.from(card, { y: 36, duration: 1.1, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 82%" } });
+      });
+    });
+  }
+  homeReveals.add(prorokRoot.querySelector(".visit"), () => {
+  gsap.from(".visit__block", { y: 40, opacity: 0, duration: 1, stagger: .1, ease: "power3.out",
+    scrollTrigger: { trigger: ".visit", start: "top 82%" } });
+
+  });
+  homeReveals.start();
+
+  if (hashTarget && lenis) {
+    const goHash = () => {
+      homeReveals.prepareAt(hashTarget);
+      ScrollTrigger.refresh();
+      lenis.resize();
+      lenis.scrollTo(hashTarget, { offset: -92, immediate: true });
+    };
+    const arm = () => { goHash(); setTimeout(goHash, 160); };
+    arm();
+    if (document.readyState !== "complete") addEventListener("load", arm, { once: true });
+  }
+})();
+
+} catch (error) { startupErrors.push(error); console.error("Dylan Prorok component", error); }
+      prorokRoot.dataset.started = startupErrors.length ? "degraded" : "ready";
+      window.ScrollTrigger?.refresh();
+    } catch (error) {
+      prorokRoot.dataset.started = "error";
+      const loader = prorokRoot.querySelector("#loader");
+      if (loader) { loader.hidden = true; loader.style.display = "none"; }
+      console.error("Dylan Prorok page initialization", error);
+    }
+  };
+  // build_page emits this script after the complete imported root. Start when
+  // its libraries settle; native Squarespace DOMContentLoaded is not its gate.
+  ready();
+})();
+</script>
+</body></html>
