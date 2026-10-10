@@ -1009,7 +1009,11 @@ def check_healed_comparison(raw: str, failures: list[str]) -> None:
         if len(videos) != len(players):
             failures.append(f"index.html: {identifier} must contain {len(players)} original-source video players")
         for video, (position, asset) in zip(videos, players):
-            if video.count("<source ") != 1 or f'src="media/video/{asset}.mp4"' not in video:
+            # HEVC/HLG originals carry one H.264 SDR fallback after the original (2026-10-10, approved).
+            fallback = f'src="media/video/{asset}-sdr.mp4"'
+            expected_sources = 1 if asset == "original-7733" else 2
+            if (video.count("<source ") != expected_sources or f'src="media/video/{asset}.mp4"' not in video
+                    or (expected_sources == 2 and (fallback not in video or video.index(f'src="media/video/{asset}.mp4"') > video.index(fallback)))):
                 failures.append(f"index.html: {identifier} {position} must show {asset}")
             attributes = ['width="1080"', 'height="1920"']
             if identifier == "healed-trio":
