@@ -81,9 +81,9 @@
     gsap.fromTo(p.querySelector(".panel__img"),
       { clipPath: right ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)" },
       { clipPath: "inset(0 0% 0 0%)", duration: 1.5, delay: .25, ease: "power4.inOut",
-        scrollTrigger: { trigger: p, start: "top 72%" } });
+        scrollTrigger: { trigger: p, start: "top 88%" } });
     gsap.fromTo(img, { scale: 1.32 }, { scale: 1.08, duration: 1.5, delay: .25, ease: "power3.out",
-      scrollTrigger: { trigger: p, start: "top 72%" } });
+      scrollTrigger: { trigger: p, start: "top 88%" } });
     gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: "none",
       scrollTrigger: { trigger: p, start: "top bottom", end: "bottom top", scrub: true } });
     gsap.from(p.querySelectorAll(".panel__num, .panel__text h3, .panel__text p"),
